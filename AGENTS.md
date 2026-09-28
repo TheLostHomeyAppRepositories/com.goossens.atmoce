@@ -237,15 +237,22 @@ When adding a string, add it in all 13 languages in the same change.
 
 ## 7. Assets and store
 
-- App icon: the official ATMOCE wordmark, vectorised from the alpha mask of the logo
-  embedded in Atmoce's datasheets (Atmoce's own favicon is the same wordmark).
+- App icon: the "A" of the official ATMOCE wordmark (vectorised from the logo in Atmoce's
+  datasheets), scaled to fill the 960 canvas. Atmoce has no separate symbol (its favicon is
+  the wordmark too), and the full wordmark is unreadable at the store's small icon sizes
+  ("must be recognizable at small sizes"); a single-letter monogram passed certification for
+  the Toshiba Estia app.
 - App images: Atmoce's lifestyle photo (MC100 datasheet); driver images: product photos
   from the datasheets (MI microinverter, MS-7K-U, MC100) on white.
   **Get Atmoce's written permission to use their logo and photos before publishing.**
 - Driver icons are hand-drawn line icons (960×960, stroke 32).
 - `brandColor` `#D03050` (atmoce.com accent; brightness ≈ 100, limit 184).
-- Store rules: README without URLs or feature lists; description must not start with
-  "Adds support for"; Flow titles without device names or parentheses.
+- Store rules (apps.developer.homey.app/app-store/guidelines): README one or two paragraphs,
+  plain text, no URLs, no changelog; description a one-liner, not "Adds support for"; Flow
+  titles without device names, When/And/Then or parentheses; app images lifestyle, not
+  screenshots; widget previews 1024² transparent, simple shapes, no text.
+- Store texts (tagline, tags, README.*.txt, changelog) are written by the scratchpad
+  generator gen_store.py; widget previews by gen_preview.py (headless Chrome, 1024², cropped).
 - Before publishing: create the GitHub repo in `source`/`support`, open a Homey Community
   topic and set `homeyCommunityTopicId`, bump version + `.homeychangelog.json` (13 languages).
 

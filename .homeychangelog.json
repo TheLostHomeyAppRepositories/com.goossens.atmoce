@@ -1,17 +1,17 @@
 {
   "1.0.0": {
-    "en": "First version: solar panels, home battery and grid meter of your Atmoce system, locally in Homey Energy, with battery control from Homey and Flows.",
-    "nl": "Eerste versie: zonnepanelen, thuisbatterij en netmeter van je Atmoce-systeem, lokaal in Homey Energie, met batterijsturing vanuit Homey en Flows.",
-    "de": "Erste Version: Solarmodule, Heimspeicher und Netzzähler deines Atmoce-Systems, lokal in Homey Energy, mit Batteriesteuerung aus Homey und Flows.",
-    "fr": "Première version : panneaux solaires, batterie domestique et compteur réseau de votre système Atmoce, en local dans Homey Energy, avec pilotage de la batterie depuis Homey et les Flows.",
-    "it": "Prima versione: pannelli solari, batteria domestica e contatore di rete del tuo sistema Atmoce, in locale in Homey Energy, con controllo della batteria da Homey e dai Flow.",
-    "sv": "Första versionen: solpaneler, hemmabatteri och nätmätare för ditt Atmoce-system, lokalt i Homey Energy, med batteristyrning från Homey och Flows.",
-    "no": "Første versjon: solcellepaneler, hjemmebatteri og nettmåler for Atmoce-systemet ditt, lokalt i Homey Energy, med batteristyring fra Homey og Flows.",
-    "es": "Primera versión: paneles solares, batería doméstica y contador de red de tu sistema Atmoce, en local en Homey Energy, con control de la batería desde Homey y los Flows.",
-    "da": "Første version: solpaneler, hjemmebatteri og netmåler for dit Atmoce-system, lokalt i Homey Energy, med batteristyring fra Homey og Flows.",
-    "ru": "Первая версия: солнечные панели, домашний аккумулятор и сетевой счётчик системы Atmoce локально в Homey Energy, с управлением батареей из Homey и Flow.",
-    "pl": "Pierwsza wersja: panele słoneczne, magazyn energii i licznik sieciowy systemu Atmoce, lokalnie w Homey Energy, ze sterowaniem baterią z Homey i Flow.",
-    "ko": "첫 버전: Atmoce 시스템의 태양광 패널, 가정용 배터리, 계통 계량기를 Homey Energy에서 로컬로 사용하고, Homey와 Flow에서 배터리를 제어합니다.",
-    "ar": "الإصدار الأول: الألواح الشمسية والبطارية المنزلية وعداد الشبكة لنظام Atmoce محليًا في Homey Energy، مع التحكم في البطارية من Homey وFlow."
+    "en": "First release: solar panels, home battery and grid meter live in Homey Energy, battery and power-limit control from Homey and Flows, the Energy flow dashboard widget, and timeline alerts for faults, grid outages and gateway updates.",
+    "nl": "Eerste versie: zonnepanelen, thuisbatterij en netmeter live in Homey Energie, batterij en vermogenslimieten sturen vanuit Homey en Flows, de dashboardwidget Energiestroom, en tijdlijnmeldingen bij storingen, stroomuitval en gateway-updates.",
+    "de": "Erste Version: Solarmodule, Heimspeicher und Netzzähler live in Homey Energy, Steuerung von Batterie und Leistungsgrenzen aus Homey und Flows, das Dashboard-Widget Energiefluss sowie Zeitleisten-Meldungen bei Störungen, Netzausfällen und Gateway-Updates.",
+    "fr": "Première version : panneaux solaires, batterie domestique et compteur réseau en direct dans Homey Energy, pilotage de la batterie et des limites de puissance depuis Homey et les Flows, le widget Flux d'énergie pour le tableau de bord, et des notifications dans la timeline en cas de défaut, de coupure réseau et de mise à jour de la passerelle.",
+    "it": "Prima versione: pannelli solari, batteria domestica e contatore di rete in tempo reale in Homey Energy, controllo della batteria e dei limiti di potenza da Homey e dai Flow, il widget Flusso di energia per la dashboard e notifiche nella timeline per guasti, blackout e aggiornamenti del gateway.",
+    "sv": "Första versionen: solpaneler, hemmabatteri och nätmätare i realtid i Homey Energy, styrning av batteri och effektgränser från Homey och Flows, dashboardwidgeten Energiflöde och aviseringar i tidslinjen vid fel, strömavbrott och gateway-uppdateringar.",
+    "no": "Første versjon: solcellepaneler, hjemmebatteri og nettmåler i sanntid i Homey Energy, styring av batteri og effektgrenser fra Homey og Flows, dashbord-widgeten Energiflyt og varsler i tidslinjen ved feil, strømbrudd og gateway-oppdateringer.",
+    "es": "Primera versión: paneles solares, batería doméstica y contador de red en tiempo real en Homey Energy, control de la batería y de los límites de potencia desde Homey y los Flows, el widget Flujo de energía para el panel y notificaciones en la línea de tiempo ante fallos, cortes de red y actualizaciones de la pasarela.",
+    "da": "Første version: solpaneler, hjemmebatteri og netmåler live i Homey Energy, styring af batteri og effektgrænser fra Homey og Flows, dashboard-widgetten Energiflow og notifikationer på tidslinjen ved fejl, strømafbrydelser og gateway-opdateringer.",
+    "ru": "Первая версия: солнечные панели, домашний аккумулятор и сетевой счётчик в реальном времени в Homey Energy, управление батареей и ограничениями мощности из Homey и Flow, виджет «Поток энергии» для панели и уведомления в ленте о неисправностях, отключениях сети и обновлениях шлюза.",
+    "pl": "Pierwsza wersja: panele słoneczne, magazyn energii i licznik sieciowy na żywo w Homey Energy, sterowanie baterią i limitami mocy z Homey i Flow, widżet Przepływ energii na pulpit oraz powiadomienia na osi czasu o usterkach, zanikach sieci i aktualizacjach bramki.",
+    "ko": "첫 버전: 태양광 패널, 가정용 배터리, 계통 계량기를 Homey Energy에서 실시간으로 확인하고, Homey와 Flow에서 배터리 및 출력 제한을 제어하며, 대시보드용 에너지 흐름 위젯과 고장, 정전, 게이트웨이 업데이트에 대한 타임라인 알림을 제공합니다.",
+    "ar": "الإصدار الأول: الألواح الشمسية والبطارية المنزلية وعداد الشبكة مباشرةً في Homey Energy، والتحكم في البطارية وحدود القدرة من Homey وFlow، وأداة تدفق الطاقة للوحة التحكم، وإشعارات على الخط الزمني عند الأعطال وانقطاع الشبكة وتحديثات البوابة."
   }
 }

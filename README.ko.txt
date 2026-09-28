@@ -1,5 +1,3 @@
-Homey Energy에서 Atmoce 시스템을 확인하고 Homey가 배터리를 제어하도록 하세요. Homey는 클라우드 없이 홈 네트워크를 통해 Atmoce 게이트웨이와 직접 통신합니다. 태양광 발전량, 배터리 잔량과 출력, 계통 수전·송전량이 몇 초마다 업데이트됩니다. Homey가 배터리의 충전 또는 방전 출력을 정하게 하거나, 전기가 저렴할 때처럼 Flow에서 강제 충전이나 방전을 시작할 수 있습니다.
+Atmoce 태양광 및 배터리 시스템을 Homey로 가져오세요. 태양광 발전량, 배터리 잔량, 계통에서 받거나 보내는 모든 전력이 Homey Energy에 실시간으로 표시되며, 클라우드 없이 홈 네트워크의 Atmoce 게이트웨이에서 직접 읽어 옵니다. 에너지 흐름 위젯은 대시보드에서 태양이 배터리를 충전하고 집에 전력을 공급하는 모습을 보여 주며, 시스템이 고장을 보고하거나 배터리에 주의가 필요하거나 정전이 되면 타임라인에 알기 쉬운 메시지가 도착합니다.
 
-Atmoce M-Combiner MC100, MC100-T 및 M-Gateway MG100과 여기에 연결된 모든 Atmoce 배터리에서 작동합니다. 기기를 추가하기 전에 Atmozen 앱의 설정 → 3rd Party System에서 Modbus-TCP를 켜세요. MC100L(Lite)은 로컬 연결을 지원하지 않아 사용할 수 없습니다.
-
-Atmoce와 Atmozen은 ATMOCE Holding B.V.의 상표입니다. 이 앱은 Atmoce와 제휴하거나 Atmoce의 승인을 받은 앱이 아닙니다.
+그런 다음 Flow로 에너지를 활용하세요. 전기가 저렴할 때 배터리를 충전해 저녁 피크 시간에 사용하고, 가격이 마이너스가 되면 송전이나 태양광 발전을 제한하며, 배터리가 특정 잔량에 도달하거나 패널이 발전을 시작하면 바로 반응하게 할 수 있습니다. 모든 Atmoce 배터리와 함께 M-Combiner MC100, MC100-T 및 M-Gateway MG100에서 작동합니다. Atmozen 앱의 설정, 3rd Party System에서 Modbus-TCP를 켜면 Homey가 게이트웨이를 스스로 찾습니다. Atmoce와 Atmozen은 ATMOCE Holding B.V.의 상표이며, 이 앱은 Atmoce와 관련이 없습니다.

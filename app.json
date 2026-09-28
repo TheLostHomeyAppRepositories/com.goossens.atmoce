@@ -12,19 +12,19 @@
     "en": "Atmoce"
   },
   "description": {
-    "en": "See and steer your Atmoce solar and battery system, locally.",
-    "nl": "Bekijk en stuur je Atmoce-zonne-energie- en batterijsysteem, lokaal.",
-    "de": "Sieh und steuere dein Atmoce-Solar- und Batteriesystem – lokal.",
-    "fr": "Suivez et pilotez votre système solaire et de batterie Atmoce, en local.",
-    "it": "Monitora e gestisci il tuo sistema solare e di accumulo Atmoce, in locale.",
-    "sv": "Se och styr ditt Atmoce-sol- och batterisystem, lokalt.",
-    "no": "Se og styr Atmoce-sol- og batterisystemet ditt, lokalt.",
-    "es": "Consulta y controla tu sistema solar y de batería Atmoce, en local.",
-    "da": "Se og styr dit Atmoce-sol- og batterisystem, lokalt.",
-    "ru": "Следите за солнечной системой и аккумулятором Atmoce и управляйте ими локально.",
-    "pl": "Podglądaj i steruj systemem solarnym i magazynem energii Atmoce – lokalnie.",
-    "ko": "Atmoce 태양광 및 배터리 시스템을 로컬에서 확인하고 제어하세요.",
-    "ar": "تابع نظام Atmoce للطاقة الشمسية والبطارية وتحكّم به محليًا."
+    "en": "Solar, battery and grid live in Homey Energy, with smart local battery control.",
+    "nl": "Zon, batterij en net live in Homey Energie, met slimme lokale batterijsturing.",
+    "de": "Solar, Batterie und Netz live in Homey Energy, mit smarter lokaler Batteriesteuerung.",
+    "fr": "Solaire, batterie et réseau en direct dans Homey Energy, avec pilotage local de la batterie.",
+    "it": "Solare, batteria e rete in tempo reale in Homey Energy, con controllo locale della batteria.",
+    "sv": "Sol, batteri och elnät i realtid i Homey Energy, med smart lokal batteristyrning.",
+    "no": "Sol, batteri og strømnett i sanntid i Homey Energy, med smart lokal batteristyring.",
+    "es": "Solar, batería y red en tiempo real en Homey Energy, con control local de la batería.",
+    "da": "Sol, batteri og elnet live i Homey Energy, med smart lokal batteristyring.",
+    "ru": "Солнце, батарея и сеть в реальном времени в Homey Energy и локальное управление батареей.",
+    "pl": "Słońce, bateria i sieć na żywo w Homey Energy, z lokalnym sterowaniem baterią.",
+    "ko": "태양광, 배터리, 계통을 Homey Energy에서 실시간으로 보고 배터리를 로컬로 제어하세요.",
+    "ar": "الطاقة الشمسية والبطارية والشبكة مباشرةً في Homey Energy، مع تحكم محلي ذكي بالبطارية."
   },
   "category": [
     "energy"
@@ -67,6 +67,87 @@
       "micro-onduleur",
       "batterie domestique",
       "énergie",
+      "modbus"
+    ],
+    "it": [
+      "atmoce",
+      "atmozen",
+      "fotovoltaico",
+      "microinverter",
+      "batteria domestica",
+      "energia",
+      "modbus"
+    ],
+    "sv": [
+      "atmoce",
+      "atmozen",
+      "solceller",
+      "mikroväxelriktare",
+      "hemmabatteri",
+      "energi",
+      "modbus"
+    ],
+    "no": [
+      "atmoce",
+      "atmozen",
+      "solceller",
+      "mikroinverter",
+      "hjemmebatteri",
+      "energi",
+      "modbus"
+    ],
+    "es": [
+      "atmoce",
+      "atmozen",
+      "solar",
+      "microinversor",
+      "batería doméstica",
+      "energía",
+      "modbus"
+    ],
+    "da": [
+      "atmoce",
+      "atmozen",
+      "solceller",
+      "mikroinverter",
+      "hjemmebatteri",
+      "energi",
+      "modbus"
+    ],
+    "ru": [
+      "atmoce",
+      "atmozen",
+      "солнечные панели",
+      "микроинвертор",
+      "домашний аккумулятор",
+      "энергия",
+      "modbus"
+    ],
+    "pl": [
+      "atmoce",
+      "atmozen",
+      "fotowoltaika",
+      "mikrofalownik",
+      "magazyn energii",
+      "energia",
+      "modbus"
+    ],
+    "ko": [
+      "atmoce",
+      "atmozen",
+      "태양광",
+      "마이크로인버터",
+      "가정용 배터리",
+      "에너지",
+      "modbus"
+    ],
+    "ar": [
+      "atmoce",
+      "atmozen",
+      "الطاقة الشمسية",
+      "عاكس صغير",
+      "بطارية منزلية",
+      "الطاقة",
       "modbus"
     ]
   },
