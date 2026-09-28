@@ -1,3 +1,4 @@
+import { MAINTENANCE_CAPABILITIES } from '../../lib/atmoce-device.mts';
 import { AtmoceDriver, type PairDevice } from '../../lib/atmoce-driver.mts';
 import { crossed } from '../../lib/derived.mts';
 import type { ProbeResult } from '../../lib/gateway-registry.mts';
@@ -54,7 +55,7 @@ export default class GridDriver extends AtmoceDriver {
   protected override pairDevice({ phaseCount }: ProbeResult): Pick<PairDevice, 'name' | 'capabilities'> {
     return {
       name: this.homey.__('pair.name_grid'),
-      capabilities: [...GRID_POWER, ...GRID_METERS, ...(phaseCount === 3 ? THREE_PHASE : SINGLE_PHASE), ...GRID_DERIVED],
+      capabilities: [...GRID_POWER, ...GRID_METERS, ...(phaseCount === 3 ? THREE_PHASE : SINGLE_PHASE), ...GRID_DERIVED, ...MAINTENANCE_CAPABILITIES],
     };
   }
 

@@ -34,7 +34,8 @@
     "invalid_unit_id": "أدخل معرّف وحدة بين 1 و247",
     "no_battery": "لا تُبلغ هذه البوابة عن أي بطارية. أضف الألواح الشمسية أو عداد الشبكة بدلًا من ذلك",
     "charge_limit": "يمكن شحن البطاريات بقدرة __max__ واط كحد أقصى",
-    "discharge_limit": "يمكن تفريغ البطاريات بقدرة __max__ واط كحد أقصى"
+    "discharge_limit": "يمكن تفريغ البطاريات بقدرة __max__ واط كحد أقصى",
+    "test_failed": "لم تستجب البوابة على __host__: __error__"
   },
   "warning": {
     "system_fault": "يُبلغ نظام Atmoce عن عطل. افتح تطبيق Atmozen لمعرفة التفاصيل.",
@@ -57,5 +58,27 @@
     "produced": "أُنتج اليوم",
     "consumed": "استُهلك اليوم",
     "self_sufficient": "الاكتفاء الذاتي"
+  },
+  "notify": {
+    "context": "البرنامج الثابت __firmware__ · الشمس __solar__ · البطارية __soc__ % (__battery__) · الشبكة __grid__.",
+    "lasted": "المدة: __duration__.",
+    "system_fault": "**__device__**: يُبلغ نظام Atmoce عن عطل (حالة المحطة 60066 = 1). افتح تطبيق Atmozen لتفاصيل التنبيه. __context__",
+    "system_fault_cleared": "**__device__**: زال عطل النظام.",
+    "battery_faulty": "**__device__**: توجد بطارية واحدة على الأقل بتنبيه نشط وتوقفت البطاريات عن الشحن والتفريغ (حالة التشغيل 60098 = 4). افتح تطبيق Atmozen لتفاصيل التنبيه. __context__",
+    "battery_shutdown": "**__device__**: توقفت جميع البطاريات عن العمل (حالة التشغيل 60098 = 3). افتح تطبيق Atmozen للتفاصيل. __context__",
+    "battery_problem_cleared": "**__device__**: عادت البطاريات إلى العمل بشكل طبيعي.",
+    "grid_outage": "**__device__**: انقطاع الكهرباء. الشبكة متوقفة والنظام يعمل منفصلًا عنها (60096 = 1). __context__",
+    "grid_restored": "**__device__**: عادت الشبكة وأصبح النظام متصلًا بها مجددًا.",
+    "connection_lost": "**بوابة Atmoce __serial__** لا تستجيب منذ __duration__ على __host__ (__error__). يواصل Homey المحاولة ويبحث في الشبكة تحسبًا لتغيّر العنوان.",
+    "connection_restored": "**بوابة Atmoce __serial__** تستجيب مجددًا على __host__ بعد __duration__.",
+    "firmware_updated": "**بوابة Atmoce __serial__** حُدِّثت من البرنامج الثابت __previous__ إلى __current__.",
+    "test_ok": "**__device__**: نجح اختبار الاتصال. استجاب __host__ (الوحدة __unit__) خلال __ms__ ms. البوابة __serial__، البرنامج الثابت __firmware__. السجلات الاختيارية: __registers__. القراءات منذ بدء التطبيق: __polls__، الفاشلة: __failed__."
+  },
+  "diag": {
+    "connecting": "جارٍ الاتصال بـ __host__…",
+    "connected_since": "متصل بـ __host__ منذ __time__",
+    "unreachable_since": "لا استجابة من __host__ منذ __time__",
+    "none": "لا يوجد",
+    "polls_value": "__polls__ (الفاشلة: __failed__)"
   }
 }

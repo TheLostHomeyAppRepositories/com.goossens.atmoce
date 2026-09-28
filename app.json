@@ -2744,7 +2744,9 @@
         "meter_power.discharged_today",
         "measure_battery_energy",
         "measure_time_to_full",
-        "measure_time_to_empty"
+        "measure_time_to_empty",
+        "measure_battery_cycles",
+        "button.test_connection"
       ],
       "capabilitiesOptions": {
         "meter_power.charged": {
@@ -2819,6 +2821,39 @@
           "min": -10000,
           "max": 10000,
           "step": 10
+        },
+        "button.test_connection": {
+          "maintenanceAction": true,
+          "title": {
+            "en": "Test connection",
+            "nl": "Verbinding testen",
+            "de": "Verbindung testen",
+            "fr": "Tester la connexion",
+            "it": "Verifica connessione",
+            "sv": "Testa anslutningen",
+            "no": "Test tilkoblingen",
+            "es": "Probar la conexión",
+            "da": "Test forbindelsen",
+            "ru": "Проверить подключение",
+            "pl": "Testuj połączenie",
+            "ko": "연결 테스트",
+            "ar": "اختبار الاتصال"
+          },
+          "desc": {
+            "en": "Reads the gateway right now and puts a report with the connection details on the timeline.",
+            "nl": "Leest de gateway meteen uit en zet een verslag met de verbindingsgegevens op de tijdlijn.",
+            "de": "Liest das Gateway sofort aus und legt einen Bericht mit den Verbindungsdaten in der Zeitleiste ab.",
+            "fr": "Interroge la passerelle immédiatement et place un rapport avec les détails de connexion dans la timeline.",
+            "it": "Legge subito il gateway e mette nella timeline un rapporto con i dettagli della connessione.",
+            "sv": "Läser gatewayen direkt och lägger en rapport med anslutningsuppgifterna i tidslinjen.",
+            "no": "Leser gatewayen med en gang og legger en rapport med tilkoblingsdetaljene i tidslinjen.",
+            "es": "Lee la pasarela ahora mismo y deja un informe con los detalles de conexión en la línea de tiempo.",
+            "da": "Aflæser gatewayen med det samme og lægger en rapport med forbindelsesdetaljerne på tidslinjen.",
+            "ru": "Сразу опрашивает шлюз и помещает в ленту отчёт с данными подключения.",
+            "pl": "Od razu odczytuje bramkę i umieszcza na osi czasu raport ze szczegółami połączenia.",
+            "ko": "게이트웨이를 즉시 읽고 연결 정보가 담긴 보고서를 타임라인에 올립니다.",
+            "ar": "يقرأ البوابة فورًا ويضع تقريرًا بتفاصيل الاتصال على الخط الزمني."
+          }
         }
       },
       "energy": {
@@ -3211,6 +3246,178 @@
               }
             }
           ]
+        },
+        {
+          "id": "notifications_group",
+          "type": "group",
+          "label": {
+            "en": "Notifications",
+            "nl": "Meldingen",
+            "de": "Benachrichtigungen",
+            "fr": "Notifications",
+            "it": "Notifiche",
+            "sv": "Aviseringar",
+            "no": "Varsler",
+            "es": "Notificaciones",
+            "da": "Notifikationer",
+            "ru": "Уведомления",
+            "pl": "Powiadomienia",
+            "ko": "알림",
+            "ar": "الإشعارات"
+          },
+          "children": [
+            {
+              "id": "timeline_notifications",
+              "type": "checkbox",
+              "label": {
+                "en": "Timeline notifications",
+                "nl": "Tijdlijnmeldingen",
+                "de": "Zeitleisten-Benachrichtigungen",
+                "fr": "Notifications dans la timeline",
+                "it": "Notifiche nella timeline",
+                "sv": "Aviseringar i tidslinjen",
+                "no": "Varsler i tidslinjen",
+                "es": "Notificaciones en la línea de tiempo",
+                "da": "Notifikationer på tidslinjen",
+                "ru": "Уведомления в ленте",
+                "pl": "Powiadomienia na osi czasu",
+                "ko": "타임라인 알림",
+                "ar": "إشعارات الخط الزمني"
+              },
+              "hint": {
+                "en": "Alarms and all-clears on the Homey timeline and your phone: system faults, battery problems, grid outages, a gateway that stops answering and gateway firmware updates. Messages about the gateway itself are sent once, when any of its devices has this on.",
+                "nl": "Alarmen en herstelmeldingen op de Homey-tijdlijn en je telefoon: systeemstoringen, batterijproblemen, stroomuitval, een gateway die niet meer antwoordt en firmware-updates van de gateway. Meldingen over de gateway zelf komen één keer, als minstens één van zijn apparaten dit aan heeft.",
+                "de": "Alarme und Entwarnungen in der Homey-Zeitleiste und auf deinem Handy: Systemstörungen, Batterieprobleme, Netzausfälle, ein Gateway, das nicht mehr antwortet, und Firmware-Updates des Gateways. Meldungen zum Gateway selbst kommen einmal, wenn eines seiner Geräte dies eingeschaltet hat.",
+                "fr": "Alarmes et fins d'alarme dans la timeline Homey et sur votre téléphone : défauts du système, problèmes de batterie, coupures réseau, passerelle qui ne répond plus et mises à jour du firmware de la passerelle. Les messages sur la passerelle elle-même sont envoyés une fois, si l'un de ses appareils a cette option activée.",
+                "it": "Allarmi e cessati allarmi nella timeline di Homey e sul telefono: guasti del sistema, problemi alle batterie, blackout, un gateway che non risponde più e aggiornamenti firmware del gateway. I messaggi sul gateway stesso arrivano una volta, se almeno uno dei suoi dispositivi ha questa opzione attiva.",
+                "sv": "Larm och återställningar i Homeys tidslinje och på din telefon: systemfel, batteriproblem, strömavbrott, en gateway som slutar svara och firmwareuppdateringar av gatewayen. Meddelanden om själva gatewayen skickas en gång, om någon av dess enheter har detta på.",
+                "no": "Alarmer og friskmeldinger i Homey-tidslinjen og på telefonen: systemfeil, batteriproblemer, strømbrudd, en gateway som slutter å svare og fastvareoppdateringer av gatewayen. Meldinger om selve gatewayen sendes én gang, når en av enhetene har dette på.",
+                "es": "Alarmas y avisos de normalidad en la línea de tiempo de Homey y en tu móvil: fallos del sistema, problemas de batería, cortes de red, una pasarela que deja de responder y actualizaciones de firmware de la pasarela. Los mensajes sobre la propia pasarela se envían una vez, si alguno de sus dispositivos tiene esto activado.",
+                "da": "Alarmer og afmeldinger på Homey-tidslinjen og din telefon: systemfejl, batteriproblemer, strømafbrydelser, en gateway der holder op med at svare, og firmwareopdateringer af gatewayen. Beskeder om selve gatewayen sendes én gang, når en af dens enheder har dette slået til.",
+                "ru": "Тревоги и отбои в ленте Homey и на телефоне: неисправности системы, проблемы с батареями, отключения сети, шлюз, который перестал отвечать, и обновления прошивки шлюза. Сообщения о самом шлюзе приходят один раз, если это включено хотя бы у одного из его устройств.",
+                "pl": "Alarmy i odwołania alarmów na osi czasu Homey i w telefonie: usterki systemu, problemy z bateriami, zaniki sieci, bramka, która przestaje odpowiadać, i aktualizacje oprogramowania bramki. Komunikaty o samej bramce przychodzą raz, jeśli choć jedno z jej urządzeń ma to włączone.",
+                "ko": "Homey 타임라인과 휴대폰에 경보와 해제 알림을 보냅니다: 시스템 고장, 배터리 문제, 정전, 응답하지 않는 게이트웨이, 게이트웨이 펌웨어 업데이트. 게이트웨이 자체에 대한 메시지는 그 기기 중 하나라도 이 옵션이 켜져 있으면 한 번 전송됩니다.",
+                "ar": "تنبيهات وإشعارات زوالها على الخط الزمني لـ Homey وعلى هاتفك: أعطال النظام، ومشكلات البطارية، وانقطاع الشبكة، وبوابة توقفت عن الاستجابة، وتحديثات البرنامج الثابت للبوابة. تُرسل الرسائل الخاصة بالبوابة نفسها مرة واحدة إذا كان هذا الخيار مفعّلًا لأيٍّ من أجهزتها."
+              },
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "diagnostics",
+          "type": "group",
+          "label": {
+            "en": "Diagnostics",
+            "nl": "Diagnose",
+            "de": "Diagnose",
+            "fr": "Diagnostic",
+            "it": "Diagnostica",
+            "sv": "Diagnostik",
+            "no": "Diagnostikk",
+            "es": "Diagnóstico",
+            "da": "Diagnostik",
+            "ru": "Диагностика",
+            "pl": "Diagnostyka",
+            "ko": "진단",
+            "ar": "التشخيص"
+          },
+          "children": [
+            {
+              "id": "diag_connection",
+              "type": "label",
+              "label": {
+                "en": "Connection",
+                "nl": "Verbinding",
+                "de": "Verbindung",
+                "fr": "Connexion",
+                "it": "Connessione",
+                "sv": "Anslutning",
+                "no": "Tilkobling",
+                "es": "Conexión",
+                "da": "Forbindelse",
+                "ru": "Подключение",
+                "pl": "Połączenie",
+                "ko": "연결",
+                "ar": "الاتصال"
+              },
+              "value": ""
+            },
+            {
+              "id": "diag_last_error",
+              "type": "label",
+              "label": {
+                "en": "Last error",
+                "nl": "Laatste fout",
+                "de": "Letzter Fehler",
+                "fr": "Dernière erreur",
+                "it": "Ultimo errore",
+                "sv": "Senaste fel",
+                "no": "Siste feil",
+                "es": "Último error",
+                "da": "Seneste fejl",
+                "ru": "Последняя ошибка",
+                "pl": "Ostatni błąd",
+                "ko": "마지막 오류",
+                "ar": "آخر خطأ"
+              },
+              "value": ""
+            },
+            {
+              "id": "diag_polls",
+              "type": "label",
+              "label": {
+                "en": "Readings since app start",
+                "nl": "Uitlezingen sinds app-start",
+                "de": "Abfragen seit App-Start",
+                "fr": "Lectures depuis le démarrage de l'app",
+                "it": "Letture dall'avvio dell'app",
+                "sv": "Avläsningar sedan appstart",
+                "no": "Avlesninger siden appstart",
+                "es": "Lecturas desde el inicio de la app",
+                "da": "Aflæsninger siden appstart",
+                "ru": "Опросов с запуска приложения",
+                "pl": "Odczyty od startu aplikacji",
+                "ko": "앱 시작 이후 읽기 횟수",
+                "ar": "القراءات منذ بدء التطبيق"
+              },
+              "value": ""
+            },
+            {
+              "id": "diag_registers",
+              "type": "label",
+              "label": {
+                "en": "Optional registers",
+                "nl": "Optionele registers",
+                "de": "Optionale Register",
+                "fr": "Registres optionnels",
+                "it": "Registri opzionali",
+                "sv": "Valfria register",
+                "no": "Valgfrie registre",
+                "es": "Registros opcionales",
+                "da": "Valgfrie registre",
+                "ru": "Необязательные регистры",
+                "pl": "Rejestry opcjonalne",
+                "ko": "선택 레지스터",
+                "ar": "السجلات الاختيارية"
+              },
+              "value": "",
+              "hint": {
+                "en": "✓ answers, ✗ not supported by this firmware, ? not read yet. Useful when reporting an issue.",
+                "nl": "✓ antwoordt, ✗ niet ondersteund door deze firmware, ? nog niet gelezen. Handig bij het melden van een probleem.",
+                "de": "✓ antwortet, ✗ von dieser Firmware nicht unterstützt, ? noch nicht gelesen. Hilfreich, wenn du ein Problem meldest.",
+                "fr": "✓ répond, ✗ non pris en charge par ce firmware, ? pas encore lu. Utile pour signaler un problème.",
+                "it": "✓ risponde, ✗ non supportato da questo firmware, ? non ancora letto. Utile per segnalare un problema.",
+                "sv": "✓ svarar, ✗ stöds inte av denna firmware, ? inte läst än. Bra att ha när du rapporterar ett problem.",
+                "no": "✓ svarer, ✗ ikke støttet av denne fastvaren, ? ikke lest ennå. Nyttig når du melder et problem.",
+                "es": "✓ responde, ✗ no admitido por este firmware, ? aún no leído. Útil al informar de un problema.",
+                "da": "✓ svarer, ✗ understøttes ikke af denne firmware, ? ikke læst endnu. Nyttigt, når du rapporterer et problem.",
+                "ru": "✓ отвечает, ✗ не поддерживается этой прошивкой, ? ещё не прочитан. Пригодится при сообщении о проблеме.",
+                "pl": "✓ odpowiada, ✗ nieobsługiwany przez to oprogramowanie, ? jeszcze nieodczytany. Przydatne przy zgłaszaniu problemu.",
+                "ko": "✓ 응답함, ✗ 이 펌웨어에서 지원하지 않음, ? 아직 읽지 않음. 문제를 신고할 때 유용합니다.",
+                "ar": "✓ يستجيب، ✗ غير مدعوم في هذا البرنامج الثابت، ? لم يُقرأ بعد. مفيد عند الإبلاغ عن مشكلة."
+              }
+            }
+          ]
         }
       ]
     },
@@ -3275,7 +3482,8 @@
         "measure_voltage",
         "measure_current",
         "meter_power.consumption_today",
-        "measure_self_sufficiency"
+        "measure_self_sufficiency",
+        "button.test_connection"
       ],
       "capabilitiesOptions": {
         "meter_power.imported": {
@@ -3480,6 +3688,39 @@
             "pl": "Zużycie dziś",
             "ko": "오늘 소비량",
             "ar": "استهلاك اليوم"
+          }
+        },
+        "button.test_connection": {
+          "maintenanceAction": true,
+          "title": {
+            "en": "Test connection",
+            "nl": "Verbinding testen",
+            "de": "Verbindung testen",
+            "fr": "Tester la connexion",
+            "it": "Verifica connessione",
+            "sv": "Testa anslutningen",
+            "no": "Test tilkoblingen",
+            "es": "Probar la conexión",
+            "da": "Test forbindelsen",
+            "ru": "Проверить подключение",
+            "pl": "Testuj połączenie",
+            "ko": "연결 테스트",
+            "ar": "اختبار الاتصال"
+          },
+          "desc": {
+            "en": "Reads the gateway right now and puts a report with the connection details on the timeline.",
+            "nl": "Leest de gateway meteen uit en zet een verslag met de verbindingsgegevens op de tijdlijn.",
+            "de": "Liest das Gateway sofort aus und legt einen Bericht mit den Verbindungsdaten in der Zeitleiste ab.",
+            "fr": "Interroge la passerelle immédiatement et place un rapport avec les détails de connexion dans la timeline.",
+            "it": "Legge subito il gateway e mette nella timeline un rapporto con i dettagli della connessione.",
+            "sv": "Läser gatewayen direkt och lägger en rapport med anslutningsuppgifterna i tidslinjen.",
+            "no": "Leser gatewayen med en gang og legger en rapport med tilkoblingsdetaljene i tidslinjen.",
+            "es": "Lee la pasarela ahora mismo y deja un informe con los detalles de conexión en la línea de tiempo.",
+            "da": "Aflæser gatewayen med det samme og lægger en rapport med forbindelsesdetaljerne på tidslinjen.",
+            "ru": "Сразу опрашивает шлюз и помещает в ленту отчёт с данными подключения.",
+            "pl": "Od razu odczytuje bramkę i umieszcza na osi czasu raport ze szczegółami połączenia.",
+            "ko": "게이트웨이를 즉시 읽고 연결 정보가 담긴 보고서를 타임라인에 올립니다.",
+            "ar": "يقرأ البوابة فورًا ويضع تقريرًا بتفاصيل الاتصال على الخط الزمني."
           }
         }
       },
@@ -3763,6 +4004,178 @@
               "value": ""
             }
           ]
+        },
+        {
+          "id": "notifications_group",
+          "type": "group",
+          "label": {
+            "en": "Notifications",
+            "nl": "Meldingen",
+            "de": "Benachrichtigungen",
+            "fr": "Notifications",
+            "it": "Notifiche",
+            "sv": "Aviseringar",
+            "no": "Varsler",
+            "es": "Notificaciones",
+            "da": "Notifikationer",
+            "ru": "Уведомления",
+            "pl": "Powiadomienia",
+            "ko": "알림",
+            "ar": "الإشعارات"
+          },
+          "children": [
+            {
+              "id": "timeline_notifications",
+              "type": "checkbox",
+              "label": {
+                "en": "Timeline notifications",
+                "nl": "Tijdlijnmeldingen",
+                "de": "Zeitleisten-Benachrichtigungen",
+                "fr": "Notifications dans la timeline",
+                "it": "Notifiche nella timeline",
+                "sv": "Aviseringar i tidslinjen",
+                "no": "Varsler i tidslinjen",
+                "es": "Notificaciones en la línea de tiempo",
+                "da": "Notifikationer på tidslinjen",
+                "ru": "Уведомления в ленте",
+                "pl": "Powiadomienia na osi czasu",
+                "ko": "타임라인 알림",
+                "ar": "إشعارات الخط الزمني"
+              },
+              "hint": {
+                "en": "Alarms and all-clears on the Homey timeline and your phone: system faults, battery problems, grid outages, a gateway that stops answering and gateway firmware updates. Messages about the gateway itself are sent once, when any of its devices has this on.",
+                "nl": "Alarmen en herstelmeldingen op de Homey-tijdlijn en je telefoon: systeemstoringen, batterijproblemen, stroomuitval, een gateway die niet meer antwoordt en firmware-updates van de gateway. Meldingen over de gateway zelf komen één keer, als minstens één van zijn apparaten dit aan heeft.",
+                "de": "Alarme und Entwarnungen in der Homey-Zeitleiste und auf deinem Handy: Systemstörungen, Batterieprobleme, Netzausfälle, ein Gateway, das nicht mehr antwortet, und Firmware-Updates des Gateways. Meldungen zum Gateway selbst kommen einmal, wenn eines seiner Geräte dies eingeschaltet hat.",
+                "fr": "Alarmes et fins d'alarme dans la timeline Homey et sur votre téléphone : défauts du système, problèmes de batterie, coupures réseau, passerelle qui ne répond plus et mises à jour du firmware de la passerelle. Les messages sur la passerelle elle-même sont envoyés une fois, si l'un de ses appareils a cette option activée.",
+                "it": "Allarmi e cessati allarmi nella timeline di Homey e sul telefono: guasti del sistema, problemi alle batterie, blackout, un gateway che non risponde più e aggiornamenti firmware del gateway. I messaggi sul gateway stesso arrivano una volta, se almeno uno dei suoi dispositivi ha questa opzione attiva.",
+                "sv": "Larm och återställningar i Homeys tidslinje och på din telefon: systemfel, batteriproblem, strömavbrott, en gateway som slutar svara och firmwareuppdateringar av gatewayen. Meddelanden om själva gatewayen skickas en gång, om någon av dess enheter har detta på.",
+                "no": "Alarmer og friskmeldinger i Homey-tidslinjen og på telefonen: systemfeil, batteriproblemer, strømbrudd, en gateway som slutter å svare og fastvareoppdateringer av gatewayen. Meldinger om selve gatewayen sendes én gang, når en av enhetene har dette på.",
+                "es": "Alarmas y avisos de normalidad en la línea de tiempo de Homey y en tu móvil: fallos del sistema, problemas de batería, cortes de red, una pasarela que deja de responder y actualizaciones de firmware de la pasarela. Los mensajes sobre la propia pasarela se envían una vez, si alguno de sus dispositivos tiene esto activado.",
+                "da": "Alarmer og afmeldinger på Homey-tidslinjen og din telefon: systemfejl, batteriproblemer, strømafbrydelser, en gateway der holder op med at svare, og firmwareopdateringer af gatewayen. Beskeder om selve gatewayen sendes én gang, når en af dens enheder har dette slået til.",
+                "ru": "Тревоги и отбои в ленте Homey и на телефоне: неисправности системы, проблемы с батареями, отключения сети, шлюз, который перестал отвечать, и обновления прошивки шлюза. Сообщения о самом шлюзе приходят один раз, если это включено хотя бы у одного из его устройств.",
+                "pl": "Alarmy i odwołania alarmów na osi czasu Homey i w telefonie: usterki systemu, problemy z bateriami, zaniki sieci, bramka, która przestaje odpowiadać, i aktualizacje oprogramowania bramki. Komunikaty o samej bramce przychodzą raz, jeśli choć jedno z jej urządzeń ma to włączone.",
+                "ko": "Homey 타임라인과 휴대폰에 경보와 해제 알림을 보냅니다: 시스템 고장, 배터리 문제, 정전, 응답하지 않는 게이트웨이, 게이트웨이 펌웨어 업데이트. 게이트웨이 자체에 대한 메시지는 그 기기 중 하나라도 이 옵션이 켜져 있으면 한 번 전송됩니다.",
+                "ar": "تنبيهات وإشعارات زوالها على الخط الزمني لـ Homey وعلى هاتفك: أعطال النظام، ومشكلات البطارية، وانقطاع الشبكة، وبوابة توقفت عن الاستجابة، وتحديثات البرنامج الثابت للبوابة. تُرسل الرسائل الخاصة بالبوابة نفسها مرة واحدة إذا كان هذا الخيار مفعّلًا لأيٍّ من أجهزتها."
+              },
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "diagnostics",
+          "type": "group",
+          "label": {
+            "en": "Diagnostics",
+            "nl": "Diagnose",
+            "de": "Diagnose",
+            "fr": "Diagnostic",
+            "it": "Diagnostica",
+            "sv": "Diagnostik",
+            "no": "Diagnostikk",
+            "es": "Diagnóstico",
+            "da": "Diagnostik",
+            "ru": "Диагностика",
+            "pl": "Diagnostyka",
+            "ko": "진단",
+            "ar": "التشخيص"
+          },
+          "children": [
+            {
+              "id": "diag_connection",
+              "type": "label",
+              "label": {
+                "en": "Connection",
+                "nl": "Verbinding",
+                "de": "Verbindung",
+                "fr": "Connexion",
+                "it": "Connessione",
+                "sv": "Anslutning",
+                "no": "Tilkobling",
+                "es": "Conexión",
+                "da": "Forbindelse",
+                "ru": "Подключение",
+                "pl": "Połączenie",
+                "ko": "연결",
+                "ar": "الاتصال"
+              },
+              "value": ""
+            },
+            {
+              "id": "diag_last_error",
+              "type": "label",
+              "label": {
+                "en": "Last error",
+                "nl": "Laatste fout",
+                "de": "Letzter Fehler",
+                "fr": "Dernière erreur",
+                "it": "Ultimo errore",
+                "sv": "Senaste fel",
+                "no": "Siste feil",
+                "es": "Último error",
+                "da": "Seneste fejl",
+                "ru": "Последняя ошибка",
+                "pl": "Ostatni błąd",
+                "ko": "마지막 오류",
+                "ar": "آخر خطأ"
+              },
+              "value": ""
+            },
+            {
+              "id": "diag_polls",
+              "type": "label",
+              "label": {
+                "en": "Readings since app start",
+                "nl": "Uitlezingen sinds app-start",
+                "de": "Abfragen seit App-Start",
+                "fr": "Lectures depuis le démarrage de l'app",
+                "it": "Letture dall'avvio dell'app",
+                "sv": "Avläsningar sedan appstart",
+                "no": "Avlesninger siden appstart",
+                "es": "Lecturas desde el inicio de la app",
+                "da": "Aflæsninger siden appstart",
+                "ru": "Опросов с запуска приложения",
+                "pl": "Odczyty od startu aplikacji",
+                "ko": "앱 시작 이후 읽기 횟수",
+                "ar": "القراءات منذ بدء التطبيق"
+              },
+              "value": ""
+            },
+            {
+              "id": "diag_registers",
+              "type": "label",
+              "label": {
+                "en": "Optional registers",
+                "nl": "Optionele registers",
+                "de": "Optionale Register",
+                "fr": "Registres optionnels",
+                "it": "Registri opzionali",
+                "sv": "Valfria register",
+                "no": "Valgfrie registre",
+                "es": "Registros opcionales",
+                "da": "Valgfrie registre",
+                "ru": "Необязательные регистры",
+                "pl": "Rejestry opcjonalne",
+                "ko": "선택 레지스터",
+                "ar": "السجلات الاختيارية"
+              },
+              "value": "",
+              "hint": {
+                "en": "✓ answers, ✗ not supported by this firmware, ? not read yet. Useful when reporting an issue.",
+                "nl": "✓ antwoordt, ✗ niet ondersteund door deze firmware, ? nog niet gelezen. Handig bij het melden van een probleem.",
+                "de": "✓ antwortet, ✗ von dieser Firmware nicht unterstützt, ? noch nicht gelesen. Hilfreich, wenn du ein Problem meldest.",
+                "fr": "✓ répond, ✗ non pris en charge par ce firmware, ? pas encore lu. Utile pour signaler un problème.",
+                "it": "✓ risponde, ✗ non supportato da questo firmware, ? non ancora letto. Utile per segnalare un problema.",
+                "sv": "✓ svarar, ✗ stöds inte av denna firmware, ? inte läst än. Bra att ha när du rapporterar ett problem.",
+                "no": "✓ svarer, ✗ ikke støttet av denne fastvaren, ? ikke lest ennå. Nyttig når du melder et problem.",
+                "es": "✓ responde, ✗ no admitido por este firmware, ? aún no leído. Útil al informar de un problema.",
+                "da": "✓ svarer, ✗ understøttes ikke af denne firmware, ? ikke læst endnu. Nyttigt, når du rapporterer et problem.",
+                "ru": "✓ отвечает, ✗ не поддерживается этой прошивкой, ? ещё не прочитан. Пригодится при сообщении о проблеме.",
+                "pl": "✓ odpowiada, ✗ nieobsługiwany przez to oprogramowanie, ? jeszcze nieodczytany. Przydatne przy zgłaszaniu problemu.",
+                "ko": "✓ 응답함, ✗ 이 펌웨어에서 지원하지 않음, ? 아직 읽지 않음. 문제를 신고할 때 유용합니다.",
+                "ar": "✓ يستجيب، ✗ غير مدعوم في هذا البرنامج الثابت، ? لم يُقرأ بعد. مفيد عند الإبلاغ عن مشكلة."
+              }
+            }
+          ]
         }
       ]
     },
@@ -3820,7 +4233,8 @@
       "capabilities": [
         "measure_power",
         "meter_power",
-        "meter_power.today"
+        "meter_power.today",
+        "button.test_connection"
       ],
       "capabilitiesOptions": {
         "meter_power": {
@@ -3876,6 +4290,39 @@
           "min": 0,
           "max": 10000,
           "step": 10
+        },
+        "button.test_connection": {
+          "maintenanceAction": true,
+          "title": {
+            "en": "Test connection",
+            "nl": "Verbinding testen",
+            "de": "Verbindung testen",
+            "fr": "Tester la connexion",
+            "it": "Verifica connessione",
+            "sv": "Testa anslutningen",
+            "no": "Test tilkoblingen",
+            "es": "Probar la conexión",
+            "da": "Test forbindelsen",
+            "ru": "Проверить подключение",
+            "pl": "Testuj połączenie",
+            "ko": "연결 테스트",
+            "ar": "اختبار الاتصال"
+          },
+          "desc": {
+            "en": "Reads the gateway right now and puts a report with the connection details on the timeline.",
+            "nl": "Leest de gateway meteen uit en zet een verslag met de verbindingsgegevens op de tijdlijn.",
+            "de": "Liest das Gateway sofort aus und legt einen Bericht mit den Verbindungsdaten in der Zeitleiste ab.",
+            "fr": "Interroge la passerelle immédiatement et place un rapport avec les détails de connexion dans la timeline.",
+            "it": "Legge subito il gateway e mette nella timeline un rapporto con i dettagli della connessione.",
+            "sv": "Läser gatewayen direkt och lägger en rapport med anslutningsuppgifterna i tidslinjen.",
+            "no": "Leser gatewayen med en gang og legger en rapport med tilkoblingsdetaljene i tidslinjen.",
+            "es": "Lee la pasarela ahora mismo y deja un informe con los detalles de conexión en la línea de tiempo.",
+            "da": "Aflæser gatewayen med det samme og lægger en rapport med forbindelsesdetaljerne på tidslinjen.",
+            "ru": "Сразу опрашивает шлюз и помещает в ленту отчёт с данными подключения.",
+            "pl": "Od razu odczytuje bramkę i umieszcza na osi czasu raport ze szczegółami połączenia.",
+            "ko": "게이트웨이를 즉시 읽고 연결 정보가 담긴 보고서를 타임라인에 올립니다.",
+            "ar": "يقرأ البوابة فورًا ويضع تقريرًا بتفاصيل الاتصال على الخط الزمني."
+          }
         }
       },
       "energy": {
@@ -4176,6 +4623,178 @@
               "value": ""
             }
           ]
+        },
+        {
+          "id": "notifications_group",
+          "type": "group",
+          "label": {
+            "en": "Notifications",
+            "nl": "Meldingen",
+            "de": "Benachrichtigungen",
+            "fr": "Notifications",
+            "it": "Notifiche",
+            "sv": "Aviseringar",
+            "no": "Varsler",
+            "es": "Notificaciones",
+            "da": "Notifikationer",
+            "ru": "Уведомления",
+            "pl": "Powiadomienia",
+            "ko": "알림",
+            "ar": "الإشعارات"
+          },
+          "children": [
+            {
+              "id": "timeline_notifications",
+              "type": "checkbox",
+              "label": {
+                "en": "Timeline notifications",
+                "nl": "Tijdlijnmeldingen",
+                "de": "Zeitleisten-Benachrichtigungen",
+                "fr": "Notifications dans la timeline",
+                "it": "Notifiche nella timeline",
+                "sv": "Aviseringar i tidslinjen",
+                "no": "Varsler i tidslinjen",
+                "es": "Notificaciones en la línea de tiempo",
+                "da": "Notifikationer på tidslinjen",
+                "ru": "Уведомления в ленте",
+                "pl": "Powiadomienia na osi czasu",
+                "ko": "타임라인 알림",
+                "ar": "إشعارات الخط الزمني"
+              },
+              "hint": {
+                "en": "Alarms and all-clears on the Homey timeline and your phone: system faults, battery problems, grid outages, a gateway that stops answering and gateway firmware updates. Messages about the gateway itself are sent once, when any of its devices has this on.",
+                "nl": "Alarmen en herstelmeldingen op de Homey-tijdlijn en je telefoon: systeemstoringen, batterijproblemen, stroomuitval, een gateway die niet meer antwoordt en firmware-updates van de gateway. Meldingen over de gateway zelf komen één keer, als minstens één van zijn apparaten dit aan heeft.",
+                "de": "Alarme und Entwarnungen in der Homey-Zeitleiste und auf deinem Handy: Systemstörungen, Batterieprobleme, Netzausfälle, ein Gateway, das nicht mehr antwortet, und Firmware-Updates des Gateways. Meldungen zum Gateway selbst kommen einmal, wenn eines seiner Geräte dies eingeschaltet hat.",
+                "fr": "Alarmes et fins d'alarme dans la timeline Homey et sur votre téléphone : défauts du système, problèmes de batterie, coupures réseau, passerelle qui ne répond plus et mises à jour du firmware de la passerelle. Les messages sur la passerelle elle-même sont envoyés une fois, si l'un de ses appareils a cette option activée.",
+                "it": "Allarmi e cessati allarmi nella timeline di Homey e sul telefono: guasti del sistema, problemi alle batterie, blackout, un gateway che non risponde più e aggiornamenti firmware del gateway. I messaggi sul gateway stesso arrivano una volta, se almeno uno dei suoi dispositivi ha questa opzione attiva.",
+                "sv": "Larm och återställningar i Homeys tidslinje och på din telefon: systemfel, batteriproblem, strömavbrott, en gateway som slutar svara och firmwareuppdateringar av gatewayen. Meddelanden om själva gatewayen skickas en gång, om någon av dess enheter har detta på.",
+                "no": "Alarmer og friskmeldinger i Homey-tidslinjen og på telefonen: systemfeil, batteriproblemer, strømbrudd, en gateway som slutter å svare og fastvareoppdateringer av gatewayen. Meldinger om selve gatewayen sendes én gang, når en av enhetene har dette på.",
+                "es": "Alarmas y avisos de normalidad en la línea de tiempo de Homey y en tu móvil: fallos del sistema, problemas de batería, cortes de red, una pasarela que deja de responder y actualizaciones de firmware de la pasarela. Los mensajes sobre la propia pasarela se envían una vez, si alguno de sus dispositivos tiene esto activado.",
+                "da": "Alarmer og afmeldinger på Homey-tidslinjen og din telefon: systemfejl, batteriproblemer, strømafbrydelser, en gateway der holder op med at svare, og firmwareopdateringer af gatewayen. Beskeder om selve gatewayen sendes én gang, når en af dens enheder har dette slået til.",
+                "ru": "Тревоги и отбои в ленте Homey и на телефоне: неисправности системы, проблемы с батареями, отключения сети, шлюз, который перестал отвечать, и обновления прошивки шлюза. Сообщения о самом шлюзе приходят один раз, если это включено хотя бы у одного из его устройств.",
+                "pl": "Alarmy i odwołania alarmów na osi czasu Homey i w telefonie: usterki systemu, problemy z bateriami, zaniki sieci, bramka, która przestaje odpowiadać, i aktualizacje oprogramowania bramki. Komunikaty o samej bramce przychodzą raz, jeśli choć jedno z jej urządzeń ma to włączone.",
+                "ko": "Homey 타임라인과 휴대폰에 경보와 해제 알림을 보냅니다: 시스템 고장, 배터리 문제, 정전, 응답하지 않는 게이트웨이, 게이트웨이 펌웨어 업데이트. 게이트웨이 자체에 대한 메시지는 그 기기 중 하나라도 이 옵션이 켜져 있으면 한 번 전송됩니다.",
+                "ar": "تنبيهات وإشعارات زوالها على الخط الزمني لـ Homey وعلى هاتفك: أعطال النظام، ومشكلات البطارية، وانقطاع الشبكة، وبوابة توقفت عن الاستجابة، وتحديثات البرنامج الثابت للبوابة. تُرسل الرسائل الخاصة بالبوابة نفسها مرة واحدة إذا كان هذا الخيار مفعّلًا لأيٍّ من أجهزتها."
+              },
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "diagnostics",
+          "type": "group",
+          "label": {
+            "en": "Diagnostics",
+            "nl": "Diagnose",
+            "de": "Diagnose",
+            "fr": "Diagnostic",
+            "it": "Diagnostica",
+            "sv": "Diagnostik",
+            "no": "Diagnostikk",
+            "es": "Diagnóstico",
+            "da": "Diagnostik",
+            "ru": "Диагностика",
+            "pl": "Diagnostyka",
+            "ko": "진단",
+            "ar": "التشخيص"
+          },
+          "children": [
+            {
+              "id": "diag_connection",
+              "type": "label",
+              "label": {
+                "en": "Connection",
+                "nl": "Verbinding",
+                "de": "Verbindung",
+                "fr": "Connexion",
+                "it": "Connessione",
+                "sv": "Anslutning",
+                "no": "Tilkobling",
+                "es": "Conexión",
+                "da": "Forbindelse",
+                "ru": "Подключение",
+                "pl": "Połączenie",
+                "ko": "연결",
+                "ar": "الاتصال"
+              },
+              "value": ""
+            },
+            {
+              "id": "diag_last_error",
+              "type": "label",
+              "label": {
+                "en": "Last error",
+                "nl": "Laatste fout",
+                "de": "Letzter Fehler",
+                "fr": "Dernière erreur",
+                "it": "Ultimo errore",
+                "sv": "Senaste fel",
+                "no": "Siste feil",
+                "es": "Último error",
+                "da": "Seneste fejl",
+                "ru": "Последняя ошибка",
+                "pl": "Ostatni błąd",
+                "ko": "마지막 오류",
+                "ar": "آخر خطأ"
+              },
+              "value": ""
+            },
+            {
+              "id": "diag_polls",
+              "type": "label",
+              "label": {
+                "en": "Readings since app start",
+                "nl": "Uitlezingen sinds app-start",
+                "de": "Abfragen seit App-Start",
+                "fr": "Lectures depuis le démarrage de l'app",
+                "it": "Letture dall'avvio dell'app",
+                "sv": "Avläsningar sedan appstart",
+                "no": "Avlesninger siden appstart",
+                "es": "Lecturas desde el inicio de la app",
+                "da": "Aflæsninger siden appstart",
+                "ru": "Опросов с запуска приложения",
+                "pl": "Odczyty od startu aplikacji",
+                "ko": "앱 시작 이후 읽기 횟수",
+                "ar": "القراءات منذ بدء التطبيق"
+              },
+              "value": ""
+            },
+            {
+              "id": "diag_registers",
+              "type": "label",
+              "label": {
+                "en": "Optional registers",
+                "nl": "Optionele registers",
+                "de": "Optionale Register",
+                "fr": "Registres optionnels",
+                "it": "Registri opzionali",
+                "sv": "Valfria register",
+                "no": "Valgfrie registre",
+                "es": "Registros opcionales",
+                "da": "Valgfrie registre",
+                "ru": "Необязательные регистры",
+                "pl": "Rejestry opcjonalne",
+                "ko": "선택 레지스터",
+                "ar": "السجلات الاختيارية"
+              },
+              "value": "",
+              "hint": {
+                "en": "✓ answers, ✗ not supported by this firmware, ? not read yet. Useful when reporting an issue.",
+                "nl": "✓ antwoordt, ✗ niet ondersteund door deze firmware, ? nog niet gelezen. Handig bij het melden van een probleem.",
+                "de": "✓ antwortet, ✗ von dieser Firmware nicht unterstützt, ? noch nicht gelesen. Hilfreich, wenn du ein Problem meldest.",
+                "fr": "✓ répond, ✗ non pris en charge par ce firmware, ? pas encore lu. Utile pour signaler un problème.",
+                "it": "✓ risponde, ✗ non supportato da questo firmware, ? non ancora letto. Utile per segnalare un problema.",
+                "sv": "✓ svarar, ✗ stöds inte av denna firmware, ? inte läst än. Bra att ha när du rapporterar ett problem.",
+                "no": "✓ svarer, ✗ ikke støttet av denne fastvaren, ? ikke lest ennå. Nyttig når du melder et problem.",
+                "es": "✓ responde, ✗ no admitido por este firmware, ? aún no leído. Útil al informar de un problema.",
+                "da": "✓ svarer, ✗ understøttes ikke af denne firmware, ? ikke læst endnu. Nyttigt, når du rapporterer et problem.",
+                "ru": "✓ отвечает, ✗ не поддерживается этой прошивкой, ? ещё не прочитан. Пригодится при сообщении о проблеме.",
+                "pl": "✓ odpowiada, ✗ nieobsługiwany przez to oprogramowanie, ? jeszcze nieodczytany. Przydatne przy zgłaszaniu problemu.",
+                "ko": "✓ 응답함, ✗ 이 펌웨어에서 지원하지 않음, ? 아직 읽지 않음. 문제를 신고할 때 유용합니다.",
+                "ar": "✓ يستجيب، ✗ غير مدعوم في هذا البرنامج الثابت، ? لم يُقرأ بعد. مفيد عند الإبلاغ عن مشكلة."
+              }
+            }
+          ]
         }
       ]
     }
@@ -4356,6 +4975,46 @@
       "uiComponent": "sensor",
       "insights": false,
       "icon": "/assets/capabilities/battery_mode.svg"
+    },
+    "measure_battery_cycles": {
+      "type": "number",
+      "title": {
+        "en": "Battery cycles",
+        "nl": "Batterijcycli",
+        "de": "Batteriezyklen",
+        "fr": "Cycles de batterie",
+        "it": "Cicli della batteria",
+        "sv": "Battericykler",
+        "no": "Batterisykluser",
+        "es": "Ciclos de batería",
+        "da": "Battericyklusser",
+        "ru": "Циклы батареи",
+        "pl": "Cykle baterii",
+        "ko": "배터리 사이클",
+        "ar": "دورات البطارية"
+      },
+      "decimals": 1,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": true,
+      "icon": "/assets/capabilities/battery_cycles.svg",
+      "desc": {
+        "en": "Equivalent full cycles: total discharged ÷ battery capacity, since the gateway was installed",
+        "nl": "Equivalente volle cycli: totaal ontladen ÷ batterijcapaciteit, sinds de installatie van de gateway",
+        "de": "Äquivalente Vollzyklen: gesamt entladen ÷ Batteriekapazität, seit der Installation des Gateways",
+        "fr": "Cycles complets équivalents : total déchargé ÷ capacité de la batterie, depuis l'installation de la passerelle",
+        "it": "Cicli completi equivalenti: totale scaricato ÷ capacità della batteria, dall'installazione del gateway",
+        "sv": "Ekvivalenta fulla cykler: totalt urladdat ÷ batterikapacitet, sedan gatewayen installerades",
+        "no": "Ekvivalente fulle sykluser: totalt utladet ÷ batterikapasitet, siden gatewayen ble installert",
+        "es": "Ciclos completos equivalentes: total descargado ÷ capacidad de la batería, desde la instalación de la pasarela",
+        "da": "Ækvivalente fulde cyklusser: samlet afladet ÷ batterikapacitet, siden gatewayen blev installeret",
+        "ru": "Эквивалентные полные циклы: всего разряжено ÷ ёмкость батареи, с момента установки шлюза",
+        "pl": "Równoważne pełne cykle: łącznie rozładowano ÷ pojemność baterii, od instalacji bramki",
+        "ko": "등가 완전 사이클: 총 방전량 ÷ 배터리 용량, 게이트웨이 설치 이후",
+        "ar": "دورات كاملة مكافئة: إجمالي التفريغ ÷ سعة البطارية، منذ تركيب البوابة"
+      },
+      "min": 0
     },
     "measure_battery_energy": {
       "type": "number",

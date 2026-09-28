@@ -103,5 +103,13 @@
         "value": ""
       }
     ]
+  },
+  {
+    "$extends": "notifications",
+    "$id": "notifications_group"
+  },
+  {
+    "$extends": "diagnostics",
+    "$id": "diagnostics"
   }
 ]

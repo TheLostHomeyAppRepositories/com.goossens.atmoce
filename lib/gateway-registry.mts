@@ -1,7 +1,5 @@
 import { type FoundGateway, scanForGateways, subnetHosts } from './discovery.mts';
-import {
-  AtmoceGateway, type Snapshot, type Timers, readIdentity,
-} from './gateway.mts';
+import { AtmoceGateway, type Timers, readIdentity } from './gateway.mts';
 import {
   type Endpoint,
   type Logger,
@@ -59,22 +57,22 @@ export class GatewayRegistry {
   private readonly timers: Timers;
   private readonly logger: Logger;
   private readonly localAddress: () => Promise<string>;
-  private readonly onSnapshot: ((gateway: AtmoceGateway, snapshot: Snapshot) => void) | undefined;
+  private readonly onGateway: ((gateway: AtmoceGateway) => void) | undefined;
 
   /**
    * `localAddress` is `homey.cloud.getLocalAddress`, used to find the LAN to search.
-   * `onSnapshot` receives every poll result of every gateway (e.g. for the dashboard widget).
+   * `onGateway` receives every new gateway before it starts polling (to listen to its events).
    */
   constructor(
     timers: Timers,
     logger: Logger,
     localAddress: () => Promise<string>,
-    onSnapshot?: (gateway: AtmoceGateway, snapshot: Snapshot) => void,
+    onGateway?: (gateway: AtmoceGateway) => void,
   ) {
     this.timers = timers;
     this.logger = logger;
     this.localAddress = localAddress;
-    this.onSnapshot = onSnapshot;
+    this.onGateway = onGateway;
   }
 
   acquire(serial: string, settings: ConnectionSettings, owner: object): AtmoceGateway {
@@ -90,8 +88,7 @@ export class GatewayRegistry {
       entry = {
         gateway, owners: new Set(), relocatedAt: 0, relocating: null,
       };
-      const { onSnapshot } = this;
-      if (onSnapshot) gateway.on('snapshot', (snapshot: Snapshot) => onSnapshot(gateway, snapshot));
+      this.onGateway?.(gateway);
       this.entries.set(serial, entry);
       gateway.start();
     }

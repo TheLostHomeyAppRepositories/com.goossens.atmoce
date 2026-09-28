@@ -34,7 +34,8 @@
     "invalid_unit_id": "Wpisz ID z zakresu 1–247",
     "no_battery": "Ta bramka nie zgłasza baterii. Dodaj zamiast tego panele słoneczne lub licznik sieciowy",
     "charge_limit": "Baterie mogą się ładować z mocą maks. __max__ W",
-    "discharge_limit": "Baterie mogą się rozładowywać z mocą maks. __max__ W"
+    "discharge_limit": "Baterie mogą się rozładowywać z mocą maks. __max__ W",
+    "test_failed": "Bramka pod adresem __host__ nie odpowiedziała: __error__"
   },
   "warning": {
     "system_fault": "System Atmoce zgłasza awarię. Szczegóły znajdziesz w aplikacji Atmozen.",
@@ -57,5 +58,27 @@
     "produced": "Wyprodukowano dziś",
     "consumed": "Zużyto dziś",
     "self_sufficient": "Samowystarczalność"
+  },
+  "notify": {
+    "context": "Oprogramowanie __firmware__ · słońce __solar__ · bateria __soc__ % (__battery__) · sieć __grid__.",
+    "lasted": "Czas trwania: __duration__.",
+    "system_fault": "**__device__**: system Atmoce zgłasza usterkę (stan instalacji 60066 = 1). Szczegóły alarmu znajdziesz w aplikacji Atmozen. __context__",
+    "system_fault_cleared": "**__device__**: usterka systemu ustąpiła.",
+    "battery_faulty": "**__device__**: co najmniej jedna bateria ma aktywny alarm, a baterie przestały się ładować i rozładowywać (stan pracy 60098 = 4). Szczegóły alarmu znajdziesz w aplikacji Atmozen. __context__",
+    "battery_shutdown": "**__device__**: wszystkie baterie się wyłączyły (stan pracy 60098 = 3). Szczegóły znajdziesz w aplikacji Atmozen. __context__",
+    "battery_problem_cleared": "**__device__**: baterie znów działają normalnie.",
+    "grid_outage": "**__device__**: przerwa w dostawie prądu. Sieci nie ma, system pracuje wyspowo (60096 = 1). __context__",
+    "grid_restored": "**__device__**: sieć wróciła, system jest znów do niej podłączony.",
+    "connection_lost": "**Bramka Atmoce __serial__** nie odpowiada od __duration__ pod adresem __host__ (__error__). Homey próbuje dalej i przeszukuje sieć na wypadek zmiany adresu.",
+    "connection_restored": "**Bramka Atmoce __serial__** znów odpowiada pod adresem __host__ po __duration__.",
+    "firmware_updated": "**Bramka Atmoce __serial__** została zaktualizowana z oprogramowania __previous__ do __current__.",
+    "test_ok": "**__device__**: test połączenia OK. __host__ (ID __unit__) odpowiedział w __ms__ ms. Bramka __serial__, oprogramowanie __firmware__. Rejestry opcjonalne: __registers__. Odczyty od startu aplikacji: __polls__, nieudane: __failed__."
+  },
+  "diag": {
+    "connecting": "Łączenie z __host__…",
+    "connected_since": "Połączono z __host__ od __time__",
+    "unreachable_since": "Brak odpowiedzi z __host__ od __time__",
+    "none": "Brak",
+    "polls_value": "__polls__ (nieudane: __failed__)"
   }
 }

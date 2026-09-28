@@ -7,7 +7,7 @@ Modbus TCP interface, without any cloud connection.
 | Device | In Homey Energy | What you get |
 |---|---|---|
 | Solar panels | Solar production | Power, total and today's production, system fault warning |
-| Home battery | Home battery | Power, level, charging state, battery mode, charged/discharged energy, energy stored, time to full/empty, **control via Homey's target power** |
+| Home battery | Home battery | Power, level, charging state, battery mode, charged/discharged energy, energy stored, time to full/empty, battery cycles, **control via Homey's target power** |
 | Grid meter | Total home consumption | Import/export power and energy, home consumption, self-sufficiency today, voltage and current per phase |
 
 Flow cards:
@@ -22,6 +22,16 @@ Flow cards:
 
 **Dashboard widget "Energy flow"**: live solar → home → battery → grid flows with the battery
 level and today's production, consumption and self-sufficiency.
+
+**Timeline notifications** (can be turned off per device): system fault, battery alarm or
+shutdown, grid outage, each with the register value and the system state at that moment, and
+when it clears (with how long it lasted); a gateway that has not answered for 10 minutes and
+when it is back; gateway firmware updates (Atmoce installs them remotely).
+
+**Diagnostics** in every device's settings: connection state, last error, readings and
+failures since the app started, and which optional registers the firmware answers. The
+maintenance action **Test connection** reads the gateway at once and puts a full report on the
+timeline — handy to paste into an issue.
 
 ## Setup
 

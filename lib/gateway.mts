@@ -90,7 +90,11 @@ const OPTIONAL_FAILURES_BEFORE_SKIP = 3;
 /** Unsupported optional blocks are tried again after this (a firmware update may add them). */
 const OPTIONAL_RETRY_MS = 60 * 60 * 1000;
 
-type OptionalBlock = 'limits' | 'control' | 'forced' | 'gridState' | 'powerLimits';
+export type OptionalBlock = 'limits' | 'control' | 'forced' | 'gridState' | 'powerLimits';
+const OPTIONAL_BLOCKS: readonly OptionalBlock[] = ['limits', 'control', 'forced', 'gridState', 'powerLimits'];
+
+/** yes: answers; no: skipped as unsupported; unknown: not read successfully yet. */
+export type BlockSupport = 'yes' | 'no' | 'unknown';
 
 /** Re-assert the self-consumption mode needed for active limits at most this often. */
 const LIMIT_MODE_REASSERT_MS = 5 * 60 * 1000;
@@ -112,18 +116,29 @@ export async function readIdentity(connection: ModbusConnection): Promise<Identi
  * - `snapshot` (Snapshot): after every successful poll
  * - `identity` (Identity): after (re)connecting
  * - `available` / `unavailable` (reason: string)
+ * - `stop`: the gateway was released (no devices left)
  */
 export class AtmoceGateway extends EventEmitter {
 
   identity: Identity | null = null;
   snapshot: Snapshot | null = null;
   lastError: string | null = null;
+  /** Since when polls succeed; null while unavailable. */
+  connectedSince: number | null = null;
+  /** Since when the gateway is unavailable; null while available. */
+  unavailableSince: number | null = null;
+  /** Last failed poll, kept after recovery for diagnostics. */
+  lastFailure: { at: number; message: string } | null = null;
+  /** Poll attempts and failures since the app started. */
+  readonly stats = { polls: 0, failed: 0 };
 
   private connection: ModbusConnection;
   private options: GatewayOptions;
   private timer: unknown = null;
   private polling: Promise<void> | null = null;
   private failures = 0;
+  /** Start of the first poll in the current run of failures. */
+  private failingSince = 0;
   private available = false;
   private stopped = true;
   private refreshRequested = false;
@@ -132,6 +147,7 @@ export class AtmoceGateway extends EventEmitter {
   private readonly reportedCodes = new Set<string>();
   private readonly optionalFailures = new Map<OptionalBlock, number>();
   private readonly optionalSkippedUntil = new Map<OptionalBlock, number>();
+  private readonly optionalAnswered = new Set<OptionalBlock>();
   private gridStateCheck: GridStateCheck | null = null;
   /** The app put 60310 in self-consumption (4) so the gateway accepts the power limits. */
   private limitModeOwned = false;
@@ -168,6 +184,7 @@ export class AtmoceGateway extends EventEmitter {
   async stop(): Promise<void> {
     this.stopped = true;
     this.clearTimer();
+    this.emit('stop');
     await this.polling?.catch(() => undefined);
     await this.connection.close();
   }
@@ -192,6 +209,29 @@ export class AtmoceGateway extends EventEmitter {
   /** V1.3 power limits (60318–60326) need firmware ≥ FIRMWARE.powerLimits (spec V1.6). */
   get supportsPowerLimits(): boolean {
     return this.identity !== null && firmwareAtLeast(this.identity.firmwareVersion, FIRMWARE.powerLimits);
+  }
+
+  /** Which optional register blocks this gateway answers, with their start address. */
+  get blockSupport(): Array<{ block: OptionalBlock; start: number; support: BlockSupport }> {
+    return OPTIONAL_BLOCKS.map((block) => {
+      let support: BlockSupport = 'unknown';
+      if (this.optionalSkippedUntil.has(block)) support = 'no';
+      else if (this.optionalAnswered.has(block)) support = 'yes';
+      return { block, start: BLOCKS[block].start, support };
+    });
+  }
+
+  /**
+   * Reads the identity now, queued behind a running poll, and times it (connecting included
+   * when the connection was down). Rejects when the gateway does not answer or another
+   * gateway took over the address.
+   */
+  async testConnection(): Promise<{ identity: Identity; roundTripMs: number }> {
+    const started = Date.now();
+    const identity = await readIdentity(this.connection);
+    const roundTripMs = Date.now() - started;
+    if (identity.serial !== this.options.expectedSerial) throw new WrongGatewayError(this.options.expectedSerial, identity.serial);
+    return { identity, roundTripMs };
   }
 
   /** Polls now instead of waiting for the next interval (e.g. after a write). */
@@ -349,6 +389,7 @@ export class AtmoceGateway extends EventEmitter {
 
   private async poll(): Promise<void> {
     const startedAt = Date.now();
+    this.stats.polls += 1;
     try {
       await this.verifyIdentity();
       // Core blocks (spec V1.0): a failure fails the poll.
@@ -376,20 +417,28 @@ export class AtmoceGateway extends EventEmitter {
       this.lastError = null;
       if (!this.available) {
         this.available = true;
+        this.connectedSince = Date.now();
+        this.unavailableSince = null;
         this.emit('available');
       }
       this.emit('snapshot', this.snapshot);
       await this.keepLimitsEnforced(this.snapshot);
     } catch (err) {
       this.failures += 1;
+      if (this.failures === 1) this.failingSince = startedAt;
+      this.stats.failed += 1;
       this.lastError = errorMessage(err);
+      this.lastFailure = { at: Date.now(), message: this.lastError };
       this.options.logger.error(`Poll failed (${this.failures}x): ${this.lastError}`);
       const immediate = err instanceof WrongGatewayError;
       if (this.available && (immediate || this.failures >= FAILURES_BEFORE_UNAVAILABLE)) {
         this.available = false;
+        this.connectedSince = null;
+        this.unavailableSince = this.failingSince;
         this.emit('unavailable', this.lastError);
       } else if (!this.available && this.failures === 1) {
         // Not yet reachable since start: report right away instead of waiting.
+        this.unavailableSince ??= startedAt;
         this.emit('unavailable', this.lastError);
       }
     }
@@ -421,6 +470,7 @@ export class AtmoceGateway extends EventEmitter {
       if (skippedUntil) this.options.logger.log(`Optional block ${name} (${block.start}) answers again`);
       this.optionalFailures.delete(name);
       this.optionalSkippedUntil.delete(name);
+      this.optionalAnswered.add(name);
       return words;
     } catch (err) {
       const failures = (this.optionalFailures.get(name) ?? 0) + 1;

@@ -28,7 +28,8 @@
     "measure_voltage",
     "measure_current",
     "meter_power.consumption_today",
-    "measure_self_sufficiency"
+    "measure_self_sufficiency",
+    "button.test_connection"
   ],
   "capabilitiesOptions": {
     "meter_power.imported": {
@@ -233,6 +234,39 @@
         "pl": "Zużycie dziś",
         "ko": "오늘 소비량",
         "ar": "استهلاك اليوم"
+      }
+    },
+    "button.test_connection": {
+      "maintenanceAction": true,
+      "title": {
+        "en": "Test connection",
+        "nl": "Verbinding testen",
+        "de": "Verbindung testen",
+        "fr": "Tester la connexion",
+        "it": "Verifica connessione",
+        "sv": "Testa anslutningen",
+        "no": "Test tilkoblingen",
+        "es": "Probar la conexión",
+        "da": "Test forbindelsen",
+        "ru": "Проверить подключение",
+        "pl": "Testuj połączenie",
+        "ko": "연결 테스트",
+        "ar": "اختبار الاتصال"
+      },
+      "desc": {
+        "en": "Reads the gateway right now and puts a report with the connection details on the timeline.",
+        "nl": "Leest de gateway meteen uit en zet een verslag met de verbindingsgegevens op de tijdlijn.",
+        "de": "Liest das Gateway sofort aus und legt einen Bericht mit den Verbindungsdaten in der Zeitleiste ab.",
+        "fr": "Interroge la passerelle immédiatement et place un rapport avec les détails de connexion dans la timeline.",
+        "it": "Legge subito il gateway e mette nella timeline un rapporto con i dettagli della connessione.",
+        "sv": "Läser gatewayen direkt och lägger en rapport med anslutningsuppgifterna i tidslinjen.",
+        "no": "Leser gatewayen med en gang og legger en rapport med tilkoblingsdetaljene i tidslinjen.",
+        "es": "Lee la pasarela ahora mismo y deja un informe con los detalles de conexión en la línea de tiempo.",
+        "da": "Aflæser gatewayen med det samme og lægger en rapport med forbindelsesdetaljerne på tidslinjen.",
+        "ru": "Сразу опрашивает шлюз и помещает в ленту отчёт с данными подключения.",
+        "pl": "Od razu odczytuje bramkę i umieszcza na osi czasu raport ze szczegółami połączenia.",
+        "ko": "게이트웨이를 즉시 읽고 연결 정보가 담긴 보고서를 타임라인에 올립니다.",
+        "ar": "يقرأ البوابة فورًا ويضع تقريرًا بتفاصيل الاتصال على الخط الزمني."
       }
     }
   },

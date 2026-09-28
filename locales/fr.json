@@ -34,7 +34,8 @@
     "invalid_unit_id": "Saisissez un ID entre 1 et 247",
     "no_battery": "Cette passerelle ne signale aucune batterie. Ajoutez plutôt les panneaux solaires ou le compteur réseau",
     "charge_limit": "Les batteries peuvent charger à __max__ W au maximum",
-    "discharge_limit": "Les batteries peuvent décharger à __max__ W au maximum"
+    "discharge_limit": "Les batteries peuvent décharger à __max__ W au maximum",
+    "test_failed": "La passerelle à __host__ n'a pas répondu : __error__"
   },
   "warning": {
     "system_fault": "Le système Atmoce signale un défaut. Ouvrez l'application Atmozen pour les détails.",
@@ -57,5 +58,27 @@
     "produced": "Produit aujourd'hui",
     "consumed": "Consommé aujourd'hui",
     "self_sufficient": "Autonome"
+  },
+  "notify": {
+    "context": "Firmware __firmware__ · solaire __solar__ · batterie __soc__ % (__battery__) · réseau __grid__.",
+    "lasted": "Durée : __duration__.",
+    "system_fault": "**__device__** : le système Atmoce signale un défaut (état de la centrale 60066 = 1). Ouvrez l'app Atmozen pour le détail de l'alarme. __context__",
+    "system_fault_cleared": "**__device__** : le défaut du système a disparu.",
+    "battery_faulty": "**__device__** : au moins une batterie a une alarme active et les batteries ne chargent ni ne déchargent plus (état de fonctionnement 60098 = 4). Ouvrez l'app Atmozen pour le détail de l'alarme. __context__",
+    "battery_shutdown": "**__device__** : toutes les batteries se sont arrêtées (état de fonctionnement 60098 = 3). Ouvrez l'app Atmozen pour plus de détails. __context__",
+    "battery_problem_cleared": "**__device__** : les batteries fonctionnent de nouveau normalement.",
+    "grid_outage": "**__device__** : coupure de courant. Le réseau est tombé et le système fonctionne hors réseau (60096 = 1). __context__",
+    "grid_restored": "**__device__** : le réseau est revenu et le système y est de nouveau raccordé.",
+    "connection_lost": "**Passerelle Atmoce __serial__** : aucune réponse depuis __duration__ à __host__ (__error__). Homey continue d'essayer et cherche sur le réseau au cas où l'adresse aurait changé.",
+    "connection_restored": "**Passerelle Atmoce __serial__** : répond de nouveau à __host__ après __duration__.",
+    "firmware_updated": "**Passerelle Atmoce __serial__** : firmware mis à jour de __previous__ vers __current__.",
+    "test_ok": "**__device__** : test de connexion OK. __host__ (unité __unit__) a répondu en __ms__ ms. Passerelle __serial__, firmware __firmware__. Registres optionnels : __registers__. Lectures depuis le démarrage de l'app : __polls__, échecs : __failed__."
+  },
+  "diag": {
+    "connecting": "Connexion à __host__…",
+    "connected_since": "Connecté à __host__ depuis le __time__",
+    "unreachable_since": "Aucune réponse de __host__ depuis le __time__",
+    "none": "Aucune",
+    "polls_value": "__polls__ (__failed__ en échec)"
   }
 }

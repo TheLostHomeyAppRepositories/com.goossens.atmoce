@@ -45,9 +45,10 @@ export default class GridDevice extends AtmoceDevice {
     await this.addMissingCapabilities(ADDED_AFTER_1_0);
   }
 
-  protected override async onSnapshot({
-    status, phases, energy, gridState,
-  }: Snapshot): Promise<void> {
+  protected override async onSnapshot(snapshot: Snapshot): Promise<void> {
+    const {
+      status, phases, energy, gridState,
+    } = snapshot;
     const gridW = gridPowerForHomey(status.gridPowerW);
     await this.update('measure_power', gridW);
     await this.update('measure_power.consumption', homeConsumptionW(status));
@@ -67,14 +68,22 @@ export default class GridDevice extends AtmoceDevice {
     }
 
     await this.triggerFlows(gridW);
-    if (gridState?.offGrid != null) await this.updateOffGrid(gridState.offGrid);
+    if (gridState?.offGrid != null) await this.updateOffGrid(gridState.offGrid, snapshot);
   }
 
-  private async updateOffGrid(offGrid: boolean): Promise<void> {
+  private async updateOffGrid(offGrid: boolean, snapshot: Snapshot): Promise<void> {
     if (offGrid === this.offGrid) return;
     await this.setStoreValue('offGrid', offGrid);
-    this.log(offGrid ? 'Grid outage: running off-grid' : 'Grid is back');
     await this.homey.flow.getDeviceTriggerCard(offGrid ? 'grid_outage_started' : 'grid_outage_ended').trigger(this, {}, {});
+    if (offGrid) {
+      const context = this.context(snapshot);
+      this.log(`Grid outage: running off-grid (60096 = 1); ${context}`);
+      await this.setStoreValue('offGridSince', Date.now());
+      await this.notify('grid_outage', { context });
+    } else {
+      this.log('Grid is back');
+      await this.notify('grid_restored', {}, (this.getStoreValue('offGridSince') as number | null) ?? null);
+    }
   }
 
   private async triggerFlows(gridW: number): Promise<void> {

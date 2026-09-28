@@ -1,6 +1,7 @@
 import { AtmoceDevice } from '../../lib/atmoce-device.mts';
 import type { ForcedTarget, Snapshot } from '../../lib/gateway.mts';
 import {
+  equivalentFullCycles,
   minutesToEmpty,
   minutesToFull,
   storedEnergyKwh,
@@ -20,7 +21,7 @@ type TargetPowerMode = 'device' | 'homey';
 /** Same step as capabilitiesOptions.target_power in driver.compose.json. */
 const TARGET_POWER_STEP_W = 10;
 
-const ADDED_AFTER_1_0 = ['measure_battery_energy', 'measure_time_to_full', 'measure_time_to_empty'];
+const ADDED_AFTER_1_0 = ['measure_battery_energy', 'measure_time_to_full', 'measure_time_to_empty', 'measure_battery_cycles'];
 
 /**
  * The battery follows commands (remote dispatch, a forced run or power limits), not only its
@@ -93,19 +94,23 @@ export default class BatteryDevice extends AtmoceDevice {
     return (this.getStoreValue('batteryProblem') as 'faulty' | 'shutdown' | null) ?? null;
   }
 
-  private async updateProblem(runningStatus: RunningStatus): Promise<void> {
+  private async updateProblem(runningStatus: RunningStatus, snapshot: Snapshot): Promise<void> {
     const problem = runningStatus === 'faulty' || runningStatus === 'shutdown' ? runningStatus : null;
     if (problem === this.problem) return;
     await this.setStoreValue('batteryProblem', problem);
     const { flow } = this.homey;
     if (problem) {
-      this.log(`Battery problem: ${problem}`);
+      const context = this.context(snapshot);
+      this.log(`Battery problem: ${problem} (60098); ${context}`);
+      await this.setStoreValue('batteryProblemSince', Date.now());
       await this.setWarning(this.homey.__(`warning.battery_${problem}`));
       await flow.getDeviceTriggerCard('battery_problem_started').trigger(this, { status: problem }, {});
+      await this.notify(`battery_${problem}`, { context });
     } else {
       this.log('Battery problem cleared');
       await this.unsetWarning();
       await flow.getDeviceTriggerCard('battery_problem_cleared').trigger(this, {}, {});
+      await this.notify('battery_problem_cleared', {}, (this.getStoreValue('batteryProblemSince') as number | null) ?? null);
     }
   }
 
@@ -252,8 +257,8 @@ export default class BatteryDevice extends AtmoceDevice {
       snapshot.limits?.maxDischargePowerW ?? 0,
     );
     await this.learnLimits(snapshot);
-    if (snapshot.gridState?.runningStatus) await this.updateProblem(snapshot.gridState.runningStatus);
-    await this.updateEstimates(phases.socPercent, batteryPowerForHomey(status.storagePowerW));
+    if (snapshot.gridState?.runningStatus) await this.updateProblem(snapshot.gridState.runningStatus, snapshot);
+    await this.updateEstimates(phases.socPercent, batteryPowerForHomey(status.storagePowerW), energy.dischargedTotalKwh);
     await this.triggerLevelFlows(phases.socPercent);
 
     if (this.reapplyTargetPower) {
@@ -270,10 +275,11 @@ export default class BatteryDevice extends AtmoceDevice {
     }
   }
 
-  private async updateEstimates(socPercent: number, batteryPowerW: number): Promise<void> {
+  private async updateEstimates(socPercent: number, batteryPowerW: number, dischargedTotalKwh: number): Promise<void> {
     const capacityKwh = this.gateway.identity?.storageCapacityKwh ?? 0;
     if (capacityKwh <= 0) return;
     await this.update('measure_battery_energy', storedEnergyKwh(socPercent, capacityKwh));
+    await this.update('measure_battery_cycles', equivalentFullCycles(dischargedTotalKwh, capacityKwh));
     const { chargeLimitPercent, dischargeLimitPercent } = this.learnedLimits;
     await this.update('measure_time_to_full', minutesToFull(socPercent, capacityKwh, batteryPowerW, chargeLimitPercent ?? 100));
     await this.update('measure_time_to_empty', minutesToEmpty(socPercent, capacityKwh, batteryPowerW, dischargeLimitPercent ?? 0));

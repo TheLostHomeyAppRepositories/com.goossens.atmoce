@@ -1,0 +1,115 @@
+{
+  "type": "group",
+  "label": {
+    "en": "Diagnostics",
+    "nl": "Diagnose",
+    "de": "Diagnose",
+    "fr": "Diagnostic",
+    "it": "Diagnostica",
+    "sv": "Diagnostik",
+    "no": "Diagnostikk",
+    "es": "Diagnóstico",
+    "da": "Diagnostik",
+    "ru": "Диагностика",
+    "pl": "Diagnostyka",
+    "ko": "진단",
+    "ar": "التشخيص"
+  },
+  "children": [
+    {
+      "id": "diag_connection",
+      "type": "label",
+      "label": {
+        "en": "Connection",
+        "nl": "Verbinding",
+        "de": "Verbindung",
+        "fr": "Connexion",
+        "it": "Connessione",
+        "sv": "Anslutning",
+        "no": "Tilkobling",
+        "es": "Conexión",
+        "da": "Forbindelse",
+        "ru": "Подключение",
+        "pl": "Połączenie",
+        "ko": "연결",
+        "ar": "الاتصال"
+      },
+      "value": ""
+    },
+    {
+      "id": "diag_last_error",
+      "type": "label",
+      "label": {
+        "en": "Last error",
+        "nl": "Laatste fout",
+        "de": "Letzter Fehler",
+        "fr": "Dernière erreur",
+        "it": "Ultimo errore",
+        "sv": "Senaste fel",
+        "no": "Siste feil",
+        "es": "Último error",
+        "da": "Seneste fejl",
+        "ru": "Последняя ошибка",
+        "pl": "Ostatni błąd",
+        "ko": "마지막 오류",
+        "ar": "آخر خطأ"
+      },
+      "value": ""
+    },
+    {
+      "id": "diag_polls",
+      "type": "label",
+      "label": {
+        "en": "Readings since app start",
+        "nl": "Uitlezingen sinds app-start",
+        "de": "Abfragen seit App-Start",
+        "fr": "Lectures depuis le démarrage de l'app",
+        "it": "Letture dall'avvio dell'app",
+        "sv": "Avläsningar sedan appstart",
+        "no": "Avlesninger siden appstart",
+        "es": "Lecturas desde el inicio de la app",
+        "da": "Aflæsninger siden appstart",
+        "ru": "Опросов с запуска приложения",
+        "pl": "Odczyty od startu aplikacji",
+        "ko": "앱 시작 이후 읽기 횟수",
+        "ar": "القراءات منذ بدء التطبيق"
+      },
+      "value": ""
+    },
+    {
+      "id": "diag_registers",
+      "type": "label",
+      "label": {
+        "en": "Optional registers",
+        "nl": "Optionele registers",
+        "de": "Optionale Register",
+        "fr": "Registres optionnels",
+        "it": "Registri opzionali",
+        "sv": "Valfria register",
+        "no": "Valgfrie registre",
+        "es": "Registros opcionales",
+        "da": "Valgfrie registre",
+        "ru": "Необязательные регистры",
+        "pl": "Rejestry opcjonalne",
+        "ko": "선택 레지스터",
+        "ar": "السجلات الاختيارية"
+      },
+      "value": "",
+      "hint": {
+        "en": "✓ answers, ✗ not supported by this firmware, ? not read yet. Useful when reporting an issue.",
+        "nl": "✓ antwoordt, ✗ niet ondersteund door deze firmware, ? nog niet gelezen. Handig bij het melden van een probleem.",
+        "de": "✓ antwortet, ✗ von dieser Firmware nicht unterstützt, ? noch nicht gelesen. Hilfreich, wenn du ein Problem meldest.",
+        "fr": "✓ répond, ✗ non pris en charge par ce firmware, ? pas encore lu. Utile pour signaler un problème.",
+        "it": "✓ risponde, ✗ non supportato da questo firmware, ? non ancora letto. Utile per segnalare un problema.",
+        "sv": "✓ svarar, ✗ stöds inte av denna firmware, ? inte läst än. Bra att ha när du rapporterar ett problem.",
+        "no": "✓ svarer, ✗ ikke støttet av denne fastvaren, ? ikke lest ennå. Nyttig når du melder et problem.",
+        "es": "✓ responde, ✗ no admitido por este firmware, ? aún no leído. Útil al informar de un problema.",
+        "da": "✓ svarer, ✗ understøttes ikke af denne firmware, ? ikke læst endnu. Nyttigt, når du rapporterer et problem.",
+        "ru": "✓ отвечает, ✗ не поддерживается этой прошивкой, ? ещё не прочитан. Пригодится при сообщении о проблеме.",
+        "pl": "✓ odpowiada, ✗ nieobsługiwany przez to oprogramowanie, ? jeszcze nieodczytany. Przydatne przy zgłaszaniu problemu.",
+        "ko": "✓ 응답함, ✗ 이 펌웨어에서 지원하지 않음, ? 아직 읽지 않음. 문제를 신고할 때 유용합니다.",
+        "ar": "✓ يستجيب، ✗ غير مدعوم في هذا البرنامج الثابت، ? لم يُقرأ بعد. مفيد عند الإبلاغ عن مشكلة."
+      }
+    }
+  ]
+}

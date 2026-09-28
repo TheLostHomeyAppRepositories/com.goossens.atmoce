@@ -40,6 +40,15 @@ export function storedEnergyKwh(socPercent: number, capacityKwh: number): number
 }
 
 /**
+ * Equivalent full cycles: lifetime energy discharged ÷ total capacity, one decimal.
+ * The gateway's counter starts at its installation. null without a known capacity.
+ */
+export function equivalentFullCycles(dischargedTotalKwh: number, capacityKwh: number): number | null {
+  if (capacityKwh <= 0) return null;
+  return Math.round((dischargedTotalKwh / capacityKwh) * 10) / 10;
+}
+
+/**
  * Minutes until the charge limit / discharge limit is reached at the current battery power
  * (Homey sign: + charging). null when the battery is not moving in that direction.
  * The gateway does not report the cut-off SOC set in Atmozen, so the limits are device

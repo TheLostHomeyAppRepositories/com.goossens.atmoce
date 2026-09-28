@@ -34,7 +34,8 @@
     "invalid_unit_id": "Introduce un ID de unidad entre 1 y 247",
     "no_battery": "Esta pasarela no indica ninguna batería. Añade en su lugar los paneles solares o el contador de red",
     "charge_limit": "Las baterías pueden cargar como máximo a __max__ W",
-    "discharge_limit": "Las baterías pueden descargar como máximo a __max__ W"
+    "discharge_limit": "Las baterías pueden descargar como máximo a __max__ W",
+    "test_failed": "La pasarela en __host__ no respondió: __error__"
   },
   "warning": {
     "system_fault": "El sistema Atmoce indica una avería. Abre la app Atmozen para ver los detalles.",
@@ -57,5 +58,27 @@
     "produced": "Producido hoy",
     "consumed": "Consumido hoy",
     "self_sufficient": "Autosuficiente"
+  },
+  "notify": {
+    "context": "Firmware __firmware__ · solar __solar__ · batería __soc__ % (__battery__) · red __grid__.",
+    "lasted": "Duración: __duration__.",
+    "system_fault": "**__device__**: el sistema Atmoce indica un fallo (estado de la planta 60066 = 1). Abre la app Atmozen para ver los detalles de la alarma. __context__",
+    "system_fault_cleared": "**__device__**: el fallo del sistema se ha resuelto.",
+    "battery_faulty": "**__device__**: al menos una batería tiene una alarma activa y las baterías han dejado de cargar y descargar (estado de funcionamiento 60098 = 4). Abre la app Atmozen para ver los detalles de la alarma. __context__",
+    "battery_shutdown": "**__device__**: todas las baterías se han apagado (estado de funcionamiento 60098 = 3). Abre la app Atmozen para más detalles. __context__",
+    "battery_problem_cleared": "**__device__**: las baterías vuelven a funcionar con normalidad.",
+    "grid_outage": "**__device__**: corte de luz. La red ha caído y el sistema funciona aislado (60096 = 1). __context__",
+    "grid_restored": "**__device__**: la red ha vuelto y el sistema está conectado de nuevo.",
+    "connection_lost": "**Pasarela Atmoce __serial__**: sin respuesta desde hace __duration__ en __host__ (__error__). Homey sigue intentándolo y busca en la red por si la dirección ha cambiado.",
+    "connection_restored": "**Pasarela Atmoce __serial__**: vuelve a responder en __host__ tras __duration__.",
+    "firmware_updated": "**Pasarela Atmoce __serial__**: firmware actualizado de __previous__ a __current__.",
+    "test_ok": "**__device__**: prueba de conexión OK. __host__ (unidad __unit__) respondió en __ms__ ms. Pasarela __serial__, firmware __firmware__. Registros opcionales: __registers__. Lecturas desde el inicio de la app: __polls__, fallidas: __failed__."
+  },
+  "diag": {
+    "connecting": "Conectando con __host__…",
+    "connected_since": "Conectado a __host__ desde el __time__",
+    "unreachable_since": "Sin respuesta de __host__ desde el __time__",
+    "none": "Ninguno",
+    "polls_value": "__polls__ (__failed__ fallidas)"
   }
 }

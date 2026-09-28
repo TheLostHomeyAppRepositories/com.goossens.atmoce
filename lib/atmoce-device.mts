@@ -3,16 +3,40 @@ import type { EventEmitter } from 'node:events';
 import Homey from 'homey';
 
 import type AtmoceApp from '../app.mts';
-import type { AtmoceGateway, Snapshot } from './gateway.mts';
+import type { AtmoceGateway, BlockSupport, Snapshot } from './gateway.mts';
 import { type ConnectionSettings, sameEndpoint, toEndpoint } from './gateway-registry.mts';
 import { errorMessage } from './modbus-connection.mts';
-import { FIRMWARE, type Identity, type PowerLimitKind } from './registers.mts';
+import {
+  FIRMWARE,
+  type Identity,
+  type PowerLimitKind,
+  batteryPowerForHomey,
+  gridPowerForHomey,
+} from './registers.mts';
 
 /** Device settings shared by every driver (.homeycompose/drivers/settings). */
 export const CONNECTION_SETTING_KEYS = ['host', 'port', 'unit_id', 'poll_interval'] as const;
 
+/** Maintenance action on every device (Device settings → Maintenance actions). */
+export const MAINTENANCE_CAPABILITIES = ['button.test_connection'];
+
 type SettingsRecord = Record<string, unknown>;
 type Listener = Parameters<EventEmitter['on']>[1];
+
+/** Device#setLastSeenAt (Homey ≥ 12.6.1) is missing from the SDK typings (homey-apps-sdk-v3-types 0.3.12). */
+interface LastSeen {
+  setLastSeenAt(): Promise<void>;
+}
+
+/** Homey's "last seen" is refreshed at most this often. */
+const LAST_SEEN_INTERVAL_MS = 60_000;
+/** Diagnostics settings are rewritten at most this often, besides on connection changes. */
+const DIAGNOSTICS_INTERVAL_MS = 10 * 60_000;
+const SUPPORT_MARK: Readonly<Record<BlockSupport, string>> = { yes: '✓', no: '✗', unknown: '?' };
+
+function signedWatts(watts: number): string {
+  return `${watts > 0 ? '+' : ''}${Math.round(watts)} W`;
+}
 
 export function connectionSettingsFrom(settings: SettingsRecord): ConnectionSettings {
   return {
@@ -32,9 +56,21 @@ export abstract class AtmoceDevice extends Homey.Device {
   private attachedGateway: AtmoceGateway | null = null;
   private readonly gatewayListeners: Array<[string, Listener]> = [];
   private warnedDecrease = new Set<string>();
+  private lastSeenAt = 0;
+  private diagnosticsAt = 0;
 
-  protected get serial(): string {
+  /** Serial of the gateway this device belongs to. */
+  get serial(): string {
     return (this.getData() as { id: string }).id;
+  }
+
+  /**
+   * Device setting "Timeline notifications" (on for devices paired before it existed).
+   * Setting ids must differ from group ids: a checkbox and group both called `notifications`
+   * made Homey 13.5 reject every setSettings ("Invalid Value Type For Setting: notifications").
+   */
+  get notificationsEnabled(): boolean {
+    return this.getSetting('timeline_notifications') !== false;
   }
 
   protected get gateway(): AtmoceGateway {
@@ -59,6 +95,8 @@ export abstract class AtmoceDevice extends Homey.Device {
 
   override async onInit(): Promise<void> {
     await this.onDeviceInit();
+    await this.addMissingCapabilities(MAINTENANCE_CAPABILITIES);
+    this.registerCapabilityListener('button.test_connection', async () => this.testConnection());
     this.attach();
   }
 
@@ -144,6 +182,31 @@ export abstract class AtmoceDevice extends Homey.Device {
     return this.attachedGateway?.snapshot?.powerLimits?.[kind] ?? null;
   }
 
+  /**
+   * Puts an alarm or all-clear on the Homey timeline, unless turned off for this device.
+   * `startedAt` adds how long the condition lasted.
+   */
+  protected async notify(key: string, tokens: Record<string, string | number> = {}, startedAt: number | null = null): Promise<void> {
+    if (!this.notificationsEnabled) {
+      this.log(`Timeline notification ${key} not sent (turned off in the device settings)`);
+      return;
+    }
+    let excerpt = this.homey.__(`notify.${key}`, { device: this.getName(), ...tokens });
+    if (startedAt !== null) excerpt += ` ${this.homey.__('notify.lasted', { duration: this.app.formatDuration(Date.now() - startedAt) })}`;
+    await this.app.timeline(excerpt);
+  }
+
+  /** One line of system state for alarms: what the gateway reported at that moment. */
+  protected context({ status, phases }: Snapshot): string {
+    return this.homey.__('notify.context', {
+      firmware: this.attachedGateway?.identity?.firmwareVersion ?? '?',
+      solar: `${Math.round(status.pvPowerW)} W`,
+      soc: phases.socPercent,
+      battery: signedWatts(batteryPowerForHomey(status.storagePowerW)),
+      grid: signedWatts(gridPowerForHomey(status.gridPowerW)),
+    });
+  }
+
   /** Adds capabilities introduced after the device was paired (appended, values follow on the next poll). */
   protected async addMissingCapabilities(capabilities: readonly string[]): Promise<void> {
     for (const capability of capabilities) {
@@ -161,12 +224,17 @@ export abstract class AtmoceDevice extends Homey.Device {
     this.attachedGateway = gateway;
 
     this.listen(gateway, 'snapshot', (snapshot: Snapshot) => this.handleSnapshot(snapshot));
-    this.listen(gateway, 'identity', (identity: Identity) => this.handleIdentity(identity));
+    this.listen(gateway, 'identity', (identity: Identity) => {
+      this.handleIdentity(identity);
+      this.refreshDiagnostics();
+    });
     this.listen(gateway, 'available', () => {
       this.setAvailable().catch((err) => this.error(err));
+      this.refreshDiagnostics();
     });
     this.listen(gateway, 'unavailable', (reason: string) => {
       this.setUnavailable(`${this.homey.__('errors.unreachable')}: ${reason}`).catch((err) => this.error(err));
+      this.refreshDiagnostics();
       this.followGateway().catch((err) => this.error('Searching for the gateway failed:', err));
     });
 
@@ -206,6 +274,77 @@ export abstract class AtmoceDevice extends Homey.Device {
 
   private handleSnapshot(snapshot: Snapshot): void {
     this.onSnapshot(snapshot).catch((err) => this.error('Applying snapshot failed:', err));
+    const now = Date.now();
+    if (now - this.lastSeenAt >= LAST_SEEN_INTERVAL_MS) {
+      this.lastSeenAt = now;
+      (this as unknown as LastSeen).setLastSeenAt().catch((err) => this.error('setLastSeenAt failed:', err));
+    }
+    if (now - this.diagnosticsAt >= DIAGNOSTICS_INTERVAL_MS) this.refreshDiagnostics();
+  }
+
+  /**
+   * Maintenance action "Test connection": reads the gateway right now. A failure is shown
+   * as the error of the action; a success puts a full report on the timeline (it was asked
+   * for, so regardless of the notification setting).
+   */
+  private async testConnection(): Promise<void> {
+    const { gateway } = this;
+    const { host, port, unitId } = gateway.endpoint;
+    let result: Awaited<ReturnType<AtmoceGateway['testConnection']>>;
+    try {
+      result = await gateway.testConnection();
+    } catch (err) {
+      const message = this.homey.__('errors.test_failed', { host: `${host}:${port}`, error: errorMessage(err) });
+      this.error(`Connection test failed: ${message}`);
+      this.refreshDiagnostics();
+      throw new Error(message);
+    }
+    this.refreshDiagnostics();
+    await this.app.timeline(this.homey.__('notify.test_ok', {
+      device: this.getName(),
+      host: `${host}:${port}`,
+      unit: unitId,
+      ms: result.roundTripMs,
+      serial: result.identity.serial,
+      firmware: result.identity.firmwareVersion,
+      registers: this.registerSummary(gateway),
+      polls: gateway.stats.polls,
+      failed: gateway.stats.failed,
+    }));
+  }
+
+  /** Rewrites the read-only Diagnostics settings (only values that changed). */
+  private refreshDiagnostics(): void {
+    const gateway = this.attachedGateway;
+    if (!gateway) return;
+    this.diagnosticsAt = Date.now();
+    const t = (key: string, tokens?: Record<string, string | number>) => this.homey.__(key, tokens);
+    const time = (timestamp: number) => this.app.formatTime(timestamp);
+    const host = `${gateway.endpoint.host}:${gateway.endpoint.port}`;
+    let connection = t('diag.connecting', { host });
+    if (gateway.isAvailable && gateway.connectedSince !== null) {
+      connection = t('diag.connected_since', { host, time: time(gateway.connectedSince) });
+    } else if (gateway.unavailableSince !== null) {
+      connection = t('diag.unreachable_since', { host, time: time(gateway.unavailableSince) });
+    }
+    const failure = gateway.lastFailure;
+    this.setChangedSettings({
+      diag_connection: connection,
+      diag_last_error: failure ? `${time(failure.at)}: ${failure.message}` : t('diag.none'),
+      diag_polls: t('diag.polls_value', { polls: gateway.stats.polls, failed: gateway.stats.failed }),
+      diag_registers: this.registerSummary(gateway),
+    });
+  }
+
+  /** Optional register blocks and whether this gateway answers them, e.g. "60200 ✓ · 60318 ✗". */
+  private registerSummary(gateway: AtmoceGateway): string {
+    return gateway.blockSupport.map(({ start, support }) => `${start} ${SUPPORT_MARK[support]}`).join(' · ');
+  }
+
+  private setChangedSettings(wanted: SettingsRecord): void {
+    const current = this.getSettings() as SettingsRecord;
+    const changed = Object.fromEntries(Object.entries(wanted).filter(([key, value]) => current[key] !== value));
+    if (Object.keys(changed).length > 0) this.setSettings(changed).catch((err) => this.error(err));
   }
 
   private handleIdentity(identity: Identity): void {
@@ -216,9 +355,7 @@ export abstract class AtmoceDevice extends Homey.Device {
       protocol_version: identity.protocolVersion,
       ...this.identitySettings(identity),
     };
-    const current = this.getSettings() as SettingsRecord;
-    const changed = Object.fromEntries(Object.entries(wanted).filter(([key, value]) => current[key] !== value));
-    if (Object.keys(changed).length > 0) this.setSettings(changed).catch((err) => this.error(err));
+    this.setChangedSettings(wanted);
   }
 
   /** Keeps the other devices of this gateway on the same connection settings. */

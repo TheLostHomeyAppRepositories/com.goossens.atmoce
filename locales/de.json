@@ -34,7 +34,8 @@
     "invalid_unit_id": "Gib eine Unit-ID zwischen 1 und 247 ein",
     "no_battery": "Dieses Gateway meldet keine Batterie. Füge stattdessen die Solarmodule oder den Netzzähler hinzu",
     "charge_limit": "Die Batterien können höchstens mit __max__ W laden",
-    "discharge_limit": "Die Batterien können höchstens mit __max__ W entladen"
+    "discharge_limit": "Die Batterien können höchstens mit __max__ W entladen",
+    "test_failed": "Das Gateway unter __host__ hat nicht geantwortet: __error__"
   },
   "warning": {
     "system_fault": "Das Atmoce-System meldet eine Störung. Details in der Atmozen-App.",
@@ -57,5 +58,27 @@
     "produced": "Heute erzeugt",
     "consumed": "Heute verbraucht",
     "self_sufficient": "Autark"
+  },
+  "notify": {
+    "context": "Firmware __firmware__ · Solar __solar__ · Batterie __soc__ % (__battery__) · Netz __grid__.",
+    "lasted": "Dauer: __duration__.",
+    "system_fault": "**__device__**: Das Atmoce-System meldet eine Störung (Anlagenstatus 60066 = 1). Öffne die Atmozen-App für die Alarmdetails. __context__",
+    "system_fault_cleared": "**__device__**: Die Systemstörung ist behoben.",
+    "battery_faulty": "**__device__**: Mindestens eine Batterie hat einen aktiven Alarm, die Batterien laden und entladen nicht mehr (Betriebsstatus 60098 = 4). Öffne die Atmozen-App für die Alarmdetails. __context__",
+    "battery_shutdown": "**__device__**: Alle Batterien haben sich abgeschaltet (Betriebsstatus 60098 = 3). Öffne die Atmozen-App für Details. __context__",
+    "battery_problem_cleared": "**__device__**: Die Batterien arbeiten wieder normal.",
+    "grid_outage": "**__device__**: Stromausfall. Das Netz ist weg, das System läuft im Inselbetrieb (60096 = 1). __context__",
+    "grid_restored": "**__device__**: Das Netz ist zurück, das System ist wieder damit verbunden.",
+    "connection_lost": "**Atmoce-Gateway __serial__** antwortet seit __duration__ nicht unter __host__ (__error__). Homey versucht es weiter und durchsucht das Netzwerk, falls sich die Adresse geändert hat.",
+    "connection_restored": "**Atmoce-Gateway __serial__** antwortet nach __duration__ wieder unter __host__.",
+    "firmware_updated": "**Atmoce-Gateway __serial__** wurde von Firmware __previous__ auf __current__ aktualisiert.",
+    "test_ok": "**__device__**: Verbindungstest OK. __host__ (Unit __unit__) antwortete in __ms__ ms. Gateway __serial__, Firmware __firmware__. Optionale Register: __registers__. Abfragen seit App-Start: __polls__, fehlgeschlagen: __failed__."
+  },
+  "diag": {
+    "connecting": "Verbinde mit __host__…",
+    "connected_since": "Mit __host__ verbunden seit __time__",
+    "unreachable_since": "Keine Antwort von __host__ seit __time__",
+    "none": "Keiner",
+    "polls_value": "__polls__ (__failed__ fehlgeschlagen)"
   }
 }

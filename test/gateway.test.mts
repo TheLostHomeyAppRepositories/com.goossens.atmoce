@@ -75,6 +75,20 @@ describe('AtmoceGateway against the simulator', () => {
     assert.equal(gateway.isAvailable, true);
   });
 
+  it('test connection and diagnostics', async () => {
+    gateway.start();
+    await nextSnapshot(gateway);
+    const { identity, roundTripMs } = await gateway.testConnection();
+    assert.equal(identity.serial, simulator.serial);
+    assert.ok(roundTripMs >= 0);
+    assert.ok(gateway.connectedSince !== null);
+    assert.equal(gateway.unavailableSince, null);
+    assert.deepEqual(gateway.stats, { polls: 1, failed: 0 });
+    assert.deepEqual(gateway.blockSupport.map(({ start, support }) => [start, support]), [
+      [60200, 'yes'], [60301, 'yes'], [60310, 'yes'], [60096, 'yes'], [60318, 'yes'],
+    ]);
+  });
+
   it('dispatch: remote mode first, then the (inverted) dispatch power', async () => {
     gateway.start();
     await nextSnapshot(gateway);
@@ -186,6 +200,7 @@ describe('AtmoceGateway against the simulator', () => {
     const [reason] = await unavailable;
     assert.match(reason, /SIMGW0000001/);
     assert.equal(gateway.isAvailable, false);
+    await assert.rejects(gateway.testConnection(), /SIMGW0000001/);
   });
 
   it('reconnects after the gateway restarts', async () => {
@@ -193,11 +208,19 @@ describe('AtmoceGateway against the simulator', () => {
     gateway = gatewayFor(simulator.serial, 50);
     gateway.start();
     await nextSnapshot(gateway);
+    const connectedAt = gateway.connectedSince;
     await simulator.stop();
     await once(gateway, 'unavailable');
+    assert.equal(gateway.connectedSince, null);
+    assert.ok(gateway.unavailableSince !== null && connectedAt !== null && gateway.unavailableSince >= connectedAt);
+    assert.ok(gateway.lastFailure !== null);
     await simulator.start();
     await once(gateway, 'available');
     assert.equal(gateway.isAvailable, true);
+    assert.equal(gateway.unavailableSince, null);
+    assert.ok(gateway.connectedSince !== null);
+    assert.ok(gateway.stats.failed >= 3);
+    assert.ok(gateway.lastFailure !== null, 'the last failure stays visible after recovery');
   });
 });
 
@@ -242,6 +265,7 @@ describe('older gateway firmware without the optional blocks', () => {
     assert.equal(last.gridState, null);
     assert.equal(last.powerLimits, null);
     assert.equal(gateway.supportsPowerLimits, false);
+    assert.ok(gateway.blockSupport.every(({ support }) => support === 'no'));
   });
 });
 

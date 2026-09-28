@@ -34,7 +34,8 @@
     "invalid_unit_id": "Skriv inn en enhets-ID mellom 1 og 247",
     "no_battery": "Gatewayen rapporterer ikke noe batteri. Legg til solcellepanelene eller nettmåleren i stedet",
     "charge_limit": "Batteriene kan lades med maks. __max__ W",
-    "discharge_limit": "Batteriene kan lades ut med maks. __max__ W"
+    "discharge_limit": "Batteriene kan lades ut med maks. __max__ W",
+    "test_failed": "Gatewayen på __host__ svarte ikke: __error__"
   },
   "warning": {
     "system_fault": "Atmoce-systemet melder en feil. Åpne Atmozen-appen for detaljer.",
@@ -57,5 +58,27 @@
     "produced": "Produsert i dag",
     "consumed": "Forbrukt i dag",
     "self_sufficient": "Selvforsynt"
+  },
+  "notify": {
+    "context": "Fastvare __firmware__ · sol __solar__ · batteri __soc__ % (__battery__) · nett __grid__.",
+    "lasted": "Varighet: __duration__.",
+    "system_fault": "**__device__**: Atmoce-systemet melder en feil (anleggsstatus 60066 = 1). Åpne Atmozen-appen for detaljer om alarmen. __context__",
+    "system_fault_cleared": "**__device__**: systemfeilen er borte.",
+    "battery_faulty": "**__device__**: minst ett batteri har en aktiv alarm, og batteriene lader ikke lenger (driftsstatus 60098 = 4). Åpne Atmozen-appen for detaljer om alarmen. __context__",
+    "battery_shutdown": "**__device__**: alle batteriene har slått seg av (driftsstatus 60098 = 3). Åpne Atmozen-appen for detaljer. __context__",
+    "battery_problem_cleared": "**__device__**: batteriene fungerer normalt igjen.",
+    "grid_outage": "**__device__**: strømbrudd. Nettet er borte, og systemet går i øydrift (60096 = 1). __context__",
+    "grid_restored": "**__device__**: nettet er tilbake, og systemet er koblet til igjen.",
+    "connection_lost": "**Atmoce-gateway __serial__** har ikke svart på __duration__ på __host__ (__error__). Homey prøver videre og søker i nettverket i tilfelle adressen er endret.",
+    "connection_restored": "**Atmoce-gateway __serial__** svarer igjen på __host__ etter __duration__.",
+    "firmware_updated": "**Atmoce-gateway __serial__** er oppdatert fra fastvare __previous__ til __current__.",
+    "test_ok": "**__device__**: tilkoblingstest OK. __host__ (enhet __unit__) svarte på __ms__ ms. Gateway __serial__, fastvare __firmware__. Valgfrie registre: __registers__. Avlesninger siden appstart: __polls__, mislykket: __failed__."
+  },
+  "diag": {
+    "connecting": "Kobler til __host__…",
+    "connected_since": "Koblet til __host__ siden __time__",
+    "unreachable_since": "Ikke svar fra __host__ siden __time__",
+    "none": "Ingen",
+    "polls_value": "__polls__ (__failed__ mislykket)"
   }
 }

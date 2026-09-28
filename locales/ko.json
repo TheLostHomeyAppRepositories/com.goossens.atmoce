@@ -34,7 +34,8 @@
     "invalid_unit_id": "1~247 사이의 유닛 ID를 입력하세요",
     "no_battery": "이 게이트웨이에는 배터리가 없습니다. 대신 태양광 패널이나 계통 계량기를 추가하세요",
     "charge_limit": "배터리는 최대 __max__ W로 충전할 수 있습니다",
-    "discharge_limit": "배터리는 최대 __max__ W로 방전할 수 있습니다"
+    "discharge_limit": "배터리는 최대 __max__ W로 방전할 수 있습니다",
+    "test_failed": "__host__의 게이트웨이가 응답하지 않았습니다: __error__"
   },
   "warning": {
     "system_fault": "Atmoce 시스템이 고장을 보고했습니다. 자세한 내용은 Atmozen 앱을 여세요.",
@@ -57,5 +58,27 @@
     "produced": "오늘 발전량",
     "consumed": "오늘 소비량",
     "self_sufficient": "자급률"
+  },
+  "notify": {
+    "context": "펌웨어 __firmware__ · 태양광 __solar__ · 배터리 __soc__ % (__battery__) · 계통 __grid__.",
+    "lasted": "지속 시간: __duration__.",
+    "system_fault": "**__device__**: Atmoce 시스템이 고장을 보고했습니다 (발전소 상태 60066 = 1). 경보 세부 정보는 Atmozen 앱에서 확인하세요. __context__",
+    "system_fault_cleared": "**__device__**: 시스템 고장이 해제되었습니다.",
+    "battery_faulty": "**__device__**: 하나 이상의 배터리에 경보가 발생해 배터리 충방전이 멈췄습니다 (운전 상태 60098 = 4). 경보 세부 정보는 Atmozen 앱에서 확인하세요. __context__",
+    "battery_shutdown": "**__device__**: 모든 배터리가 꺼졌습니다 (운전 상태 60098 = 3). 자세한 내용은 Atmozen 앱에서 확인하세요. __context__",
+    "battery_problem_cleared": "**__device__**: 배터리가 다시 정상적으로 작동합니다.",
+    "grid_outage": "**__device__**: 정전입니다. 계통 전원이 끊겨 시스템이 독립 운전 중입니다 (60096 = 1). __context__",
+    "grid_restored": "**__device__**: 계통 전원이 복구되어 시스템이 다시 연결되었습니다.",
+    "connection_lost": "**Atmoce 게이트웨이 __serial__**가 __duration__ 동안 __host__에서 응답하지 않습니다 (__error__). Homey는 계속 시도하며 주소가 바뀌었을 경우를 대비해 네트워크를 검색합니다.",
+    "connection_restored": "**Atmoce 게이트웨이 __serial__**가 __duration__ 만에 __host__에서 다시 응답합니다.",
+    "firmware_updated": "**Atmoce 게이트웨이 __serial__**의 펌웨어가 __previous__에서 __current__(으)로 업데이트되었습니다.",
+    "test_ok": "**__device__**: 연결 테스트 성공. __host__ (유닛 __unit__)가 __ms__ ms 만에 응답했습니다. 게이트웨이 __serial__, 펌웨어 __firmware__. 선택 레지스터: __registers__. 앱 시작 이후 읽기: __polls__회, 실패: __failed__회."
+  },
+  "diag": {
+    "connecting": "__host__에 연결 중…",
+    "connected_since": "__time__부터 __host__에 연결됨",
+    "unreachable_since": "__time__부터 __host__에서 응답 없음",
+    "none": "없음",
+    "polls_value": "__polls__회 (실패 __failed__회)"
   }
 }

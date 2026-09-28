@@ -63,7 +63,7 @@ export default class SolarDevice extends AtmoceDevice {
     await this.update('measure_power', status.pvPowerW);
     await this.updateMeter('meter_power', energy.pvTotalKwh);
     await this.update('meter_power.today', energy.pvTodayKwh);
-    if (status.stationFault !== null) await this.updateSystemFault(status.stationFault);
+    if (status.stationFault !== null) await this.updateSystemFault(status.stationFault, snapshot);
 
     const change = this.production.update(status.pvPowerW);
     if (change) await this.homey.flow.getDeviceTriggerCard(`production_${change}`).trigger(this, {}, {});
@@ -143,15 +143,19 @@ export default class SolarDevice extends AtmoceDevice {
     }
   }
 
-  private async updateSystemFault(fault: boolean): Promise<void> {
+  private async updateSystemFault(fault: boolean, snapshot: Snapshot): Promise<void> {
     if (fault === this.systemFault) return;
     await this.setStoreValue('systemFault', fault);
     if (fault) {
-      this.log('Gateway reports a system fault');
+      const context = this.context(snapshot);
+      this.log(`Gateway reports a system fault (60066 = ${snapshot.status.raw.stationStatus}); ${context}`);
+      await this.setStoreValue('systemFaultSince', Date.now());
       await this.setWarning(this.homey.__('warning.system_fault'));
+      await this.notify('system_fault', { context });
     } else {
       this.log('System fault cleared');
       await this.unsetWarning();
+      await this.notify('system_fault_cleared', {}, (this.getStoreValue('systemFaultSince') as number | null) ?? null);
     }
     const card = this.homey.flow.getDeviceTriggerCard(fault ? 'system_fault_started' : 'system_fault_cleared');
     await card.trigger(this, {}, {});

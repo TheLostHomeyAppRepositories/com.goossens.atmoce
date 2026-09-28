@@ -34,7 +34,8 @@
     "invalid_unit_id": "Enter a unit ID between 1 and 247",
     "no_battery": "This gateway reports no battery. Add the solar panels or grid meter instead",
     "charge_limit": "The batteries can charge at most __max__ W",
-    "discharge_limit": "The batteries can discharge at most __max__ W"
+    "discharge_limit": "The batteries can discharge at most __max__ W",
+    "test_failed": "The gateway at __host__ did not answer: __error__"
   },
   "warning": {
     "system_fault": "The Atmoce system reports a fault. Open the Atmozen app for details.",
@@ -57,5 +58,27 @@
     "produced": "Produced today",
     "consumed": "Consumed today",
     "self_sufficient": "Self-sufficient"
+  },
+  "notify": {
+    "context": "Firmware __firmware__ · solar __solar__ · battery __soc__ % (__battery__) · grid __grid__.",
+    "lasted": "Duration: __duration__.",
+    "system_fault": "**__device__**: the Atmoce system reports a fault (power station status 60066 = 1). Open the Atmozen app for the alarm details. __context__",
+    "system_fault_cleared": "**__device__**: the system fault has cleared.",
+    "battery_faulty": "**__device__**: at least one battery has an active alarm and the batteries stopped charging and discharging (running status 60098 = 4). Open the Atmozen app for the alarm details. __context__",
+    "battery_shutdown": "**__device__**: all batteries have shut down (running status 60098 = 3). Open the Atmozen app for details. __context__",
+    "battery_problem_cleared": "**__device__**: the batteries are working normally again.",
+    "grid_outage": "**__device__**: power cut. The grid is down and the system is running off-grid (60096 = 1). __context__",
+    "grid_restored": "**__device__**: the grid is back and the system is connected to it again.",
+    "connection_lost": "**Atmoce gateway __serial__** has not answered for __duration__ at __host__ (__error__). Homey keeps trying and searches the network in case the address changed.",
+    "connection_restored": "**Atmoce gateway __serial__** answers again at __host__ after __duration__.",
+    "firmware_updated": "**Atmoce gateway __serial__** was updated from firmware __previous__ to __current__.",
+    "test_ok": "**__device__**: connection test OK. __host__ (unit __unit__) answered in __ms__ ms. Gateway __serial__, firmware __firmware__. Optional registers: __registers__. Readings since app start: __polls__, failed: __failed__."
+  },
+  "diag": {
+    "connecting": "Connecting to __host__…",
+    "connected_since": "Connected to __host__ since __time__",
+    "unreachable_since": "No answer from __host__ since __time__",
+    "none": "None",
+    "polls_value": "__polls__ (__failed__ failed)"
   }
 }

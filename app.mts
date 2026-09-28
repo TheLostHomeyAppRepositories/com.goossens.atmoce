@@ -1,25 +1,45 @@
 import Homey from 'homey';
 
+import { AtmoceDevice } from './lib/atmoce-device.mts';
 import { type EnergyFlow, energyFlow } from './lib/energy-flow.mts';
-import type { AtmoceGateway } from './lib/gateway.mts';
+import { formatDuration, formatTime } from './lib/format.mts';
+import type { AtmoceGateway, Timers } from './lib/gateway.mts';
+import { type GatewayAlert, GatewayAlerts } from './lib/gateway-alerts.mts';
 import { GatewayRegistry } from './lib/gateway-registry.mts';
 
 /** Realtime event the energy-flow widget listens to (Homey.on in the widget view). */
 export const ENERGY_FLOW_EVENT = 'energyflow';
+/** App setting: last firmware seen per gateway serial. */
+const FIRMWARE_SETTING = 'firmware';
 
 export default class AtmoceApp extends Homey.App {
 
   gateways!: GatewayRegistry;
+  private alerts!: GatewayAlerts;
 
   override async onInit(): Promise<void> {
-    this.gateways = new GatewayRegistry(
-      {
-        setTimeout: (callback, ms) => this.homey.setTimeout(callback, ms),
-        clearTimeout: (timer) => this.homey.clearTimeout(timer),
+    const timers: Timers = {
+      setTimeout: (callback, ms) => this.homey.setTimeout(callback, ms),
+      clearTimeout: (timer) => this.homey.clearTimeout(timer),
+    };
+    this.alerts = new GatewayAlerts({
+      timers,
+      firmware: {
+        get: (serial) => this.lastFirmware(serial),
+        set: (serial, version) => this.homey.settings.set(FIRMWARE_SETTING, { ...this.firmwareSeen(), [serial]: version }),
       },
+      alert: (serial, alert) => {
+        this.sendGatewayAlert(serial, alert).catch((err) => this.error('Gateway alert failed:', err));
+      },
+    });
+    this.gateways = new GatewayRegistry(
+      timers,
       { log: (...args) => this.log(...args), error: (...args) => this.error(...args) },
       () => this.homey.cloud.getLocalAddress(),
-      (gateway) => this.publishEnergyFlow(gateway),
+      (gateway) => {
+        gateway.on('snapshot', () => this.publishEnergyFlow(gateway));
+        this.alerts.watch(gateway);
+      },
     );
 
     this.homey.dashboards.getWidget('energy-flow').registerSettingAutocompleteListener('gateway', async (query: string) => {
@@ -40,6 +60,60 @@ export default class AtmoceApp extends Homey.App {
   energyFlow(serial?: string): EnergyFlow | null {
     const gateway = serial ? this.gateways.get(serial) : this.gateways.list()[0];
     return gateway ? this.flowOf(gateway) : null;
+  }
+
+  /** Puts a message on the Homey timeline (and the owner's phone). Never throws. */
+  async timeline(excerpt: string): Promise<void> {
+    this.log('Timeline:', excerpt);
+    await this.homey.notifications.createNotification({ excerpt })
+      .catch((err) => this.error('Timeline notification failed:', err));
+  }
+
+  formatDuration(ms: number): string {
+    return formatDuration(ms, this.homey.i18n.getLanguage());
+  }
+
+  formatTime(timestamp: number): string {
+    return formatTime(timestamp, this.homey.i18n.getLanguage(), this.homey.clock.getTimezone());
+  }
+
+  /** The solar, battery and grid devices of one gateway. */
+  devicesOf(serial: string): AtmoceDevice[] {
+    return Object.values(this.homey.drivers.getDrivers())
+      .flatMap((driver) => driver.getDevices())
+      .filter((device): device is AtmoceDevice => device instanceof AtmoceDevice && device.serial === serial);
+  }
+
+  /** Gateway-wide alerts go out once, when any device of that gateway has notifications on. */
+  private async sendGatewayAlert(serial: string, alert: GatewayAlert): Promise<void> {
+    if (!this.devicesOf(serial).some((device) => device.notificationsEnabled)) {
+      this.log(`[${serial}] ${alert.kind} (timeline notifications are off)`);
+      return;
+    }
+    let tokens: Record<string, string>;
+    if (alert.kind === 'connection_lost') {
+      tokens = { host: `${alert.host}:${alert.port}`, duration: this.formatDuration(alert.sinceMs), error: alert.error };
+    } else if (alert.kind === 'connection_restored') {
+      tokens = { host: `${alert.host}:${alert.port}`, duration: this.formatDuration(alert.downMs) };
+    } else {
+      tokens = { previous: alert.previous, current: alert.current };
+    }
+    await this.timeline(this.homey.__(`notify.${alert.kind}`, { serial, ...tokens }));
+  }
+
+  private firmwareSeen(): Record<string, string> {
+    return (this.homey.settings.get(FIRMWARE_SETTING) as Record<string, string> | null) ?? {};
+  }
+
+  /**
+   * Firmware seen last time; before this setting existed, the firmware the devices show
+   * (so an update while Homey was off is still noticed).
+   */
+  private lastFirmware(serial: string): string | null {
+    const seen = this.firmwareSeen()[serial];
+    if (seen) return seen;
+    const shown = this.devicesOf(serial).map((device) => device.getSetting('firmware_version') as unknown).find((value) => typeof value === 'string' && value !== '');
+    return typeof shown === 'string' ? shown : null;
   }
 
   private flowOf(gateway: AtmoceGateway): EnergyFlow | null {

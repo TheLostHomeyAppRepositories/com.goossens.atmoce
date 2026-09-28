@@ -1,0 +1,55 @@
+{
+  "type": "group",
+  "label": {
+    "en": "Notifications",
+    "nl": "Meldingen",
+    "de": "Benachrichtigungen",
+    "fr": "Notifications",
+    "it": "Notifiche",
+    "sv": "Aviseringar",
+    "no": "Varsler",
+    "es": "Notificaciones",
+    "da": "Notifikationer",
+    "ru": "Уведомления",
+    "pl": "Powiadomienia",
+    "ko": "알림",
+    "ar": "الإشعارات"
+  },
+  "children": [
+    {
+      "id": "timeline_notifications",
+      "type": "checkbox",
+      "label": {
+        "en": "Timeline notifications",
+        "nl": "Tijdlijnmeldingen",
+        "de": "Zeitleisten-Benachrichtigungen",
+        "fr": "Notifications dans la timeline",
+        "it": "Notifiche nella timeline",
+        "sv": "Aviseringar i tidslinjen",
+        "no": "Varsler i tidslinjen",
+        "es": "Notificaciones en la línea de tiempo",
+        "da": "Notifikationer på tidslinjen",
+        "ru": "Уведомления в ленте",
+        "pl": "Powiadomienia na osi czasu",
+        "ko": "타임라인 알림",
+        "ar": "إشعارات الخط الزمني"
+      },
+      "hint": {
+        "en": "Alarms and all-clears on the Homey timeline and your phone: system faults, battery problems, grid outages, a gateway that stops answering and gateway firmware updates. Messages about the gateway itself are sent once, when any of its devices has this on.",
+        "nl": "Alarmen en herstelmeldingen op de Homey-tijdlijn en je telefoon: systeemstoringen, batterijproblemen, stroomuitval, een gateway die niet meer antwoordt en firmware-updates van de gateway. Meldingen over de gateway zelf komen één keer, als minstens één van zijn apparaten dit aan heeft.",
+        "de": "Alarme und Entwarnungen in der Homey-Zeitleiste und auf deinem Handy: Systemstörungen, Batterieprobleme, Netzausfälle, ein Gateway, das nicht mehr antwortet, und Firmware-Updates des Gateways. Meldungen zum Gateway selbst kommen einmal, wenn eines seiner Geräte dies eingeschaltet hat.",
+        "fr": "Alarmes et fins d'alarme dans la timeline Homey et sur votre téléphone : défauts du système, problèmes de batterie, coupures réseau, passerelle qui ne répond plus et mises à jour du firmware de la passerelle. Les messages sur la passerelle elle-même sont envoyés une fois, si l'un de ses appareils a cette option activée.",
+        "it": "Allarmi e cessati allarmi nella timeline di Homey e sul telefono: guasti del sistema, problemi alle batterie, blackout, un gateway che non risponde più e aggiornamenti firmware del gateway. I messaggi sul gateway stesso arrivano una volta, se almeno uno dei suoi dispositivi ha questa opzione attiva.",
+        "sv": "Larm och återställningar i Homeys tidslinje och på din telefon: systemfel, batteriproblem, strömavbrott, en gateway som slutar svara och firmwareuppdateringar av gatewayen. Meddelanden om själva gatewayen skickas en gång, om någon av dess enheter har detta på.",
+        "no": "Alarmer og friskmeldinger i Homey-tidslinjen og på telefonen: systemfeil, batteriproblemer, strømbrudd, en gateway som slutter å svare og fastvareoppdateringer av gatewayen. Meldinger om selve gatewayen sendes én gang, når en av enhetene har dette på.",
+        "es": "Alarmas y avisos de normalidad en la línea de tiempo de Homey y en tu móvil: fallos del sistema, problemas de batería, cortes de red, una pasarela que deja de responder y actualizaciones de firmware de la pasarela. Los mensajes sobre la propia pasarela se envían una vez, si alguno de sus dispositivos tiene esto activado.",
+        "da": "Alarmer og afmeldinger på Homey-tidslinjen og din telefon: systemfejl, batteriproblemer, strømafbrydelser, en gateway der holder op med at svare, og firmwareopdateringer af gatewayen. Beskeder om selve gatewayen sendes én gang, når en af dens enheder har dette slået til.",
+        "ru": "Тревоги и отбои в ленте Homey и на телефоне: неисправности системы, проблемы с батареями, отключения сети, шлюз, который перестал отвечать, и обновления прошивки шлюза. Сообщения о самом шлюзе приходят один раз, если это включено хотя бы у одного из его устройств.",
+        "pl": "Alarmy i odwołania alarmów na osi czasu Homey i w telefonie: usterki systemu, problemy z bateriami, zaniki sieci, bramka, która przestaje odpowiadać, i aktualizacje oprogramowania bramki. Komunikaty o samej bramce przychodzą raz, jeśli choć jedno z jej urządzeń ma to włączone.",
+        "ko": "Homey 타임라인과 휴대폰에 경보와 해제 알림을 보냅니다: 시스템 고장, 배터리 문제, 정전, 응답하지 않는 게이트웨이, 게이트웨이 펌웨어 업데이트. 게이트웨이 자체에 대한 메시지는 그 기기 중 하나라도 이 옵션이 켜져 있으면 한 번 전송됩니다.",
+        "ar": "تنبيهات وإشعارات زوالها على الخط الزمني لـ Homey وعلى هاتفك: أعطال النظام، ومشكلات البطارية، وانقطاع الشبكة، وبوابة توقفت عن الاستجابة، وتحديثات البرنامج الثابت للبوابة. تُرسل الرسائل الخاصة بالبوابة نفسها مرة واحدة إذا كان هذا الخيار مفعّلًا لأيٍّ من أجهزتها."
+      },
+      "value": true
+    }
+  ]
+}

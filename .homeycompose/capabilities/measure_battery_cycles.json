@@ -1,0 +1,40 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Battery cycles",
+    "nl": "Batterijcycli",
+    "de": "Batteriezyklen",
+    "fr": "Cycles de batterie",
+    "it": "Cicli della batteria",
+    "sv": "Battericykler",
+    "no": "Batterisykluser",
+    "es": "Ciclos de batería",
+    "da": "Battericyklusser",
+    "ru": "Циклы батареи",
+    "pl": "Cykle baterii",
+    "ko": "배터리 사이클",
+    "ar": "دورات البطارية"
+  },
+  "decimals": 1,
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": true,
+  "icon": "/assets/capabilities/battery_cycles.svg",
+  "desc": {
+    "en": "Equivalent full cycles: total discharged ÷ battery capacity, since the gateway was installed",
+    "nl": "Equivalente volle cycli: totaal ontladen ÷ batterijcapaciteit, sinds de installatie van de gateway",
+    "de": "Äquivalente Vollzyklen: gesamt entladen ÷ Batteriekapazität, seit der Installation des Gateways",
+    "fr": "Cycles complets équivalents : total déchargé ÷ capacité de la batterie, depuis l'installation de la passerelle",
+    "it": "Cicli completi equivalenti: totale scaricato ÷ capacità della batteria, dall'installazione del gateway",
+    "sv": "Ekvivalenta fulla cykler: totalt urladdat ÷ batterikapacitet, sedan gatewayen installerades",
+    "no": "Ekvivalente fulle sykluser: totalt utladet ÷ batterikapasitet, siden gatewayen ble installert",
+    "es": "Ciclos completos equivalentes: total descargado ÷ capacidad de la batería, desde la instalación de la pasarela",
+    "da": "Ækvivalente fulde cyklusser: samlet afladet ÷ batterikapacitet, siden gatewayen blev installeret",
+    "ru": "Эквивалентные полные циклы: всего разряжено ÷ ёмкость батареи, с момента установки шлюза",
+    "pl": "Równoważne pełne cykle: łącznie rozładowano ÷ pojemność baterii, od instalacji bramki",
+    "ko": "등가 완전 사이클: 총 방전량 ÷ 배터리 용량, 게이트웨이 설치 이후",
+    "ar": "دورات كاملة مكافئة: إجمالي التفريغ ÷ سعة البطارية، منذ تركيب البوابة"
+  },
+  "min": 0
+}

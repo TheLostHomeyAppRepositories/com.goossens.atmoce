@@ -132,6 +132,8 @@ lib/atmoce-driver.mts         base Driver: shared pairing (connect → list_devi
 lib/derived.mts               pure: home consumption, self-sufficiency, stored energy, time to
                               full/empty, threshold crossing, Hysteresis (+ THRESHOLDS)
 lib/limit-learner.mts         learns Atmozen charge/discharge limits from the live limits
+lib/gateway-alerts.mts        connection lost (after 10 min) / restored, firmware updated — once per gateway
+lib/format.mts                localised durations and times (Intl) for notifications and diagnostics
 lib/errors.mts                WrongGatewayError
                               (registers.mts: FIRMWARE gates + firmwareAtLeast, spec V1.6)
 drivers/{solar,battery,grid}/ driver.mts, device.mts, *.compose.json, assets/
@@ -305,6 +307,25 @@ When adding a string, add it in all 13 languages in the same change.
   Home Assistant's power-flow-card-plus); no Atmoce artwork is used.
 - Preview images: 1024×1024, transparent, no text (Homey guideline), light and dark.
 
+### Timeline notifications and diagnostics
+
+- Device alarms (`AtmoceDevice.notify`): solar system fault (60066), battery faulty / all shut
+  down (60098), grid outage (60096), and their all-clears with the duration (start time in the
+  store). Each alarm carries `notify.context`: firmware, solar W, SOC, battery and grid W. The
+  gateway has no alarm-code register (spec §4.3 lists Modbus exceptions only), so the text
+  points to the Atmozen app for the alarm details.
+- Gateway alerts (`lib/gateway-alerts.mts`, wired in app.mts) go out once per gateway, when
+  any of its devices has `timeline_notifications` on. Firmware: last version per serial in
+  app setting `firmware`, seeded from the devices' `firmware_version` label, so the first run
+  after an upgrade does not report anything.
+- Diagnostics labels (`diag_*`) are rewritten on connection changes, identity, the test
+  action, and otherwise at most every 10 minutes (setSettings is a disk write).
+  `setLastSeenAt()` at most every minute (missing from the SDK typings, hence the local
+  interface in atmoce-device.mts).
+- Maintenance action `button.test_connection` (capabilitiesOptions `maintenanceAction`).
+  VERIFIED 2026-09-28 on Homey Pro 13.5.0: added to existing devices by `addCapability` with
+  the manifest title; the report arrived on the timeline in Dutch.
+
 ### Device indicator
 
 Homey groups `alarm_` capabilities into the default indicator ("By default all capabilities
@@ -326,4 +347,5 @@ first `measure_` capability; verify on the next fresh grid-meter pairing).
 | Global `setTimeout`/`setInterval` in app code | Use `this.homey.*` timers (passed into the gateway) |
 | Editing `app.json` or generated pair views | Overwritten by Homey Compose on every build |
 | `setSettings()` expecting `onSettings` | It does not fire; propagation relies on that |
+| A setting id equal to a settings-group id | Homey 13.5 then rejects **every** `setSettings` ("Invalid Value Type For Setting: …"), silently breaking all label updates; hence group `notifications_group` for setting `timeline_notifications` |
 | Trusting every `target_power` / `target_power_mode` listener call | The mobile app can re-send cached values when a device page opens (seen in Sessy, Anker, Marstek apps); `BatteryDevice.isRepeat` ignores changes that repeat current values |

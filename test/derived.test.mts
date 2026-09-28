@@ -5,6 +5,7 @@ import {
   Hysteresis,
   consumptionTodayKwh,
   crossed,
+  equivalentFullCycles,
   homeConsumptionW,
   minutesToEmpty,
   minutesToFull,
@@ -79,6 +80,18 @@ describe('battery estimates', () => {
     assert.equal(minutesToEmpty(8, 14, -1400, 10), 0); // already below the reserve
     assert.equal(minutesToFull(45, 14, 4127, 95), 102);
     assert.equal(minutesToFull(97, 14, 4127, 95), 0);
+  });
+});
+
+describe('battery cycles', () => {
+  it('counts equivalent full cycles from the lifetime discharge', () => {
+    assert.equal(equivalentFullCycles(0, 14), 0);
+    assert.equal(equivalentFullCycles(7, 14), 0.5);
+    assert.equal(equivalentFullCycles(1234.56, 14), 88.2);
+  });
+
+  it('is unknown without a capacity', () => {
+    assert.equal(equivalentFullCycles(100, 0), null);
   });
 });
 
