@@ -4,7 +4,7 @@
     "intro": "يتواصل Homey مع البوابة مباشرةً عبر شبكتك المنزلية. فعّل Modbus-TCP في تطبيق Atmozen ضمن الإعدادات ← 3rd Party System؛ وستجد هناك عنوان IP أيضًا.",
     "searching": "جارٍ البحث عن بوابات Atmoce في شبكتك…",
     "found": "تم العثور عليها في شبكتك",
-    "none_found": "لم يُعثر على بوابة Atmoce تلقائيًا. تحقّق من تفعيل Modbus-TCP في Atmozen أو أدخل عنوان IP أدناه.",
+    "none_found": "لم يُعثر على بوابة Atmoce تلقائيًا. تحقّق من تفعيل Modbus-TCP في Atmozen أو أدخل عنوان IP أدناه. لا يحتوي MC100L Lite على اتصال محلي ولا يمكن إضافته.",
     "manual": "أو أدخل عنوان IP",
     "already_added": "أُضيف بالفعل",
     "host": "عنوان IP",

@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.goossens.atmoce",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "compatibility": ">=12.13.0",
   "sdk": 3,
   "runtime": "nodejs",
@@ -151,7 +151,7 @@
       "modbus"
     ]
   },
-  "brandColor": "#D03050",
+  "brandColor": "#D1606D",
   "permissions": [],
   "images": {
     "small": "/assets/images/small.png",

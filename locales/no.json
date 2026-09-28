@@ -4,7 +4,7 @@
     "intro": "Homey snakker direkte med gatewayen over hjemmenettverket. Slå på Modbus-TCP i Atmozen-appen under Innstillinger → 3rd Party System; der ser du også IP-adressen.",
     "searching": "Søker etter Atmoce-gatewayer i nettverket…",
     "found": "Funnet i nettverket",
-    "none_found": "Ingen Atmoce-gateway ble funnet automatisk. Sjekk at Modbus-TCP er på i Atmozen, eller skriv inn IP-adressen nedenfor.",
+    "none_found": "Ingen Atmoce-gateway ble funnet automatisk. Sjekk at Modbus-TCP er på i Atmozen, eller skriv inn IP-adressen nedenfor. MC100L Lite har ingen lokal tilkobling og kan ikke legges til.",
     "manual": "Eller skriv inn IP-adressen",
     "already_added": "allerede lagt til",
     "host": "IP-adresse",

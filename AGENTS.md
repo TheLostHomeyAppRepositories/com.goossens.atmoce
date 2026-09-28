@@ -246,7 +246,7 @@ When adding a string, add it in all 13 languages in the same change.
   from the datasheets (MI microinverter, MS-7K-U, MC100) on white.
   **Get Atmoce's written permission to use their logo and photos before publishing.**
 - Driver icons are hand-drawn line icons (960×960, stroke 32).
-- `brandColor` `#D03050` (atmoce.com accent; brightness ≈ 100, limit 184).
+- `brandColor` `#D1606D`: the middle of Atmoce's own logo gradient (#E47478 → #C34E68); brightness ≈ 131, limit 184.
 - Store rules (apps.developer.homey.app/app-store/guidelines): README one or two paragraphs,
   plain text, no URLs, no changelog; description a one-liner, not "Adds support for"; Flow
   titles without device names, When/And/Then or parentheses; app images lifestyle, not

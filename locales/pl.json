@@ -4,7 +4,7 @@
     "intro": "Homey łączy się z bramką bezpośrednio przez sieć domową. Włącz Modbus-TCP w aplikacji Atmozen w Ustawienia → 3rd Party System; tam znajdziesz też adres IP.",
     "searching": "Szukanie bramek Atmoce w sieci…",
     "found": "Znalezione w sieci",
-    "none_found": "Nie znaleziono automatycznie bramki Atmoce. Sprawdź, czy Modbus-TCP jest włączony w Atmozen, albo wpisz adres IP poniżej.",
+    "none_found": "Nie znaleziono automatycznie bramki Atmoce. Sprawdź, czy Modbus-TCP jest włączony w Atmozen, albo wpisz adres IP poniżej. MC100L Lite nie ma połączenia lokalnego i nie można go dodać.",
     "manual": "Lub wpisz adres IP",
     "already_added": "już dodano",
     "host": "Adres IP",

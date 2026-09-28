@@ -4,7 +4,7 @@
     "intro": "Homey는 홈 네트워크를 통해 게이트웨이와 직접 통신합니다. Atmozen 앱의 설정 → 3rd Party System에서 Modbus-TCP를 켜세요. 같은 화면에서 IP 주소도 확인할 수 있습니다.",
     "searching": "네트워크에서 Atmoce 게이트웨이를 찾는 중…",
     "found": "네트워크에서 찾음",
-    "none_found": "Atmoce 게이트웨이를 자동으로 찾지 못했습니다. Atmozen에서 Modbus-TCP가 켜져 있는지 확인하거나 아래에 IP 주소를 입력하세요.",
+    "none_found": "Atmoce 게이트웨이를 자동으로 찾지 못했습니다. Atmozen에서 Modbus-TCP가 켜져 있는지 확인하거나 아래에 IP 주소를 입력하세요. MC100L Lite는 로컬 연결이 없어 추가할 수 없습니다.",
     "manual": "또는 IP 주소 입력",
     "already_added": "이미 추가됨",
     "host": "IP 주소",

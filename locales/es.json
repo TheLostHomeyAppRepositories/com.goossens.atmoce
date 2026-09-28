@@ -4,7 +4,7 @@
     "intro": "Homey se comunica directamente con la pasarela a través de tu red doméstica. Activa Modbus-TCP en la app Atmozen en Ajustes → 3rd Party System; ahí también verás la dirección IP.",
     "searching": "Buscando pasarelas Atmoce en tu red…",
     "found": "Encontradas en tu red",
-    "none_found": "No se encontró ninguna pasarela Atmoce automáticamente. Comprueba que Modbus-TCP esté activado en Atmozen o introduce la dirección IP abajo.",
+    "none_found": "No se encontró ninguna pasarela Atmoce automáticamente. Comprueba que Modbus-TCP esté activado en Atmozen o introduce la dirección IP abajo. El MC100L Lite no tiene conexión local y no se puede añadir.",
     "manual": "O introduce la dirección IP",
     "already_added": "ya añadido",
     "host": "Dirección IP",

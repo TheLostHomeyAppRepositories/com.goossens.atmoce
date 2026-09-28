@@ -1,6 +1,6 @@
 {
   "id": "com.goossens.atmoce",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "compatibility": ">=12.13.0",
   "sdk": 3,
   "runtime": "nodejs",
@@ -39,7 +39,7 @@
     "ko": ["atmoce", "atmozen", "태양광", "마이크로인버터", "가정용 배터리", "에너지", "modbus"],
     "ar": ["atmoce", "atmozen", "الطاقة الشمسية", "عاكس صغير", "بطارية منزلية", "الطاقة", "modbus"]
   },
-  "brandColor": "#D03050",
+  "brandColor": "#D1606D",
   "permissions": [],
   "images": {
     "small": "/assets/images/small.png",
