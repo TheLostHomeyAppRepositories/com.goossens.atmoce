@@ -1,0 +1,10 @@
+*.mts
+test/
+tools/
+docs/
+tsconfig.json
+.eslintrc.json
+.npmrc
+AGENTS.md
+README.md
+package-lock.json

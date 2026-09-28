@@ -1,0 +1,42 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Energy stored",
+    "nl": "Opgeslagen energie",
+    "de": "Gespeicherte Energie",
+    "fr": "Énergie stockée",
+    "it": "Energia accumulata",
+    "sv": "Lagrad energi",
+    "no": "Lagret energi",
+    "es": "Energía almacenada",
+    "da": "Lagret energi",
+    "ru": "Запасённая энергия",
+    "pl": "Zmagazynowana energia",
+    "ko": "저장된 에너지",
+    "ar": "الطاقة المخزنة"
+  },
+  "units": {
+    "en": "kWh"
+  },
+  "decimals": 2,
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": true,
+  "icon": "/assets/capabilities/battery_energy.svg",
+  "desc": {
+    "en": "Estimate: battery level × total capacity",
+    "nl": "Schatting: batterijniveau × totale capaciteit",
+    "de": "Schätzung: Ladestand × Gesamtkapazität",
+    "fr": "Estimation : niveau de batterie × capacité totale",
+    "it": "Stima: livello batteria × capacità totale",
+    "sv": "Uppskattning: batterinivå × total kapacitet",
+    "no": "Anslag: batterinivå × total kapasitet",
+    "es": "Estimación: nivel de batería × capacidad total",
+    "da": "Skøn: batteriniveau × samlet kapacitet",
+    "ru": "Оценка: уровень заряда × полная ёмкость",
+    "pl": "Szacunek: poziom baterii × pojemność całkowita",
+    "ko": "추정값: 배터리 잔량 × 전체 용량",
+    "ar": "تقدير: مستوى البطارية × السعة الكلية"
+  }
+}

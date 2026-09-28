@@ -1,0 +1,47 @@
+{
+  "pair": {
+    "title": "Połącz bramkę Atmoce",
+    "intro": "Homey łączy się z bramką bezpośrednio przez sieć domową. Włącz Modbus-TCP w aplikacji Atmozen w Ustawienia → 3rd Party System; tam znajdziesz też adres IP.",
+    "searching": "Szukanie bramek Atmoce w sieci…",
+    "found": "Znalezione w sieci",
+    "none_found": "Nie znaleziono automatycznie bramki Atmoce. Sprawdź, czy Modbus-TCP jest włączony w Atmozen, albo wpisz adres IP poniżej.",
+    "manual": "Lub wpisz adres IP",
+    "already_added": "już dodano",
+    "host": "Adres IP",
+    "advanced": "Zaawansowane",
+    "port": "Port",
+    "unit_id": "ID urządzenia",
+    "connect": "Połącz",
+    "continue": "Dalej",
+    "connecting": "Łączenie…",
+    "connected": "Połączono z bramką __serial__",
+    "solar": "PV",
+    "battery": "Bateria",
+    "firmware": "Oprogramowanie",
+    "none": "brak",
+    "name_solar": "Panele słoneczne Atmoce",
+    "name_battery": "Bateria Atmoce",
+    "name_grid": "Licznik sieciowy Atmoce"
+  },
+  "errors": {
+    "cannot_reach": "Pod adresem __host__ nie odpowiada żadna bramka Atmoce. Sprawdź adres IP i czy Modbus-TCP jest włączony w Atmozen",
+    "other_gateway": "Ten adres należy do innej bramki Atmoce (__serial__). Dodaj tę bramkę jako nowe urządzenie",
+    "needs_firmware": "Wymaga oprogramowania bramki __needed__ lub nowszego (ta bramka ma __current__). Atmoce instaluje aktualizacje przez chmurę; zapytaj instalatora lub wsparcie Atmoce.",
+    "unreachable": "Bramka nieosiągalna",
+    "not_connected": "Brak połączenia z bramką",
+    "host_required": "Wpisz adres IP bramki",
+    "invalid_port": "Wpisz port z zakresu 1–65535",
+    "invalid_unit_id": "Wpisz ID z zakresu 1–247",
+    "no_battery": "Ta bramka nie zgłasza baterii. Dodaj zamiast tego panele słoneczne lub licznik sieciowy",
+    "charge_limit": "Baterie mogą się ładować z mocą maks. __max__ W",
+    "discharge_limit": "Baterie mogą się rozładowywać z mocą maks. __max__ W"
+  },
+  "warning": {
+    "system_fault": "System Atmoce zgłasza awarię. Szczegóły znajdziesz w aplikacji Atmozen.",
+    "battery_faulty": "Bateria zgłasza alarm i nie ładuje się ani nie rozładowuje. Szczegóły znajdziesz w aplikacji Atmozen.",
+    "battery_shutdown": "Wszystkie baterie są wyłączone. Szczegóły znajdziesz w aplikacji Atmozen."
+  },
+  "settings": {
+    "not_detected": "Jeszcze nie wykryto"
+  }
+}

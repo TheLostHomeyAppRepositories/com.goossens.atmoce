@@ -1,0 +1,49 @@
+{
+  "id": "com.goossens.atmoce",
+  "version": "1.0.0",
+  "compatibility": ">=12.13.0",
+  "sdk": 3,
+  "runtime": "nodejs",
+  "platforms": ["local"],
+  "name": {
+    "en": "Atmoce"
+  },
+  "description": {
+    "en": "See and steer your Atmoce solar and battery system, locally.",
+    "nl": "Bekijk en stuur je Atmoce-zonne-energie- en batterijsysteem, lokaal.",
+    "de": "Sieh und steuere dein Atmoce-Solar- und Batteriesystem – lokal.",
+    "fr": "Suivez et pilotez votre système solaire et de batterie Atmoce, en local.",
+    "it": "Monitora e gestisci il tuo sistema solare e di accumulo Atmoce, in locale.",
+    "sv": "Se och styr ditt Atmoce-sol- och batterisystem, lokalt.",
+    "no": "Se og styr Atmoce-sol- og batterisystemet ditt, lokalt.",
+    "es": "Consulta y controla tu sistema solar y de batería Atmoce, en local.",
+    "da": "Se og styr dit Atmoce-sol- og batterisystem, lokalt.",
+    "ru": "Следите за солнечной системой и аккумулятором Atmoce и управляйте ими локально.",
+    "pl": "Podglądaj i steruj systemem solarnym i magazynem energii Atmoce – lokalnie.",
+    "ko": "Atmoce 태양광 및 배터리 시스템을 로컬에서 확인하고 제어하세요.",
+    "ar": "تابع نظام Atmoce للطاقة الشمسية والبطارية وتحكّم به محليًا."
+  },
+  "category": ["energy"],
+  "tags": {
+    "en": ["atmoce", "atmozen", "solar", "microinverter", "home battery", "energy", "modbus", "m-combiner", "mc100", "mg100"],
+    "nl": ["atmoce", "atmozen", "zonnepanelen", "micro-omvormer", "thuisbatterij", "energie", "modbus"],
+    "de": ["atmoce", "atmozen", "photovoltaik", "mikrowechselrichter", "heimspeicher", "energie", "modbus"],
+    "fr": ["atmoce", "atmozen", "solaire", "micro-onduleur", "batterie domestique", "énergie", "modbus"]
+  },
+  "brandColor": "#D03050",
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Jo Goossens",
+    "email": "jo.goossens@hosted-power.com"
+  },
+  "source": "https://github.com/jogoossens/com.goossens.atmoce",
+  "support": "https://github.com/jogoossens/com.goossens.atmoce/issues",
+  "bugs": {
+    "url": "https://github.com/jogoossens/com.goossens.atmoce/issues"
+  }
+}

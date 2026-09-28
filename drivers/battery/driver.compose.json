@@ -1,0 +1,116 @@
+{
+  "$extends": [
+    "defaults"
+  ],
+  "name": {
+    "en": "Home battery",
+    "nl": "Thuisbatterij",
+    "de": "Heimspeicher",
+    "fr": "Batterie domestique",
+    "it": "Batteria domestica",
+    "sv": "Hemmabatteri",
+    "no": "Hjemmebatteri",
+    "es": "Batería doméstica",
+    "da": "Hjemmebatteri",
+    "ru": "Домашний аккумулятор",
+    "pl": "Magazyn energii",
+    "ko": "가정용 배터리",
+    "ar": "بطارية منزلية"
+  },
+  "class": "battery",
+  "capabilities": [
+    "measure_battery",
+    "measure_power",
+    "battery_charging_state",
+    "atmoce_battery_mode",
+    "target_power",
+    "target_power_mode",
+    "meter_power.charged",
+    "meter_power.discharged",
+    "meter_power.charged_today",
+    "meter_power.discharged_today",
+    "measure_battery_energy",
+    "measure_time_to_full",
+    "measure_time_to_empty"
+  ],
+  "capabilitiesOptions": {
+    "meter_power.charged": {
+      "title": {
+        "en": "Total charged",
+        "nl": "Totaal geladen",
+        "de": "Gesamt geladen",
+        "fr": "Total chargé",
+        "it": "Totale caricato",
+        "sv": "Totalt laddat",
+        "no": "Totalt ladet",
+        "es": "Total cargado",
+        "da": "Samlet opladet",
+        "ru": "Всего заряжено",
+        "pl": "Łącznie naładowano",
+        "ko": "총 충전량",
+        "ar": "إجمالي الشحن"
+      }
+    },
+    "meter_power.discharged": {
+      "title": {
+        "en": "Total discharged",
+        "nl": "Totaal ontladen",
+        "de": "Gesamt entladen",
+        "fr": "Total déchargé",
+        "it": "Totale scaricato",
+        "sv": "Totalt urladdat",
+        "no": "Totalt utladet",
+        "es": "Total descargado",
+        "da": "Samlet afladet",
+        "ru": "Всего разряжено",
+        "pl": "Łącznie rozładowano",
+        "ko": "총 방전량",
+        "ar": "إجمالي التفريغ"
+      }
+    },
+    "meter_power.charged_today": {
+      "title": {
+        "en": "Charged today",
+        "nl": "Vandaag geladen",
+        "de": "Heute geladen",
+        "fr": "Chargé aujourd'hui",
+        "it": "Caricato oggi",
+        "sv": "Laddat idag",
+        "no": "Ladet i dag",
+        "es": "Cargado hoy",
+        "da": "Opladet i dag",
+        "ru": "Заряжено сегодня",
+        "pl": "Naładowano dziś",
+        "ko": "오늘 충전량",
+        "ar": "الشحن اليوم"
+      }
+    },
+    "meter_power.discharged_today": {
+      "title": {
+        "en": "Discharged today",
+        "nl": "Vandaag ontladen",
+        "de": "Heute entladen",
+        "fr": "Déchargé aujourd'hui",
+        "it": "Scaricato oggi",
+        "sv": "Urladdat idag",
+        "no": "Utladet i dag",
+        "es": "Descargado hoy",
+        "da": "Afladet i dag",
+        "ru": "Разряжено сегодня",
+        "pl": "Rozładowano dziś",
+        "ko": "오늘 방전량",
+        "ar": "التفريغ اليوم"
+      }
+    },
+    "target_power": {
+      "min": -10000,
+      "max": 10000,
+      "step": 10
+    }
+  },
+  "energy": {
+    "homeBattery": true,
+    "meterPowerImportedCapability": "meter_power.charged",
+    "meterPowerExportedCapability": "meter_power.discharged"
+  }
+}

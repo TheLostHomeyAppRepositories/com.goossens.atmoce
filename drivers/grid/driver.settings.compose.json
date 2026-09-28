@@ -1,0 +1,107 @@
+[
+  {
+    "$extends": "connection",
+    "$id": "connection"
+  },
+  {
+    "id": "gateway",
+    "type": "group",
+    "label": {
+      "en": "Gateway",
+      "nl": "Gateway",
+      "de": "Gateway",
+      "fr": "Passerelle",
+      "it": "Gateway",
+      "sv": "Gateway",
+      "no": "Gateway",
+      "es": "Pasarela",
+      "da": "Gateway",
+      "ru": "Шлюз",
+      "pl": "Bramka",
+      "ko": "게이트웨이",
+      "ar": "البوابة"
+    },
+    "children": [
+      {
+        "id": "serial",
+        "type": "label",
+        "label": {
+          "en": "Serial number",
+          "nl": "Serienummer",
+          "de": "Seriennummer",
+          "fr": "Numéro de série",
+          "it": "Numero di serie",
+          "sv": "Serienummer",
+          "no": "Serienummer",
+          "es": "Número de serie",
+          "da": "Serienummer",
+          "ru": "Серийный номер",
+          "pl": "Numer seryjny",
+          "ko": "일련번호",
+          "ar": "الرقم التسلسلي"
+        },
+        "value": ""
+      },
+      {
+        "id": "firmware_version",
+        "type": "label",
+        "label": {
+          "en": "Firmware",
+          "nl": "Firmware",
+          "de": "Firmware",
+          "fr": "Firmware",
+          "it": "Firmware",
+          "sv": "Firmware",
+          "no": "Fastvare",
+          "es": "Firmware",
+          "da": "Firmware",
+          "ru": "Прошивка",
+          "pl": "Oprogramowanie",
+          "ko": "펌웨어",
+          "ar": "البرنامج الثابت"
+        },
+        "value": ""
+      },
+      {
+        "id": "hardware_version",
+        "type": "label",
+        "label": {
+          "en": "Hardware version",
+          "nl": "Hardwareversie",
+          "de": "Hardwareversion",
+          "fr": "Version matérielle",
+          "it": "Versione hardware",
+          "sv": "Hårdvaruversion",
+          "no": "Maskinvareversjon",
+          "es": "Versión de hardware",
+          "da": "Hardwareversion",
+          "ru": "Версия оборудования",
+          "pl": "Wersja sprzętu",
+          "ko": "하드웨어 버전",
+          "ar": "إصدار العتاد"
+        },
+        "value": ""
+      },
+      {
+        "id": "protocol_version",
+        "type": "label",
+        "label": {
+          "en": "Modbus protocol version",
+          "nl": "Versie Modbus-protocol",
+          "de": "Modbus-Protokollversion",
+          "fr": "Version du protocole Modbus",
+          "it": "Versione protocollo Modbus",
+          "sv": "Modbus-protokollversion",
+          "no": "Modbus-protokollversjon",
+          "es": "Versión del protocolo Modbus",
+          "da": "Modbus-protokolversion",
+          "ru": "Версия протокола Modbus",
+          "pl": "Wersja protokołu Modbus",
+          "ko": "Modbus 프로토콜 버전",
+          "ar": "إصدار بروتوكول Modbus"
+        },
+        "value": ""
+      }
+    ]
+  }
+]

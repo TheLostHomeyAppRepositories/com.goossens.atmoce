@@ -1,0 +1,269 @@
+{
+  "triggers": [
+    {
+      "id": "system_fault_started",
+      "title": {
+        "en": "A system fault started",
+        "nl": "Er is een systeemstoring",
+        "de": "Eine Systemstörung ist aufgetreten",
+        "fr": "Un défaut système est survenu",
+        "it": "Si è verificato un guasto di sistema",
+        "sv": "Ett systemfel uppstod",
+        "no": "Det oppstod en systemfeil",
+        "es": "Se produjo una avería del sistema",
+        "da": "Der opstod en systemfejl",
+        "ru": "Возникла системная неисправность",
+        "pl": "Wystąpiła awaria systemu",
+        "ko": "시스템 고장이 발생함",
+        "ar": "حدث عطل في النظام"
+      },
+      "hint": {
+        "en": "The gateway reports a fault of the Atmoce system (power station status). Details are in the Atmozen app.",
+        "nl": "De gateway meldt een storing van het Atmoce-systeem (status van de installatie). Details staan in de Atmozen-app.",
+        "de": "Das Gateway meldet eine Störung des Atmoce-Systems (Anlagenstatus). Details stehen in der Atmozen-App.",
+        "fr": "La passerelle signale un défaut du système Atmoce (état de l'installation). Les détails sont dans l'application Atmozen.",
+        "it": "Il gateway segnala un guasto del sistema Atmoce (stato dell'impianto). I dettagli sono nell'app Atmozen.",
+        "sv": "Gatewayen rapporterar ett fel i Atmoce-systemet (anläggningsstatus). Detaljer finns i Atmozen-appen.",
+        "no": "Gatewayen melder en feil i Atmoce-systemet (anleggsstatus). Detaljer finnes i Atmozen-appen.",
+        "es": "La pasarela indica una avería del sistema Atmoce (estado de la instalación). Los detalles están en la app Atmozen.",
+        "da": "Gatewayen melder en fejl i Atmoce-systemet (anlæggets status). Detaljer findes i Atmozen-appen.",
+        "ru": "Шлюз сообщает о неисправности системы Atmoce (статус станции). Подробности — в приложении Atmozen.",
+        "pl": "Bramka zgłasza awarię systemu Atmoce (stan instalacji). Szczegóły znajdziesz w aplikacji Atmozen.",
+        "ko": "게이트웨이가 Atmoce 시스템 고장(발전소 상태)을 보고합니다. 자세한 내용은 Atmozen 앱에서 확인하세요.",
+        "ar": "تُبلغ البوابة عن عطل في نظام Atmoce (حالة المحطة). التفاصيل في تطبيق Atmozen."
+      }
+    },
+    {
+      "id": "system_fault_cleared",
+      "title": {
+        "en": "The system fault cleared",
+        "nl": "De systeemstoring is opgelost",
+        "de": "Die Systemstörung ist behoben",
+        "fr": "Le défaut système a disparu",
+        "it": "Il guasto di sistema è stato risolto",
+        "sv": "Systemfelet är åtgärdat",
+        "no": "Systemfeilen er borte",
+        "es": "La avería del sistema se ha resuelto",
+        "da": "Systemfejlen er væk",
+        "ru": "Системная неисправность устранена",
+        "pl": "Awaria systemu ustąpiła",
+        "ko": "시스템 고장이 해제됨",
+        "ar": "زال عطل النظام"
+      }
+    },
+    {
+      "id": "production_started",
+      "title": {
+        "en": "Solar production started",
+        "nl": "Zonne-opbrengst is gestart",
+        "de": "Solarproduktion hat begonnen",
+        "fr": "La production solaire a commencé",
+        "it": "La produzione solare è iniziata",
+        "sv": "Solproduktionen startade",
+        "no": "Solproduksjonen startet",
+        "es": "Comenzó la producción solar",
+        "da": "Solproduktionen startede",
+        "ru": "Началась солнечная генерация",
+        "pl": "Rozpoczęła się produkcja PV",
+        "ko": "태양광 발전 시작됨",
+        "ar": "بدأ إنتاج الطاقة الشمسية"
+      },
+      "hint": {
+        "en": "Starts at 20 W and stops below 5 W.",
+        "nl": "Start vanaf 20 W en stopt onder 5 W.",
+        "de": "Beginnt ab 20 W und endet unter 5 W.",
+        "fr": "Démarre à partir de 20 W et s’arrête sous 5 W.",
+        "it": "Inizia da 20 W e si ferma sotto 5 W.",
+        "sv": "Startar vid 20 W och slutar under 5 W.",
+        "no": "Starter ved 20 W og stopper under 5 W.",
+        "es": "Empieza a partir de 20 W y se detiene por debajo de 5 W.",
+        "da": "Starter ved 20 W og stopper under 5 W.",
+        "ru": "Начинается от 20 Вт и заканчивается ниже 5 Вт.",
+        "pl": "Zaczyna się od 20 W i kończy poniżej 5 W.",
+        "ko": "20 W 이상에서 시작하고 5 W 미만에서 멈춥니다.",
+        "ar": "يبدأ عند 20 واط ويتوقف دون 5 واط."
+      }
+    },
+    {
+      "id": "production_stopped",
+      "title": {
+        "en": "Solar production stopped",
+        "nl": "Zonne-opbrengst is gestopt",
+        "de": "Solarproduktion hat aufgehört",
+        "fr": "La production solaire s'est arrêtée",
+        "it": "La produzione solare si è fermata",
+        "sv": "Solproduktionen slutade",
+        "no": "Solproduksjonen stoppet",
+        "es": "Se detuvo la producción solar",
+        "da": "Solproduktionen stoppede",
+        "ru": "Солнечная генерация прекратилась",
+        "pl": "Produkcja PV się zakończyła",
+        "ko": "태양광 발전 멈춤",
+        "ar": "توقف إنتاج الطاقة الشمسية"
+      },
+      "hint": {
+        "en": "Starts at 20 W and stops below 5 W.",
+        "nl": "Start vanaf 20 W en stopt onder 5 W.",
+        "de": "Beginnt ab 20 W und endet unter 5 W.",
+        "fr": "Démarre à partir de 20 W et s’arrête sous 5 W.",
+        "it": "Inizia da 20 W e si ferma sotto 5 W.",
+        "sv": "Startar vid 20 W och slutar under 5 W.",
+        "no": "Starter ved 20 W og stopper under 5 W.",
+        "es": "Empieza a partir de 20 W y se detiene por debajo de 5 W.",
+        "da": "Starter ved 20 W og stopper under 5 W.",
+        "ru": "Начинается от 20 Вт и заканчивается ниже 5 Вт.",
+        "pl": "Zaczyna się od 20 W i kończy poniżej 5 W.",
+        "ko": "20 W 이상에서 시작하고 5 W 미만에서 멈춥니다.",
+        "ar": "يبدأ عند 20 واط ويتوقف دون 5 واط."
+      }
+    }
+  ],
+  "conditions": [
+    {
+      "id": "system_fault_is",
+      "title": {
+        "en": "There !{{is|is no}} system fault",
+        "nl": "Er is !{{een|geen}} systeemstoring",
+        "de": "Es liegt !{{eine|keine}} Systemstörung vor",
+        "fr": "Il !{{y a|n'y a pas de}} défaut système",
+        "it": "!{{C’è|Non c’è}} un guasto di sistema",
+        "sv": "Det finns !{{ett|inget}} systemfel",
+        "no": "Det er !{{en|ingen}} systemfeil",
+        "es": "!{{Hay|No hay}} una avería del sistema",
+        "da": "Der er !{{en|ingen}} systemfejl",
+        "ru": "Системная неисправность !{{есть|отсутствует}}",
+        "pl": "Awaria systemu !{{występuje|nie występuje}}",
+        "ko": "시스템 고장이 !{{있음|없음}}",
+        "ar": "!{{يوجد|لا يوجد}} عطل في النظام"
+      },
+      "hint": {
+        "en": "The gateway reports a fault of the Atmoce system (power station status). Details are in the Atmozen app.",
+        "nl": "De gateway meldt een storing van het Atmoce-systeem (status van de installatie). Details staan in de Atmozen-app.",
+        "de": "Das Gateway meldet eine Störung des Atmoce-Systems (Anlagenstatus). Details stehen in der Atmozen-App.",
+        "fr": "La passerelle signale un défaut du système Atmoce (état de l'installation). Les détails sont dans l'application Atmozen.",
+        "it": "Il gateway segnala un guasto del sistema Atmoce (stato dell'impianto). I dettagli sono nell'app Atmozen.",
+        "sv": "Gatewayen rapporterar ett fel i Atmoce-systemet (anläggningsstatus). Detaljer finns i Atmozen-appen.",
+        "no": "Gatewayen melder en feil i Atmoce-systemet (anleggsstatus). Detaljer finnes i Atmozen-appen.",
+        "es": "La pasarela indica una avería del sistema Atmoce (estado de la instalación). Los detalles están en la app Atmozen.",
+        "da": "Gatewayen melder en fejl i Atmoce-systemet (anlæggets status). Detaljer findes i Atmozen-appen.",
+        "ru": "Шлюз сообщает о неисправности системы Atmoce (статус станции). Подробности — в приложении Atmozen.",
+        "pl": "Bramka zgłasza awarię systemu Atmoce (stan instalacji). Szczegóły znajdziesz w aplikacji Atmozen.",
+        "ko": "게이트웨이가 Atmoce 시스템 고장(발전소 상태)을 보고합니다. 자세한 내용은 Atmozen 앱에서 확인하세요.",
+        "ar": "تُبلغ البوابة عن عطل في نظام Atmoce (حالة المحطة). التفاصيل في تطبيق Atmozen."
+      }
+    },
+    {
+      "id": "is_producing",
+      "title": {
+        "en": "Solar panels !{{are|are not}} producing",
+        "nl": "Zonnepanelen !{{produceren|produceren niet}}",
+        "de": "Solarmodule !{{produzieren|produzieren nicht}}",
+        "fr": "Les panneaux solaires !{{produisent|ne produisent pas}}",
+        "it": "I pannelli solari !{{producono|non producono}}",
+        "sv": "Solpanelerna !{{producerar|producerar inte}}",
+        "no": "Solcellepanelene !{{produserer|produserer ikke}}",
+        "es": "Los paneles solares !{{producen|no producen}}",
+        "da": "Solpanelerne !{{producerer|producerer ikke}}",
+        "ru": "Солнечные панели !{{вырабатывают|не вырабатывают}}",
+        "pl": "Panele słoneczne !{{produkują|nie produkują}}",
+        "ko": "태양광 패널이 발전 !{{중|중 아님}}",
+        "ar": "الألواح الشمسية !{{تنتج|لا تنتج}}"
+      },
+      "hint": {
+        "en": "Starts at 20 W and stops below 5 W.",
+        "nl": "Start vanaf 20 W en stopt onder 5 W.",
+        "de": "Beginnt ab 20 W und endet unter 5 W.",
+        "fr": "Démarre à partir de 20 W et s’arrête sous 5 W.",
+        "it": "Inizia da 20 W e si ferma sotto 5 W.",
+        "sv": "Startar vid 20 W och slutar under 5 W.",
+        "no": "Starter ved 20 W og stopper under 5 W.",
+        "es": "Empieza a partir de 20 W y se detiene por debajo de 5 W.",
+        "da": "Starter ved 20 W og stopper under 5 W.",
+        "ru": "Начинается от 20 Вт и заканчивается ниже 5 Вт.",
+        "pl": "Zaczyna się od 20 W i kończy poniżej 5 W.",
+        "ko": "20 W 이상에서 시작하고 5 W 미만에서 멈춥니다.",
+        "ar": "يبدأ عند 20 واط ويتوقف دون 5 واط."
+      }
+    }
+  ],
+  "actions": [
+    {
+      "id": "limit_production",
+      "title": {
+        "en": "Limit solar production to a power",
+        "nl": "Beperk de zonne-opbrengst tot een vermogen",
+        "de": "Solarproduktion auf eine Leistung begrenzen",
+        "fr": "Limiter la production solaire à une puissance",
+        "it": "Limita la produzione solare a una potenza",
+        "sv": "Begränsa solproduktionen till en effekt",
+        "no": "Begrens solproduksjonen til en effekt",
+        "es": "Limitar la producción solar a una potencia",
+        "da": "Begræns solproduktionen til en effekt",
+        "ru": "Ограничить солнечную генерацию",
+        "pl": "Ogranicz produkcję PV do mocy",
+        "ko": "태양광 발전을 지정 출력으로 제한",
+        "ar": "قيّد إنتاج الطاقة الشمسية بقدرة معيّنة"
+      },
+      "titleFormatted": {
+        "en": "Limit solar production to [[power]] W",
+        "nl": "Beperk de zonne-opbrengst tot [[power]] W",
+        "de": "Solarproduktion auf [[power]] W begrenzen",
+        "fr": "Limiter la production solaire à [[power]] W",
+        "it": "Limita la produzione solare a [[power]] W",
+        "sv": "Begränsa solproduktionen till [[power]] W",
+        "no": "Begrens solproduksjonen til [[power]] W",
+        "es": "Limitar la producción solar a [[power]] W",
+        "da": "Begræns solproduktionen til [[power]] W",
+        "ru": "Ограничить солнечную генерацию до [[power]] Вт",
+        "pl": "Ogranicz produkcję PV do [[power]] W",
+        "ko": "태양광 발전을 [[power]] W로 제한",
+        "ar": "قيّد إنتاج الطاقة الشمسية بـ [[power]] واط"
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "power",
+          "title": {
+            "en": "Power",
+            "nl": "Vermogen",
+            "de": "Leistung",
+            "fr": "Puissance",
+            "it": "Potenza",
+            "sv": "Effekt",
+            "no": "Effekt",
+            "es": "Potencia",
+            "da": "Effekt",
+            "ru": "Мощность",
+            "pl": "Moc",
+            "ko": "출력",
+            "ar": "القدرة"
+          },
+          "min": 0,
+          "max": 50000,
+          "step": 50,
+          "placeholder": {
+            "en": "0"
+          }
+        }
+      ]
+    },
+    {
+      "id": "remove_production_limit",
+      "title": {
+        "en": "Remove the solar production limit",
+        "nl": "Verwijder de beperking van de zonne-opbrengst",
+        "de": "Begrenzung der Solarproduktion aufheben",
+        "fr": "Supprimer la limite de production solaire",
+        "it": "Rimuovi il limite di produzione solare",
+        "sv": "Ta bort begränsningen av solproduktionen",
+        "no": "Fjern begrensningen av solproduksjonen",
+        "es": "Quitar el límite de producción solar",
+        "da": "Fjern begrænsningen af solproduktionen",
+        "ru": "Снять ограничение солнечной генерации",
+        "pl": "Usuń ograniczenie produkcji PV",
+        "ko": "태양광 발전 제한 해제",
+        "ar": "أزل قيد إنتاج الطاقة الشمسية"
+      }
+    }
+  ]
+}

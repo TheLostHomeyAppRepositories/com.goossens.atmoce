@@ -1,0 +1,47 @@
+{
+  "pair": {
+    "title": "Connect your Atmoce gateway",
+    "intro": "Homey talks to the gateway directly over your home network. Turn on Modbus-TCP in the Atmozen app under Settings → 3rd Party System; that screen also shows the IP address.",
+    "searching": "Searching your network for Atmoce gateways…",
+    "found": "Found on your network",
+    "none_found": "No Atmoce gateway found automatically. Check that Modbus-TCP is on in Atmozen, or enter the IP address below.",
+    "manual": "Or enter the IP address",
+    "already_added": "already added",
+    "host": "IP address",
+    "advanced": "Advanced",
+    "port": "Port",
+    "unit_id": "Unit ID",
+    "connect": "Connect",
+    "continue": "Continue",
+    "connecting": "Connecting…",
+    "connected": "Connected to gateway __serial__",
+    "solar": "Solar",
+    "battery": "Battery",
+    "firmware": "Firmware",
+    "none": "none",
+    "name_solar": "Atmoce solar panels",
+    "name_battery": "Atmoce battery",
+    "name_grid": "Atmoce grid meter"
+  },
+  "errors": {
+    "cannot_reach": "No Atmoce gateway answers at __host__. Check the IP address and that Modbus-TCP is on in Atmozen",
+    "other_gateway": "This address belongs to another Atmoce gateway (__serial__). Pair that gateway as a new device instead",
+    "needs_firmware": "This needs gateway firmware __needed__ or newer (this gateway has __current__). Atmoce installs updates through its cloud; ask your installer or Atmoce support.",
+    "unreachable": "Gateway unreachable",
+    "not_connected": "Not connected to the gateway yet",
+    "host_required": "Enter the IP address of the gateway",
+    "invalid_port": "Enter a port between 1 and 65535",
+    "invalid_unit_id": "Enter a unit ID between 1 and 247",
+    "no_battery": "This gateway reports no battery. Add the solar panels or grid meter instead",
+    "charge_limit": "The batteries can charge at most __max__ W",
+    "discharge_limit": "The batteries can discharge at most __max__ W"
+  },
+  "warning": {
+    "system_fault": "The Atmoce system reports a fault. Open the Atmozen app for details.",
+    "battery_faulty": "A battery reports an alarm and is neither charging nor discharging. Open the Atmozen app for details.",
+    "battery_shutdown": "All batteries are shut down. Open the Atmozen app for details."
+  },
+  "settings": {
+    "not_detected": "Not detected yet"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "pair": {
+    "title": "Connectez votre passerelle Atmoce",
+    "intro": "Homey communique directement avec la passerelle via votre réseau domestique. Activez Modbus-TCP dans l'application Atmozen sous Paramètres → 3rd Party System ; l'adresse IP y est aussi affichée.",
+    "searching": "Recherche de passerelles Atmoce sur votre réseau…",
+    "found": "Trouvées sur votre réseau",
+    "none_found": "Aucune passerelle Atmoce trouvée automatiquement. Vérifiez que Modbus-TCP est activé dans Atmozen, ou saisissez l'adresse IP ci-dessous.",
+    "manual": "Ou saisissez l'adresse IP",
+    "already_added": "déjà ajouté",
+    "host": "Adresse IP",
+    "advanced": "Avancé",
+    "port": "Port",
+    "unit_id": "ID Modbus",
+    "connect": "Connecter",
+    "continue": "Continuer",
+    "connecting": "Connexion…",
+    "connected": "Connecté à la passerelle __serial__",
+    "solar": "Solaire",
+    "battery": "Batterie",
+    "firmware": "Firmware",
+    "none": "aucune",
+    "name_solar": "Panneaux solaires Atmoce",
+    "name_battery": "Batterie Atmoce",
+    "name_grid": "Compteur réseau Atmoce"
+  },
+  "errors": {
+    "cannot_reach": "Aucune passerelle Atmoce ne répond à __host__. Vérifiez l'adresse IP et que Modbus-TCP est activé dans Atmozen",
+    "other_gateway": "Cette adresse appartient à une autre passerelle Atmoce (__serial__). Ajoutez plutôt cette passerelle comme nouvel appareil",
+    "needs_firmware": "Cela nécessite le firmware de passerelle __needed__ ou plus récent (cette passerelle a __current__). Atmoce installe les mises à jour via le cloud ; demandez à votre installateur ou au support Atmoce.",
+    "unreachable": "Passerelle injoignable",
+    "not_connected": "Pas encore connecté à la passerelle",
+    "host_required": "Saisissez l'adresse IP de la passerelle",
+    "invalid_port": "Saisissez un port entre 1 et 65535",
+    "invalid_unit_id": "Saisissez un ID entre 1 et 247",
+    "no_battery": "Cette passerelle ne signale aucune batterie. Ajoutez plutôt les panneaux solaires ou le compteur réseau",
+    "charge_limit": "Les batteries peuvent charger à __max__ W au maximum",
+    "discharge_limit": "Les batteries peuvent décharger à __max__ W au maximum"
+  },
+  "warning": {
+    "system_fault": "Le système Atmoce signale un défaut. Ouvrez l'application Atmozen pour les détails.",
+    "battery_faulty": "Une batterie signale une alarme et ne charge ni ne décharge. Ouvrez l'application Atmozen pour les détails.",
+    "battery_shutdown": "Toutes les batteries sont arrêtées. Ouvrez l'application Atmozen pour les détails."
+  },
+  "settings": {
+    "not_detected": "Pas encore détectée"
+  }
+}

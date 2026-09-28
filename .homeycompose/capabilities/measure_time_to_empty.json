@@ -1,0 +1,42 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Time to empty",
+    "nl": "Tijd tot leeg",
+    "de": "Zeit bis leer",
+    "fr": "Temps jusqu'à vide",
+    "it": "Tempo al vuoto",
+    "sv": "Tid till tom",
+    "no": "Tid til tom",
+    "es": "Tiempo hasta vacío",
+    "da": "Tid til tom",
+    "ru": "До разряда",
+    "pl": "Czas do rozładowania",
+    "ko": "방전까지",
+    "ar": "الوقت حتى النفاد"
+  },
+  "units": {
+    "en": "min"
+  },
+  "decimals": 0,
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": false,
+  "icon": "/assets/capabilities/time.svg",
+  "desc": {
+    "en": "Estimate at the current power",
+    "nl": "Schatting bij het huidige vermogen",
+    "de": "Schätzung bei aktueller Leistung",
+    "fr": "Estimation à la puissance actuelle",
+    "it": "Stima alla potenza attuale",
+    "sv": "Uppskattning vid nuvarande effekt",
+    "no": "Anslag ved nåværende effekt",
+    "es": "Estimación con la potencia actual",
+    "da": "Skøn ved den nuværende effekt",
+    "ru": "Оценка при текущей мощности",
+    "pl": "Szacunek przy obecnej mocy",
+    "ko": "현재 출력 기준 추정값",
+    "ar": "تقدير بالقدرة الحالية"
+  }
+}

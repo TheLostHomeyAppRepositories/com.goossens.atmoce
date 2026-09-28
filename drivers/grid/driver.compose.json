@@ -1,0 +1,244 @@
+{
+  "$extends": [
+    "defaults"
+  ],
+  "name": {
+    "en": "Grid meter",
+    "nl": "Netmeter",
+    "de": "Netzzähler",
+    "fr": "Compteur réseau",
+    "it": "Contatore di rete",
+    "sv": "Nätmätare",
+    "no": "Nettmåler",
+    "es": "Contador de red",
+    "da": "Netmåler",
+    "ru": "Сетевой счётчик",
+    "pl": "Licznik sieciowy",
+    "ko": "계통 계량기",
+    "ar": "عداد الشبكة"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "measure_power",
+    "measure_power.consumption",
+    "meter_power.imported",
+    "meter_power.exported",
+    "meter_power.imported_today",
+    "meter_power.exported_today",
+    "measure_voltage",
+    "measure_current",
+    "meter_power.consumption_today",
+    "measure_self_sufficiency"
+  ],
+  "capabilitiesOptions": {
+    "meter_power.imported": {
+      "title": {
+        "en": "Total imported",
+        "nl": "Totaal afgenomen",
+        "de": "Gesamtbezug",
+        "fr": "Total soutiré",
+        "it": "Totale prelevato",
+        "sv": "Totalt köpt",
+        "no": "Totalt importert",
+        "es": "Total importado",
+        "da": "Samlet købt",
+        "ru": "Всего потреблено из сети",
+        "pl": "Łącznie pobrano",
+        "ko": "총 수전량",
+        "ar": "إجمالي المستورد"
+      }
+    },
+    "meter_power.exported": {
+      "title": {
+        "en": "Total exported",
+        "nl": "Totaal teruggeleverd",
+        "de": "Gesamteinspeisung",
+        "fr": "Total injecté",
+        "it": "Totale immesso",
+        "sv": "Totalt sålt",
+        "no": "Totalt eksportert",
+        "es": "Total exportado",
+        "da": "Samlet solgt",
+        "ru": "Всего отдано в сеть",
+        "pl": "Łącznie oddano",
+        "ko": "총 송전량",
+        "ar": "إجمالي المُصدَّر"
+      }
+    },
+    "meter_power.imported_today": {
+      "title": {
+        "en": "Imported today",
+        "nl": "Vandaag afgenomen",
+        "de": "Bezug heute",
+        "fr": "Soutiré aujourd'hui",
+        "it": "Prelevato oggi",
+        "sv": "Köpt idag",
+        "no": "Importert i dag",
+        "es": "Importado hoy",
+        "da": "Købt i dag",
+        "ru": "Потреблено из сети сегодня",
+        "pl": "Pobrano dziś",
+        "ko": "오늘 수전량",
+        "ar": "المستورد اليوم"
+      }
+    },
+    "meter_power.exported_today": {
+      "title": {
+        "en": "Exported today",
+        "nl": "Vandaag teruggeleverd",
+        "de": "Einspeisung heute",
+        "fr": "Injecté aujourd'hui",
+        "it": "Immesso oggi",
+        "sv": "Sålt idag",
+        "no": "Eksportert i dag",
+        "es": "Exportado hoy",
+        "da": "Solgt i dag",
+        "ru": "Отдано в сеть сегодня",
+        "pl": "Oddano dziś",
+        "ko": "오늘 송전량",
+        "ar": "المُصدَّر اليوم"
+      }
+    },
+    "measure_voltage.l1": {
+      "title": {
+        "en": "Voltage L1",
+        "nl": "Spanning L1",
+        "de": "Spannung L1",
+        "fr": "Tension L1",
+        "it": "Tensione L1",
+        "sv": "Spänning L1",
+        "no": "Spenning L1",
+        "es": "Tensión L1",
+        "da": "Spænding L1",
+        "ru": "Напряжение L1",
+        "pl": "Napięcie L1",
+        "ko": "전압 L1",
+        "ar": "الجهد L1"
+      }
+    },
+    "measure_current.l1": {
+      "title": {
+        "en": "Current L1",
+        "nl": "Stroom L1",
+        "de": "Strom L1",
+        "fr": "Courant L1",
+        "it": "Corrente L1",
+        "sv": "Ström L1",
+        "no": "Strøm L1",
+        "es": "Corriente L1",
+        "da": "Strøm L1",
+        "ru": "Ток L1",
+        "pl": "Prąd L1",
+        "ko": "전류 L1",
+        "ar": "التيار L1"
+      }
+    },
+    "measure_voltage.l2": {
+      "title": {
+        "en": "Voltage L2",
+        "nl": "Spanning L2",
+        "de": "Spannung L2",
+        "fr": "Tension L2",
+        "it": "Tensione L2",
+        "sv": "Spänning L2",
+        "no": "Spenning L2",
+        "es": "Tensión L2",
+        "da": "Spænding L2",
+        "ru": "Напряжение L2",
+        "pl": "Napięcie L2",
+        "ko": "전압 L2",
+        "ar": "الجهد L2"
+      }
+    },
+    "measure_current.l2": {
+      "title": {
+        "en": "Current L2",
+        "nl": "Stroom L2",
+        "de": "Strom L2",
+        "fr": "Courant L2",
+        "it": "Corrente L2",
+        "sv": "Ström L2",
+        "no": "Strøm L2",
+        "es": "Corriente L2",
+        "da": "Strøm L2",
+        "ru": "Ток L2",
+        "pl": "Prąd L2",
+        "ko": "전류 L2",
+        "ar": "التيار L2"
+      }
+    },
+    "measure_voltage.l3": {
+      "title": {
+        "en": "Voltage L3",
+        "nl": "Spanning L3",
+        "de": "Spannung L3",
+        "fr": "Tension L3",
+        "it": "Tensione L3",
+        "sv": "Spänning L3",
+        "no": "Spenning L3",
+        "es": "Tensión L3",
+        "da": "Spænding L3",
+        "ru": "Напряжение L3",
+        "pl": "Napięcie L3",
+        "ko": "전압 L3",
+        "ar": "الجهد L3"
+      }
+    },
+    "measure_current.l3": {
+      "title": {
+        "en": "Current L3",
+        "nl": "Stroom L3",
+        "de": "Strom L3",
+        "fr": "Courant L3",
+        "it": "Corrente L3",
+        "sv": "Ström L3",
+        "no": "Strøm L3",
+        "es": "Corriente L3",
+        "da": "Strøm L3",
+        "ru": "Ток L3",
+        "pl": "Prąd L3",
+        "ko": "전류 L3",
+        "ar": "التيار L3"
+      }
+    },
+    "measure_power.consumption": {
+      "title": {
+        "en": "Home consumption",
+        "nl": "Huisverbruik",
+        "de": "Hausverbrauch",
+        "fr": "Consommation maison",
+        "it": "Consumo casa",
+        "sv": "Husets förbrukning",
+        "no": "Husets forbruk",
+        "es": "Consumo de la casa",
+        "da": "Husets forbrug",
+        "ru": "Потребление дома",
+        "pl": "Zużycie domu",
+        "ko": "가정 소비",
+        "ar": "استهلاك المنزل"
+      }
+    },
+    "meter_power.consumption_today": {
+      "title": {
+        "en": "Consumption today",
+        "nl": "Verbruik vandaag",
+        "de": "Verbrauch heute",
+        "fr": "Consommation aujourd'hui",
+        "it": "Consumo oggi",
+        "sv": "Förbrukning idag",
+        "no": "Forbruk i dag",
+        "es": "Consumo hoy",
+        "da": "Forbrug i dag",
+        "ru": "Потребление сегодня",
+        "pl": "Zużycie dziś",
+        "ko": "오늘 소비량",
+        "ar": "استهلاك اليوم"
+      }
+    }
+  },
+  "energy": {
+    "cumulative": true,
+    "cumulativeImportedCapability": "meter_power.imported",
+    "cumulativeExportedCapability": "meter_power.exported"
+  }
+}

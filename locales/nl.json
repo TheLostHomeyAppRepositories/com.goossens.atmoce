@@ -1,0 +1,47 @@
+{
+  "pair": {
+    "title": "Verbind je Atmoce-gateway",
+    "intro": "Homey praat rechtstreeks met de gateway via je thuisnetwerk. Zet Modbus-TCP aan in de Atmozen-app onder Instellingen → 3rd Party System; daar zie je ook het IP-adres.",
+    "searching": "Je netwerk wordt doorzocht naar Atmoce-gateways…",
+    "found": "Gevonden in je netwerk",
+    "none_found": "Geen Atmoce-gateway automatisch gevonden. Controleer of Modbus-TCP aan staat in Atmozen, of vul hieronder het IP-adres in.",
+    "manual": "Of vul het IP-adres in",
+    "already_added": "al toegevoegd",
+    "host": "IP-adres",
+    "advanced": "Geavanceerd",
+    "port": "Poort",
+    "unit_id": "Unit-ID",
+    "connect": "Verbinden",
+    "continue": "Doorgaan",
+    "connecting": "Verbinden…",
+    "connected": "Verbonden met gateway __serial__",
+    "solar": "Zon",
+    "battery": "Batterij",
+    "firmware": "Firmware",
+    "none": "geen",
+    "name_solar": "Atmoce-zonnepanelen",
+    "name_battery": "Atmoce-batterij",
+    "name_grid": "Atmoce-netmeter"
+  },
+  "errors": {
+    "cannot_reach": "Er antwoordt geen Atmoce-gateway op __host__. Controleer het IP-adres en of Modbus-TCP aan staat in Atmozen",
+    "other_gateway": "Dit adres hoort bij een andere Atmoce-gateway (__serial__). Voeg die gateway toe als nieuw apparaat",
+    "needs_firmware": "Hiervoor is gateway-firmware __needed__ of nieuwer nodig (deze gateway heeft __current__). Atmoce installeert updates via de cloud; vraag je installateur of Atmoce-support.",
+    "unreachable": "Gateway onbereikbaar",
+    "not_connected": "Nog niet verbonden met de gateway",
+    "host_required": "Vul het IP-adres van de gateway in",
+    "invalid_port": "Vul een poort tussen 1 en 65535 in",
+    "invalid_unit_id": "Vul een unit-ID tussen 1 en 247 in",
+    "no_battery": "Deze gateway meldt geen batterij. Voeg in plaats daarvan de zonnepanelen of netmeter toe",
+    "charge_limit": "De batterijen kunnen maximaal __max__ W laden",
+    "discharge_limit": "De batterijen kunnen maximaal __max__ W ontladen"
+  },
+  "warning": {
+    "system_fault": "Het Atmoce-systeem meldt een storing. Open de Atmozen-app voor details.",
+    "battery_faulty": "Een batterij meldt een alarm en laadt noch ontlaadt. Open de Atmozen-app voor details.",
+    "battery_shutdown": "Alle batterijen zijn uitgeschakeld. Open de Atmozen-app voor details."
+  },
+  "settings": {
+    "not_detected": "Nog niet gedetecteerd"
+  }
+}

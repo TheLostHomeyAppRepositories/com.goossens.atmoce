@@ -1,0 +1,735 @@
+{
+  "triggers": [
+    {
+      "id": "grid_export_started",
+      "title": {
+        "en": "Export to the grid started",
+        "nl": "Teruglevering aan het net is gestart",
+        "de": "Einspeisung ins Netz hat begonnen",
+        "fr": "L'injection sur le réseau a commencé",
+        "it": "L'immissione in rete è iniziata",
+        "sv": "Försäljning till elnätet startade",
+        "no": "Eksport til nettet startet",
+        "es": "Comenzó la exportación a la red",
+        "da": "Salg til nettet startede",
+        "ru": "Началась отдача в сеть",
+        "pl": "Rozpoczęło się oddawanie do sieci",
+        "ko": "계통 송전 시작됨",
+        "ar": "بدأ التصدير إلى الشبكة"
+      },
+      "hint": {
+        "en": "Starts at 50 W and stops below 20 W, so small fluctuations are ignored.",
+        "nl": "Start vanaf 50 W en stopt onder 20 W, zodat kleine schommelingen genegeerd worden.",
+        "de": "Beginnt ab 50 W und endet unter 20 W, damit kleine Schwankungen ignoriert werden.",
+        "fr": "Démarre à partir de 50 W et s’arrête sous 20 W, pour ignorer les petites fluctuations.",
+        "it": "Inizia da 50 W e si ferma sotto 20 W, così le piccole oscillazioni vengono ignorate.",
+        "sv": "Startar vid 50 W och slutar under 20 W, så att små svängningar ignoreras.",
+        "no": "Starter ved 50 W og stopper under 20 W, slik at små svingninger ignoreres.",
+        "es": "Empieza a partir de 50 W y se detiene por debajo de 20 W, para ignorar pequeñas fluctuaciones.",
+        "da": "Starter ved 50 W og stopper under 20 W, så små udsving ignoreres.",
+        "ru": "Начинается от 50 Вт и заканчивается ниже 20 Вт, чтобы игнорировать небольшие колебания.",
+        "pl": "Zaczyna się od 50 W i kończy poniżej 20 W, więc drobne wahania są pomijane.",
+        "ko": "50 W 이상에서 시작하고 20 W 미만에서 멈추므로 작은 변동은 무시됩니다.",
+        "ar": "يبدأ عند 50 واط ويتوقف دون 20 واط، لتجاهل التقلبات الصغيرة."
+      },
+      "tokens": [
+        {
+          "name": "power",
+          "type": "number",
+          "title": {
+            "en": "Grid power",
+            "nl": "Netvermogen",
+            "de": "Netzleistung",
+            "fr": "Puissance réseau",
+            "it": "Potenza di rete",
+            "sv": "Nätets effekt",
+            "no": "Netteffekt",
+            "es": "Potencia de red",
+            "da": "Nettets effekt",
+            "ru": "Мощность сети",
+            "pl": "Moc sieci",
+            "ko": "계통 전력",
+            "ar": "قدرة الشبكة"
+          },
+          "example": 1200
+        }
+      ]
+    },
+    {
+      "id": "grid_export_stopped",
+      "title": {
+        "en": "Export to the grid stopped",
+        "nl": "Teruglevering aan het net is gestopt",
+        "de": "Einspeisung ins Netz hat aufgehört",
+        "fr": "L'injection sur le réseau s'est arrêtée",
+        "it": "L'immissione in rete si è fermata",
+        "sv": "Försäljning till elnätet slutade",
+        "no": "Eksport til nettet stoppet",
+        "es": "Se detuvo la exportación a la red",
+        "da": "Salg til nettet stoppede",
+        "ru": "Отдача в сеть прекратилась",
+        "pl": "Oddawanie do sieci się zakończyło",
+        "ko": "계통 송전 멈춤",
+        "ar": "توقف التصدير إلى الشبكة"
+      },
+      "hint": {
+        "en": "Starts at 50 W and stops below 20 W, so small fluctuations are ignored.",
+        "nl": "Start vanaf 50 W en stopt onder 20 W, zodat kleine schommelingen genegeerd worden.",
+        "de": "Beginnt ab 50 W und endet unter 20 W, damit kleine Schwankungen ignoriert werden.",
+        "fr": "Démarre à partir de 50 W et s’arrête sous 20 W, pour ignorer les petites fluctuations.",
+        "it": "Inizia da 50 W e si ferma sotto 20 W, così le piccole oscillazioni vengono ignorate.",
+        "sv": "Startar vid 50 W och slutar under 20 W, så att små svängningar ignoreras.",
+        "no": "Starter ved 50 W og stopper under 20 W, slik at små svingninger ignoreres.",
+        "es": "Empieza a partir de 50 W y se detiene por debajo de 20 W, para ignorar pequeñas fluctuaciones.",
+        "da": "Starter ved 50 W og stopper under 20 W, så små udsving ignoreres.",
+        "ru": "Начинается от 50 Вт и заканчивается ниже 20 Вт, чтобы игнорировать небольшие колебания.",
+        "pl": "Zaczyna się od 50 W i kończy poniżej 20 W, więc drobne wahania są pomijane.",
+        "ko": "50 W 이상에서 시작하고 20 W 미만에서 멈추므로 작은 변동은 무시됩니다.",
+        "ar": "يبدأ عند 50 واط ويتوقف دون 20 واط، لتجاهل التقلبات الصغيرة."
+      }
+    },
+    {
+      "id": "grid_import_started",
+      "title": {
+        "en": "Import from the grid started",
+        "nl": "Afname van het net is gestart",
+        "de": "Netzbezug hat begonnen",
+        "fr": "Le soutirage du réseau a commencé",
+        "it": "Il prelievo dalla rete è iniziato",
+        "sv": "Köp från elnätet startade",
+        "no": "Import fra nettet startet",
+        "es": "Comenzó la importación de la red",
+        "da": "Køb fra nettet startede",
+        "ru": "Начался отбор из сети",
+        "pl": "Rozpoczął się pobór z sieci",
+        "ko": "계통 수전 시작됨",
+        "ar": "بدأ الاستيراد من الشبكة"
+      },
+      "hint": {
+        "en": "Starts at 50 W and stops below 20 W, so small fluctuations are ignored.",
+        "nl": "Start vanaf 50 W en stopt onder 20 W, zodat kleine schommelingen genegeerd worden.",
+        "de": "Beginnt ab 50 W und endet unter 20 W, damit kleine Schwankungen ignoriert werden.",
+        "fr": "Démarre à partir de 50 W et s’arrête sous 20 W, pour ignorer les petites fluctuations.",
+        "it": "Inizia da 50 W e si ferma sotto 20 W, così le piccole oscillazioni vengono ignorate.",
+        "sv": "Startar vid 50 W och slutar under 20 W, så att små svängningar ignoreras.",
+        "no": "Starter ved 50 W og stopper under 20 W, slik at små svingninger ignoreres.",
+        "es": "Empieza a partir de 50 W y se detiene por debajo de 20 W, para ignorar pequeñas fluctuaciones.",
+        "da": "Starter ved 50 W og stopper under 20 W, så små udsving ignoreres.",
+        "ru": "Начинается от 50 Вт и заканчивается ниже 20 Вт, чтобы игнорировать небольшие колебания.",
+        "pl": "Zaczyna się od 50 W i kończy poniżej 20 W, więc drobne wahania są pomijane.",
+        "ko": "50 W 이상에서 시작하고 20 W 미만에서 멈추므로 작은 변동은 무시됩니다.",
+        "ar": "يبدأ عند 50 واط ويتوقف دون 20 واط، لتجاهل التقلبات الصغيرة."
+      },
+      "tokens": [
+        {
+          "name": "power",
+          "type": "number",
+          "title": {
+            "en": "Grid power",
+            "nl": "Netvermogen",
+            "de": "Netzleistung",
+            "fr": "Puissance réseau",
+            "it": "Potenza di rete",
+            "sv": "Nätets effekt",
+            "no": "Netteffekt",
+            "es": "Potencia de red",
+            "da": "Nettets effekt",
+            "ru": "Мощность сети",
+            "pl": "Moc sieci",
+            "ko": "계통 전력",
+            "ar": "قدرة الشبكة"
+          },
+          "example": 1200
+        }
+      ]
+    },
+    {
+      "id": "grid_import_stopped",
+      "title": {
+        "en": "Import from the grid stopped",
+        "nl": "Afname van het net is gestopt",
+        "de": "Netzbezug hat aufgehört",
+        "fr": "Le soutirage du réseau s'est arrêté",
+        "it": "Il prelievo dalla rete si è fermato",
+        "sv": "Köp från elnätet slutade",
+        "no": "Import fra nettet stoppet",
+        "es": "Se detuvo la importación de la red",
+        "da": "Køb fra nettet stoppede",
+        "ru": "Отбор из сети прекратился",
+        "pl": "Pobór z sieci się zakończył",
+        "ko": "계통 수전 멈춤",
+        "ar": "توقف الاستيراد من الشبكة"
+      },
+      "hint": {
+        "en": "Starts at 50 W and stops below 20 W, so small fluctuations are ignored.",
+        "nl": "Start vanaf 50 W en stopt onder 20 W, zodat kleine schommelingen genegeerd worden.",
+        "de": "Beginnt ab 50 W und endet unter 20 W, damit kleine Schwankungen ignoriert werden.",
+        "fr": "Démarre à partir de 50 W et s’arrête sous 20 W, pour ignorer les petites fluctuations.",
+        "it": "Inizia da 50 W e si ferma sotto 20 W, così le piccole oscillazioni vengono ignorate.",
+        "sv": "Startar vid 50 W och slutar under 20 W, så att små svängningar ignoreras.",
+        "no": "Starter ved 50 W og stopper under 20 W, slik at små svingninger ignoreres.",
+        "es": "Empieza a partir de 50 W y se detiene por debajo de 20 W, para ignorar pequeñas fluctuaciones.",
+        "da": "Starter ved 50 W og stopper under 20 W, så små udsving ignoreres.",
+        "ru": "Начинается от 50 Вт и заканчивается ниже 20 Вт, чтобы игнорировать небольшие колебания.",
+        "pl": "Zaczyna się od 50 W i kończy poniżej 20 W, więc drobne wahania są pomijane.",
+        "ko": "50 W 이상에서 시작하고 20 W 미만에서 멈추므로 작은 변동은 무시됩니다.",
+        "ar": "يبدأ عند 50 واط ويتوقف دون 20 واط، لتجاهل التقلبات الصغيرة."
+      }
+    },
+    {
+      "id": "grid_export_above",
+      "title": {
+        "en": "Export rose above a power",
+        "nl": "Teruglevering is boven een vermogen gestegen",
+        "de": "Einspeisung ist über eine Leistung gestiegen",
+        "fr": "L'injection a dépassé une puissance",
+        "it": "L'immissione ha superato una potenza",
+        "sv": "Försäljningen steg över en effekt",
+        "no": "Eksporten steg over en effekt",
+        "es": "La exportación superó una potencia",
+        "da": "Salget steg over en effekt",
+        "ru": "Отдача в сеть превысила мощность",
+        "pl": "Oddawanie przekroczyło moc",
+        "ko": "송전이 기준 출력을 넘음",
+        "ar": "ارتفع التصدير فوق قدرة معيّنة"
+      },
+      "titleFormatted": {
+        "en": "Export rose above [[power]] W",
+        "nl": "Teruglevering is boven [[power]] W gestegen",
+        "de": "Einspeisung ist über [[power]] W gestiegen",
+        "fr": "L'injection a dépassé [[power]] W",
+        "it": "L'immissione ha superato [[power]] W",
+        "sv": "Försäljningen steg över [[power]] W",
+        "no": "Eksporten steg over [[power]] W",
+        "es": "La exportación superó [[power]] W",
+        "da": "Salget steg over [[power]] W",
+        "ru": "Отдача в сеть превысила [[power]] Вт",
+        "pl": "Oddawanie przekroczyło [[power]] W",
+        "ko": "송전이 [[power]] W를 넘음",
+        "ar": "ارتفع التصدير فوق [[power]] واط"
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "power",
+          "title": {
+            "en": "Power",
+            "nl": "Vermogen",
+            "de": "Leistung",
+            "fr": "Puissance",
+            "it": "Potenza",
+            "sv": "Effekt",
+            "no": "Effekt",
+            "es": "Potencia",
+            "da": "Effekt",
+            "ru": "Мощность",
+            "pl": "Moc",
+            "ko": "출력",
+            "ar": "القدرة"
+          },
+          "min": 0,
+          "max": 50000,
+          "step": 50,
+          "placeholder": {
+            "en": "1000"
+          }
+        }
+      ],
+      "tokens": [
+        {
+          "name": "power",
+          "type": "number",
+          "title": {
+            "en": "Grid power",
+            "nl": "Netvermogen",
+            "de": "Netzleistung",
+            "fr": "Puissance réseau",
+            "it": "Potenza di rete",
+            "sv": "Nätets effekt",
+            "no": "Netteffekt",
+            "es": "Potencia de red",
+            "da": "Nettets effekt",
+            "ru": "Мощность сети",
+            "pl": "Moc sieci",
+            "ko": "계통 전력",
+            "ar": "قدرة الشبكة"
+          },
+          "example": 1200
+        }
+      ]
+    },
+    {
+      "id": "grid_import_above",
+      "title": {
+        "en": "Import rose above a power",
+        "nl": "Afname is boven een vermogen gestegen",
+        "de": "Netzbezug ist über eine Leistung gestiegen",
+        "fr": "Le soutirage a dépassé une puissance",
+        "it": "Il prelievo ha superato una potenza",
+        "sv": "Köpet steg över en effekt",
+        "no": "Importen steg over en effekt",
+        "es": "La importación superó una potencia",
+        "da": "Købet steg over en effekt",
+        "ru": "Отбор из сети превысил мощность",
+        "pl": "Pobór przekroczył moc",
+        "ko": "수전이 기준 출력을 넘음",
+        "ar": "ارتفع الاستيراد فوق قدرة معيّنة"
+      },
+      "titleFormatted": {
+        "en": "Import rose above [[power]] W",
+        "nl": "Afname is boven [[power]] W gestegen",
+        "de": "Netzbezug ist über [[power]] W gestiegen",
+        "fr": "Le soutirage a dépassé [[power]] W",
+        "it": "Il prelievo ha superato [[power]] W",
+        "sv": "Köpet steg över [[power]] W",
+        "no": "Importen steg over [[power]] W",
+        "es": "La importación superó [[power]] W",
+        "da": "Købet steg over [[power]] W",
+        "ru": "Отбор из сети превысил [[power]] Вт",
+        "pl": "Pobór przekroczył [[power]] W",
+        "ko": "수전이 [[power]] W를 넘음",
+        "ar": "ارتفع الاستيراد فوق [[power]] واط"
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "power",
+          "title": {
+            "en": "Power",
+            "nl": "Vermogen",
+            "de": "Leistung",
+            "fr": "Puissance",
+            "it": "Potenza",
+            "sv": "Effekt",
+            "no": "Effekt",
+            "es": "Potencia",
+            "da": "Effekt",
+            "ru": "Мощность",
+            "pl": "Moc",
+            "ko": "출력",
+            "ar": "القدرة"
+          },
+          "min": 0,
+          "max": 50000,
+          "step": 50,
+          "placeholder": {
+            "en": "1000"
+          }
+        }
+      ],
+      "tokens": [
+        {
+          "name": "power",
+          "type": "number",
+          "title": {
+            "en": "Grid power",
+            "nl": "Netvermogen",
+            "de": "Netzleistung",
+            "fr": "Puissance réseau",
+            "it": "Potenza di rete",
+            "sv": "Nätets effekt",
+            "no": "Netteffekt",
+            "es": "Potencia de red",
+            "da": "Nettets effekt",
+            "ru": "Мощность сети",
+            "pl": "Moc sieci",
+            "ko": "계통 전력",
+            "ar": "قدرة الشبكة"
+          },
+          "example": 1200
+        }
+      ]
+    },
+    {
+      "id": "grid_outage_started",
+      "title": {
+        "en": "A grid outage started",
+        "nl": "Er is een stroomstoring op het net",
+        "de": "Ein Netzausfall hat begonnen",
+        "fr": "Une coupure du réseau a commencé",
+        "it": "È iniziata un’interruzione di rete",
+        "sv": "Ett strömavbrott på nätet började",
+        "no": "Et strømbrudd på nettet startet",
+        "es": "Comenzó un corte de la red",
+        "da": "En strømafbrydelse på nettet startede",
+        "ru": "Началось отключение сети",
+        "pl": "Rozpoczęła się awaria sieci",
+        "ko": "정전이 시작됨",
+        "ar": "بدأ انقطاع الشبكة"
+      },
+      "hint": {
+        "en": "The gateway reports off-grid operation (backup). Homey checks automatically whether your gateway reports this.",
+        "nl": "De gateway meldt werking los van het net (noodstroom). Homey controleert automatisch of je gateway dit meldt.",
+        "de": "Das Gateway meldet Inselbetrieb (Notstrom). Homey prüft automatisch, ob dein Gateway das meldet.",
+        "fr": "La passerelle signale un fonctionnement hors réseau (secours). Homey vérifie automatiquement si votre passerelle le signale.",
+        "it": "Il gateway segnala il funzionamento fuori rete (backup). Homey verifica automaticamente se il tuo gateway lo segnala.",
+        "sv": "Gatewayen rapporterar drift utan elnät (reservkraft). Homey kontrollerar automatiskt om din gateway rapporterar detta.",
+        "no": "Gatewayen melder drift uten strømnett (reservestrøm). Homey sjekker automatisk om gatewayen din melder dette.",
+        "es": "La pasarela indica funcionamiento sin red (respaldo). Homey comprueba automáticamente si tu pasarela lo indica.",
+        "da": "Gatewayen melder drift uden elnet (nødstrøm). Homey tjekker automatisk, om din gateway melder dette.",
+        "ru": "Шлюз сообщает об автономной работе (резерв). Homey автоматически проверяет, передаёт ли это ваш шлюз.",
+        "pl": "Bramka zgłasza pracę poza siecią (zasilanie awaryjne). Homey automatycznie sprawdza, czy twoja bramka to zgłasza.",
+        "ko": "게이트웨이가 독립 운전(백업)을 보고합니다. 게이트웨이가 이를 보고하는지 Homey가 자동으로 확인합니다.",
+        "ar": "تُبلغ البوابة عن التشغيل دون الشبكة (احتياطي). يتحقق Homey تلقائيًا مما إذا كانت بوابتك تُبلغ بذلك."
+      }
+    },
+    {
+      "id": "grid_outage_ended",
+      "title": {
+        "en": "The grid outage ended",
+        "nl": "De stroomstoring op het net is voorbij",
+        "de": "Der Netzausfall ist beendet",
+        "fr": "La coupure du réseau est terminée",
+        "it": "L’interruzione di rete è terminata",
+        "sv": "Strömavbrottet på nätet är över",
+        "no": "Strømbruddet på nettet er over",
+        "es": "El corte de la red terminó",
+        "da": "Strømafbrydelsen på nettet er slut",
+        "ru": "Отключение сети закончилось",
+        "pl": "Awaria sieci się zakończyła",
+        "ko": "정전이 끝남",
+        "ar": "انتهى انقطاع الشبكة"
+      },
+      "hint": {
+        "en": "The gateway reports off-grid operation (backup). Homey checks automatically whether your gateway reports this.",
+        "nl": "De gateway meldt werking los van het net (noodstroom). Homey controleert automatisch of je gateway dit meldt.",
+        "de": "Das Gateway meldet Inselbetrieb (Notstrom). Homey prüft automatisch, ob dein Gateway das meldet.",
+        "fr": "La passerelle signale un fonctionnement hors réseau (secours). Homey vérifie automatiquement si votre passerelle le signale.",
+        "it": "Il gateway segnala il funzionamento fuori rete (backup). Homey verifica automaticamente se il tuo gateway lo segnala.",
+        "sv": "Gatewayen rapporterar drift utan elnät (reservkraft). Homey kontrollerar automatiskt om din gateway rapporterar detta.",
+        "no": "Gatewayen melder drift uten strømnett (reservestrøm). Homey sjekker automatisk om gatewayen din melder dette.",
+        "es": "La pasarela indica funcionamiento sin red (respaldo). Homey comprueba automáticamente si tu pasarela lo indica.",
+        "da": "Gatewayen melder drift uden elnet (nødstrøm). Homey tjekker automatisk, om din gateway melder dette.",
+        "ru": "Шлюз сообщает об автономной работе (резерв). Homey автоматически проверяет, передаёт ли это ваш шлюз.",
+        "pl": "Bramka zgłasza pracę poza siecią (zasilanie awaryjne). Homey automatycznie sprawdza, czy twoja bramka to zgłasza.",
+        "ko": "게이트웨이가 독립 운전(백업)을 보고합니다. 게이트웨이가 이를 보고하는지 Homey가 자동으로 확인합니다.",
+        "ar": "تُبلغ البوابة عن التشغيل دون الشبكة (احتياطي). يتحقق Homey تلقائيًا مما إذا كانت بوابتك تُبلغ بذلك."
+      }
+    }
+  ],
+  "conditions": [
+    {
+      "id": "grid_is_off",
+      "title": {
+        "en": "The home !{{is|is not}} running off-grid",
+        "nl": "Het huis !{{draait|draait niet}} los van het net",
+        "de": "Das Haus !{{läuft|läuft nicht}} netzunabhängig",
+        "fr": "La maison !{{fonctionne|ne fonctionne pas}} hors réseau",
+        "it": "La casa !{{funziona|non funziona}} fuori rete",
+        "sv": "Huset !{{körs|körs inte}} utan elnät",
+        "no": "Huset !{{går|går ikke}} uten strømnett",
+        "es": "La casa !{{funciona|no funciona}} sin red",
+        "da": "Huset !{{kører|kører ikke}} uden elnet",
+        "ru": "Дом !{{работает|не работает}} автономно",
+        "pl": "Dom !{{działa|nie działa}} poza siecią",
+        "ko": "집이 계통 없이 !{{운전 중|운전 중 아님}}",
+        "ar": "المنزل !{{يعمل|لا يعمل}} دون الشبكة"
+      },
+      "hint": {
+        "en": "The gateway reports off-grid operation (backup). Homey checks automatically whether your gateway reports this.",
+        "nl": "De gateway meldt werking los van het net (noodstroom). Homey controleert automatisch of je gateway dit meldt.",
+        "de": "Das Gateway meldet Inselbetrieb (Notstrom). Homey prüft automatisch, ob dein Gateway das meldet.",
+        "fr": "La passerelle signale un fonctionnement hors réseau (secours). Homey vérifie automatiquement si votre passerelle le signale.",
+        "it": "Il gateway segnala il funzionamento fuori rete (backup). Homey verifica automaticamente se il tuo gateway lo segnala.",
+        "sv": "Gatewayen rapporterar drift utan elnät (reservkraft). Homey kontrollerar automatiskt om din gateway rapporterar detta.",
+        "no": "Gatewayen melder drift uten strømnett (reservestrøm). Homey sjekker automatisk om gatewayen din melder dette.",
+        "es": "La pasarela indica funcionamiento sin red (respaldo). Homey comprueba automáticamente si tu pasarela lo indica.",
+        "da": "Gatewayen melder drift uden elnet (nødstrøm). Homey tjekker automatisk, om din gateway melder dette.",
+        "ru": "Шлюз сообщает об автономной работе (резерв). Homey автоматически проверяет, передаёт ли это ваш шлюз.",
+        "pl": "Bramka zgłasza pracę poza siecią (zasilanie awaryjne). Homey automatycznie sprawdza, czy twoja bramka to zgłasza.",
+        "ko": "게이트웨이가 독립 운전(백업)을 보고합니다. 게이트웨이가 이를 보고하는지 Homey가 자동으로 확인합니다.",
+        "ar": "تُبلغ البوابة عن التشغيل دون الشبكة (احتياطي). يتحقق Homey تلقائيًا مما إذا كانت بوابتك تُبلغ بذلك."
+      }
+    },
+    {
+      "id": "grid_is_exporting",
+      "title": {
+        "en": "!{{Is|Is not}} exporting to the grid",
+        "nl": "!{{Levert|Levert niet}} terug aan het net",
+        "de": "Speist !{{|nicht}} ins Netz ein",
+        "fr": "!{{Injecte|N'injecte pas}} sur le réseau",
+        "it": "!{{Sta|Non sta}} immettendo in rete",
+        "sv": "Säljer !{{|inte}} till elnätet",
+        "no": "Eksporterer !{{|ikke}} til nettet",
+        "es": "!{{Está|No está}} exportando a la red",
+        "da": "Sælger !{{|ikke}} til nettet",
+        "ru": "Отдача в сеть !{{идёт|не идёт}}",
+        "pl": "!{{Oddaje|Nie oddaje}} do sieci",
+        "ko": "계통으로 송전 !{{중|중 아님}}",
+        "ar": "!{{يصدّر|لا يصدّر}} إلى الشبكة"
+      },
+      "hint": {
+        "en": "Starts at 50 W and stops below 20 W, so small fluctuations are ignored.",
+        "nl": "Start vanaf 50 W en stopt onder 20 W, zodat kleine schommelingen genegeerd worden.",
+        "de": "Beginnt ab 50 W und endet unter 20 W, damit kleine Schwankungen ignoriert werden.",
+        "fr": "Démarre à partir de 50 W et s’arrête sous 20 W, pour ignorer les petites fluctuations.",
+        "it": "Inizia da 50 W e si ferma sotto 20 W, così le piccole oscillazioni vengono ignorate.",
+        "sv": "Startar vid 50 W och slutar under 20 W, så att små svängningar ignoreras.",
+        "no": "Starter ved 50 W og stopper under 20 W, slik at små svingninger ignoreres.",
+        "es": "Empieza a partir de 50 W y se detiene por debajo de 20 W, para ignorar pequeñas fluctuaciones.",
+        "da": "Starter ved 50 W og stopper under 20 W, så små udsving ignoreres.",
+        "ru": "Начинается от 50 Вт и заканчивается ниже 20 Вт, чтобы игнорировать небольшие колебания.",
+        "pl": "Zaczyna się od 50 W i kończy poniżej 20 W, więc drobne wahania są pomijane.",
+        "ko": "50 W 이상에서 시작하고 20 W 미만에서 멈추므로 작은 변동은 무시됩니다.",
+        "ar": "يبدأ عند 50 واط ويتوقف دون 20 واط، لتجاهل التقلبات الصغيرة."
+      }
+    },
+    {
+      "id": "grid_is_importing",
+      "title": {
+        "en": "!{{Is|Is not}} importing from the grid",
+        "nl": "!{{Neemt|Neemt niet}} af van het net",
+        "de": "Bezieht !{{|nicht}} aus dem Netz",
+        "fr": "!{{Soutire|Ne soutire pas}} du réseau",
+        "it": "!{{Sta|Non sta}} prelevando dalla rete",
+        "sv": "Köper !{{|inte}} från elnätet",
+        "no": "Importerer !{{|ikke}} fra nettet",
+        "es": "!{{Está|No está}} importando de la red",
+        "da": "Køber !{{|ikke}} fra nettet",
+        "ru": "Отбор из сети !{{идёт|не идёт}}",
+        "pl": "!{{Pobiera|Nie pobiera}} z sieci",
+        "ko": "계통에서 수전 !{{중|중 아님}}",
+        "ar": "!{{يستورد|لا يستورد}} من الشبكة"
+      },
+      "hint": {
+        "en": "Starts at 50 W and stops below 20 W, so small fluctuations are ignored.",
+        "nl": "Start vanaf 50 W en stopt onder 20 W, zodat kleine schommelingen genegeerd worden.",
+        "de": "Beginnt ab 50 W und endet unter 20 W, damit kleine Schwankungen ignoriert werden.",
+        "fr": "Démarre à partir de 50 W et s’arrête sous 20 W, pour ignorer les petites fluctuations.",
+        "it": "Inizia da 50 W e si ferma sotto 20 W, così le piccole oscillazioni vengono ignorate.",
+        "sv": "Startar vid 50 W och slutar under 20 W, så att små svängningar ignoreras.",
+        "no": "Starter ved 50 W og stopper under 20 W, slik at små svingninger ignoreres.",
+        "es": "Empieza a partir de 50 W y se detiene por debajo de 20 W, para ignorar pequeñas fluctuaciones.",
+        "da": "Starter ved 50 W og stopper under 20 W, så små udsving ignoreres.",
+        "ru": "Начинается от 50 Вт и заканчивается ниже 20 Вт, чтобы игнорировать небольшие колебания.",
+        "pl": "Zaczyna się od 50 W i kończy poniżej 20 W, więc drobne wahania są pomijane.",
+        "ko": "50 W 이상에서 시작하고 20 W 미만에서 멈추므로 작은 변동은 무시됩니다.",
+        "ar": "يبدأ عند 50 واط ويتوقف دون 20 واط، لتجاهل التقلبات الصغيرة."
+      }
+    },
+    {
+      "id": "export_is_limited",
+      "title": {
+        "en": "Export !{{is|is not}} limited",
+        "nl": "Teruglevering !{{is|is niet}} beperkt",
+        "de": "Einspeisung !{{ist|ist nicht}} begrenzt",
+        "fr": "L'injection !{{est|n'est pas}} limitée",
+        "it": "L'immissione !{{è|non è}} limitata",
+        "sv": "Försäljningen !{{är|är inte}} begränsad",
+        "no": "Eksporten !{{er|er ikke}} begrenset",
+        "es": "La exportación !{{está|no está}} limitada",
+        "da": "Salget !{{er|er ikke}} begrænset",
+        "ru": "Отдача в сеть !{{ограничена|не ограничена}}",
+        "pl": "Oddawanie !{{jest|nie jest}} ograniczone",
+        "ko": "송전이 제한 !{{됨|되지 않음}}",
+        "ar": "التصدير !{{مقيّد|غير مقيّد}}"
+      }
+    },
+    {
+      "id": "import_is_limited",
+      "title": {
+        "en": "Grid import !{{is|is not}} limited",
+        "nl": "Afname van het net !{{is|is niet}} beperkt",
+        "de": "Netzbezug !{{ist|ist nicht}} begrenzt",
+        "fr": "Le soutirage !{{est|n'est pas}} limité",
+        "it": "Il prelievo !{{è|non è}} limitato",
+        "sv": "Köp från nätet !{{är|är inte}} begränsat",
+        "no": "Importen fra nettet !{{er|er ikke}} begrenset",
+        "es": "La importación !{{está|no está}} limitada",
+        "da": "Køb fra nettet !{{er|er ikke}} begrænset",
+        "ru": "Отбор из сети !{{ограничен|не ограничен}}",
+        "pl": "Pobór z sieci !{{jest|nie jest}} ograniczony",
+        "ko": "수전이 제한 !{{됨|되지 않음}}",
+        "ar": "الاستيراد !{{مقيّد|غير مقيّد}}"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "id": "limit_export",
+      "title": {
+        "en": "Limit export to a power",
+        "nl": "Beperk teruglevering tot een vermogen",
+        "de": "Einspeisung auf eine Leistung begrenzen",
+        "fr": "Limiter l'injection à une puissance",
+        "it": "Limita l'immissione a una potenza",
+        "sv": "Begränsa försäljning till en effekt",
+        "no": "Begrens eksport til en effekt",
+        "es": "Limitar la exportación a una potencia",
+        "da": "Begræns salg til en effekt",
+        "ru": "Ограничить отдачу в сеть",
+        "pl": "Ogranicz oddawanie do mocy",
+        "ko": "송전을 지정 출력으로 제한",
+        "ar": "قيّد التصدير بقدرة معيّنة"
+      },
+      "titleFormatted": {
+        "en": "Limit export to [[power]] W",
+        "nl": "Beperk teruglevering tot [[power]] W",
+        "de": "Einspeisung auf [[power]] W begrenzen",
+        "fr": "Limiter l'injection à [[power]] W",
+        "it": "Limita l'immissione a [[power]] W",
+        "sv": "Begränsa försäljning till [[power]] W",
+        "no": "Begrens eksport til [[power]] W",
+        "es": "Limitar la exportación a [[power]] W",
+        "da": "Begræns salg til [[power]] W",
+        "ru": "Ограничить отдачу в сеть до [[power]] Вт",
+        "pl": "Ogranicz oddawanie do [[power]] W",
+        "ko": "송전을 [[power]] W로 제한",
+        "ar": "قيّد التصدير بـ [[power]] واط"
+      },
+      "hint": {
+        "en": "0 W stops all export. Surplus solar is then stored or curtailed by the system.",
+        "nl": "Bij 0 W stopt alle teruglevering. Het systeem slaat overschot dan op of regelt de zonnepanelen terug.",
+        "de": "Bei 0 W endet jede Einspeisung. Überschuss wird dann gespeichert oder abgeregelt.",
+        "fr": "À 0 W, plus aucune injection. Le surplus solaire est alors stocké ou bridé par le système.",
+        "it": "Con 0 W l'immissione si ferma. L'eccedenza viene accumulata o limitata dal sistema.",
+        "sv": "Vid 0 W upphör all försäljning. Överskottet lagras eller begränsas då av systemet.",
+        "no": "Ved 0 W stopper all eksport. Overskudd lagres eller strupes da av systemet.",
+        "es": "Con 0 W se detiene toda exportación. El excedente se almacena o se limita.",
+        "da": "Ved 0 W stopper alt salg. Overskud lagres eller begrænses så af systemet.",
+        "ru": "При 0 Вт отдача прекращается. Излишек сохраняется или ограничивается системой.",
+        "pl": "Przy 0 W oddawanie ustaje. Nadwyżka jest magazynowana lub ograniczana przez system.",
+        "ko": "0 W이면 송전이 멈춥니다. 남는 태양광은 저장되거나 시스템이 출력을 줄입니다.",
+        "ar": "عند 0 واط يتوقف التصدير كليًا. يُخزَّن الفائض أو يُقلَّص الإنتاج."
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "power",
+          "title": {
+            "en": "Power",
+            "nl": "Vermogen",
+            "de": "Leistung",
+            "fr": "Puissance",
+            "it": "Potenza",
+            "sv": "Effekt",
+            "no": "Effekt",
+            "es": "Potencia",
+            "da": "Effekt",
+            "ru": "Мощность",
+            "pl": "Moc",
+            "ko": "출력",
+            "ar": "القدرة"
+          },
+          "min": 0,
+          "max": 50000,
+          "step": 50,
+          "placeholder": {
+            "en": "0"
+          }
+        }
+      ]
+    },
+    {
+      "id": "allow_export",
+      "title": {
+        "en": "Allow unlimited export",
+        "nl": "Sta onbeperkte teruglevering toe",
+        "de": "Unbegrenzte Einspeisung erlauben",
+        "fr": "Autoriser l'injection sans limite",
+        "it": "Consenti immissione illimitata",
+        "sv": "Tillåt obegränsad försäljning",
+        "no": "Tillat ubegrenset eksport",
+        "es": "Permitir exportación ilimitada",
+        "da": "Tillad ubegrænset salg",
+        "ru": "Разрешить отдачу без ограничений",
+        "pl": "Zezwól na nieograniczone oddawanie",
+        "ko": "송전 제한 해제",
+        "ar": "اسمح بالتصدير دون قيود"
+      }
+    },
+    {
+      "id": "limit_import",
+      "title": {
+        "en": "Limit grid import to a power",
+        "nl": "Beperk afname van het net tot een vermogen",
+        "de": "Netzbezug auf eine Leistung begrenzen",
+        "fr": "Limiter le soutirage à une puissance",
+        "it": "Limita il prelievo a una potenza",
+        "sv": "Begränsa köp från nätet till en effekt",
+        "no": "Begrens import fra nettet til en effekt",
+        "es": "Limitar la importación a una potencia",
+        "da": "Begræns køb fra nettet til en effekt",
+        "ru": "Ограничить отбор из сети",
+        "pl": "Ogranicz pobór z sieci do mocy",
+        "ko": "수전을 지정 출력으로 제한",
+        "ar": "قيّد الاستيراد من الشبكة بقدرة معيّنة"
+      },
+      "titleFormatted": {
+        "en": "Limit grid import to [[power]] W",
+        "nl": "Beperk afname van het net tot [[power]] W",
+        "de": "Netzbezug auf [[power]] W begrenzen",
+        "fr": "Limiter le soutirage à [[power]] W",
+        "it": "Limita il prelievo a [[power]] W",
+        "sv": "Begränsa köp från nätet till [[power]] W",
+        "no": "Begrens import fra nettet til [[power]] W",
+        "es": "Limitar la importación a [[power]] W",
+        "da": "Begræns køb fra nettet til [[power]] W",
+        "ru": "Ограничить отбор из сети до [[power]] Вт",
+        "pl": "Ogranicz pobór z sieci do [[power]] W",
+        "ko": "수전을 [[power]] W로 제한",
+        "ar": "قيّد الاستيراد من الشبكة بـ [[power]] واط"
+      },
+      "hint": {
+        "en": "Peak shaving: the battery covers what the home uses above this power.",
+        "nl": "Pieken afvlakken: de batterij dekt wat het huis boven dit vermogen verbruikt.",
+        "de": "Lastspitzen kappen: Die Batterie deckt den Verbrauch über dieser Leistung.",
+        "fr": "Écrêtage : la batterie couvre la consommation au-delà de cette puissance.",
+        "it": "Taglio dei picchi: la batteria copre il consumo oltre questa potenza.",
+        "sv": "Toppkapning: batteriet täcker förbrukningen över denna effekt.",
+        "no": "Toppkutt: batteriet dekker forbruket over denne effekten.",
+        "es": "Recorte de picos: la batería cubre el consumo por encima de esta potencia.",
+        "da": "Spidsbelastning: batteriet dækker forbruget over denne effekt.",
+        "ru": "Срезание пиков: батарея покрывает потребление сверх этой мощности.",
+        "pl": "Obcinanie szczytów: bateria pokrywa zużycie powyżej tej mocy.",
+        "ko": "피크 저감: 이 출력을 넘는 소비는 배터리가 담당합니다.",
+        "ar": "خفض الذروة: تغطي البطارية الاستهلاك فوق هذه القدرة."
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "power",
+          "title": {
+            "en": "Power",
+            "nl": "Vermogen",
+            "de": "Leistung",
+            "fr": "Puissance",
+            "it": "Potenza",
+            "sv": "Effekt",
+            "no": "Effekt",
+            "es": "Potencia",
+            "da": "Effekt",
+            "ru": "Мощность",
+            "pl": "Moc",
+            "ko": "출력",
+            "ar": "القدرة"
+          },
+          "min": 0,
+          "max": 50000,
+          "step": 50,
+          "placeholder": {
+            "en": "0"
+          }
+        }
+      ]
+    },
+    {
+      "id": "allow_import",
+      "title": {
+        "en": "Allow unlimited grid import",
+        "nl": "Sta onbeperkte afname van het net toe",
+        "de": "Unbegrenzten Netzbezug erlauben",
+        "fr": "Autoriser le soutirage sans limite",
+        "it": "Consenti prelievo illimitato",
+        "sv": "Tillåt obegränsat köp från nätet",
+        "no": "Tillat ubegrenset import fra nettet",
+        "es": "Permitir importación ilimitada",
+        "da": "Tillad ubegrænset køb fra nettet",
+        "ru": "Разрешить отбор из сети без ограничений",
+        "pl": "Zezwól na nieograniczony pobór z sieci",
+        "ko": "수전 제한 해제",
+        "ar": "اسمح بالاستيراد دون قيود"
+      }
+    }
+  ]
+}

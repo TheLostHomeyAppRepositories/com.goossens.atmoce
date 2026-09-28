@@ -1,0 +1,33 @@
+{
+  "extends": "athom/homey-app",
+  "parserOptions": {
+    "project": [
+      "./tsconfig.json",
+      "./test/tsconfig.json"
+    ]
+  },
+  "ignorePatterns": [
+    ".homeybuild/",
+    "node_modules/"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "test/**/*.mts"
+      ],
+      "rules": {
+        "@typescript-eslint/no-floating-promises": "off"
+      }
+    },
+    {
+      "files": [
+        "test/**/*.mts",
+        "tools/**/*.mts"
+      ],
+      "rules": {
+        "homey-app/global-timers": "off",
+        "no-console": "off"
+      }
+    }
+  ]
+}

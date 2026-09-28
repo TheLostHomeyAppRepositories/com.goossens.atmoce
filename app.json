@@ -1,0 +1,4449 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "com.goossens.atmoce",
+  "version": "1.0.0",
+  "compatibility": ">=12.13.0",
+  "sdk": 3,
+  "runtime": "nodejs",
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Atmoce"
+  },
+  "description": {
+    "en": "See and steer your Atmoce solar and battery system, locally.",
+    "nl": "Bekijk en stuur je Atmoce-zonne-energie- en batterijsysteem, lokaal.",
+    "de": "Sieh und steuere dein Atmoce-Solar- und Batteriesystem – lokal.",
+    "fr": "Suivez et pilotez votre système solaire et de batterie Atmoce, en local.",
+    "it": "Monitora e gestisci il tuo sistema solare e di accumulo Atmoce, in locale.",
+    "sv": "Se och styr ditt Atmoce-sol- och batterisystem, lokalt.",
+    "no": "Se og styr Atmoce-sol- og batterisystemet ditt, lokalt.",
+    "es": "Consulta y controla tu sistema solar y de batería Atmoce, en local.",
+    "da": "Se og styr dit Atmoce-sol- og batterisystem, lokalt.",
+    "ru": "Следите за солнечной системой и аккумулятором Atmoce и управляйте ими локально.",
+    "pl": "Podglądaj i steruj systemem solarnym i magazynem energii Atmoce – lokalnie.",
+    "ko": "Atmoce 태양광 및 배터리 시스템을 로컬에서 확인하고 제어하세요.",
+    "ar": "تابع نظام Atmoce للطاقة الشمسية والبطارية وتحكّم به محليًا."
+  },
+  "category": [
+    "energy"
+  ],
+  "tags": {
+    "en": [
+      "atmoce",
+      "atmozen",
+      "solar",
+      "microinverter",
+      "home battery",
+      "energy",
+      "modbus",
+      "m-combiner",
+      "mc100",
+      "mg100"
+    ],
+    "nl": [
+      "atmoce",
+      "atmozen",
+      "zonnepanelen",
+      "micro-omvormer",
+      "thuisbatterij",
+      "energie",
+      "modbus"
+    ],
+    "de": [
+      "atmoce",
+      "atmozen",
+      "photovoltaik",
+      "mikrowechselrichter",
+      "heimspeicher",
+      "energie",
+      "modbus"
+    ],
+    "fr": [
+      "atmoce",
+      "atmozen",
+      "solaire",
+      "micro-onduleur",
+      "batterie domestique",
+      "énergie",
+      "modbus"
+    ]
+  },
+  "brandColor": "#D03050",
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Jo Goossens",
+    "email": "jo.goossens@hosted-power.com"
+  },
+  "source": "https://github.com/jogoossens/com.goossens.atmoce",
+  "support": "https://github.com/jogoossens/com.goossens.atmoce/issues",
+  "bugs": {
+    "url": "https://github.com/jogoossens/com.goossens.atmoce/issues"
+  },
+  "flow": {
+    "triggers": [
+      {
+        "id": "atmoce_battery_mode_changed",
+        "title": {
+          "en": "The battery mode changed",
+          "nl": "De batterijmodus is veranderd",
+          "de": "Der Batteriemodus hat sich geändert",
+          "fr": "Le mode batterie a changé",
+          "it": "La modalità batteria è cambiata",
+          "sv": "Batteriläget ändrades",
+          "no": "Batterimodusen endret seg",
+          "es": "El modo de batería cambió",
+          "da": "Batteritilstanden er ændret",
+          "ru": "Режим батареи изменился",
+          "pl": "Tryb baterii się zmienił",
+          "ko": "배터리 모드가 변경됨",
+          "ar": "تغيّر وضع البطارية"
+        },
+        "tokens": [
+          {
+            "name": "atmoce_battery_mode",
+            "type": "string",
+            "title": {
+              "en": "Battery mode",
+              "nl": "Batterijmodus",
+              "de": "Batteriemodus",
+              "fr": "Mode batterie",
+              "it": "Modalità batteria",
+              "sv": "Batteriläge",
+              "no": "Batterimodus",
+              "es": "Modo de batería",
+              "da": "Batteritilstand",
+              "ru": "Режим батареи",
+              "pl": "Tryb baterii",
+              "ko": "배터리 모드",
+              "ar": "وضع البطارية"
+            },
+            "example": {
+              "en": "self_consumption"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          }
+        ]
+      },
+      {
+        "id": "battery_level_below",
+        "title": {
+          "en": "Battery level dropped below a level",
+          "nl": "Batterijniveau is onder een niveau gezakt",
+          "de": "Ladestand ist unter einen Wert gefallen",
+          "fr": "Le niveau de batterie est passé sous un seuil",
+          "it": "Il livello batteria è sceso sotto una soglia",
+          "sv": "Batterinivån sjönk under en nivå",
+          "no": "Batterinivået falt under et nivå",
+          "es": "El nivel de batería bajó de un umbral",
+          "da": "Batteriniveauet faldt under et niveau",
+          "ru": "Уровень заряда опустился ниже порога",
+          "pl": "Poziom baterii spadł poniżej progu",
+          "ko": "배터리 잔량이 기준 아래로 떨어짐",
+          "ar": "انخفض مستوى البطارية دون حدّ معيّن"
+        },
+        "titleFormatted": {
+          "en": "Battery level dropped below [[level]]%",
+          "nl": "Batterijniveau is onder [[level]]% gezakt",
+          "de": "Ladestand ist unter [[level]] % gefallen",
+          "fr": "Le niveau de batterie est passé sous [[level]] %",
+          "it": "Il livello batteria è sceso sotto il [[level]]%",
+          "sv": "Batterinivån sjönk under [[level]] %",
+          "no": "Batterinivået falt under [[level]] %",
+          "es": "El nivel de batería bajó del [[level]] %",
+          "da": "Batteriniveauet faldt under [[level]] %",
+          "ru": "Уровень заряда опустился ниже [[level]] %",
+          "pl": "Poziom baterii spadł poniżej [[level]]%",
+          "ko": "배터리 잔량이 [[level]]% 아래로 떨어짐",
+          "ar": "انخفض مستوى البطارية دون [[level]]٪"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          },
+          {
+            "type": "number",
+            "name": "level",
+            "title": {
+              "en": "Level",
+              "nl": "Niveau",
+              "de": "Wert",
+              "fr": "Niveau",
+              "it": "Livello",
+              "sv": "Nivå",
+              "no": "Nivå",
+              "es": "Nivel",
+              "da": "Niveau",
+              "ru": "Уровень",
+              "pl": "Poziom",
+              "ko": "수준",
+              "ar": "المستوى"
+            },
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "placeholder": {
+              "en": "20"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "level",
+            "type": "number",
+            "title": {
+              "en": "Battery level",
+              "nl": "Batterijniveau",
+              "de": "Ladestand",
+              "fr": "Niveau de batterie",
+              "it": "Livello batteria",
+              "sv": "Batterinivå",
+              "no": "Batterinivå",
+              "es": "Nivel de batería",
+              "da": "Batteriniveau",
+              "ru": "Уровень заряда",
+              "pl": "Poziom baterii",
+              "ko": "배터리 잔량",
+              "ar": "مستوى البطارية"
+            },
+            "example": 42
+          }
+        ]
+      },
+      {
+        "id": "battery_level_above",
+        "title": {
+          "en": "Battery level rose above a level",
+          "nl": "Batterijniveau is boven een niveau gestegen",
+          "de": "Ladestand ist über einen Wert gestiegen",
+          "fr": "Le niveau de batterie a dépassé un seuil",
+          "it": "Il livello batteria è salito sopra una soglia",
+          "sv": "Batterinivån steg över en nivå",
+          "no": "Batterinivået steg over et nivå",
+          "es": "El nivel de batería superó un umbral",
+          "da": "Batteriniveauet steg over et niveau",
+          "ru": "Уровень заряда поднялся выше порога",
+          "pl": "Poziom baterii wzrósł powyżej progu",
+          "ko": "배터리 잔량이 기준을 넘음",
+          "ar": "ارتفع مستوى البطارية فوق حدّ معيّن"
+        },
+        "titleFormatted": {
+          "en": "Battery level rose above [[level]]%",
+          "nl": "Batterijniveau is boven [[level]]% gestegen",
+          "de": "Ladestand ist über [[level]] % gestiegen",
+          "fr": "Le niveau de batterie a dépassé [[level]] %",
+          "it": "Il livello batteria è salito sopra il [[level]]%",
+          "sv": "Batterinivån steg över [[level]] %",
+          "no": "Batterinivået steg over [[level]] %",
+          "es": "El nivel de batería superó el [[level]] %",
+          "da": "Batteriniveauet steg over [[level]] %",
+          "ru": "Уровень заряда поднялся выше [[level]] %",
+          "pl": "Poziom baterii wzrósł powyżej [[level]]%",
+          "ko": "배터리 잔량이 [[level]]%를 넘음",
+          "ar": "ارتفع مستوى البطارية فوق [[level]]٪"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          },
+          {
+            "type": "number",
+            "name": "level",
+            "title": {
+              "en": "Level",
+              "nl": "Niveau",
+              "de": "Wert",
+              "fr": "Niveau",
+              "it": "Livello",
+              "sv": "Nivå",
+              "no": "Nivå",
+              "es": "Nivel",
+              "da": "Niveau",
+              "ru": "Уровень",
+              "pl": "Poziom",
+              "ko": "수준",
+              "ar": "المستوى"
+            },
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "placeholder": {
+              "en": "20"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "level",
+            "type": "number",
+            "title": {
+              "en": "Battery level",
+              "nl": "Batterijniveau",
+              "de": "Ladestand",
+              "fr": "Niveau de batterie",
+              "it": "Livello batteria",
+              "sv": "Batterinivå",
+              "no": "Batterinivå",
+              "es": "Nivel de batería",
+              "da": "Batteriniveau",
+              "ru": "Уровень заряда",
+              "pl": "Poziom baterii",
+              "ko": "배터리 잔량",
+              "ar": "مستوى البطارية"
+            },
+            "example": 42
+          }
+        ]
+      },
+      {
+        "id": "battery_problem_started",
+        "title": {
+          "en": "A battery problem started",
+          "nl": "Er is een batterijprobleem",
+          "de": "Ein Batterieproblem ist aufgetreten",
+          "fr": "Un problème de batterie est survenu",
+          "it": "Si è verificato un problema alla batteria",
+          "sv": "Ett batteriproblem uppstod",
+          "no": "Det oppstod et batteriproblem",
+          "es": "Surgió un problema con la batería",
+          "da": "Der opstod et batteriproblem",
+          "ru": "Возникла проблема с батареей",
+          "pl": "Wystąpił problem z baterią",
+          "ko": "배터리 문제가 발생함",
+          "ar": "حدثت مشكلة في البطارية"
+        },
+        "hint": {
+          "en": "All batteries shut down, or a battery reports an alarm. Homey checks automatically whether your gateway reports this.",
+          "nl": "Alle batterijen zijn uitgeschakeld, of een batterij meldt een alarm. Homey controleert automatisch of je gateway dit meldt.",
+          "de": "Alle Batterien sind abgeschaltet oder eine Batterie meldet einen Alarm. Homey prüft automatisch, ob dein Gateway das meldet.",
+          "fr": "Toutes les batteries sont arrêtées, ou une batterie signale une alarme. Homey vérifie automatiquement si votre passerelle le signale.",
+          "it": "Tutte le batterie sono spente o una batteria segnala un allarme. Homey verifica automaticamente se il tuo gateway lo segnala.",
+          "sv": "Alla batterier är avstängda eller ett batteri rapporterar ett larm. Homey kontrollerar automatiskt om din gateway rapporterar detta.",
+          "no": "Alle batterier er slått av, eller et batteri melder en alarm. Homey sjekker automatisk om gatewayen din melder dette.",
+          "es": "Todas las baterías están apagadas o una batería indica una alarma. Homey comprueba automáticamente si tu pasarela lo indica.",
+          "da": "Alle batterier er slukket, eller et batteri melder en alarm. Homey tjekker automatisk, om din gateway melder dette.",
+          "ru": "Все батареи отключены или батарея сообщает об аварии. Homey автоматически проверяет, передаёт ли это ваш шлюз.",
+          "pl": "Wszystkie baterie są wyłączone lub bateria zgłasza alarm. Homey automatycznie sprawdza, czy twoja bramka to zgłasza.",
+          "ko": "모든 배터리가 꺼졌거나 배터리가 경보를 보고합니다. 게이트웨이가 이를 보고하는지 Homey가 자동으로 확인합니다.",
+          "ar": "جميع البطاريات متوقفة أو تُبلغ بطارية عن إنذار. يتحقق Homey تلقائيًا مما إذا كانت بوابتك تُبلغ بذلك."
+        },
+        "tokens": [
+          {
+            "name": "status",
+            "type": "string",
+            "title": {
+              "en": "Status",
+              "nl": "Status",
+              "de": "Status",
+              "fr": "État",
+              "it": "Stato",
+              "sv": "Status",
+              "no": "Status",
+              "es": "Estado",
+              "da": "Status",
+              "ru": "Состояние",
+              "pl": "Stan",
+              "ko": "상태",
+              "ar": "الحالة"
+            },
+            "example": {
+              "en": "faulty"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          }
+        ]
+      },
+      {
+        "id": "battery_problem_cleared",
+        "title": {
+          "en": "The battery problem cleared",
+          "nl": "Het batterijprobleem is opgelost",
+          "de": "Das Batterieproblem ist behoben",
+          "fr": "Le problème de batterie a disparu",
+          "it": "Il problema alla batteria è risolto",
+          "sv": "Batteriproblemet är åtgärdat",
+          "no": "Batteriproblemet er borte",
+          "es": "El problema de la batería se ha resuelto",
+          "da": "Batteriproblemet er væk",
+          "ru": "Проблема с батареей устранена",
+          "pl": "Problem z baterią ustąpił",
+          "ko": "배터리 문제가 해제됨",
+          "ar": "زالت مشكلة البطارية"
+        },
+        "hint": {
+          "en": "All batteries shut down, or a battery reports an alarm. Homey checks automatically whether your gateway reports this.",
+          "nl": "Alle batterijen zijn uitgeschakeld, of een batterij meldt een alarm. Homey controleert automatisch of je gateway dit meldt.",
+          "de": "Alle Batterien sind abgeschaltet oder eine Batterie meldet einen Alarm. Homey prüft automatisch, ob dein Gateway das meldet.",
+          "fr": "Toutes les batteries sont arrêtées, ou une batterie signale une alarme. Homey vérifie automatiquement si votre passerelle le signale.",
+          "it": "Tutte le batterie sono spente o una batteria segnala un allarme. Homey verifica automaticamente se il tuo gateway lo segnala.",
+          "sv": "Alla batterier är avstängda eller ett batteri rapporterar ett larm. Homey kontrollerar automatiskt om din gateway rapporterar detta.",
+          "no": "Alle batterier er slått av, eller et batteri melder en alarm. Homey sjekker automatisk om gatewayen din melder dette.",
+          "es": "Todas las baterías están apagadas o una batería indica una alarma. Homey comprueba automáticamente si tu pasarela lo indica.",
+          "da": "Alle batterier er slukket, eller et batteri melder en alarm. Homey tjekker automatisk, om din gateway melder dette.",
+          "ru": "Все батареи отключены или батарея сообщает об аварии. Homey автоматически проверяет, передаёт ли это ваш шлюз.",
+          "pl": "Wszystkie baterie są wyłączone lub bateria zgłasza alarm. Homey automatycznie sprawdza, czy twoja bramka to zgłasza.",
+          "ko": "모든 배터리가 꺼졌거나 배터리가 경보를 보고합니다. 게이트웨이가 이를 보고하는지 Homey가 자동으로 확인합니다.",
+          "ar": "جميع البطاريات متوقفة أو تُبلغ بطارية عن إنذار. يتحقق Homey تلقائيًا مما إذا كانت بوابتك تُبلغ بذلك."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          }
+        ]
+      },
+      {
+        "id": "grid_export_started",
+        "title": {
+          "en": "Export to the grid started",
+          "nl": "Teruglevering aan het net is gestart",
+          "de": "Einspeisung ins Netz hat begonnen",
+          "fr": "L'injection sur le réseau a commencé",
+          "it": "L'immissione in rete è iniziata",
+          "sv": "Försäljning till elnätet startade",
+          "no": "Eksport til nettet startet",
+          "es": "Comenzó la exportación a la red",
+          "da": "Salg til nettet startede",
+          "ru": "Началась отдача в сеть",
+          "pl": "Rozpoczęło się oddawanie do sieci",
+          "ko": "계통 송전 시작됨",
+          "ar": "بدأ التصدير إلى الشبكة"
+        },
+        "hint": {
+          "en": "Starts at 50 W and stops below 20 W, so small fluctuations are ignored.",
+          "nl": "Start vanaf 50 W en stopt onder 20 W, zodat kleine schommelingen genegeerd worden.",
+          "de": "Beginnt ab 50 W und endet unter 20 W, damit kleine Schwankungen ignoriert werden.",
+          "fr": "Démarre à partir de 50 W et s’arrête sous 20 W, pour ignorer les petites fluctuations.",
+          "it": "Inizia da 50 W e si ferma sotto 20 W, così le piccole oscillazioni vengono ignorate.",
+          "sv": "Startar vid 50 W och slutar under 20 W, så att små svängningar ignoreras.",
+          "no": "Starter ved 50 W og stopper under 20 W, slik at små svingninger ignoreres.",
+          "es": "Empieza a partir de 50 W y se detiene por debajo de 20 W, para ignorar pequeñas fluctuaciones.",
+          "da": "Starter ved 50 W og stopper under 20 W, så små udsving ignoreres.",
+          "ru": "Начинается от 50 Вт и заканчивается ниже 20 Вт, чтобы игнорировать небольшие колебания.",
+          "pl": "Zaczyna się od 50 W i kończy poniżej 20 W, więc drobne wahania są pomijane.",
+          "ko": "50 W 이상에서 시작하고 20 W 미만에서 멈추므로 작은 변동은 무시됩니다.",
+          "ar": "يبدأ عند 50 واط ويتوقف دون 20 واط، لتجاهل التقلبات الصغيرة."
+        },
+        "tokens": [
+          {
+            "name": "power",
+            "type": "number",
+            "title": {
+              "en": "Grid power",
+              "nl": "Netvermogen",
+              "de": "Netzleistung",
+              "fr": "Puissance réseau",
+              "it": "Potenza di rete",
+              "sv": "Nätets effekt",
+              "no": "Netteffekt",
+              "es": "Potencia de red",
+              "da": "Nettets effekt",
+              "ru": "Мощность сети",
+              "pl": "Moc sieci",
+              "ko": "계통 전력",
+              "ar": "قدرة الشبكة"
+            },
+            "example": 1200
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=grid"
+          }
+        ]
+      },
+      {
+        "id": "grid_export_stopped",
+        "title": {
+          "en": "Export to the grid stopped",
+          "nl": "Teruglevering aan het net is gestopt",
+          "de": "Einspeisung ins Netz hat aufgehört",
+          "fr": "L'injection sur le réseau s'est arrêtée",
+          "it": "L'immissione in rete si è fermata",
+          "sv": "Försäljning till elnätet slutade",
+          "no": "Eksport til nettet stoppet",
+          "es": "Se detuvo la exportación a la red",
+          "da": "Salg til nettet stoppede",
+          "ru": "Отдача в сеть прекратилась",
+          "pl": "Oddawanie do sieci się zakończyło",
+          "ko": "계통 송전 멈춤",
+          "ar": "توقف التصدير إلى الشبكة"
+        },
+        "hint": {
+          "en": "Starts at 50 W and stops below 20 W, so small fluctuations are ignored.",
+          "nl": "Start vanaf 50 W en stopt onder 20 W, zodat kleine schommelingen genegeerd worden.",
+          "de": "Beginnt ab 50 W und endet unter 20 W, damit kleine Schwankungen ignoriert werden.",
+          "fr": "Démarre à partir de 50 W et s’arrête sous 20 W, pour ignorer les petites fluctuations.",
+          "it": "Inizia da 50 W e si ferma sotto 20 W, così le piccole oscillazioni vengono ignorate.",
+          "sv": "Startar vid 50 W och slutar under 20 W, så att små svängningar ignoreras.",
+          "no": "Starter ved 50 W og stopper under 20 W, slik at små svingninger ignoreres.",
+          "es": "Empieza a partir de 50 W y se detiene por debajo de 20 W, para ignorar pequeñas fluctuaciones.",
+          "da": "Starter ved 50 W og stopper under 20 W, så små udsving ignoreres.",
+          "ru": "Начинается от 50 Вт и заканчивается ниже 20 Вт, чтобы игнорировать небольшие колебания.",
+          "pl": "Zaczyna się od 50 W i kończy poniżej 20 W, więc drobne wahania są pomijane.",
+          "ko": "50 W 이상에서 시작하고 20 W 미만에서 멈추므로 작은 변동은 무시됩니다.",
+          "ar": "يبدأ عند 50 واط ويتوقف دون 20 واط، لتجاهل التقلبات الصغيرة."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=grid"
+          }
+        ]
+      },
+      {
+        "id": "grid_import_started",
+        "title": {
+          "en": "Import from the grid started",
+          "nl": "Afname van het net is gestart",
+          "de": "Netzbezug hat begonnen",
+          "fr": "Le soutirage du réseau a commencé",
+          "it": "Il prelievo dalla rete è iniziato",
+          "sv": "Köp från elnätet startade",
+          "no": "Import fra nettet startet",
+          "es": "Comenzó la importación de la red",
+          "da": "Køb fra nettet startede",
+          "ru": "Начался отбор из сети",
+          "pl": "Rozpoczął się pobór z sieci",
+          "ko": "계통 수전 시작됨",
+          "ar": "بدأ الاستيراد من الشبكة"
+        },
+        "hint": {
+          "en": "Starts at 50 W and stops below 20 W, so small fluctuations are ignored.",
+          "nl": "Start vanaf 50 W en stopt onder 20 W, zodat kleine schommelingen genegeerd worden.",
+          "de": "Beginnt ab 50 W und endet unter 20 W, damit kleine Schwankungen ignoriert werden.",
+          "fr": "Démarre à partir de 50 W et s’arrête sous 20 W, pour ignorer les petites fluctuations.",
+          "it": "Inizia da 50 W e si ferma sotto 20 W, così le piccole oscillazioni vengono ignorate.",
+          "sv": "Startar vid 50 W och slutar under 20 W, så att små svängningar ignoreras.",
+          "no": "Starter ved 50 W og stopper under 20 W, slik at små svingninger ignoreres.",
+          "es": "Empieza a partir de 50 W y se detiene por debajo de 20 W, para ignorar pequeñas fluctuaciones.",
+          "da": "Starter ved 50 W og stopper under 20 W, så små udsving ignoreres.",
+          "ru": "Начинается от 50 Вт и заканчивается ниже 20 Вт, чтобы игнорировать небольшие колебания.",
+          "pl": "Zaczyna się od 50 W i kończy poniżej 20 W, więc drobne wahania są pomijane.",
+          "ko": "50 W 이상에서 시작하고 20 W 미만에서 멈추므로 작은 변동은 무시됩니다.",
+          "ar": "يبدأ عند 50 واط ويتوقف دون 20 واط، لتجاهل التقلبات الصغيرة."
+        },
+        "tokens": [
+          {
+            "name": "power",
+            "type": "number",
+            "title": {
+              "en": "Grid power",
+              "nl": "Netvermogen",
+              "de": "Netzleistung",
+              "fr": "Puissance réseau",
+              "it": "Potenza di rete",
+              "sv": "Nätets effekt",
+              "no": "Netteffekt",
+              "es": "Potencia de red",
+              "da": "Nettets effekt",
+              "ru": "Мощность сети",
+              "pl": "Moc sieci",
+              "ko": "계통 전력",
+              "ar": "قدرة الشبكة"
+            },
+            "example": 1200
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=grid"
+          }
+        ]
+      },
+      {
+        "id": "grid_import_stopped",
+        "title": {
+          "en": "Import from the grid stopped",
+          "nl": "Afname van het net is gestopt",
+          "de": "Netzbezug hat aufgehört",
+          "fr": "Le soutirage du réseau s'est arrêté",
+          "it": "Il prelievo dalla rete si è fermato",
+          "sv": "Köp från elnätet slutade",
+          "no": "Import fra nettet stoppet",
+          "es": "Se detuvo la importación de la red",
+          "da": "Køb fra nettet stoppede",
+          "ru": "Отбор из сети прекратился",
+          "pl": "Pobór z sieci się zakończył",
+          "ko": "계통 수전 멈춤",
+          "ar": "توقف الاستيراد من الشبكة"
+        },
+        "hint": {
+          "en": "Starts at 50 W and stops below 20 W, so small fluctuations are ignored.",
+          "nl": "Start vanaf 50 W en stopt onder 20 W, zodat kleine schommelingen genegeerd worden.",
+          "de": "Beginnt ab 50 W und endet unter 20 W, damit kleine Schwankungen ignoriert werden.",
+          "fr": "Démarre à partir de 50 W et s’arrête sous 20 W, pour ignorer les petites fluctuations.",
+          "it": "Inizia da 50 W e si ferma sotto 20 W, così le piccole oscillazioni vengono ignorate.",
+          "sv": "Startar vid 50 W och slutar under 20 W, så att små svängningar ignoreras.",
+          "no": "Starter ved 50 W og stopper under 20 W, slik at små svingninger ignoreres.",
+          "es": "Empieza a partir de 50 W y se detiene por debajo de 20 W, para ignorar pequeñas fluctuaciones.",
+          "da": "Starter ved 50 W og stopper under 20 W, så små udsving ignoreres.",
+          "ru": "Начинается от 50 Вт и заканчивается ниже 20 Вт, чтобы игнорировать небольшие колебания.",
+          "pl": "Zaczyna się od 50 W i kończy poniżej 20 W, więc drobne wahania są pomijane.",
+          "ko": "50 W 이상에서 시작하고 20 W 미만에서 멈추므로 작은 변동은 무시됩니다.",
+          "ar": "يبدأ عند 50 واط ويتوقف دون 20 واط، لتجاهل التقلبات الصغيرة."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=grid"
+          }
+        ]
+      },
+      {
+        "id": "grid_export_above",
+        "title": {
+          "en": "Export rose above a power",
+          "nl": "Teruglevering is boven een vermogen gestegen",
+          "de": "Einspeisung ist über eine Leistung gestiegen",
+          "fr": "L'injection a dépassé une puissance",
+          "it": "L'immissione ha superato una potenza",
+          "sv": "Försäljningen steg över en effekt",
+          "no": "Eksporten steg over en effekt",
+          "es": "La exportación superó una potencia",
+          "da": "Salget steg over en effekt",
+          "ru": "Отдача в сеть превысила мощность",
+          "pl": "Oddawanie przekroczyło moc",
+          "ko": "송전이 기준 출력을 넘음",
+          "ar": "ارتفع التصدير فوق قدرة معيّنة"
+        },
+        "titleFormatted": {
+          "en": "Export rose above [[power]] W",
+          "nl": "Teruglevering is boven [[power]] W gestegen",
+          "de": "Einspeisung ist über [[power]] W gestiegen",
+          "fr": "L'injection a dépassé [[power]] W",
+          "it": "L'immissione ha superato [[power]] W",
+          "sv": "Försäljningen steg över [[power]] W",
+          "no": "Eksporten steg over [[power]] W",
+          "es": "La exportación superó [[power]] W",
+          "da": "Salget steg over [[power]] W",
+          "ru": "Отдача в сеть превысила [[power]] Вт",
+          "pl": "Oddawanie przekroczyło [[power]] W",
+          "ko": "송전이 [[power]] W를 넘음",
+          "ar": "ارتفع التصدير فوق [[power]] واط"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=grid"
+          },
+          {
+            "type": "number",
+            "name": "power",
+            "title": {
+              "en": "Power",
+              "nl": "Vermogen",
+              "de": "Leistung",
+              "fr": "Puissance",
+              "it": "Potenza",
+              "sv": "Effekt",
+              "no": "Effekt",
+              "es": "Potencia",
+              "da": "Effekt",
+              "ru": "Мощность",
+              "pl": "Moc",
+              "ko": "출력",
+              "ar": "القدرة"
+            },
+            "min": 0,
+            "max": 50000,
+            "step": 50,
+            "placeholder": {
+              "en": "1000"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "power",
+            "type": "number",
+            "title": {
+              "en": "Grid power",
+              "nl": "Netvermogen",
+              "de": "Netzleistung",
+              "fr": "Puissance réseau",
+              "it": "Potenza di rete",
+              "sv": "Nätets effekt",
+              "no": "Netteffekt",
+              "es": "Potencia de red",
+              "da": "Nettets effekt",
+              "ru": "Мощность сети",
+              "pl": "Moc sieci",
+              "ko": "계통 전력",
+              "ar": "قدرة الشبكة"
+            },
+            "example": 1200
+          }
+        ]
+      },
+      {
+        "id": "grid_import_above",
+        "title": {
+          "en": "Import rose above a power",
+          "nl": "Afname is boven een vermogen gestegen",
+          "de": "Netzbezug ist über eine Leistung gestiegen",
+          "fr": "Le soutirage a dépassé une puissance",
+          "it": "Il prelievo ha superato una potenza",
+          "sv": "Köpet steg över en effekt",
+          "no": "Importen steg over en effekt",
+          "es": "La importación superó una potencia",
+          "da": "Købet steg over en effekt",
+          "ru": "Отбор из сети превысил мощность",
+          "pl": "Pobór przekroczył moc",
+          "ko": "수전이 기준 출력을 넘음",
+          "ar": "ارتفع الاستيراد فوق قدرة معيّنة"
+        },
+        "titleFormatted": {
+          "en": "Import rose above [[power]] W",
+          "nl": "Afname is boven [[power]] W gestegen",
+          "de": "Netzbezug ist über [[power]] W gestiegen",
+          "fr": "Le soutirage a dépassé [[power]] W",
+          "it": "Il prelievo ha superato [[power]] W",
+          "sv": "Köpet steg över [[power]] W",
+          "no": "Importen steg over [[power]] W",
+          "es": "La importación superó [[power]] W",
+          "da": "Købet steg over [[power]] W",
+          "ru": "Отбор из сети превысил [[power]] Вт",
+          "pl": "Pobór przekroczył [[power]] W",
+          "ko": "수전이 [[power]] W를 넘음",
+          "ar": "ارتفع الاستيراد فوق [[power]] واط"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=grid"
+          },
+          {
+            "type": "number",
+            "name": "power",
+            "title": {
+              "en": "Power",
+              "nl": "Vermogen",
+              "de": "Leistung",
+              "fr": "Puissance",
+              "it": "Potenza",
+              "sv": "Effekt",
+              "no": "Effekt",
+              "es": "Potencia",
+              "da": "Effekt",
+              "ru": "Мощность",
+              "pl": "Moc",
+              "ko": "출력",
+              "ar": "القدرة"
+            },
+            "min": 0,
+            "max": 50000,
+            "step": 50,
+            "placeholder": {
+              "en": "1000"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "power",
+            "type": "number",
+            "title": {
+              "en": "Grid power",
+              "nl": "Netvermogen",
+              "de": "Netzleistung",
+              "fr": "Puissance réseau",
+              "it": "Potenza di rete",
+              "sv": "Nätets effekt",
+              "no": "Netteffekt",
+              "es": "Potencia de red",
+              "da": "Nettets effekt",
+              "ru": "Мощность сети",
+              "pl": "Moc sieci",
+              "ko": "계통 전력",
+              "ar": "قدرة الشبكة"
+            },
+            "example": 1200
+          }
+        ]
+      },
+      {
+        "id": "grid_outage_started",
+        "title": {
+          "en": "A grid outage started",
+          "nl": "Er is een stroomstoring op het net",
+          "de": "Ein Netzausfall hat begonnen",
+          "fr": "Une coupure du réseau a commencé",
+          "it": "È iniziata un’interruzione di rete",
+          "sv": "Ett strömavbrott på nätet började",
+          "no": "Et strømbrudd på nettet startet",
+          "es": "Comenzó un corte de la red",
+          "da": "En strømafbrydelse på nettet startede",
+          "ru": "Началось отключение сети",
+          "pl": "Rozpoczęła się awaria sieci",
+          "ko": "정전이 시작됨",
+          "ar": "بدأ انقطاع الشبكة"
+        },
+        "hint": {
+          "en": "The gateway reports off-grid operation (backup). Homey checks automatically whether your gateway reports this.",
+          "nl": "De gateway meldt werking los van het net (noodstroom). Homey controleert automatisch of je gateway dit meldt.",
+          "de": "Das Gateway meldet Inselbetrieb (Notstrom). Homey prüft automatisch, ob dein Gateway das meldet.",
+          "fr": "La passerelle signale un fonctionnement hors réseau (secours). Homey vérifie automatiquement si votre passerelle le signale.",
+          "it": "Il gateway segnala il funzionamento fuori rete (backup). Homey verifica automaticamente se il tuo gateway lo segnala.",
+          "sv": "Gatewayen rapporterar drift utan elnät (reservkraft). Homey kontrollerar automatiskt om din gateway rapporterar detta.",
+          "no": "Gatewayen melder drift uten strømnett (reservestrøm). Homey sjekker automatisk om gatewayen din melder dette.",
+          "es": "La pasarela indica funcionamiento sin red (respaldo). Homey comprueba automáticamente si tu pasarela lo indica.",
+          "da": "Gatewayen melder drift uden elnet (nødstrøm). Homey tjekker automatisk, om din gateway melder dette.",
+          "ru": "Шлюз сообщает об автономной работе (резерв). Homey автоматически проверяет, передаёт ли это ваш шлюз.",
+          "pl": "Bramka zgłasza pracę poza siecią (zasilanie awaryjne). Homey automatycznie sprawdza, czy twoja bramka to zgłasza.",
+          "ko": "게이트웨이가 독립 운전(백업)을 보고합니다. 게이트웨이가 이를 보고하는지 Homey가 자동으로 확인합니다.",
+          "ar": "تُبلغ البوابة عن التشغيل دون الشبكة (احتياطي). يتحقق Homey تلقائيًا مما إذا كانت بوابتك تُبلغ بذلك."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=grid"
+          }
+        ]
+      },
+      {
+        "id": "grid_outage_ended",
+        "title": {
+          "en": "The grid outage ended",
+          "nl": "De stroomstoring op het net is voorbij",
+          "de": "Der Netzausfall ist beendet",
+          "fr": "La coupure du réseau est terminée",
+          "it": "L’interruzione di rete è terminata",
+          "sv": "Strömavbrottet på nätet är över",
+          "no": "Strømbruddet på nettet er over",
+          "es": "El corte de la red terminó",
+          "da": "Strømafbrydelsen på nettet er slut",
+          "ru": "Отключение сети закончилось",
+          "pl": "Awaria sieci się zakończyła",
+          "ko": "정전이 끝남",
+          "ar": "انتهى انقطاع الشبكة"
+        },
+        "hint": {
+          "en": "The gateway reports off-grid operation (backup). Homey checks automatically whether your gateway reports this.",
+          "nl": "De gateway meldt werking los van het net (noodstroom). Homey controleert automatisch of je gateway dit meldt.",
+          "de": "Das Gateway meldet Inselbetrieb (Notstrom). Homey prüft automatisch, ob dein Gateway das meldet.",
+          "fr": "La passerelle signale un fonctionnement hors réseau (secours). Homey vérifie automatiquement si votre passerelle le signale.",
+          "it": "Il gateway segnala il funzionamento fuori rete (backup). Homey verifica automaticamente se il tuo gateway lo segnala.",
+          "sv": "Gatewayen rapporterar drift utan elnät (reservkraft). Homey kontrollerar automatiskt om din gateway rapporterar detta.",
+          "no": "Gatewayen melder drift uten strømnett (reservestrøm). Homey sjekker automatisk om gatewayen din melder dette.",
+          "es": "La pasarela indica funcionamiento sin red (respaldo). Homey comprueba automáticamente si tu pasarela lo indica.",
+          "da": "Gatewayen melder drift uden elnet (nødstrøm). Homey tjekker automatisk, om din gateway melder dette.",
+          "ru": "Шлюз сообщает об автономной работе (резерв). Homey автоматически проверяет, передаёт ли это ваш шлюз.",
+          "pl": "Bramka zgłasza pracę poza siecią (zasilanie awaryjne). Homey automatycznie sprawdza, czy twoja bramka to zgłasza.",
+          "ko": "게이트웨이가 독립 운전(백업)을 보고합니다. 게이트웨이가 이를 보고하는지 Homey가 자동으로 확인합니다.",
+          "ar": "تُبلغ البوابة عن التشغيل دون الشبكة (احتياطي). يتحقق Homey تلقائيًا مما إذا كانت بوابتك تُبلغ بذلك."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=grid"
+          }
+        ]
+      },
+      {
+        "id": "system_fault_started",
+        "title": {
+          "en": "A system fault started",
+          "nl": "Er is een systeemstoring",
+          "de": "Eine Systemstörung ist aufgetreten",
+          "fr": "Un défaut système est survenu",
+          "it": "Si è verificato un guasto di sistema",
+          "sv": "Ett systemfel uppstod",
+          "no": "Det oppstod en systemfeil",
+          "es": "Se produjo una avería del sistema",
+          "da": "Der opstod en systemfejl",
+          "ru": "Возникла системная неисправность",
+          "pl": "Wystąpiła awaria systemu",
+          "ko": "시스템 고장이 발생함",
+          "ar": "حدث عطل في النظام"
+        },
+        "hint": {
+          "en": "The gateway reports a fault of the Atmoce system (power station status). Details are in the Atmozen app.",
+          "nl": "De gateway meldt een storing van het Atmoce-systeem (status van de installatie). Details staan in de Atmozen-app.",
+          "de": "Das Gateway meldet eine Störung des Atmoce-Systems (Anlagenstatus). Details stehen in der Atmozen-App.",
+          "fr": "La passerelle signale un défaut du système Atmoce (état de l'installation). Les détails sont dans l'application Atmozen.",
+          "it": "Il gateway segnala un guasto del sistema Atmoce (stato dell'impianto). I dettagli sono nell'app Atmozen.",
+          "sv": "Gatewayen rapporterar ett fel i Atmoce-systemet (anläggningsstatus). Detaljer finns i Atmozen-appen.",
+          "no": "Gatewayen melder en feil i Atmoce-systemet (anleggsstatus). Detaljer finnes i Atmozen-appen.",
+          "es": "La pasarela indica una avería del sistema Atmoce (estado de la instalación). Los detalles están en la app Atmozen.",
+          "da": "Gatewayen melder en fejl i Atmoce-systemet (anlæggets status). Detaljer findes i Atmozen-appen.",
+          "ru": "Шлюз сообщает о неисправности системы Atmoce (статус станции). Подробности — в приложении Atmozen.",
+          "pl": "Bramka zgłasza awarię systemu Atmoce (stan instalacji). Szczegóły znajdziesz w aplikacji Atmozen.",
+          "ko": "게이트웨이가 Atmoce 시스템 고장(발전소 상태)을 보고합니다. 자세한 내용은 Atmozen 앱에서 확인하세요.",
+          "ar": "تُبلغ البوابة عن عطل في نظام Atmoce (حالة المحطة). التفاصيل في تطبيق Atmozen."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=solar"
+          }
+        ]
+      },
+      {
+        "id": "system_fault_cleared",
+        "title": {
+          "en": "The system fault cleared",
+          "nl": "De systeemstoring is opgelost",
+          "de": "Die Systemstörung ist behoben",
+          "fr": "Le défaut système a disparu",
+          "it": "Il guasto di sistema è stato risolto",
+          "sv": "Systemfelet är åtgärdat",
+          "no": "Systemfeilen er borte",
+          "es": "La avería del sistema se ha resuelto",
+          "da": "Systemfejlen er væk",
+          "ru": "Системная неисправность устранена",
+          "pl": "Awaria systemu ustąpiła",
+          "ko": "시스템 고장이 해제됨",
+          "ar": "زال عطل النظام"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=solar"
+          }
+        ]
+      },
+      {
+        "id": "production_started",
+        "title": {
+          "en": "Solar production started",
+          "nl": "Zonne-opbrengst is gestart",
+          "de": "Solarproduktion hat begonnen",
+          "fr": "La production solaire a commencé",
+          "it": "La produzione solare è iniziata",
+          "sv": "Solproduktionen startade",
+          "no": "Solproduksjonen startet",
+          "es": "Comenzó la producción solar",
+          "da": "Solproduktionen startede",
+          "ru": "Началась солнечная генерация",
+          "pl": "Rozpoczęła się produkcja PV",
+          "ko": "태양광 발전 시작됨",
+          "ar": "بدأ إنتاج الطاقة الشمسية"
+        },
+        "hint": {
+          "en": "Starts at 20 W and stops below 5 W.",
+          "nl": "Start vanaf 20 W en stopt onder 5 W.",
+          "de": "Beginnt ab 20 W und endet unter 5 W.",
+          "fr": "Démarre à partir de 20 W et s’arrête sous 5 W.",
+          "it": "Inizia da 20 W e si ferma sotto 5 W.",
+          "sv": "Startar vid 20 W och slutar under 5 W.",
+          "no": "Starter ved 20 W og stopper under 5 W.",
+          "es": "Empieza a partir de 20 W y se detiene por debajo de 5 W.",
+          "da": "Starter ved 20 W og stopper under 5 W.",
+          "ru": "Начинается от 20 Вт и заканчивается ниже 5 Вт.",
+          "pl": "Zaczyna się od 20 W i kończy poniżej 5 W.",
+          "ko": "20 W 이상에서 시작하고 5 W 미만에서 멈춥니다.",
+          "ar": "يبدأ عند 20 واط ويتوقف دون 5 واط."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=solar"
+          }
+        ]
+      },
+      {
+        "id": "production_stopped",
+        "title": {
+          "en": "Solar production stopped",
+          "nl": "Zonne-opbrengst is gestopt",
+          "de": "Solarproduktion hat aufgehört",
+          "fr": "La production solaire s'est arrêtée",
+          "it": "La produzione solare si è fermata",
+          "sv": "Solproduktionen slutade",
+          "no": "Solproduksjonen stoppet",
+          "es": "Se detuvo la producción solar",
+          "da": "Solproduktionen stoppede",
+          "ru": "Солнечная генерация прекратилась",
+          "pl": "Produkcja PV się zakończyła",
+          "ko": "태양광 발전 멈춤",
+          "ar": "توقف إنتاج الطاقة الشمسية"
+        },
+        "hint": {
+          "en": "Starts at 20 W and stops below 5 W.",
+          "nl": "Start vanaf 20 W en stopt onder 5 W.",
+          "de": "Beginnt ab 20 W und endet unter 5 W.",
+          "fr": "Démarre à partir de 20 W et s’arrête sous 5 W.",
+          "it": "Inizia da 20 W e si ferma sotto 5 W.",
+          "sv": "Startar vid 20 W och slutar under 5 W.",
+          "no": "Starter ved 20 W og stopper under 5 W.",
+          "es": "Empieza a partir de 20 W y se detiene por debajo de 5 W.",
+          "da": "Starter ved 20 W og stopper under 5 W.",
+          "ru": "Начинается от 20 Вт и заканчивается ниже 5 Вт.",
+          "pl": "Zaczyna się od 20 W i kończy poniżej 5 W.",
+          "ko": "20 W 이상에서 시작하고 5 W 미만에서 멈춥니다.",
+          "ar": "يبدأ عند 20 واط ويتوقف دون 5 واط."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=solar"
+          }
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "atmoce_battery_mode_is",
+        "title": {
+          "en": "Battery mode is !{{|not}} …",
+          "nl": "Batterijmodus is !{{|niet}} …",
+          "de": "Batteriemodus ist !{{|nicht}} …",
+          "fr": "Le mode batterie !{{est|n'est pas}} …",
+          "it": "La modalità batteria !{{è|non è}} …",
+          "sv": "Batteriläget är !{{|inte}} …",
+          "no": "Batterimodus er !{{|ikke}} …",
+          "es": "El modo de batería !{{es|no es}} …",
+          "da": "Batteritilstand er !{{|ikke}} …",
+          "ru": "Режим батареи !{{|не}} …",
+          "pl": "Tryb baterii !{{jest|nie jest}} …",
+          "ko": "배터리 모드가 …!{{입니다|이(가) 아닙니다}}",
+          "ar": "وضع البطارية !{{هو|ليس}} …"
+        },
+        "titleFormatted": {
+          "en": "Battery mode is !{{|not}} [[mode]]",
+          "nl": "Batterijmodus is !{{|niet}} [[mode]]",
+          "de": "Batteriemodus ist !{{|nicht}} [[mode]]",
+          "fr": "Le mode batterie !{{est|n'est pas}} [[mode]]",
+          "it": "La modalità batteria !{{è|non è}} [[mode]]",
+          "sv": "Batteriläget är !{{|inte}} [[mode]]",
+          "no": "Batterimodus er !{{|ikke}} [[mode]]",
+          "es": "El modo de batería !{{es|no es}} [[mode]]",
+          "da": "Batteritilstand er !{{|ikke}} [[mode]]",
+          "ru": "Режим батареи !{{|не}} [[mode]]",
+          "pl": "Tryb baterii !{{jest|nie jest}} [[mode]]",
+          "ko": "배터리 모드가 [[mode]]!{{입니다|이(가) 아닙니다}}",
+          "ar": "وضع البطارية !{{هو|ليس}} [[mode]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          },
+          {
+            "type": "dropdown",
+            "name": "mode",
+            "title": {
+              "en": "Mode",
+              "nl": "Modus",
+              "de": "Modus",
+              "fr": "Mode",
+              "it": "Modalità",
+              "sv": "Läge",
+              "no": "Modus",
+              "es": "Modo",
+              "da": "Tilstand",
+              "ru": "Режим",
+              "pl": "Tryb",
+              "ko": "모드",
+              "ar": "الوضع"
+            },
+            "values": [
+              {
+                "id": "self_consumption",
+                "title": {
+                  "en": "Self-consumption",
+                  "nl": "Eigen verbruik",
+                  "de": "Eigenverbrauch",
+                  "fr": "Autoconsommation",
+                  "it": "Autoconsumo",
+                  "sv": "Egenförbrukning",
+                  "no": "Egenforbruk",
+                  "es": "Autoconsumo",
+                  "da": "Eget forbrug",
+                  "ru": "Собственное потребление",
+                  "pl": "Autokonsumpcja",
+                  "ko": "자가 소비",
+                  "ar": "الاستهلاك الذاتي"
+                }
+              },
+              {
+                "id": "time_of_use",
+                "title": {
+                  "en": "Time of use",
+                  "nl": "Tijdsafhankelijk",
+                  "de": "Zeitabhängig",
+                  "fr": "Plages horaires",
+                  "it": "Fasce orarie",
+                  "sv": "Tidsstyrt",
+                  "no": "Tidsstyrt",
+                  "es": "Por franjas horarias",
+                  "da": "Tidsstyret",
+                  "ru": "По времени суток",
+                  "pl": "Według taryfy czasowej",
+                  "ko": "시간대별",
+                  "ar": "حسب وقت الاستخدام"
+                }
+              },
+              {
+                "id": "remote",
+                "title": {
+                  "en": "Remote control",
+                  "nl": "Op afstand gestuurd",
+                  "de": "Fernsteuerung",
+                  "fr": "Pilotage à distance",
+                  "it": "Controllo remoto",
+                  "sv": "Fjärrstyrt",
+                  "no": "Fjernstyrt",
+                  "es": "Control remoto",
+                  "da": "Fjernstyret",
+                  "ru": "Удалённое управление",
+                  "pl": "Sterowanie zdalne",
+                  "ko": "원격 제어",
+                  "ar": "تحكم عن بُعد"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "battery_level_is_above",
+        "title": {
+          "en": "Battery level !{{is|is not}} above a level",
+          "nl": "Batterijniveau !{{is|is niet}} boven een niveau",
+          "de": "Ladestand !{{ist|ist nicht}} über einem Wert",
+          "fr": "Le niveau de batterie !{{est|n'est pas}} au-dessus d'un seuil",
+          "it": "Il livello batteria !{{è|non è}} sopra una soglia",
+          "sv": "Batterinivån !{{är|är inte}} över en nivå",
+          "no": "Batterinivået !{{er|er ikke}} over et nivå",
+          "es": "El nivel de batería !{{está|no está}} por encima de un umbral",
+          "da": "Batteriniveauet !{{er|er ikke}} over et niveau",
+          "ru": "Уровень заряда !{{выше|не выше}} порога",
+          "pl": "Poziom baterii !{{jest|nie jest}} powyżej progu",
+          "ko": "배터리 잔량이 기준 !{{초과|이하}}",
+          "ar": "مستوى البطارية !{{أعلى|ليس أعلى}} من حدّ معيّن"
+        },
+        "titleFormatted": {
+          "en": "Battery level !{{is|is not}} above [[level]]%",
+          "nl": "Batterijniveau !{{is|is niet}} boven [[level]]%",
+          "de": "Ladestand !{{ist|ist nicht}} über [[level]] %",
+          "fr": "Le niveau de batterie !{{est|n'est pas}} au-dessus de [[level]] %",
+          "it": "Il livello batteria !{{è|non è}} sopra il [[level]]%",
+          "sv": "Batterinivån !{{är|är inte}} över [[level]] %",
+          "no": "Batterinivået !{{er|er ikke}} over [[level]] %",
+          "es": "El nivel de batería !{{está|no está}} por encima del [[level]] %",
+          "da": "Batteriniveauet !{{er|er ikke}} over [[level]] %",
+          "ru": "Уровень заряда !{{выше|не выше}} [[level]] %",
+          "pl": "Poziom baterii !{{jest|nie jest}} powyżej [[level]]%",
+          "ko": "배터리 잔량이 [[level]]% !{{초과|이하}}",
+          "ar": "مستوى البطارية !{{أعلى|ليس أعلى}} من [[level]]٪"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          },
+          {
+            "type": "number",
+            "name": "level",
+            "title": {
+              "en": "Level",
+              "nl": "Niveau",
+              "de": "Wert",
+              "fr": "Niveau",
+              "it": "Livello",
+              "sv": "Nivå",
+              "no": "Nivå",
+              "es": "Nivel",
+              "da": "Niveau",
+              "ru": "Уровень",
+              "pl": "Poziom",
+              "ko": "수준",
+              "ar": "المستوى"
+            },
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "placeholder": {
+              "en": "20"
+            }
+          }
+        ]
+      },
+      {
+        "id": "battery_has_problem",
+        "title": {
+          "en": "There !{{is|is no}} battery problem",
+          "nl": "Er is !{{een|geen}} batterijprobleem",
+          "de": "Es liegt !{{ein|kein}} Batterieproblem vor",
+          "fr": "Il !{{y a|n'y a pas de}} problème de batterie",
+          "it": "!{{C’è|Non c’è}} un problema alla batteria",
+          "sv": "Det finns !{{ett|inget}} batteriproblem",
+          "no": "Det er !{{et|ingen}} batteriproblem",
+          "es": "!{{Hay|No hay}} un problema con la batería",
+          "da": "Der er !{{et|intet}} batteriproblem",
+          "ru": "Проблема с батареей !{{есть|отсутствует}}",
+          "pl": "Problem z baterią !{{występuje|nie występuje}}",
+          "ko": "배터리 문제가 !{{있음|없음}}",
+          "ar": "!{{توجد|لا توجد}} مشكلة في البطارية"
+        },
+        "hint": {
+          "en": "All batteries shut down, or a battery reports an alarm. Homey checks automatically whether your gateway reports this.",
+          "nl": "Alle batterijen zijn uitgeschakeld, of een batterij meldt een alarm. Homey controleert automatisch of je gateway dit meldt.",
+          "de": "Alle Batterien sind abgeschaltet oder eine Batterie meldet einen Alarm. Homey prüft automatisch, ob dein Gateway das meldet.",
+          "fr": "Toutes les batteries sont arrêtées, ou une batterie signale une alarme. Homey vérifie automatiquement si votre passerelle le signale.",
+          "it": "Tutte le batterie sono spente o una batteria segnala un allarme. Homey verifica automaticamente se il tuo gateway lo segnala.",
+          "sv": "Alla batterier är avstängda eller ett batteri rapporterar ett larm. Homey kontrollerar automatiskt om din gateway rapporterar detta.",
+          "no": "Alle batterier er slått av, eller et batteri melder en alarm. Homey sjekker automatisk om gatewayen din melder dette.",
+          "es": "Todas las baterías están apagadas o una batería indica una alarma. Homey comprueba automáticamente si tu pasarela lo indica.",
+          "da": "Alle batterier er slukket, eller et batteri melder en alarm. Homey tjekker automatisk, om din gateway melder dette.",
+          "ru": "Все батареи отключены или батарея сообщает об аварии. Homey автоматически проверяет, передаёт ли это ваш шлюз.",
+          "pl": "Wszystkie baterie są wyłączone lub bateria zgłasza alarm. Homey automatycznie sprawdza, czy twoja bramka to zgłasza.",
+          "ko": "모든 배터리가 꺼졌거나 배터리가 경보를 보고합니다. 게이트웨이가 이를 보고하는지 Homey가 자동으로 확인합니다.",
+          "ar": "جميع البطاريات متوقفة أو تُبلغ بطارية عن إنذار. يتحقق Homey تلقائيًا مما إذا كانت بوابتك تُبلغ بذلك."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          }
+        ]
+      },
+      {
+        "id": "grid_is_off",
+        "title": {
+          "en": "The home !{{is|is not}} running off-grid",
+          "nl": "Het huis !{{draait|draait niet}} los van het net",
+          "de": "Das Haus !{{läuft|läuft nicht}} netzunabhängig",
+          "fr": "La maison !{{fonctionne|ne fonctionne pas}} hors réseau",
+          "it": "La casa !{{funziona|non funziona}} fuori rete",
+          "sv": "Huset !{{körs|körs inte}} utan elnät",
+          "no": "Huset !{{går|går ikke}} uten strømnett",
+          "es": "La casa !{{funciona|no funciona}} sin red",
+          "da": "Huset !{{kører|kører ikke}} uden elnet",
+          "ru": "Дом !{{работает|не работает}} автономно",
+          "pl": "Dom !{{działa|nie działa}} poza siecią",
+          "ko": "집이 계통 없이 !{{운전 중|운전 중 아님}}",
+          "ar": "المنزل !{{يعمل|لا يعمل}} دون الشبكة"
+        },
+        "hint": {
+          "en": "The gateway reports off-grid operation (backup). Homey checks automatically whether your gateway reports this.",
+          "nl": "De gateway meldt werking los van het net (noodstroom). Homey controleert automatisch of je gateway dit meldt.",
+          "de": "Das Gateway meldet Inselbetrieb (Notstrom). Homey prüft automatisch, ob dein Gateway das meldet.",
+          "fr": "La passerelle signale un fonctionnement hors réseau (secours). Homey vérifie automatiquement si votre passerelle le signale.",
+          "it": "Il gateway segnala il funzionamento fuori rete (backup). Homey verifica automaticamente se il tuo gateway lo segnala.",
+          "sv": "Gatewayen rapporterar drift utan elnät (reservkraft). Homey kontrollerar automatiskt om din gateway rapporterar detta.",
+          "no": "Gatewayen melder drift uten strømnett (reservestrøm). Homey sjekker automatisk om gatewayen din melder dette.",
+          "es": "La pasarela indica funcionamiento sin red (respaldo). Homey comprueba automáticamente si tu pasarela lo indica.",
+          "da": "Gatewayen melder drift uden elnet (nødstrøm). Homey tjekker automatisk, om din gateway melder dette.",
+          "ru": "Шлюз сообщает об автономной работе (резерв). Homey автоматически проверяет, передаёт ли это ваш шлюз.",
+          "pl": "Bramka zgłasza pracę poza siecią (zasilanie awaryjne). Homey automatycznie sprawdza, czy twoja bramka to zgłasza.",
+          "ko": "게이트웨이가 독립 운전(백업)을 보고합니다. 게이트웨이가 이를 보고하는지 Homey가 자동으로 확인합니다.",
+          "ar": "تُبلغ البوابة عن التشغيل دون الشبكة (احتياطي). يتحقق Homey تلقائيًا مما إذا كانت بوابتك تُبلغ بذلك."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=grid"
+          }
+        ]
+      },
+      {
+        "id": "grid_is_exporting",
+        "title": {
+          "en": "!{{Is|Is not}} exporting to the grid",
+          "nl": "!{{Levert|Levert niet}} terug aan het net",
+          "de": "Speist !{{|nicht}} ins Netz ein",
+          "fr": "!{{Injecte|N'injecte pas}} sur le réseau",
+          "it": "!{{Sta|Non sta}} immettendo in rete",
+          "sv": "Säljer !{{|inte}} till elnätet",
+          "no": "Eksporterer !{{|ikke}} til nettet",
+          "es": "!{{Está|No está}} exportando a la red",
+          "da": "Sælger !{{|ikke}} til nettet",
+          "ru": "Отдача в сеть !{{идёт|не идёт}}",
+          "pl": "!{{Oddaje|Nie oddaje}} do sieci",
+          "ko": "계통으로 송전 !{{중|중 아님}}",
+          "ar": "!{{يصدّر|لا يصدّر}} إلى الشبكة"
+        },
+        "hint": {
+          "en": "Starts at 50 W and stops below 20 W, so small fluctuations are ignored.",
+          "nl": "Start vanaf 50 W en stopt onder 20 W, zodat kleine schommelingen genegeerd worden.",
+          "de": "Beginnt ab 50 W und endet unter 20 W, damit kleine Schwankungen ignoriert werden.",
+          "fr": "Démarre à partir de 50 W et s’arrête sous 20 W, pour ignorer les petites fluctuations.",
+          "it": "Inizia da 50 W e si ferma sotto 20 W, così le piccole oscillazioni vengono ignorate.",
+          "sv": "Startar vid 50 W och slutar under 20 W, så att små svängningar ignoreras.",
+          "no": "Starter ved 50 W og stopper under 20 W, slik at små svingninger ignoreres.",
+          "es": "Empieza a partir de 50 W y se detiene por debajo de 20 W, para ignorar pequeñas fluctuaciones.",
+          "da": "Starter ved 50 W og stopper under 20 W, så små udsving ignoreres.",
+          "ru": "Начинается от 50 Вт и заканчивается ниже 20 Вт, чтобы игнорировать небольшие колебания.",
+          "pl": "Zaczyna się od 50 W i kończy poniżej 20 W, więc drobne wahania są pomijane.",
+          "ko": "50 W 이상에서 시작하고 20 W 미만에서 멈추므로 작은 변동은 무시됩니다.",
+          "ar": "يبدأ عند 50 واط ويتوقف دون 20 واط، لتجاهل التقلبات الصغيرة."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=grid"
+          }
+        ]
+      },
+      {
+        "id": "grid_is_importing",
+        "title": {
+          "en": "!{{Is|Is not}} importing from the grid",
+          "nl": "!{{Neemt|Neemt niet}} af van het net",
+          "de": "Bezieht !{{|nicht}} aus dem Netz",
+          "fr": "!{{Soutire|Ne soutire pas}} du réseau",
+          "it": "!{{Sta|Non sta}} prelevando dalla rete",
+          "sv": "Köper !{{|inte}} från elnätet",
+          "no": "Importerer !{{|ikke}} fra nettet",
+          "es": "!{{Está|No está}} importando de la red",
+          "da": "Køber !{{|ikke}} fra nettet",
+          "ru": "Отбор из сети !{{идёт|не идёт}}",
+          "pl": "!{{Pobiera|Nie pobiera}} z sieci",
+          "ko": "계통에서 수전 !{{중|중 아님}}",
+          "ar": "!{{يستورد|لا يستورد}} من الشبكة"
+        },
+        "hint": {
+          "en": "Starts at 50 W and stops below 20 W, so small fluctuations are ignored.",
+          "nl": "Start vanaf 50 W en stopt onder 20 W, zodat kleine schommelingen genegeerd worden.",
+          "de": "Beginnt ab 50 W und endet unter 20 W, damit kleine Schwankungen ignoriert werden.",
+          "fr": "Démarre à partir de 50 W et s’arrête sous 20 W, pour ignorer les petites fluctuations.",
+          "it": "Inizia da 50 W e si ferma sotto 20 W, così le piccole oscillazioni vengono ignorate.",
+          "sv": "Startar vid 50 W och slutar under 20 W, så att små svängningar ignoreras.",
+          "no": "Starter ved 50 W og stopper under 20 W, slik at små svingninger ignoreres.",
+          "es": "Empieza a partir de 50 W y se detiene por debajo de 20 W, para ignorar pequeñas fluctuaciones.",
+          "da": "Starter ved 50 W og stopper under 20 W, så små udsving ignoreres.",
+          "ru": "Начинается от 50 Вт и заканчивается ниже 20 Вт, чтобы игнорировать небольшие колебания.",
+          "pl": "Zaczyna się od 50 W i kończy poniżej 20 W, więc drobne wahania są pomijane.",
+          "ko": "50 W 이상에서 시작하고 20 W 미만에서 멈추므로 작은 변동은 무시됩니다.",
+          "ar": "يبدأ عند 50 واط ويتوقف دون 20 واط، لتجاهل التقلبات الصغيرة."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=grid"
+          }
+        ]
+      },
+      {
+        "id": "export_is_limited",
+        "title": {
+          "en": "Export !{{is|is not}} limited",
+          "nl": "Teruglevering !{{is|is niet}} beperkt",
+          "de": "Einspeisung !{{ist|ist nicht}} begrenzt",
+          "fr": "L'injection !{{est|n'est pas}} limitée",
+          "it": "L'immissione !{{è|non è}} limitata",
+          "sv": "Försäljningen !{{är|är inte}} begränsad",
+          "no": "Eksporten !{{er|er ikke}} begrenset",
+          "es": "La exportación !{{está|no está}} limitada",
+          "da": "Salget !{{er|er ikke}} begrænset",
+          "ru": "Отдача в сеть !{{ограничена|не ограничена}}",
+          "pl": "Oddawanie !{{jest|nie jest}} ograniczone",
+          "ko": "송전이 제한 !{{됨|되지 않음}}",
+          "ar": "التصدير !{{مقيّد|غير مقيّد}}"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=grid"
+          }
+        ]
+      },
+      {
+        "id": "import_is_limited",
+        "title": {
+          "en": "Grid import !{{is|is not}} limited",
+          "nl": "Afname van het net !{{is|is niet}} beperkt",
+          "de": "Netzbezug !{{ist|ist nicht}} begrenzt",
+          "fr": "Le soutirage !{{est|n'est pas}} limité",
+          "it": "Il prelievo !{{è|non è}} limitato",
+          "sv": "Köp från nätet !{{är|är inte}} begränsat",
+          "no": "Importen fra nettet !{{er|er ikke}} begrenset",
+          "es": "La importación !{{está|no está}} limitada",
+          "da": "Køb fra nettet !{{er|er ikke}} begrænset",
+          "ru": "Отбор из сети !{{ограничен|не ограничен}}",
+          "pl": "Pobór z sieci !{{jest|nie jest}} ograniczony",
+          "ko": "수전이 제한 !{{됨|되지 않음}}",
+          "ar": "الاستيراد !{{مقيّد|غير مقيّد}}"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=grid"
+          }
+        ]
+      },
+      {
+        "id": "system_fault_is",
+        "title": {
+          "en": "There !{{is|is no}} system fault",
+          "nl": "Er is !{{een|geen}} systeemstoring",
+          "de": "Es liegt !{{eine|keine}} Systemstörung vor",
+          "fr": "Il !{{y a|n'y a pas de}} défaut système",
+          "it": "!{{C’è|Non c’è}} un guasto di sistema",
+          "sv": "Det finns !{{ett|inget}} systemfel",
+          "no": "Det er !{{en|ingen}} systemfeil",
+          "es": "!{{Hay|No hay}} una avería del sistema",
+          "da": "Der er !{{en|ingen}} systemfejl",
+          "ru": "Системная неисправность !{{есть|отсутствует}}",
+          "pl": "Awaria systemu !{{występuje|nie występuje}}",
+          "ko": "시스템 고장이 !{{있음|없음}}",
+          "ar": "!{{يوجد|لا يوجد}} عطل في النظام"
+        },
+        "hint": {
+          "en": "The gateway reports a fault of the Atmoce system (power station status). Details are in the Atmozen app.",
+          "nl": "De gateway meldt een storing van het Atmoce-systeem (status van de installatie). Details staan in de Atmozen-app.",
+          "de": "Das Gateway meldet eine Störung des Atmoce-Systems (Anlagenstatus). Details stehen in der Atmozen-App.",
+          "fr": "La passerelle signale un défaut du système Atmoce (état de l'installation). Les détails sont dans l'application Atmozen.",
+          "it": "Il gateway segnala un guasto del sistema Atmoce (stato dell'impianto). I dettagli sono nell'app Atmozen.",
+          "sv": "Gatewayen rapporterar ett fel i Atmoce-systemet (anläggningsstatus). Detaljer finns i Atmozen-appen.",
+          "no": "Gatewayen melder en feil i Atmoce-systemet (anleggsstatus). Detaljer finnes i Atmozen-appen.",
+          "es": "La pasarela indica una avería del sistema Atmoce (estado de la instalación). Los detalles están en la app Atmozen.",
+          "da": "Gatewayen melder en fejl i Atmoce-systemet (anlæggets status). Detaljer findes i Atmozen-appen.",
+          "ru": "Шлюз сообщает о неисправности системы Atmoce (статус станции). Подробности — в приложении Atmozen.",
+          "pl": "Bramka zgłasza awarię systemu Atmoce (stan instalacji). Szczegóły znajdziesz w aplikacji Atmozen.",
+          "ko": "게이트웨이가 Atmoce 시스템 고장(발전소 상태)을 보고합니다. 자세한 내용은 Atmozen 앱에서 확인하세요.",
+          "ar": "تُبلغ البوابة عن عطل في نظام Atmoce (حالة المحطة). التفاصيل في تطبيق Atmozen."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=solar"
+          }
+        ]
+      },
+      {
+        "id": "is_producing",
+        "title": {
+          "en": "Solar panels !{{are|are not}} producing",
+          "nl": "Zonnepanelen !{{produceren|produceren niet}}",
+          "de": "Solarmodule !{{produzieren|produzieren nicht}}",
+          "fr": "Les panneaux solaires !{{produisent|ne produisent pas}}",
+          "it": "I pannelli solari !{{producono|non producono}}",
+          "sv": "Solpanelerna !{{producerar|producerar inte}}",
+          "no": "Solcellepanelene !{{produserer|produserer ikke}}",
+          "es": "Los paneles solares !{{producen|no producen}}",
+          "da": "Solpanelerne !{{producerer|producerer ikke}}",
+          "ru": "Солнечные панели !{{вырабатывают|не вырабатывают}}",
+          "pl": "Panele słoneczne !{{produkują|nie produkują}}",
+          "ko": "태양광 패널이 발전 !{{중|중 아님}}",
+          "ar": "الألواح الشمسية !{{تنتج|لا تنتج}}"
+        },
+        "hint": {
+          "en": "Starts at 20 W and stops below 5 W.",
+          "nl": "Start vanaf 20 W en stopt onder 5 W.",
+          "de": "Beginnt ab 20 W und endet unter 5 W.",
+          "fr": "Démarre à partir de 20 W et s’arrête sous 5 W.",
+          "it": "Inizia da 20 W e si ferma sotto 5 W.",
+          "sv": "Startar vid 20 W och slutar under 5 W.",
+          "no": "Starter ved 20 W og stopper under 5 W.",
+          "es": "Empieza a partir de 20 W y se detiene por debajo de 5 W.",
+          "da": "Starter ved 20 W og stopper under 5 W.",
+          "ru": "Начинается от 20 Вт и заканчивается ниже 5 Вт.",
+          "pl": "Zaczyna się od 20 W i kończy poniżej 5 W.",
+          "ko": "20 W 이상에서 시작하고 5 W 미만에서 멈춥니다.",
+          "ar": "يبدأ عند 20 واط ويتوقف دون 5 واط."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=solar"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "charge_at_power",
+        "title": {
+          "en": "Charge the battery at a power",
+          "nl": "Laad de batterij met een vermogen",
+          "de": "Batterie mit einer Leistung laden",
+          "fr": "Charger la batterie à une puissance",
+          "it": "Carica la batteria a una potenza",
+          "sv": "Ladda batteriet med en effekt",
+          "no": "Lad batteriet med en effekt",
+          "es": "Cargar la batería a una potencia",
+          "da": "Oplad batteriet med en effekt",
+          "ru": "Заряжать батарею с мощностью",
+          "pl": "Ładuj baterię z mocą",
+          "ko": "지정 출력으로 배터리 충전",
+          "ar": "اشحن البطارية بقدرة معيّنة"
+        },
+        "titleFormatted": {
+          "en": "Charge the battery at [[power]] W",
+          "nl": "Laad de batterij met [[power]] W",
+          "de": "Batterie mit [[power]] W laden",
+          "fr": "Charger la batterie à [[power]] W",
+          "it": "Carica la batteria a [[power]] W",
+          "sv": "Ladda batteriet med [[power]] W",
+          "no": "Lad batteriet med [[power]] W",
+          "es": "Cargar la batería a [[power]] W",
+          "da": "Oplad batteriet med [[power]] W",
+          "ru": "Заряжать батарею мощностью [[power]] Вт",
+          "pl": "Ładuj baterię mocą [[power]] W",
+          "ko": "배터리를 [[power]] W로 충전",
+          "ar": "اشحن البطارية بقدرة [[power]] واط"
+        },
+        "hint": {
+          "en": "Homey keeps control of the battery until you return it to the Atmozen mode.",
+          "nl": "Homey houdt de batterij in handen tot je haar teruggeeft aan de Atmozen-modus.",
+          "de": "Homey steuert die Batterie, bis du sie an den Atmozen-Modus zurückgibst.",
+          "fr": "Homey garde le contrôle de la batterie jusqu'à ce que vous la rendiez au mode Atmozen.",
+          "it": "Homey controlla la batteria finché non la riporti alla modalità Atmozen.",
+          "sv": "Homey styr batteriet tills du återlämnar det till Atmozen-läget.",
+          "no": "Homey styrer batteriet til du gir det tilbake til Atmozen-modusen.",
+          "es": "Homey controla la batería hasta que la devuelvas al modo de Atmozen.",
+          "da": "Homey styrer batteriet, indtil du giver det tilbage til Atmozen-tilstanden.",
+          "ru": "Homey управляет батареей, пока вы не вернёте её в режим Atmozen.",
+          "pl": "Homey steruje baterią, dopóki nie przywrócisz trybu Atmozen.",
+          "ko": "Atmozen 모드로 되돌릴 때까지 Homey가 배터리를 제어합니다.",
+          "ar": "يتحكم Homey في البطارية حتى تعيدها إلى وضع Atmozen."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          },
+          {
+            "type": "number",
+            "name": "power",
+            "title": {
+              "en": "Power",
+              "nl": "Vermogen",
+              "de": "Leistung",
+              "fr": "Puissance",
+              "it": "Potenza",
+              "sv": "Effekt",
+              "no": "Effekt",
+              "es": "Potencia",
+              "da": "Effekt",
+              "ru": "Мощность",
+              "pl": "Moc",
+              "ko": "출력",
+              "ar": "القدرة"
+            },
+            "min": 100,
+            "max": 30000,
+            "step": 100,
+            "placeholder": {
+              "en": "3000"
+            }
+          }
+        ]
+      },
+      {
+        "id": "discharge_at_power",
+        "title": {
+          "en": "Discharge the battery at a power",
+          "nl": "Ontlaad de batterij met een vermogen",
+          "de": "Batterie mit einer Leistung entladen",
+          "fr": "Décharger la batterie à une puissance",
+          "it": "Scarica la batteria a una potenza",
+          "sv": "Ladda ur batteriet med en effekt",
+          "no": "Lad ut batteriet med en effekt",
+          "es": "Descargar la batería a una potencia",
+          "da": "Aflad batteriet med en effekt",
+          "ru": "Разряжать батарею с мощностью",
+          "pl": "Rozładowuj baterię z mocą",
+          "ko": "지정 출력으로 배터리 방전",
+          "ar": "فرّغ البطارية بقدرة معيّنة"
+        },
+        "titleFormatted": {
+          "en": "Discharge the battery at [[power]] W",
+          "nl": "Ontlaad de batterij met [[power]] W",
+          "de": "Batterie mit [[power]] W entladen",
+          "fr": "Décharger la batterie à [[power]] W",
+          "it": "Scarica la batteria a [[power]] W",
+          "sv": "Ladda ur batteriet med [[power]] W",
+          "no": "Lad ut batteriet med [[power]] W",
+          "es": "Descargar la batería a [[power]] W",
+          "da": "Aflad batteriet med [[power]] W",
+          "ru": "Разряжать батарею мощностью [[power]] Вт",
+          "pl": "Rozładowuj baterię mocą [[power]] W",
+          "ko": "배터리를 [[power]] W로 방전",
+          "ar": "فرّغ البطارية بقدرة [[power]] واط"
+        },
+        "hint": {
+          "en": "Homey keeps control of the battery until you return it to the Atmozen mode.",
+          "nl": "Homey houdt de batterij in handen tot je haar teruggeeft aan de Atmozen-modus.",
+          "de": "Homey steuert die Batterie, bis du sie an den Atmozen-Modus zurückgibst.",
+          "fr": "Homey garde le contrôle de la batterie jusqu'à ce que vous la rendiez au mode Atmozen.",
+          "it": "Homey controlla la batteria finché non la riporti alla modalità Atmozen.",
+          "sv": "Homey styr batteriet tills du återlämnar det till Atmozen-läget.",
+          "no": "Homey styrer batteriet til du gir det tilbake til Atmozen-modusen.",
+          "es": "Homey controla la batería hasta que la devuelvas al modo de Atmozen.",
+          "da": "Homey styrer batteriet, indtil du giver det tilbage til Atmozen-tilstanden.",
+          "ru": "Homey управляет батареей, пока вы не вернёте её в режим Atmozen.",
+          "pl": "Homey steruje baterią, dopóki nie przywrócisz trybu Atmozen.",
+          "ko": "Atmozen 모드로 되돌릴 때까지 Homey가 배터리를 제어합니다.",
+          "ar": "يتحكم Homey في البطارية حتى تعيدها إلى وضع Atmozen."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          },
+          {
+            "type": "number",
+            "name": "power",
+            "title": {
+              "en": "Power",
+              "nl": "Vermogen",
+              "de": "Leistung",
+              "fr": "Puissance",
+              "it": "Potenza",
+              "sv": "Effekt",
+              "no": "Effekt",
+              "es": "Potencia",
+              "da": "Effekt",
+              "ru": "Мощность",
+              "pl": "Moc",
+              "ko": "출력",
+              "ar": "القدرة"
+            },
+            "min": 100,
+            "max": 30000,
+            "step": 100,
+            "placeholder": {
+              "en": "3000"
+            }
+          }
+        ]
+      },
+      {
+        "id": "pause_battery",
+        "title": {
+          "en": "Pause the battery",
+          "nl": "Pauzeer de batterij",
+          "de": "Batterie pausieren",
+          "fr": "Mettre la batterie en pause",
+          "it": "Metti in pausa la batteria",
+          "sv": "Pausa batteriet",
+          "no": "Sett batteriet på pause",
+          "es": "Pausar la batería",
+          "da": "Sæt batteriet på pause",
+          "ru": "Приостановить батарею",
+          "pl": "Wstrzymaj baterię",
+          "ko": "배터리 일시 정지",
+          "ar": "أوقف البطارية مؤقتًا"
+        },
+        "hint": {
+          "en": "The battery neither charges nor discharges until you return it to the Atmozen mode.",
+          "nl": "De batterij laadt noch ontlaadt tot je haar teruggeeft aan de Atmozen-modus.",
+          "de": "Die Batterie lädt und entlädt nicht, bis du sie an den Atmozen-Modus zurückgibst.",
+          "fr": "La batterie ne charge ni ne décharge jusqu'à ce que vous la rendiez au mode Atmozen.",
+          "it": "La batteria non carica né scarica finché non la riporti alla modalità Atmozen.",
+          "sv": "Batteriet varken laddar eller laddar ur tills du återlämnar det till Atmozen-läget.",
+          "no": "Batteriet verken lader eller lader ut til du gir det tilbake til Atmozen-modusen.",
+          "es": "La batería no carga ni descarga hasta que la devuelvas al modo de Atmozen.",
+          "da": "Batteriet hverken oplader eller aflader, indtil du giver det tilbage til Atmozen-tilstanden.",
+          "ru": "Батарея не заряжается и не разряжается, пока вы не вернёте её в режим Atmozen.",
+          "pl": "Bateria nie ładuje się ani nie rozładowuje, dopóki nie przywrócisz trybu Atmozen.",
+          "ko": "Atmozen 모드로 되돌릴 때까지 배터리가 충전도 방전도 하지 않습니다.",
+          "ar": "لا تشحن البطارية ولا تُفرَّغ حتى تعيدها إلى وضع Atmozen."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          }
+        ]
+      },
+      {
+        "id": "resume_atmozen",
+        "title": {
+          "en": "Return the battery to the Atmozen mode",
+          "nl": "Geef de batterij terug aan de Atmozen-modus",
+          "de": "Batterie an den Atmozen-Modus zurückgeben",
+          "fr": "Rendre la batterie au mode Atmozen",
+          "it": "Riporta la batteria alla modalità Atmozen",
+          "sv": "Återlämna batteriet till Atmozen-läget",
+          "no": "Gi batteriet tilbake til Atmozen-modusen",
+          "es": "Devolver la batería al modo de Atmozen",
+          "da": "Giv batteriet tilbage til Atmozen-tilstanden",
+          "ru": "Вернуть батарею в режим Atmozen",
+          "pl": "Przywróć baterię do trybu Atmozen",
+          "ko": "배터리를 Atmozen 모드로 되돌리기",
+          "ar": "أعد البطارية إلى وضع Atmozen"
+        },
+        "hint": {
+          "en": "Ends Homey control and any forced charging or discharging. The battery follows the self-consumption or time-of-use mode set in Atmozen again.",
+          "nl": "Beëindigt Homey-sturing en geforceerd laden of ontladen. De batterij volgt weer de modus eigen verbruik of tijdsafhankelijk uit Atmozen.",
+          "de": "Beendet die Homey-Steuerung und erzwungenes Laden oder Entladen. Die Batterie folgt wieder dem in Atmozen eingestellten Modus Eigenverbrauch oder zeitabhängig.",
+          "fr": "Met fin au contrôle par Homey et à toute charge ou décharge forcée. La batterie suit à nouveau le mode autoconsommation ou plages horaires réglé dans Atmozen.",
+          "it": "Termina il controllo di Homey e ogni carica o scarica forzata. La batteria segue di nuovo la modalità autoconsumo o fasce orarie impostata in Atmozen.",
+          "sv": "Avslutar Homey-styrning och tvingad laddning eller urladdning. Batteriet följer åter läget egenförbrukning eller tidsstyrt i Atmozen.",
+          "no": "Avslutter Homey-styring og tvungen lading eller utlading. Batteriet følger igjen modusen egenforbruk eller tidsstyrt i Atmozen.",
+          "es": "Termina el control de Homey y cualquier carga o descarga forzada. La batería vuelve a seguir el modo autoconsumo o por franjas horarias de Atmozen.",
+          "da": "Afslutter Homey-styring og tvungen op- eller afladning. Batteriet følger igen tilstanden eget forbrug eller tidsstyret i Atmozen.",
+          "ru": "Завершает управление Homey и любой принудительный заряд или разряд. Батарея снова работает в режиме собственного потребления или по времени, заданном в Atmozen.",
+          "pl": "Kończy sterowanie przez Homey i wymuszone ładowanie lub rozładowanie. Bateria znów działa w trybie autokonsumpcji lub taryfy czasowej z Atmozen.",
+          "ko": "Homey 제어와 강제 충전·방전을 종료합니다. 배터리가 다시 Atmozen에서 설정한 자가 소비 또는 시간대별 모드를 따릅니다.",
+          "ar": "ينهي تحكم Homey وأي شحن أو تفريغ قسري. تعود البطارية لاتباع وضع الاستهلاك الذاتي أو وقت الاستخدام المحدد في Atmozen."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          }
+        ]
+      },
+      {
+        "id": "force_charge_to_soc",
+        "title": {
+          "en": "Charge the battery to a level",
+          "nl": "Laad de batterij tot een niveau",
+          "de": "Batterie bis zu einem Stand laden",
+          "fr": "Charger la batterie jusqu'à un niveau",
+          "it": "Carica la batteria fino a un livello",
+          "sv": "Ladda batteriet till en nivå",
+          "no": "Lad batteriet til et nivå",
+          "es": "Cargar la batería hasta un nivel",
+          "da": "Oplad batteriet til et niveau",
+          "ru": "Зарядить батарею до уровня",
+          "pl": "Naładuj baterię do poziomu",
+          "ko": "배터리를 지정 수준까지 충전",
+          "ar": "اشحن البطارية حتى مستوى معيّن"
+        },
+        "titleFormatted": {
+          "en": "Charge the battery to [[soc]]% at [[power]] W",
+          "nl": "Laad de batterij tot [[soc]]% met [[power]] W",
+          "de": "Batterie bis [[soc]] % mit [[power]] W laden",
+          "fr": "Charger la batterie jusqu'à [[soc]] % à [[power]] W",
+          "it": "Carica la batteria fino al [[soc]]% a [[power]] W",
+          "sv": "Ladda batteriet till [[soc]] % med [[power]] W",
+          "no": "Lad batteriet til [[soc]] % med [[power]] W",
+          "es": "Cargar la batería hasta el [[soc]] % a [[power]] W",
+          "da": "Oplad batteriet til [[soc]] % med [[power]] W",
+          "ru": "Зарядить батарею до [[soc]] % мощностью [[power]] Вт",
+          "pl": "Naładuj baterię do [[soc]]% mocą [[power]] W",
+          "ko": "배터리를 [[power]] W로 [[soc]]%까지 충전",
+          "ar": "اشحن البطارية حتى [[soc]]٪ بقدرة [[power]] واط"
+        },
+        "hint": {
+          "en": "Forced charging may take power from the grid, even when grid charging is disabled in Atmozen.",
+          "nl": "Geforceerd laden kan stroom van het net halen, ook als laden vanaf het net in Atmozen is uitgeschakeld.",
+          "de": "Erzwungenes Laden kann Strom aus dem Netz beziehen, auch wenn Netzladen in Atmozen deaktiviert ist.",
+          "fr": "La charge forcée peut prélever sur le réseau, même si la charge depuis le réseau est désactivée dans Atmozen.",
+          "it": "La carica forzata può prelevare dalla rete, anche se la carica da rete è disattivata in Atmozen.",
+          "sv": "Tvingad laddning kan ta ström från elnätet, även om nätladdning är avstängd i Atmozen.",
+          "no": "Tvungen lading kan hente strøm fra nettet, selv om nettlading er slått av i Atmozen.",
+          "es": "La carga forzada puede tomar energía de la red, aunque la carga desde la red esté desactivada en Atmozen.",
+          "da": "Tvungen opladning kan trække strøm fra nettet, selv om netopladning er slået fra i Atmozen.",
+          "ru": "Принудительный заряд может брать энергию из сети, даже если заряд от сети отключён в Atmozen.",
+          "pl": "Wymuszone ładowanie może pobierać energię z sieci, nawet gdy ładowanie z sieci jest wyłączone w Atmozen.",
+          "ko": "강제 충전은 Atmozen에서 계통 충전을 꺼 두었더라도 계통 전력을 사용할 수 있습니다.",
+          "ar": "قد يسحب الشحن القسري الطاقة من الشبكة حتى لو كان الشحن من الشبكة معطّلًا في Atmozen."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          },
+          {
+            "type": "number",
+            "name": "soc",
+            "title": {
+              "en": "Level",
+              "nl": "Niveau",
+              "de": "Ladestand",
+              "fr": "Niveau",
+              "it": "Livello",
+              "sv": "Nivå",
+              "no": "Nivå",
+              "es": "Nivel",
+              "da": "Niveau",
+              "ru": "Уровень",
+              "pl": "Poziom",
+              "ko": "수준",
+              "ar": "المستوى"
+            },
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "placeholder": {
+              "en": "90"
+            }
+          },
+          {
+            "type": "number",
+            "name": "power",
+            "title": {
+              "en": "Power",
+              "nl": "Vermogen",
+              "de": "Leistung",
+              "fr": "Puissance",
+              "it": "Potenza",
+              "sv": "Effekt",
+              "no": "Effekt",
+              "es": "Potencia",
+              "da": "Effekt",
+              "ru": "Мощность",
+              "pl": "Moc",
+              "ko": "출력",
+              "ar": "القدرة"
+            },
+            "min": 100,
+            "max": 30000,
+            "step": 100,
+            "placeholder": {
+              "en": "3000"
+            }
+          }
+        ]
+      },
+      {
+        "id": "force_charge_for",
+        "title": {
+          "en": "Charge the battery for a while",
+          "nl": "Laad de batterij een tijd",
+          "de": "Batterie eine Zeit lang laden",
+          "fr": "Charger la batterie pendant un moment",
+          "it": "Carica la batteria per un periodo",
+          "sv": "Ladda batteriet en stund",
+          "no": "Lad batteriet en stund",
+          "es": "Cargar la batería durante un tiempo",
+          "da": "Oplad batteriet i et stykke tid",
+          "ru": "Заряжать батарею некоторое время",
+          "pl": "Ładuj baterię przez pewien czas",
+          "ko": "일정 시간 배터리 충전",
+          "ar": "اشحن البطارية لمدة"
+        },
+        "titleFormatted": {
+          "en": "Charge the battery for [[minutes]] minutes at [[power]] W",
+          "nl": "Laad de batterij [[minutes]] minuten met [[power]] W",
+          "de": "Batterie [[minutes]] Minuten mit [[power]] W laden",
+          "fr": "Charger la batterie pendant [[minutes]] minutes à [[power]] W",
+          "it": "Carica la batteria per [[minutes]] minuti a [[power]] W",
+          "sv": "Ladda batteriet i [[minutes]] minuter med [[power]] W",
+          "no": "Lad batteriet i [[minutes]] minutter med [[power]] W",
+          "es": "Cargar la batería durante [[minutes]] minutos a [[power]] W",
+          "da": "Oplad batteriet i [[minutes]] minutter med [[power]] W",
+          "ru": "Заряжать батарею [[minutes]] мин мощностью [[power]] Вт",
+          "pl": "Ładuj baterię przez [[minutes]] min mocą [[power]] W",
+          "ko": "배터리를 [[power]] W로 [[minutes]]분 동안 충전",
+          "ar": "اشحن البطارية لمدة [[minutes]] دقيقة بقدرة [[power]] واط"
+        },
+        "hint": {
+          "en": "Forced charging may take power from the grid, even when grid charging is disabled in Atmozen.",
+          "nl": "Geforceerd laden kan stroom van het net halen, ook als laden vanaf het net in Atmozen is uitgeschakeld.",
+          "de": "Erzwungenes Laden kann Strom aus dem Netz beziehen, auch wenn Netzladen in Atmozen deaktiviert ist.",
+          "fr": "La charge forcée peut prélever sur le réseau, même si la charge depuis le réseau est désactivée dans Atmozen.",
+          "it": "La carica forzata può prelevare dalla rete, anche se la carica da rete è disattivata in Atmozen.",
+          "sv": "Tvingad laddning kan ta ström från elnätet, även om nätladdning är avstängd i Atmozen.",
+          "no": "Tvungen lading kan hente strøm fra nettet, selv om nettlading er slått av i Atmozen.",
+          "es": "La carga forzada puede tomar energía de la red, aunque la carga desde la red esté desactivada en Atmozen.",
+          "da": "Tvungen opladning kan trække strøm fra nettet, selv om netopladning er slået fra i Atmozen.",
+          "ru": "Принудительный заряд может брать энергию из сети, даже если заряд от сети отключён в Atmozen.",
+          "pl": "Wymuszone ładowanie może pobierać energię z sieci, nawet gdy ładowanie z sieci jest wyłączone w Atmozen.",
+          "ko": "강제 충전은 Atmozen에서 계통 충전을 꺼 두었더라도 계통 전력을 사용할 수 있습니다.",
+          "ar": "قد يسحب الشحن القسري الطاقة من الشبكة حتى لو كان الشحن من الشبكة معطّلًا في Atmozen."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          },
+          {
+            "type": "number",
+            "name": "minutes",
+            "title": {
+              "en": "Duration in minutes",
+              "nl": "Duur in minuten",
+              "de": "Dauer in Minuten",
+              "fr": "Durée en minutes",
+              "it": "Durata in minuti",
+              "sv": "Tid i minuter",
+              "no": "Varighet i minutter",
+              "es": "Duración en minutos",
+              "da": "Varighed i minutter",
+              "ru": "Длительность в минутах",
+              "pl": "Czas w minutach",
+              "ko": "시간(분)",
+              "ar": "المدة بالدقائق"
+            },
+            "min": 1,
+            "max": 1440,
+            "step": 1,
+            "placeholder": {
+              "en": "60"
+            }
+          },
+          {
+            "type": "number",
+            "name": "power",
+            "title": {
+              "en": "Power",
+              "nl": "Vermogen",
+              "de": "Leistung",
+              "fr": "Puissance",
+              "it": "Potenza",
+              "sv": "Effekt",
+              "no": "Effekt",
+              "es": "Potencia",
+              "da": "Effekt",
+              "ru": "Мощность",
+              "pl": "Moc",
+              "ko": "출력",
+              "ar": "القدرة"
+            },
+            "min": 100,
+            "max": 30000,
+            "step": 100,
+            "placeholder": {
+              "en": "3000"
+            }
+          }
+        ]
+      },
+      {
+        "id": "force_discharge_to_soc",
+        "title": {
+          "en": "Discharge the battery to a level",
+          "nl": "Ontlaad de batterij tot een niveau",
+          "de": "Batterie bis zu einem Stand entladen",
+          "fr": "Décharger la batterie jusqu'à un niveau",
+          "it": "Scarica la batteria fino a un livello",
+          "sv": "Ladda ur batteriet till en nivå",
+          "no": "Lad ut batteriet til et nivå",
+          "es": "Descargar la batería hasta un nivel",
+          "da": "Aflad batteriet til et niveau",
+          "ru": "Разрядить батарею до уровня",
+          "pl": "Rozładuj baterię do poziomu",
+          "ko": "배터리를 지정 수준까지 방전",
+          "ar": "فرّغ البطارية حتى مستوى معيّن"
+        },
+        "titleFormatted": {
+          "en": "Discharge the battery to [[soc]]% at [[power]] W",
+          "nl": "Ontlaad de batterij tot [[soc]]% met [[power]] W",
+          "de": "Batterie bis [[soc]] % mit [[power]] W entladen",
+          "fr": "Décharger la batterie jusqu'à [[soc]] % à [[power]] W",
+          "it": "Scarica la batteria fino al [[soc]]% a [[power]] W",
+          "sv": "Ladda ur batteriet till [[soc]] % med [[power]] W",
+          "no": "Lad ut batteriet til [[soc]] % med [[power]] W",
+          "es": "Descargar la batería hasta el [[soc]] % a [[power]] W",
+          "da": "Aflad batteriet til [[soc]] % med [[power]] W",
+          "ru": "Разрядить батарею до [[soc]] % мощностью [[power]] Вт",
+          "pl": "Rozładuj baterię do [[soc]]% mocą [[power]] W",
+          "ko": "배터리를 [[power]] W로 [[soc]]%까지 방전",
+          "ar": "فرّغ البطارية حتى [[soc]]٪ بقدرة [[power]] واط"
+        },
+        "hint": {
+          "en": "Forced discharging may feed power into the grid.",
+          "nl": "Geforceerd ontladen kan stroom aan het net teruggeven.",
+          "de": "Erzwungenes Entladen kann Strom ins Netz einspeisen.",
+          "fr": "La décharge forcée peut injecter du courant dans le réseau.",
+          "it": "La scarica forzata può immettere energia in rete.",
+          "sv": "Tvingad urladdning kan mata ut ström på elnätet.",
+          "no": "Tvungen utlading kan levere strøm til nettet.",
+          "es": "La descarga forzada puede inyectar energía a la red.",
+          "da": "Tvungen afladning kan sende strøm ud på nettet.",
+          "ru": "Принудительный разряд может отдавать энергию в сеть.",
+          "pl": "Wymuszone rozładowanie może oddawać energię do sieci.",
+          "ko": "강제 방전은 전력을 계통으로 내보낼 수 있습니다.",
+          "ar": "قد يضخ التفريغ القسري الطاقة إلى الشبكة."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          },
+          {
+            "type": "number",
+            "name": "soc",
+            "title": {
+              "en": "Level",
+              "nl": "Niveau",
+              "de": "Ladestand",
+              "fr": "Niveau",
+              "it": "Livello",
+              "sv": "Nivå",
+              "no": "Nivå",
+              "es": "Nivel",
+              "da": "Niveau",
+              "ru": "Уровень",
+              "pl": "Poziom",
+              "ko": "수준",
+              "ar": "المستوى"
+            },
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "placeholder": {
+              "en": "90"
+            }
+          },
+          {
+            "type": "number",
+            "name": "power",
+            "title": {
+              "en": "Power",
+              "nl": "Vermogen",
+              "de": "Leistung",
+              "fr": "Puissance",
+              "it": "Potenza",
+              "sv": "Effekt",
+              "no": "Effekt",
+              "es": "Potencia",
+              "da": "Effekt",
+              "ru": "Мощность",
+              "pl": "Moc",
+              "ko": "출력",
+              "ar": "القدرة"
+            },
+            "min": 100,
+            "max": 30000,
+            "step": 100,
+            "placeholder": {
+              "en": "3000"
+            }
+          }
+        ]
+      },
+      {
+        "id": "force_discharge_for",
+        "title": {
+          "en": "Discharge the battery for a while",
+          "nl": "Ontlaad de batterij een tijd",
+          "de": "Batterie eine Zeit lang entladen",
+          "fr": "Décharger la batterie pendant un moment",
+          "it": "Scarica la batteria per un periodo",
+          "sv": "Ladda ur batteriet en stund",
+          "no": "Lad ut batteriet en stund",
+          "es": "Descargar la batería durante un tiempo",
+          "da": "Aflad batteriet i et stykke tid",
+          "ru": "Разряжать батарею некоторое время",
+          "pl": "Rozładowuj baterię przez pewien czas",
+          "ko": "일정 시간 배터리 방전",
+          "ar": "فرّغ البطارية لمدة"
+        },
+        "titleFormatted": {
+          "en": "Discharge the battery for [[minutes]] minutes at [[power]] W",
+          "nl": "Ontlaad de batterij [[minutes]] minuten met [[power]] W",
+          "de": "Batterie [[minutes]] Minuten mit [[power]] W entladen",
+          "fr": "Décharger la batterie pendant [[minutes]] minutes à [[power]] W",
+          "it": "Scarica la batteria per [[minutes]] minuti a [[power]] W",
+          "sv": "Ladda ur batteriet i [[minutes]] minuter med [[power]] W",
+          "no": "Lad ut batteriet i [[minutes]] minutter med [[power]] W",
+          "es": "Descargar la batería durante [[minutes]] minutos a [[power]] W",
+          "da": "Aflad batteriet i [[minutes]] minutter med [[power]] W",
+          "ru": "Разряжать батарею [[minutes]] мин мощностью [[power]] Вт",
+          "pl": "Rozładowuj baterię przez [[minutes]] min mocą [[power]] W",
+          "ko": "배터리를 [[power]] W로 [[minutes]]분 동안 방전",
+          "ar": "فرّغ البطارية لمدة [[minutes]] دقيقة بقدرة [[power]] واط"
+        },
+        "hint": {
+          "en": "Forced discharging may feed power into the grid.",
+          "nl": "Geforceerd ontladen kan stroom aan het net teruggeven.",
+          "de": "Erzwungenes Entladen kann Strom ins Netz einspeisen.",
+          "fr": "La décharge forcée peut injecter du courant dans le réseau.",
+          "it": "La scarica forzata può immettere energia in rete.",
+          "sv": "Tvingad urladdning kan mata ut ström på elnätet.",
+          "no": "Tvungen utlading kan levere strøm til nettet.",
+          "es": "La descarga forzada puede inyectar energía a la red.",
+          "da": "Tvungen afladning kan sende strøm ud på nettet.",
+          "ru": "Принудительный разряд может отдавать энергию в сеть.",
+          "pl": "Wymuszone rozładowanie może oddawać energię do sieci.",
+          "ko": "강제 방전은 전력을 계통으로 내보낼 수 있습니다.",
+          "ar": "قد يضخ التفريغ القسري الطاقة إلى الشبكة."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          },
+          {
+            "type": "number",
+            "name": "minutes",
+            "title": {
+              "en": "Duration in minutes",
+              "nl": "Duur in minuten",
+              "de": "Dauer in Minuten",
+              "fr": "Durée en minutes",
+              "it": "Durata in minuti",
+              "sv": "Tid i minuter",
+              "no": "Varighet i minutter",
+              "es": "Duración en minutos",
+              "da": "Varighed i minutter",
+              "ru": "Длительность в минутах",
+              "pl": "Czas w minutach",
+              "ko": "시간(분)",
+              "ar": "المدة بالدقائق"
+            },
+            "min": 1,
+            "max": 1440,
+            "step": 1,
+            "placeholder": {
+              "en": "60"
+            }
+          },
+          {
+            "type": "number",
+            "name": "power",
+            "title": {
+              "en": "Power",
+              "nl": "Vermogen",
+              "de": "Leistung",
+              "fr": "Puissance",
+              "it": "Potenza",
+              "sv": "Effekt",
+              "no": "Effekt",
+              "es": "Potencia",
+              "da": "Effekt",
+              "ru": "Мощность",
+              "pl": "Moc",
+              "ko": "출력",
+              "ar": "القدرة"
+            },
+            "min": 100,
+            "max": 30000,
+            "step": 100,
+            "placeholder": {
+              "en": "3000"
+            }
+          }
+        ]
+      },
+      {
+        "id": "stop_forced",
+        "title": {
+          "en": "Stop forced charging or discharging",
+          "nl": "Stop geforceerd laden of ontladen",
+          "de": "Erzwungenes Laden oder Entladen beenden",
+          "fr": "Arrêter la charge ou décharge forcée",
+          "it": "Interrompi carica o scarica forzata",
+          "sv": "Avsluta tvingad laddning eller urladdning",
+          "no": "Stopp tvungen lading eller utlading",
+          "es": "Detener la carga o descarga forzada",
+          "da": "Stop tvungen op- eller afladning",
+          "ru": "Остановить принудительный заряд или разряд",
+          "pl": "Zatrzymaj wymuszone ładowanie lub rozładowanie",
+          "ko": "강제 충전 또는 방전 중지",
+          "ar": "أوقف الشحن أو التفريغ القسري"
+        },
+        "hint": {
+          "en": "The battery returns to the mode set in Atmozen.",
+          "nl": "De batterij keert terug naar de modus die in Atmozen is ingesteld.",
+          "de": "Die Batterie kehrt in den in Atmozen eingestellten Modus zurück.",
+          "fr": "La batterie revient au mode réglé dans Atmozen.",
+          "it": "La batteria torna alla modalità impostata in Atmozen.",
+          "sv": "Batteriet återgår till läget som är inställt i Atmozen.",
+          "no": "Batteriet går tilbake til modusen som er satt i Atmozen.",
+          "es": "La batería vuelve al modo configurado en Atmozen.",
+          "da": "Batteriet vender tilbage til den tilstand, der er valgt i Atmozen.",
+          "ru": "Батарея возвращается в режим, заданный в Atmozen.",
+          "pl": "Bateria wraca do trybu ustawionego w Atmozen.",
+          "ko": "배터리가 Atmozen에서 설정한 모드로 돌아갑니다.",
+          "ar": "تعود البطارية إلى الوضع المحدد في Atmozen."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          }
+        ]
+      },
+      {
+        "id": "limit_charging",
+        "title": {
+          "en": "Limit charging to a power",
+          "nl": "Beperk laden tot een vermogen",
+          "de": "Laden auf eine Leistung begrenzen",
+          "fr": "Limiter la charge à une puissance",
+          "it": "Limita la carica a una potenza",
+          "sv": "Begränsa laddning till en effekt",
+          "no": "Begrens lading til en effekt",
+          "es": "Limitar la carga a una potencia",
+          "da": "Begræns opladning til en effekt",
+          "ru": "Ограничить мощность заряда",
+          "pl": "Ogranicz ładowanie do mocy",
+          "ko": "충전을 지정 출력으로 제한",
+          "ar": "قيّد الشحن بقدرة معيّنة"
+        },
+        "titleFormatted": {
+          "en": "Limit charging to [[power]] W",
+          "nl": "Beperk laden tot [[power]] W",
+          "de": "Laden auf [[power]] W begrenzen",
+          "fr": "Limiter la charge à [[power]] W",
+          "it": "Limita la carica a [[power]] W",
+          "sv": "Begränsa laddning till [[power]] W",
+          "no": "Begrens lading til [[power]] W",
+          "es": "Limitar la carga a [[power]] W",
+          "da": "Begræns opladning til [[power]] W",
+          "ru": "Ограничить заряд до [[power]] Вт",
+          "pl": "Ogranicz ładowanie do [[power]] W",
+          "ko": "충전을 [[power]] W로 제한",
+          "ar": "قيّد الشحن بـ [[power]] واط"
+        },
+        "hint": {
+          "en": "The battery keeps its normal behaviour, but never above this power. 0 W blocks charging or discharging, for example while the car charges.",
+          "nl": "De batterij werkt gewoon verder, maar nooit boven dit vermogen. Met 0 W laadt of ontlaadt ze niet, bijvoorbeeld terwijl de auto laadt.",
+          "de": "Die Batterie arbeitet normal weiter, aber nie über dieser Leistung. 0 W sperrt Laden oder Entladen, etwa während das Auto lädt.",
+          "fr": "La batterie garde son fonctionnement normal, sans dépasser cette puissance. 0 W bloque la charge ou la décharge, par exemple pendant la recharge de la voiture.",
+          "it": "La batteria funziona normalmente, ma mai oltre questa potenza. 0 W blocca carica o scarica, ad esempio mentre l'auto è in ricarica.",
+          "sv": "Batteriet fungerar som vanligt, men aldrig över denna effekt. 0 W spärrar laddning eller urladdning, till exempel medan bilen laddar.",
+          "no": "Batteriet fungerer som vanlig, men aldri over denne effekten. 0 W sperrer lading eller utlading, for eksempel mens bilen lader.",
+          "es": "La batería funciona con normalidad, pero nunca por encima de esta potencia. 0 W bloquea la carga o descarga, por ejemplo mientras carga el coche.",
+          "da": "Batteriet fungerer som normalt, men aldrig over denne effekt. 0 W spærrer op- eller afladning, f.eks. mens bilen lader.",
+          "ru": "Батарея работает как обычно, но не выше этой мощности. 0 Вт блокирует заряд или разряд, например пока заряжается автомобиль.",
+          "pl": "Bateria działa normalnie, ale nigdy powyżej tej mocy. 0 W blokuje ładowanie lub rozładowanie, np. gdy ładuje się auto.",
+          "ko": "배터리는 평소대로 작동하지만 이 출력을 넘지 않습니다. 0 W이면 충전 또는 방전이 막힙니다(예: 차량 충전 중).",
+          "ar": "تعمل البطارية كالمعتاد لكن دون تجاوز هذه القدرة. 0 واط يمنع الشحن أو التفريغ، مثلًا أثناء شحن السيارة."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          },
+          {
+            "type": "number",
+            "name": "power",
+            "title": {
+              "en": "Power",
+              "nl": "Vermogen",
+              "de": "Leistung",
+              "fr": "Puissance",
+              "it": "Potenza",
+              "sv": "Effekt",
+              "no": "Effekt",
+              "es": "Potencia",
+              "da": "Effekt",
+              "ru": "Мощность",
+              "pl": "Moc",
+              "ko": "출력",
+              "ar": "القدرة"
+            },
+            "min": 0,
+            "max": 50000,
+            "step": 50,
+            "placeholder": {
+              "en": "0"
+            }
+          }
+        ]
+      },
+      {
+        "id": "limit_discharging",
+        "title": {
+          "en": "Limit discharging to a power",
+          "nl": "Beperk ontladen tot een vermogen",
+          "de": "Entladen auf eine Leistung begrenzen",
+          "fr": "Limiter la décharge à une puissance",
+          "it": "Limita la scarica a una potenza",
+          "sv": "Begränsa urladdning till en effekt",
+          "no": "Begrens utlading til en effekt",
+          "es": "Limitar la descarga a una potencia",
+          "da": "Begræns afladning til en effekt",
+          "ru": "Ограничить мощность разряда",
+          "pl": "Ogranicz rozładowanie do mocy",
+          "ko": "방전을 지정 출력으로 제한",
+          "ar": "قيّد التفريغ بقدرة معيّنة"
+        },
+        "titleFormatted": {
+          "en": "Limit discharging to [[power]] W",
+          "nl": "Beperk ontladen tot [[power]] W",
+          "de": "Entladen auf [[power]] W begrenzen",
+          "fr": "Limiter la décharge à [[power]] W",
+          "it": "Limita la scarica a [[power]] W",
+          "sv": "Begränsa urladdning till [[power]] W",
+          "no": "Begrens utlading til [[power]] W",
+          "es": "Limitar la descarga a [[power]] W",
+          "da": "Begræns afladning til [[power]] W",
+          "ru": "Ограничить разряд до [[power]] Вт",
+          "pl": "Ogranicz rozładowanie do [[power]] W",
+          "ko": "방전을 [[power]] W로 제한",
+          "ar": "قيّد التفريغ بـ [[power]] واط"
+        },
+        "hint": {
+          "en": "The battery keeps its normal behaviour, but never above this power. 0 W blocks charging or discharging, for example while the car charges.",
+          "nl": "De batterij werkt gewoon verder, maar nooit boven dit vermogen. Met 0 W laadt of ontlaadt ze niet, bijvoorbeeld terwijl de auto laadt.",
+          "de": "Die Batterie arbeitet normal weiter, aber nie über dieser Leistung. 0 W sperrt Laden oder Entladen, etwa während das Auto lädt.",
+          "fr": "La batterie garde son fonctionnement normal, sans dépasser cette puissance. 0 W bloque la charge ou la décharge, par exemple pendant la recharge de la voiture.",
+          "it": "La batteria funziona normalmente, ma mai oltre questa potenza. 0 W blocca carica o scarica, ad esempio mentre l'auto è in ricarica.",
+          "sv": "Batteriet fungerar som vanligt, men aldrig över denna effekt. 0 W spärrar laddning eller urladdning, till exempel medan bilen laddar.",
+          "no": "Batteriet fungerer som vanlig, men aldri over denne effekten. 0 W sperrer lading eller utlading, for eksempel mens bilen lader.",
+          "es": "La batería funciona con normalidad, pero nunca por encima de esta potencia. 0 W bloquea la carga o descarga, por ejemplo mientras carga el coche.",
+          "da": "Batteriet fungerer som normalt, men aldrig over denne effekt. 0 W spærrer op- eller afladning, f.eks. mens bilen lader.",
+          "ru": "Батарея работает как обычно, но не выше этой мощности. 0 Вт блокирует заряд или разряд, например пока заряжается автомобиль.",
+          "pl": "Bateria działa normalnie, ale nigdy powyżej tej mocy. 0 W blokuje ładowanie lub rozładowanie, np. gdy ładuje się auto.",
+          "ko": "배터리는 평소대로 작동하지만 이 출력을 넘지 않습니다. 0 W이면 충전 또는 방전이 막힙니다(예: 차량 충전 중).",
+          "ar": "تعمل البطارية كالمعتاد لكن دون تجاوز هذه القدرة. 0 واط يمنع الشحن أو التفريغ، مثلًا أثناء شحن السيارة."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          },
+          {
+            "type": "number",
+            "name": "power",
+            "title": {
+              "en": "Power",
+              "nl": "Vermogen",
+              "de": "Leistung",
+              "fr": "Puissance",
+              "it": "Potenza",
+              "sv": "Effekt",
+              "no": "Effekt",
+              "es": "Potencia",
+              "da": "Effekt",
+              "ru": "Мощность",
+              "pl": "Moc",
+              "ko": "출력",
+              "ar": "القدرة"
+            },
+            "min": 0,
+            "max": 50000,
+            "step": 50,
+            "placeholder": {
+              "en": "0"
+            }
+          }
+        ]
+      },
+      {
+        "id": "remove_battery_limits",
+        "title": {
+          "en": "Remove the charge and discharge limits",
+          "nl": "Verwijder de laad- en ontlaadlimiet",
+          "de": "Lade- und Entladegrenze aufheben",
+          "fr": "Supprimer les limites de charge et de décharge",
+          "it": "Rimuovi i limiti di carica e scarica",
+          "sv": "Ta bort laddnings- och urladdningsgränsen",
+          "no": "Fjern lade- og utladingsgrensen",
+          "es": "Quitar los límites de carga y descarga",
+          "da": "Fjern op- og afladningsgrænsen",
+          "ru": "Снять ограничения заряда и разряда",
+          "pl": "Usuń limity ładowania i rozładowania",
+          "ko": "충전·방전 제한 해제",
+          "ar": "أزل حدود الشحن والتفريغ"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          }
+        ]
+      },
+      {
+        "id": "limit_export",
+        "title": {
+          "en": "Limit export to a power",
+          "nl": "Beperk teruglevering tot een vermogen",
+          "de": "Einspeisung auf eine Leistung begrenzen",
+          "fr": "Limiter l'injection à une puissance",
+          "it": "Limita l'immissione a una potenza",
+          "sv": "Begränsa försäljning till en effekt",
+          "no": "Begrens eksport til en effekt",
+          "es": "Limitar la exportación a una potencia",
+          "da": "Begræns salg til en effekt",
+          "ru": "Ограничить отдачу в сеть",
+          "pl": "Ogranicz oddawanie do mocy",
+          "ko": "송전을 지정 출력으로 제한",
+          "ar": "قيّد التصدير بقدرة معيّنة"
+        },
+        "titleFormatted": {
+          "en": "Limit export to [[power]] W",
+          "nl": "Beperk teruglevering tot [[power]] W",
+          "de": "Einspeisung auf [[power]] W begrenzen",
+          "fr": "Limiter l'injection à [[power]] W",
+          "it": "Limita l'immissione a [[power]] W",
+          "sv": "Begränsa försäljning till [[power]] W",
+          "no": "Begrens eksport til [[power]] W",
+          "es": "Limitar la exportación a [[power]] W",
+          "da": "Begræns salg til [[power]] W",
+          "ru": "Ограничить отдачу в сеть до [[power]] Вт",
+          "pl": "Ogranicz oddawanie do [[power]] W",
+          "ko": "송전을 [[power]] W로 제한",
+          "ar": "قيّد التصدير بـ [[power]] واط"
+        },
+        "hint": {
+          "en": "0 W stops all export. Surplus solar is then stored or curtailed by the system.",
+          "nl": "Bij 0 W stopt alle teruglevering. Het systeem slaat overschot dan op of regelt de zonnepanelen terug.",
+          "de": "Bei 0 W endet jede Einspeisung. Überschuss wird dann gespeichert oder abgeregelt.",
+          "fr": "À 0 W, plus aucune injection. Le surplus solaire est alors stocké ou bridé par le système.",
+          "it": "Con 0 W l'immissione si ferma. L'eccedenza viene accumulata o limitata dal sistema.",
+          "sv": "Vid 0 W upphör all försäljning. Överskottet lagras eller begränsas då av systemet.",
+          "no": "Ved 0 W stopper all eksport. Overskudd lagres eller strupes da av systemet.",
+          "es": "Con 0 W se detiene toda exportación. El excedente se almacena o se limita.",
+          "da": "Ved 0 W stopper alt salg. Overskud lagres eller begrænses så af systemet.",
+          "ru": "При 0 Вт отдача прекращается. Излишек сохраняется или ограничивается системой.",
+          "pl": "Przy 0 W oddawanie ustaje. Nadwyżka jest magazynowana lub ograniczana przez system.",
+          "ko": "0 W이면 송전이 멈춥니다. 남는 태양광은 저장되거나 시스템이 출력을 줄입니다.",
+          "ar": "عند 0 واط يتوقف التصدير كليًا. يُخزَّن الفائض أو يُقلَّص الإنتاج."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=grid"
+          },
+          {
+            "type": "number",
+            "name": "power",
+            "title": {
+              "en": "Power",
+              "nl": "Vermogen",
+              "de": "Leistung",
+              "fr": "Puissance",
+              "it": "Potenza",
+              "sv": "Effekt",
+              "no": "Effekt",
+              "es": "Potencia",
+              "da": "Effekt",
+              "ru": "Мощность",
+              "pl": "Moc",
+              "ko": "출력",
+              "ar": "القدرة"
+            },
+            "min": 0,
+            "max": 50000,
+            "step": 50,
+            "placeholder": {
+              "en": "0"
+            }
+          }
+        ]
+      },
+      {
+        "id": "allow_export",
+        "title": {
+          "en": "Allow unlimited export",
+          "nl": "Sta onbeperkte teruglevering toe",
+          "de": "Unbegrenzte Einspeisung erlauben",
+          "fr": "Autoriser l'injection sans limite",
+          "it": "Consenti immissione illimitata",
+          "sv": "Tillåt obegränsad försäljning",
+          "no": "Tillat ubegrenset eksport",
+          "es": "Permitir exportación ilimitada",
+          "da": "Tillad ubegrænset salg",
+          "ru": "Разрешить отдачу без ограничений",
+          "pl": "Zezwól na nieograniczone oddawanie",
+          "ko": "송전 제한 해제",
+          "ar": "اسمح بالتصدير دون قيود"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=grid"
+          }
+        ]
+      },
+      {
+        "id": "limit_import",
+        "title": {
+          "en": "Limit grid import to a power",
+          "nl": "Beperk afname van het net tot een vermogen",
+          "de": "Netzbezug auf eine Leistung begrenzen",
+          "fr": "Limiter le soutirage à une puissance",
+          "it": "Limita il prelievo a una potenza",
+          "sv": "Begränsa köp från nätet till en effekt",
+          "no": "Begrens import fra nettet til en effekt",
+          "es": "Limitar la importación a una potencia",
+          "da": "Begræns køb fra nettet til en effekt",
+          "ru": "Ограничить отбор из сети",
+          "pl": "Ogranicz pobór z sieci do mocy",
+          "ko": "수전을 지정 출력으로 제한",
+          "ar": "قيّد الاستيراد من الشبكة بقدرة معيّنة"
+        },
+        "titleFormatted": {
+          "en": "Limit grid import to [[power]] W",
+          "nl": "Beperk afname van het net tot [[power]] W",
+          "de": "Netzbezug auf [[power]] W begrenzen",
+          "fr": "Limiter le soutirage à [[power]] W",
+          "it": "Limita il prelievo a [[power]] W",
+          "sv": "Begränsa köp från nätet till [[power]] W",
+          "no": "Begrens import fra nettet til [[power]] W",
+          "es": "Limitar la importación a [[power]] W",
+          "da": "Begræns køb fra nettet til [[power]] W",
+          "ru": "Ограничить отбор из сети до [[power]] Вт",
+          "pl": "Ogranicz pobór z sieci do [[power]] W",
+          "ko": "수전을 [[power]] W로 제한",
+          "ar": "قيّد الاستيراد من الشبكة بـ [[power]] واط"
+        },
+        "hint": {
+          "en": "Peak shaving: the battery covers what the home uses above this power.",
+          "nl": "Pieken afvlakken: de batterij dekt wat het huis boven dit vermogen verbruikt.",
+          "de": "Lastspitzen kappen: Die Batterie deckt den Verbrauch über dieser Leistung.",
+          "fr": "Écrêtage : la batterie couvre la consommation au-delà de cette puissance.",
+          "it": "Taglio dei picchi: la batteria copre il consumo oltre questa potenza.",
+          "sv": "Toppkapning: batteriet täcker förbrukningen över denna effekt.",
+          "no": "Toppkutt: batteriet dekker forbruket over denne effekten.",
+          "es": "Recorte de picos: la batería cubre el consumo por encima de esta potencia.",
+          "da": "Spidsbelastning: batteriet dækker forbruget over denne effekt.",
+          "ru": "Срезание пиков: батарея покрывает потребление сверх этой мощности.",
+          "pl": "Obcinanie szczytów: bateria pokrywa zużycie powyżej tej mocy.",
+          "ko": "피크 저감: 이 출력을 넘는 소비는 배터리가 담당합니다.",
+          "ar": "خفض الذروة: تغطي البطارية الاستهلاك فوق هذه القدرة."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=grid"
+          },
+          {
+            "type": "number",
+            "name": "power",
+            "title": {
+              "en": "Power",
+              "nl": "Vermogen",
+              "de": "Leistung",
+              "fr": "Puissance",
+              "it": "Potenza",
+              "sv": "Effekt",
+              "no": "Effekt",
+              "es": "Potencia",
+              "da": "Effekt",
+              "ru": "Мощность",
+              "pl": "Moc",
+              "ko": "출력",
+              "ar": "القدرة"
+            },
+            "min": 0,
+            "max": 50000,
+            "step": 50,
+            "placeholder": {
+              "en": "0"
+            }
+          }
+        ]
+      },
+      {
+        "id": "allow_import",
+        "title": {
+          "en": "Allow unlimited grid import",
+          "nl": "Sta onbeperkte afname van het net toe",
+          "de": "Unbegrenzten Netzbezug erlauben",
+          "fr": "Autoriser le soutirage sans limite",
+          "it": "Consenti prelievo illimitato",
+          "sv": "Tillåt obegränsat köp från nätet",
+          "no": "Tillat ubegrenset import fra nettet",
+          "es": "Permitir importación ilimitada",
+          "da": "Tillad ubegrænset køb fra nettet",
+          "ru": "Разрешить отбор из сети без ограничений",
+          "pl": "Zezwól na nieograniczony pobór z sieci",
+          "ko": "수전 제한 해제",
+          "ar": "اسمح بالاستيراد دون قيود"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=grid"
+          }
+        ]
+      },
+      {
+        "id": "limit_production",
+        "title": {
+          "en": "Limit solar production to a power",
+          "nl": "Beperk de zonne-opbrengst tot een vermogen",
+          "de": "Solarproduktion auf eine Leistung begrenzen",
+          "fr": "Limiter la production solaire à une puissance",
+          "it": "Limita la produzione solare a una potenza",
+          "sv": "Begränsa solproduktionen till en effekt",
+          "no": "Begrens solproduksjonen til en effekt",
+          "es": "Limitar la producción solar a una potencia",
+          "da": "Begræns solproduktionen til en effekt",
+          "ru": "Ограничить солнечную генерацию",
+          "pl": "Ogranicz produkcję PV do mocy",
+          "ko": "태양광 발전을 지정 출력으로 제한",
+          "ar": "قيّد إنتاج الطاقة الشمسية بقدرة معيّنة"
+        },
+        "titleFormatted": {
+          "en": "Limit solar production to [[power]] W",
+          "nl": "Beperk de zonne-opbrengst tot [[power]] W",
+          "de": "Solarproduktion auf [[power]] W begrenzen",
+          "fr": "Limiter la production solaire à [[power]] W",
+          "it": "Limita la produzione solare a [[power]] W",
+          "sv": "Begränsa solproduktionen till [[power]] W",
+          "no": "Begrens solproduksjonen til [[power]] W",
+          "es": "Limitar la producción solar a [[power]] W",
+          "da": "Begræns solproduktionen til [[power]] W",
+          "ru": "Ограничить солнечную генерацию до [[power]] Вт",
+          "pl": "Ogranicz produkcję PV do [[power]] W",
+          "ko": "태양광 발전을 [[power]] W로 제한",
+          "ar": "قيّد إنتاج الطاقة الشمسية بـ [[power]] واط"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=solar"
+          },
+          {
+            "type": "number",
+            "name": "power",
+            "title": {
+              "en": "Power",
+              "nl": "Vermogen",
+              "de": "Leistung",
+              "fr": "Puissance",
+              "it": "Potenza",
+              "sv": "Effekt",
+              "no": "Effekt",
+              "es": "Potencia",
+              "da": "Effekt",
+              "ru": "Мощность",
+              "pl": "Moc",
+              "ko": "출력",
+              "ar": "القدرة"
+            },
+            "min": 0,
+            "max": 50000,
+            "step": 50,
+            "placeholder": {
+              "en": "0"
+            }
+          }
+        ]
+      },
+      {
+        "id": "remove_production_limit",
+        "title": {
+          "en": "Remove the solar production limit",
+          "nl": "Verwijder de beperking van de zonne-opbrengst",
+          "de": "Begrenzung der Solarproduktion aufheben",
+          "fr": "Supprimer la limite de production solaire",
+          "it": "Rimuovi il limite di produzione solare",
+          "sv": "Ta bort begränsningen av solproduktionen",
+          "no": "Fjern begrensningen av solproduksjonen",
+          "es": "Quitar el límite de producción solar",
+          "da": "Fjern begrænsningen af solproduktionen",
+          "ru": "Снять ограничение солнечной генерации",
+          "pl": "Usuń ograniczenie produkcji PV",
+          "ko": "태양광 발전 제한 해제",
+          "ar": "أزل قيد إنتاج الطاقة الشمسية"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=solar"
+          }
+        ]
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/battery/assets/images/small.png",
+        "large": "/drivers/battery/assets/images/large.png",
+        "xlarge": "/drivers/battery/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "connect",
+          "navigation": {
+            "next": "list_devices"
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "options": {
+            "singular": true
+          },
+          "navigation": {
+            "prev": "connect",
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "name": {
+        "en": "Home battery",
+        "nl": "Thuisbatterij",
+        "de": "Heimspeicher",
+        "fr": "Batterie domestique",
+        "it": "Batteria domestica",
+        "sv": "Hemmabatteri",
+        "no": "Hjemmebatteri",
+        "es": "Batería doméstica",
+        "da": "Hjemmebatteri",
+        "ru": "Домашний аккумулятор",
+        "pl": "Magazyn energii",
+        "ko": "가정용 배터리",
+        "ar": "بطارية منزلية"
+      },
+      "class": "battery",
+      "capabilities": [
+        "measure_battery",
+        "measure_power",
+        "battery_charging_state",
+        "atmoce_battery_mode",
+        "target_power",
+        "target_power_mode",
+        "meter_power.charged",
+        "meter_power.discharged",
+        "meter_power.charged_today",
+        "meter_power.discharged_today",
+        "measure_battery_energy",
+        "measure_time_to_full",
+        "measure_time_to_empty"
+      ],
+      "capabilitiesOptions": {
+        "meter_power.charged": {
+          "title": {
+            "en": "Total charged",
+            "nl": "Totaal geladen",
+            "de": "Gesamt geladen",
+            "fr": "Total chargé",
+            "it": "Totale caricato",
+            "sv": "Totalt laddat",
+            "no": "Totalt ladet",
+            "es": "Total cargado",
+            "da": "Samlet opladet",
+            "ru": "Всего заряжено",
+            "pl": "Łącznie naładowano",
+            "ko": "총 충전량",
+            "ar": "إجمالي الشحن"
+          }
+        },
+        "meter_power.discharged": {
+          "title": {
+            "en": "Total discharged",
+            "nl": "Totaal ontladen",
+            "de": "Gesamt entladen",
+            "fr": "Total déchargé",
+            "it": "Totale scaricato",
+            "sv": "Totalt urladdat",
+            "no": "Totalt utladet",
+            "es": "Total descargado",
+            "da": "Samlet afladet",
+            "ru": "Всего разряжено",
+            "pl": "Łącznie rozładowano",
+            "ko": "총 방전량",
+            "ar": "إجمالي التفريغ"
+          }
+        },
+        "meter_power.charged_today": {
+          "title": {
+            "en": "Charged today",
+            "nl": "Vandaag geladen",
+            "de": "Heute geladen",
+            "fr": "Chargé aujourd'hui",
+            "it": "Caricato oggi",
+            "sv": "Laddat idag",
+            "no": "Ladet i dag",
+            "es": "Cargado hoy",
+            "da": "Opladet i dag",
+            "ru": "Заряжено сегодня",
+            "pl": "Naładowano dziś",
+            "ko": "오늘 충전량",
+            "ar": "الشحن اليوم"
+          }
+        },
+        "meter_power.discharged_today": {
+          "title": {
+            "en": "Discharged today",
+            "nl": "Vandaag ontladen",
+            "de": "Heute entladen",
+            "fr": "Déchargé aujourd'hui",
+            "it": "Scaricato oggi",
+            "sv": "Urladdat idag",
+            "no": "Utladet i dag",
+            "es": "Descargado hoy",
+            "da": "Afladet i dag",
+            "ru": "Разряжено сегодня",
+            "pl": "Rozładowano dziś",
+            "ko": "오늘 방전량",
+            "ar": "التفريغ اليوم"
+          }
+        },
+        "target_power": {
+          "min": -10000,
+          "max": 10000,
+          "step": 10
+        }
+      },
+      "energy": {
+        "homeBattery": true,
+        "meterPowerImportedCapability": "meter_power.charged",
+        "meterPowerExportedCapability": "meter_power.discharged"
+      },
+      "id": "battery",
+      "settings": [
+        {
+          "id": "connection",
+          "type": "group",
+          "label": {
+            "en": "Connection",
+            "nl": "Verbinding",
+            "de": "Verbindung",
+            "fr": "Connexion",
+            "it": "Connessione",
+            "sv": "Anslutning",
+            "no": "Tilkobling",
+            "es": "Conexión",
+            "da": "Forbindelse",
+            "ru": "Подключение",
+            "pl": "Połączenie",
+            "ko": "연결",
+            "ar": "الاتصال"
+          },
+          "children": [
+            {
+              "id": "host",
+              "type": "text",
+              "label": {
+                "en": "IP address",
+                "nl": "IP-adres",
+                "de": "IP-Adresse",
+                "fr": "Adresse IP",
+                "it": "Indirizzo IP",
+                "sv": "IP-adress",
+                "no": "IP-adresse",
+                "es": "Dirección IP",
+                "da": "IP-adresse",
+                "ru": "IP-адрес",
+                "pl": "Adres IP",
+                "ko": "IP 주소",
+                "ar": "عنوان IP"
+              },
+              "hint": {
+                "en": "IP address of the Atmoce gateway, filled in during pairing. If the gateway gets a new address, Homey finds it again by itself.",
+                "nl": "IP-adres van de Atmoce-gateway, ingevuld bij het koppelen. Krijgt de gateway een nieuw adres, dan vindt Homey hem vanzelf terug.",
+                "de": "IP-Adresse des Atmoce-Gateways, beim Koppeln eingetragen. Bekommt das Gateway eine neue Adresse, findet Homey es von selbst wieder.",
+                "fr": "Adresse IP de la passerelle Atmoce, renseignée lors de l'appairage. Si la passerelle change d'adresse, Homey la retrouve tout seul.",
+                "it": "Indirizzo IP del gateway Atmoce, inserito durante l'abbinamento. Se il gateway cambia indirizzo, Homey lo ritrova da solo.",
+                "sv": "Atmoce-gatewayens IP-adress, ifylld vid parkopplingen. Får gatewayen en ny adress hittar Homey den igen av sig själv.",
+                "no": "IP-adressen til Atmoce-gatewayen, fylt inn ved paring. Får gatewayen en ny adresse, finner Homey den igjen av seg selv.",
+                "es": "Dirección IP de la pasarela Atmoce, rellenada al emparejar. Si la pasarela cambia de dirección, Homey la vuelve a encontrar sola.",
+                "da": "Atmoce-gatewayens IP-adresse, udfyldt ved parring. Får gatewayen en ny adresse, finder Homey den selv igen.",
+                "ru": "IP-адрес шлюза Atmoce, заполняется при сопряжении. Если адрес шлюза изменится, Homey сам найдёт его снова.",
+                "pl": "Adres IP bramki Atmoce, uzupełniany przy parowaniu. Jeśli bramka dostanie nowy adres, Homey sam ją odnajdzie.",
+                "ko": "Atmoce 게이트웨이의 IP 주소로, 페어링할 때 입력됩니다. 게이트웨이 주소가 바뀌면 Homey가 스스로 다시 찾습니다.",
+                "ar": "عنوان IP لبوابة Atmoce، يُملأ عند الإقران. إذا حصلت البوابة على عنوان جديد، يجدها Homey من تلقاء نفسه."
+              },
+              "value": ""
+            },
+            {
+              "id": "port",
+              "type": "number",
+              "label": {
+                "en": "Modbus TCP port",
+                "nl": "Modbus TCP-poort",
+                "de": "Modbus-TCP-Port",
+                "fr": "Port Modbus TCP",
+                "it": "Porta Modbus TCP",
+                "sv": "Modbus TCP-port",
+                "no": "Modbus TCP-port",
+                "es": "Puerto Modbus TCP",
+                "da": "Modbus TCP-port",
+                "ru": "Порт Modbus TCP",
+                "pl": "Port Modbus TCP",
+                "ko": "Modbus TCP 포트",
+                "ar": "منفذ Modbus TCP"
+              },
+              "hint": {
+                "en": "Default 502.",
+                "nl": "Standaard 502.",
+                "de": "Standard 502.",
+                "fr": "Par défaut 502.",
+                "it": "Predefinita 502.",
+                "sv": "Standard 502.",
+                "no": "Standard 502.",
+                "es": "Por defecto 502.",
+                "da": "Standard 502.",
+                "ru": "По умолчанию 502.",
+                "pl": "Domyślnie 502.",
+                "ko": "기본값 502.",
+                "ar": "الافتراضي 502."
+              },
+              "value": 502,
+              "min": 1,
+              "max": 65535,
+              "step": 1
+            },
+            {
+              "id": "unit_id",
+              "type": "number",
+              "label": {
+                "en": "Modbus unit ID",
+                "nl": "Modbus unit-ID",
+                "de": "Modbus-Unit-ID",
+                "fr": "ID Modbus",
+                "it": "ID unità Modbus",
+                "sv": "Modbus enhets-ID",
+                "no": "Modbus enhets-ID",
+                "es": "ID de unidad Modbus",
+                "da": "Modbus enheds-ID",
+                "ru": "Адрес Modbus",
+                "pl": "ID urządzenia Modbus",
+                "ko": "Modbus 유닛 ID",
+                "ar": "معرّف وحدة Modbus"
+              },
+              "hint": {
+                "en": "Default 1.",
+                "nl": "Standaard 1.",
+                "de": "Standard 1.",
+                "fr": "Par défaut 1.",
+                "it": "Predefinito 1.",
+                "sv": "Standard 1.",
+                "no": "Standard 1.",
+                "es": "Por defecto 1.",
+                "da": "Standard 1.",
+                "ru": "По умолчанию 1.",
+                "pl": "Domyślnie 1.",
+                "ko": "기본값 1.",
+                "ar": "الافتراضي 1."
+              },
+              "value": 1,
+              "min": 1,
+              "max": 247,
+              "step": 1
+            },
+            {
+              "id": "poll_interval",
+              "type": "number",
+              "label": {
+                "en": "Update interval",
+                "nl": "Update-interval",
+                "de": "Aktualisierungsintervall",
+                "fr": "Intervalle de mise à jour",
+                "it": "Intervallo di aggiornamento",
+                "sv": "Uppdateringsintervall",
+                "no": "Oppdateringsintervall",
+                "es": "Intervalo de actualización",
+                "da": "Opdateringsinterval",
+                "ru": "Интервал обновления",
+                "pl": "Interwał aktualizacji",
+                "ko": "업데이트 간격",
+                "ar": "فاصل التحديث"
+              },
+              "hint": {
+                "en": "How often Homey reads the gateway. Applies to all devices of this gateway.",
+                "nl": "Hoe vaak Homey de gateway uitleest. Geldt voor alle apparaten van deze gateway.",
+                "de": "Wie oft Homey das Gateway ausliest. Gilt für alle Geräte dieses Gateways.",
+                "fr": "Fréquence de lecture de la passerelle par Homey. Vaut pour tous les appareils de cette passerelle.",
+                "it": "Ogni quanto Homey legge il gateway. Vale per tutti i dispositivi di questo gateway.",
+                "sv": "Hur ofta Homey läser av gatewayen. Gäller alla enheter för denna gateway.",
+                "no": "Hvor ofte Homey leser av gatewayen. Gjelder alle enheter for denne gatewayen.",
+                "es": "Con qué frecuencia Homey lee la pasarela. Se aplica a todos los dispositivos de esta pasarela.",
+                "da": "Hvor ofte Homey aflæser gatewayen. Gælder alle enheder for denne gateway.",
+                "ru": "Как часто Homey опрашивает шлюз. Действует для всех устройств этого шлюза.",
+                "pl": "Jak często Homey odczytuje bramkę. Dotyczy wszystkich urządzeń tej bramki.",
+                "ko": "Homey가 게이트웨이를 읽는 주기입니다. 이 게이트웨이의 모든 기기에 적용됩니다.",
+                "ar": "عدد مرات قراءة Homey للبوابة. ينطبق على جميع أجهزة هذه البوابة."
+              },
+              "value": 10,
+              "min": 2,
+              "max": 300,
+              "step": 1,
+              "units": {
+                "en": "s"
+              }
+            }
+          ]
+        },
+        {
+          "id": "gateway",
+          "type": "group",
+          "label": {
+            "en": "Gateway",
+            "nl": "Gateway",
+            "de": "Gateway",
+            "fr": "Passerelle",
+            "it": "Gateway",
+            "sv": "Gateway",
+            "no": "Gateway",
+            "es": "Pasarela",
+            "da": "Gateway",
+            "ru": "Шлюз",
+            "pl": "Bramka",
+            "ko": "게이트웨이",
+            "ar": "البوابة"
+          },
+          "children": [
+            {
+              "id": "serial",
+              "type": "label",
+              "label": {
+                "en": "Serial number",
+                "nl": "Serienummer",
+                "de": "Seriennummer",
+                "fr": "Numéro de série",
+                "it": "Numero di serie",
+                "sv": "Serienummer",
+                "no": "Serienummer",
+                "es": "Número de serie",
+                "da": "Serienummer",
+                "ru": "Серийный номер",
+                "pl": "Numer seryjny",
+                "ko": "일련번호",
+                "ar": "الرقم التسلسلي"
+              },
+              "value": ""
+            },
+            {
+              "id": "firmware_version",
+              "type": "label",
+              "label": {
+                "en": "Firmware",
+                "nl": "Firmware",
+                "de": "Firmware",
+                "fr": "Firmware",
+                "it": "Firmware",
+                "sv": "Firmware",
+                "no": "Fastvare",
+                "es": "Firmware",
+                "da": "Firmware",
+                "ru": "Прошивка",
+                "pl": "Oprogramowanie",
+                "ko": "펌웨어",
+                "ar": "البرنامج الثابت"
+              },
+              "value": ""
+            },
+            {
+              "id": "hardware_version",
+              "type": "label",
+              "label": {
+                "en": "Hardware version",
+                "nl": "Hardwareversie",
+                "de": "Hardwareversion",
+                "fr": "Version matérielle",
+                "it": "Versione hardware",
+                "sv": "Hårdvaruversion",
+                "no": "Maskinvareversjon",
+                "es": "Versión de hardware",
+                "da": "Hardwareversion",
+                "ru": "Версия оборудования",
+                "pl": "Wersja sprzętu",
+                "ko": "하드웨어 버전",
+                "ar": "إصدار العتاد"
+              },
+              "value": ""
+            },
+            {
+              "id": "protocol_version",
+              "type": "label",
+              "label": {
+                "en": "Modbus protocol version",
+                "nl": "Versie Modbus-protocol",
+                "de": "Modbus-Protokollversion",
+                "fr": "Version du protocole Modbus",
+                "it": "Versione protocollo Modbus",
+                "sv": "Modbus-protokollversion",
+                "no": "Modbus-protokollversjon",
+                "es": "Versión del protocolo Modbus",
+                "da": "Modbus-protokolversion",
+                "ru": "Версия протокола Modbus",
+                "pl": "Wersja protokołu Modbus",
+                "ko": "Modbus 프로토콜 버전",
+                "ar": "إصدار بروتوكول Modbus"
+              },
+              "value": ""
+            },
+            {
+              "id": "storage_capacity",
+              "type": "label",
+              "label": {
+                "en": "Battery capacity",
+                "nl": "Batterijcapaciteit",
+                "de": "Batteriekapazität",
+                "fr": "Capacité de la batterie",
+                "it": "Capacità batteria",
+                "sv": "Batterikapacitet",
+                "no": "Batterikapasitet",
+                "es": "Capacidad de la batería",
+                "da": "Batterikapacitet",
+                "ru": "Ёмкость батареи",
+                "pl": "Pojemność baterii",
+                "ko": "배터리 용량",
+                "ar": "سعة البطارية"
+              },
+              "value": ""
+            },
+            {
+              "id": "rated_storage_power",
+              "type": "label",
+              "label": {
+                "en": "Rated battery power",
+                "nl": "Nominaal batterijvermogen",
+                "de": "Batterie-Nennleistung",
+                "fr": "Puissance nominale de la batterie",
+                "it": "Potenza nominale batteria",
+                "sv": "Nominell batterieffekt",
+                "no": "Nominell batterieffekt",
+                "es": "Potencia nominal de la batería",
+                "da": "Nominel batterieffekt",
+                "ru": "Номинальная мощность батареи",
+                "pl": "Moc znamionowa baterii",
+                "ko": "배터리 정격 출력",
+                "ar": "القدرة الاسمية للبطارية"
+              },
+              "value": ""
+            },
+            {
+              "id": "detected_discharge_limit",
+              "type": "label",
+              "label": {
+                "en": "Detected discharge limit",
+                "nl": "Gedetecteerde ontlaadlimiet",
+                "de": "Erkannte Entladegrenze",
+                "fr": "Limite de décharge détectée",
+                "it": "Limite di scarica rilevato",
+                "sv": "Upptäckt urladdningsgräns",
+                "no": "Oppdaget utladingsgrense",
+                "es": "Límite de descarga detectado",
+                "da": "Registreret afladningsgrænse",
+                "ru": "Обнаруженный предел разряда",
+                "pl": "Wykryty limit rozładowania",
+                "ko": "감지된 방전 한도",
+                "ar": "حد التفريغ المكتشف"
+              },
+              "value": "",
+              "hint": {
+                "en": "Learned automatically the first time the battery stops at the limit set in Atmozen. Used for the time to full and time to empty estimates.",
+                "nl": "Wordt automatisch geleerd zodra de batterij stopt op de limiet uit Atmozen. Gebruikt voor de schatting van de tijd tot vol en tot leeg.",
+                "de": "Wird automatisch gelernt, sobald die Batterie an der in Atmozen eingestellten Grenze stoppt. Genutzt für die Schätzung der Zeit bis voll und bis leer.",
+                "fr": "Appris automatiquement dès que la batterie s'arrête à la limite réglée dans Atmozen. Utilisé pour estimer le temps jusqu'à plein et jusqu'à vide.",
+                "it": "Appreso automaticamente quando la batteria si ferma al limite impostato in Atmozen. Usato per stimare il tempo al pieno e al vuoto.",
+                "sv": "Lärs in automatiskt när batteriet stannar vid gränsen som är inställd i Atmozen. Används för att uppskatta tid till full och tid till tom.",
+                "no": "Læres automatisk når batteriet stopper ved grensen satt i Atmozen. Brukes til å anslå tid til full og tid til tom.",
+                "es": "Se aprende automáticamente cuando la batería se detiene en el límite configurado en Atmozen. Se usa para estimar el tiempo hasta lleno y hasta vacío.",
+                "da": "Læres automatisk, når batteriet stopper ved grænsen, der er sat i Atmozen. Bruges til at anslå tid til fuld og tid til tom.",
+                "ru": "Определяется автоматически, когда батарея останавливается на пределе, заданном в Atmozen. Используется для оценки времени до полного заряда и до разряда.",
+                "pl": "Uczony automatycznie, gdy bateria zatrzyma się na limicie ustawionym w Atmozen. Służy do szacowania czasu do pełna i do rozładowania.",
+                "ko": "배터리가 Atmozen에서 설정한 한도에서 멈추면 자동으로 학습됩니다. 완충·방전까지 남은 시간 추정에 사용됩니다.",
+                "ar": "يُتعلَّم تلقائيًا عندما تتوقف البطارية عند الحد المضبوط في Atmozen. يُستخدم لتقدير الوقت حتى الامتلاء وحتى النفاد."
+              }
+            },
+            {
+              "id": "detected_charge_limit",
+              "type": "label",
+              "label": {
+                "en": "Detected charge limit",
+                "nl": "Gedetecteerde laadlimiet",
+                "de": "Erkannte Ladegrenze",
+                "fr": "Limite de charge détectée",
+                "it": "Limite di carica rilevato",
+                "sv": "Upptäckt laddningsgräns",
+                "no": "Oppdaget ladegrense",
+                "es": "Límite de carga detectado",
+                "da": "Registreret opladningsgrænse",
+                "ru": "Обнаруженный предел заряда",
+                "pl": "Wykryty limit ładowania",
+                "ko": "감지된 충전 한도",
+                "ar": "حد الشحن المكتشف"
+              },
+              "value": "",
+              "hint": {
+                "en": "Learned automatically the first time the battery stops at the limit set in Atmozen. Used for the time to full and time to empty estimates.",
+                "nl": "Wordt automatisch geleerd zodra de batterij stopt op de limiet uit Atmozen. Gebruikt voor de schatting van de tijd tot vol en tot leeg.",
+                "de": "Wird automatisch gelernt, sobald die Batterie an der in Atmozen eingestellten Grenze stoppt. Genutzt für die Schätzung der Zeit bis voll und bis leer.",
+                "fr": "Appris automatiquement dès que la batterie s'arrête à la limite réglée dans Atmozen. Utilisé pour estimer le temps jusqu'à plein et jusqu'à vide.",
+                "it": "Appreso automaticamente quando la batteria si ferma al limite impostato in Atmozen. Usato per stimare il tempo al pieno e al vuoto.",
+                "sv": "Lärs in automatiskt när batteriet stannar vid gränsen som är inställd i Atmozen. Används för att uppskatta tid till full och tid till tom.",
+                "no": "Læres automatisk når batteriet stopper ved grensen satt i Atmozen. Brukes til å anslå tid til full og tid til tom.",
+                "es": "Se aprende automáticamente cuando la batería se detiene en el límite configurado en Atmozen. Se usa para estimar el tiempo hasta lleno y hasta vacío.",
+                "da": "Læres automatisk, når batteriet stopper ved grænsen, der er sat i Atmozen. Bruges til at anslå tid til fuld og tid til tom.",
+                "ru": "Определяется автоматически, когда батарея останавливается на пределе, заданном в Atmozen. Используется для оценки времени до полного заряда и до разряда.",
+                "pl": "Uczony automatycznie, gdy bateria zatrzyma się na limicie ustawionym w Atmozen. Służy do szacowania czasu do pełna i do rozładowania.",
+                "ko": "배터리가 Atmozen에서 설정한 한도에서 멈추면 자동으로 학습됩니다. 완충·방전까지 남은 시간 추정에 사용됩니다.",
+                "ar": "يُتعلَّم تلقائيًا عندما تتوقف البطارية عند الحد المضبوط في Atmozen. يُستخدم لتقدير الوقت حتى الامتلاء وحتى النفاد."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/grid/assets/images/small.png",
+        "large": "/drivers/grid/assets/images/large.png",
+        "xlarge": "/drivers/grid/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "connect",
+          "navigation": {
+            "next": "list_devices"
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "options": {
+            "singular": true
+          },
+          "navigation": {
+            "prev": "connect",
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "name": {
+        "en": "Grid meter",
+        "nl": "Netmeter",
+        "de": "Netzzähler",
+        "fr": "Compteur réseau",
+        "it": "Contatore di rete",
+        "sv": "Nätmätare",
+        "no": "Nettmåler",
+        "es": "Contador de red",
+        "da": "Netmåler",
+        "ru": "Сетевой счётчик",
+        "pl": "Licznik sieciowy",
+        "ko": "계통 계량기",
+        "ar": "عداد الشبكة"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_power",
+        "measure_power.consumption",
+        "meter_power.imported",
+        "meter_power.exported",
+        "meter_power.imported_today",
+        "meter_power.exported_today",
+        "measure_voltage",
+        "measure_current",
+        "meter_power.consumption_today",
+        "measure_self_sufficiency"
+      ],
+      "capabilitiesOptions": {
+        "meter_power.imported": {
+          "title": {
+            "en": "Total imported",
+            "nl": "Totaal afgenomen",
+            "de": "Gesamtbezug",
+            "fr": "Total soutiré",
+            "it": "Totale prelevato",
+            "sv": "Totalt köpt",
+            "no": "Totalt importert",
+            "es": "Total importado",
+            "da": "Samlet købt",
+            "ru": "Всего потреблено из сети",
+            "pl": "Łącznie pobrano",
+            "ko": "총 수전량",
+            "ar": "إجمالي المستورد"
+          }
+        },
+        "meter_power.exported": {
+          "title": {
+            "en": "Total exported",
+            "nl": "Totaal teruggeleverd",
+            "de": "Gesamteinspeisung",
+            "fr": "Total injecté",
+            "it": "Totale immesso",
+            "sv": "Totalt sålt",
+            "no": "Totalt eksportert",
+            "es": "Total exportado",
+            "da": "Samlet solgt",
+            "ru": "Всего отдано в сеть",
+            "pl": "Łącznie oddano",
+            "ko": "총 송전량",
+            "ar": "إجمالي المُصدَّر"
+          }
+        },
+        "meter_power.imported_today": {
+          "title": {
+            "en": "Imported today",
+            "nl": "Vandaag afgenomen",
+            "de": "Bezug heute",
+            "fr": "Soutiré aujourd'hui",
+            "it": "Prelevato oggi",
+            "sv": "Köpt idag",
+            "no": "Importert i dag",
+            "es": "Importado hoy",
+            "da": "Købt i dag",
+            "ru": "Потреблено из сети сегодня",
+            "pl": "Pobrano dziś",
+            "ko": "오늘 수전량",
+            "ar": "المستورد اليوم"
+          }
+        },
+        "meter_power.exported_today": {
+          "title": {
+            "en": "Exported today",
+            "nl": "Vandaag teruggeleverd",
+            "de": "Einspeisung heute",
+            "fr": "Injecté aujourd'hui",
+            "it": "Immesso oggi",
+            "sv": "Sålt idag",
+            "no": "Eksportert i dag",
+            "es": "Exportado hoy",
+            "da": "Solgt i dag",
+            "ru": "Отдано в сеть сегодня",
+            "pl": "Oddano dziś",
+            "ko": "오늘 송전량",
+            "ar": "المُصدَّر اليوم"
+          }
+        },
+        "measure_voltage.l1": {
+          "title": {
+            "en": "Voltage L1",
+            "nl": "Spanning L1",
+            "de": "Spannung L1",
+            "fr": "Tension L1",
+            "it": "Tensione L1",
+            "sv": "Spänning L1",
+            "no": "Spenning L1",
+            "es": "Tensión L1",
+            "da": "Spænding L1",
+            "ru": "Напряжение L1",
+            "pl": "Napięcie L1",
+            "ko": "전압 L1",
+            "ar": "الجهد L1"
+          }
+        },
+        "measure_current.l1": {
+          "title": {
+            "en": "Current L1",
+            "nl": "Stroom L1",
+            "de": "Strom L1",
+            "fr": "Courant L1",
+            "it": "Corrente L1",
+            "sv": "Ström L1",
+            "no": "Strøm L1",
+            "es": "Corriente L1",
+            "da": "Strøm L1",
+            "ru": "Ток L1",
+            "pl": "Prąd L1",
+            "ko": "전류 L1",
+            "ar": "التيار L1"
+          }
+        },
+        "measure_voltage.l2": {
+          "title": {
+            "en": "Voltage L2",
+            "nl": "Spanning L2",
+            "de": "Spannung L2",
+            "fr": "Tension L2",
+            "it": "Tensione L2",
+            "sv": "Spänning L2",
+            "no": "Spenning L2",
+            "es": "Tensión L2",
+            "da": "Spænding L2",
+            "ru": "Напряжение L2",
+            "pl": "Napięcie L2",
+            "ko": "전압 L2",
+            "ar": "الجهد L2"
+          }
+        },
+        "measure_current.l2": {
+          "title": {
+            "en": "Current L2",
+            "nl": "Stroom L2",
+            "de": "Strom L2",
+            "fr": "Courant L2",
+            "it": "Corrente L2",
+            "sv": "Ström L2",
+            "no": "Strøm L2",
+            "es": "Corriente L2",
+            "da": "Strøm L2",
+            "ru": "Ток L2",
+            "pl": "Prąd L2",
+            "ko": "전류 L2",
+            "ar": "التيار L2"
+          }
+        },
+        "measure_voltage.l3": {
+          "title": {
+            "en": "Voltage L3",
+            "nl": "Spanning L3",
+            "de": "Spannung L3",
+            "fr": "Tension L3",
+            "it": "Tensione L3",
+            "sv": "Spänning L3",
+            "no": "Spenning L3",
+            "es": "Tensión L3",
+            "da": "Spænding L3",
+            "ru": "Напряжение L3",
+            "pl": "Napięcie L3",
+            "ko": "전압 L3",
+            "ar": "الجهد L3"
+          }
+        },
+        "measure_current.l3": {
+          "title": {
+            "en": "Current L3",
+            "nl": "Stroom L3",
+            "de": "Strom L3",
+            "fr": "Courant L3",
+            "it": "Corrente L3",
+            "sv": "Ström L3",
+            "no": "Strøm L3",
+            "es": "Corriente L3",
+            "da": "Strøm L3",
+            "ru": "Ток L3",
+            "pl": "Prąd L3",
+            "ko": "전류 L3",
+            "ar": "التيار L3"
+          }
+        },
+        "measure_power.consumption": {
+          "title": {
+            "en": "Home consumption",
+            "nl": "Huisverbruik",
+            "de": "Hausverbrauch",
+            "fr": "Consommation maison",
+            "it": "Consumo casa",
+            "sv": "Husets förbrukning",
+            "no": "Husets forbruk",
+            "es": "Consumo de la casa",
+            "da": "Husets forbrug",
+            "ru": "Потребление дома",
+            "pl": "Zużycie domu",
+            "ko": "가정 소비",
+            "ar": "استهلاك المنزل"
+          }
+        },
+        "meter_power.consumption_today": {
+          "title": {
+            "en": "Consumption today",
+            "nl": "Verbruik vandaag",
+            "de": "Verbrauch heute",
+            "fr": "Consommation aujourd'hui",
+            "it": "Consumo oggi",
+            "sv": "Förbrukning idag",
+            "no": "Forbruk i dag",
+            "es": "Consumo hoy",
+            "da": "Forbrug i dag",
+            "ru": "Потребление сегодня",
+            "pl": "Zużycie dziś",
+            "ko": "오늘 소비량",
+            "ar": "استهلاك اليوم"
+          }
+        }
+      },
+      "energy": {
+        "cumulative": true,
+        "cumulativeImportedCapability": "meter_power.imported",
+        "cumulativeExportedCapability": "meter_power.exported"
+      },
+      "id": "grid",
+      "settings": [
+        {
+          "id": "connection",
+          "type": "group",
+          "label": {
+            "en": "Connection",
+            "nl": "Verbinding",
+            "de": "Verbindung",
+            "fr": "Connexion",
+            "it": "Connessione",
+            "sv": "Anslutning",
+            "no": "Tilkobling",
+            "es": "Conexión",
+            "da": "Forbindelse",
+            "ru": "Подключение",
+            "pl": "Połączenie",
+            "ko": "연결",
+            "ar": "الاتصال"
+          },
+          "children": [
+            {
+              "id": "host",
+              "type": "text",
+              "label": {
+                "en": "IP address",
+                "nl": "IP-adres",
+                "de": "IP-Adresse",
+                "fr": "Adresse IP",
+                "it": "Indirizzo IP",
+                "sv": "IP-adress",
+                "no": "IP-adresse",
+                "es": "Dirección IP",
+                "da": "IP-adresse",
+                "ru": "IP-адрес",
+                "pl": "Adres IP",
+                "ko": "IP 주소",
+                "ar": "عنوان IP"
+              },
+              "hint": {
+                "en": "IP address of the Atmoce gateway, filled in during pairing. If the gateway gets a new address, Homey finds it again by itself.",
+                "nl": "IP-adres van de Atmoce-gateway, ingevuld bij het koppelen. Krijgt de gateway een nieuw adres, dan vindt Homey hem vanzelf terug.",
+                "de": "IP-Adresse des Atmoce-Gateways, beim Koppeln eingetragen. Bekommt das Gateway eine neue Adresse, findet Homey es von selbst wieder.",
+                "fr": "Adresse IP de la passerelle Atmoce, renseignée lors de l'appairage. Si la passerelle change d'adresse, Homey la retrouve tout seul.",
+                "it": "Indirizzo IP del gateway Atmoce, inserito durante l'abbinamento. Se il gateway cambia indirizzo, Homey lo ritrova da solo.",
+                "sv": "Atmoce-gatewayens IP-adress, ifylld vid parkopplingen. Får gatewayen en ny adress hittar Homey den igen av sig själv.",
+                "no": "IP-adressen til Atmoce-gatewayen, fylt inn ved paring. Får gatewayen en ny adresse, finner Homey den igjen av seg selv.",
+                "es": "Dirección IP de la pasarela Atmoce, rellenada al emparejar. Si la pasarela cambia de dirección, Homey la vuelve a encontrar sola.",
+                "da": "Atmoce-gatewayens IP-adresse, udfyldt ved parring. Får gatewayen en ny adresse, finder Homey den selv igen.",
+                "ru": "IP-адрес шлюза Atmoce, заполняется при сопряжении. Если адрес шлюза изменится, Homey сам найдёт его снова.",
+                "pl": "Adres IP bramki Atmoce, uzupełniany przy parowaniu. Jeśli bramka dostanie nowy adres, Homey sam ją odnajdzie.",
+                "ko": "Atmoce 게이트웨이의 IP 주소로, 페어링할 때 입력됩니다. 게이트웨이 주소가 바뀌면 Homey가 스스로 다시 찾습니다.",
+                "ar": "عنوان IP لبوابة Atmoce، يُملأ عند الإقران. إذا حصلت البوابة على عنوان جديد، يجدها Homey من تلقاء نفسه."
+              },
+              "value": ""
+            },
+            {
+              "id": "port",
+              "type": "number",
+              "label": {
+                "en": "Modbus TCP port",
+                "nl": "Modbus TCP-poort",
+                "de": "Modbus-TCP-Port",
+                "fr": "Port Modbus TCP",
+                "it": "Porta Modbus TCP",
+                "sv": "Modbus TCP-port",
+                "no": "Modbus TCP-port",
+                "es": "Puerto Modbus TCP",
+                "da": "Modbus TCP-port",
+                "ru": "Порт Modbus TCP",
+                "pl": "Port Modbus TCP",
+                "ko": "Modbus TCP 포트",
+                "ar": "منفذ Modbus TCP"
+              },
+              "hint": {
+                "en": "Default 502.",
+                "nl": "Standaard 502.",
+                "de": "Standard 502.",
+                "fr": "Par défaut 502.",
+                "it": "Predefinita 502.",
+                "sv": "Standard 502.",
+                "no": "Standard 502.",
+                "es": "Por defecto 502.",
+                "da": "Standard 502.",
+                "ru": "По умолчанию 502.",
+                "pl": "Domyślnie 502.",
+                "ko": "기본값 502.",
+                "ar": "الافتراضي 502."
+              },
+              "value": 502,
+              "min": 1,
+              "max": 65535,
+              "step": 1
+            },
+            {
+              "id": "unit_id",
+              "type": "number",
+              "label": {
+                "en": "Modbus unit ID",
+                "nl": "Modbus unit-ID",
+                "de": "Modbus-Unit-ID",
+                "fr": "ID Modbus",
+                "it": "ID unità Modbus",
+                "sv": "Modbus enhets-ID",
+                "no": "Modbus enhets-ID",
+                "es": "ID de unidad Modbus",
+                "da": "Modbus enheds-ID",
+                "ru": "Адрес Modbus",
+                "pl": "ID urządzenia Modbus",
+                "ko": "Modbus 유닛 ID",
+                "ar": "معرّف وحدة Modbus"
+              },
+              "hint": {
+                "en": "Default 1.",
+                "nl": "Standaard 1.",
+                "de": "Standard 1.",
+                "fr": "Par défaut 1.",
+                "it": "Predefinito 1.",
+                "sv": "Standard 1.",
+                "no": "Standard 1.",
+                "es": "Por defecto 1.",
+                "da": "Standard 1.",
+                "ru": "По умолчанию 1.",
+                "pl": "Domyślnie 1.",
+                "ko": "기본값 1.",
+                "ar": "الافتراضي 1."
+              },
+              "value": 1,
+              "min": 1,
+              "max": 247,
+              "step": 1
+            },
+            {
+              "id": "poll_interval",
+              "type": "number",
+              "label": {
+                "en": "Update interval",
+                "nl": "Update-interval",
+                "de": "Aktualisierungsintervall",
+                "fr": "Intervalle de mise à jour",
+                "it": "Intervallo di aggiornamento",
+                "sv": "Uppdateringsintervall",
+                "no": "Oppdateringsintervall",
+                "es": "Intervalo de actualización",
+                "da": "Opdateringsinterval",
+                "ru": "Интервал обновления",
+                "pl": "Interwał aktualizacji",
+                "ko": "업데이트 간격",
+                "ar": "فاصل التحديث"
+              },
+              "hint": {
+                "en": "How often Homey reads the gateway. Applies to all devices of this gateway.",
+                "nl": "Hoe vaak Homey de gateway uitleest. Geldt voor alle apparaten van deze gateway.",
+                "de": "Wie oft Homey das Gateway ausliest. Gilt für alle Geräte dieses Gateways.",
+                "fr": "Fréquence de lecture de la passerelle par Homey. Vaut pour tous les appareils de cette passerelle.",
+                "it": "Ogni quanto Homey legge il gateway. Vale per tutti i dispositivi di questo gateway.",
+                "sv": "Hur ofta Homey läser av gatewayen. Gäller alla enheter för denna gateway.",
+                "no": "Hvor ofte Homey leser av gatewayen. Gjelder alle enheter for denne gatewayen.",
+                "es": "Con qué frecuencia Homey lee la pasarela. Se aplica a todos los dispositivos de esta pasarela.",
+                "da": "Hvor ofte Homey aflæser gatewayen. Gælder alle enheder for denne gateway.",
+                "ru": "Как часто Homey опрашивает шлюз. Действует для всех устройств этого шлюза.",
+                "pl": "Jak często Homey odczytuje bramkę. Dotyczy wszystkich urządzeń tej bramki.",
+                "ko": "Homey가 게이트웨이를 읽는 주기입니다. 이 게이트웨이의 모든 기기에 적용됩니다.",
+                "ar": "عدد مرات قراءة Homey للبوابة. ينطبق على جميع أجهزة هذه البوابة."
+              },
+              "value": 10,
+              "min": 2,
+              "max": 300,
+              "step": 1,
+              "units": {
+                "en": "s"
+              }
+            }
+          ]
+        },
+        {
+          "id": "gateway",
+          "type": "group",
+          "label": {
+            "en": "Gateway",
+            "nl": "Gateway",
+            "de": "Gateway",
+            "fr": "Passerelle",
+            "it": "Gateway",
+            "sv": "Gateway",
+            "no": "Gateway",
+            "es": "Pasarela",
+            "da": "Gateway",
+            "ru": "Шлюз",
+            "pl": "Bramka",
+            "ko": "게이트웨이",
+            "ar": "البوابة"
+          },
+          "children": [
+            {
+              "id": "serial",
+              "type": "label",
+              "label": {
+                "en": "Serial number",
+                "nl": "Serienummer",
+                "de": "Seriennummer",
+                "fr": "Numéro de série",
+                "it": "Numero di serie",
+                "sv": "Serienummer",
+                "no": "Serienummer",
+                "es": "Número de serie",
+                "da": "Serienummer",
+                "ru": "Серийный номер",
+                "pl": "Numer seryjny",
+                "ko": "일련번호",
+                "ar": "الرقم التسلسلي"
+              },
+              "value": ""
+            },
+            {
+              "id": "firmware_version",
+              "type": "label",
+              "label": {
+                "en": "Firmware",
+                "nl": "Firmware",
+                "de": "Firmware",
+                "fr": "Firmware",
+                "it": "Firmware",
+                "sv": "Firmware",
+                "no": "Fastvare",
+                "es": "Firmware",
+                "da": "Firmware",
+                "ru": "Прошивка",
+                "pl": "Oprogramowanie",
+                "ko": "펌웨어",
+                "ar": "البرنامج الثابت"
+              },
+              "value": ""
+            },
+            {
+              "id": "hardware_version",
+              "type": "label",
+              "label": {
+                "en": "Hardware version",
+                "nl": "Hardwareversie",
+                "de": "Hardwareversion",
+                "fr": "Version matérielle",
+                "it": "Versione hardware",
+                "sv": "Hårdvaruversion",
+                "no": "Maskinvareversjon",
+                "es": "Versión de hardware",
+                "da": "Hardwareversion",
+                "ru": "Версия оборудования",
+                "pl": "Wersja sprzętu",
+                "ko": "하드웨어 버전",
+                "ar": "إصدار العتاد"
+              },
+              "value": ""
+            },
+            {
+              "id": "protocol_version",
+              "type": "label",
+              "label": {
+                "en": "Modbus protocol version",
+                "nl": "Versie Modbus-protocol",
+                "de": "Modbus-Protokollversion",
+                "fr": "Version du protocole Modbus",
+                "it": "Versione protocollo Modbus",
+                "sv": "Modbus-protokollversion",
+                "no": "Modbus-protokollversjon",
+                "es": "Versión del protocolo Modbus",
+                "da": "Modbus-protokolversion",
+                "ru": "Версия протокола Modbus",
+                "pl": "Wersja protokołu Modbus",
+                "ko": "Modbus 프로토콜 버전",
+                "ar": "إصدار بروتوكول Modbus"
+              },
+              "value": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/solar/assets/images/small.png",
+        "large": "/drivers/solar/assets/images/large.png",
+        "xlarge": "/drivers/solar/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "connect",
+          "navigation": {
+            "next": "list_devices"
+          }
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "options": {
+            "singular": true
+          },
+          "navigation": {
+            "prev": "connect",
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "name": {
+        "en": "Solar panels",
+        "nl": "Zonnepanelen",
+        "de": "Solarmodule",
+        "fr": "Panneaux solaires",
+        "it": "Pannelli solari",
+        "sv": "Solpaneler",
+        "no": "Solcellepaneler",
+        "es": "Paneles solares",
+        "da": "Solpaneler",
+        "ru": "Солнечные панели",
+        "pl": "Panele słoneczne",
+        "ko": "태양광 패널",
+        "ar": "الألواح الشمسية"
+      },
+      "class": "solarpanel",
+      "capabilities": [
+        "measure_power",
+        "meter_power",
+        "meter_power.today"
+      ],
+      "capabilitiesOptions": {
+        "meter_power": {
+          "title": {
+            "en": "Total production",
+            "nl": "Totale opbrengst",
+            "de": "Gesamtertrag",
+            "fr": "Production totale",
+            "it": "Produzione totale",
+            "sv": "Total produktion",
+            "no": "Total produksjon",
+            "es": "Producción total",
+            "da": "Samlet produktion",
+            "ru": "Всего выработано",
+            "pl": "Produkcja łączna",
+            "ko": "총 발전량",
+            "ar": "إجمالي الإنتاج"
+          }
+        },
+        "meter_power.today": {
+          "title": {
+            "en": "Production today",
+            "nl": "Opbrengst vandaag",
+            "de": "Ertrag heute",
+            "fr": "Production aujourd'hui",
+            "it": "Produzione oggi",
+            "sv": "Produktion idag",
+            "no": "Produksjon i dag",
+            "es": "Producción hoy",
+            "da": "Produktion i dag",
+            "ru": "Выработано сегодня",
+            "pl": "Produkcja dziś",
+            "ko": "오늘 발전량",
+            "ar": "إنتاج اليوم"
+          }
+        },
+        "target_power": {
+          "title": {
+            "en": "Production limit",
+            "nl": "Productielimiet",
+            "de": "Produktionsgrenze",
+            "fr": "Limite de production",
+            "it": "Limite di produzione",
+            "sv": "Produktionsgräns",
+            "no": "Produksjonsgrense",
+            "es": "Límite de producción",
+            "da": "Produktionsgrænse",
+            "ru": "Предел генерации",
+            "pl": "Limit produkcji",
+            "ko": "발전 제한",
+            "ar": "حد الإنتاج"
+          },
+          "min": 0,
+          "max": 10000,
+          "step": 10
+        }
+      },
+      "energy": {
+        "meterPowerExportedCapability": "meter_power"
+      },
+      "id": "solar",
+      "settings": [
+        {
+          "id": "connection",
+          "type": "group",
+          "label": {
+            "en": "Connection",
+            "nl": "Verbinding",
+            "de": "Verbindung",
+            "fr": "Connexion",
+            "it": "Connessione",
+            "sv": "Anslutning",
+            "no": "Tilkobling",
+            "es": "Conexión",
+            "da": "Forbindelse",
+            "ru": "Подключение",
+            "pl": "Połączenie",
+            "ko": "연결",
+            "ar": "الاتصال"
+          },
+          "children": [
+            {
+              "id": "host",
+              "type": "text",
+              "label": {
+                "en": "IP address",
+                "nl": "IP-adres",
+                "de": "IP-Adresse",
+                "fr": "Adresse IP",
+                "it": "Indirizzo IP",
+                "sv": "IP-adress",
+                "no": "IP-adresse",
+                "es": "Dirección IP",
+                "da": "IP-adresse",
+                "ru": "IP-адрес",
+                "pl": "Adres IP",
+                "ko": "IP 주소",
+                "ar": "عنوان IP"
+              },
+              "hint": {
+                "en": "IP address of the Atmoce gateway, filled in during pairing. If the gateway gets a new address, Homey finds it again by itself.",
+                "nl": "IP-adres van de Atmoce-gateway, ingevuld bij het koppelen. Krijgt de gateway een nieuw adres, dan vindt Homey hem vanzelf terug.",
+                "de": "IP-Adresse des Atmoce-Gateways, beim Koppeln eingetragen. Bekommt das Gateway eine neue Adresse, findet Homey es von selbst wieder.",
+                "fr": "Adresse IP de la passerelle Atmoce, renseignée lors de l'appairage. Si la passerelle change d'adresse, Homey la retrouve tout seul.",
+                "it": "Indirizzo IP del gateway Atmoce, inserito durante l'abbinamento. Se il gateway cambia indirizzo, Homey lo ritrova da solo.",
+                "sv": "Atmoce-gatewayens IP-adress, ifylld vid parkopplingen. Får gatewayen en ny adress hittar Homey den igen av sig själv.",
+                "no": "IP-adressen til Atmoce-gatewayen, fylt inn ved paring. Får gatewayen en ny adresse, finner Homey den igjen av seg selv.",
+                "es": "Dirección IP de la pasarela Atmoce, rellenada al emparejar. Si la pasarela cambia de dirección, Homey la vuelve a encontrar sola.",
+                "da": "Atmoce-gatewayens IP-adresse, udfyldt ved parring. Får gatewayen en ny adresse, finder Homey den selv igen.",
+                "ru": "IP-адрес шлюза Atmoce, заполняется при сопряжении. Если адрес шлюза изменится, Homey сам найдёт его снова.",
+                "pl": "Adres IP bramki Atmoce, uzupełniany przy parowaniu. Jeśli bramka dostanie nowy adres, Homey sam ją odnajdzie.",
+                "ko": "Atmoce 게이트웨이의 IP 주소로, 페어링할 때 입력됩니다. 게이트웨이 주소가 바뀌면 Homey가 스스로 다시 찾습니다.",
+                "ar": "عنوان IP لبوابة Atmoce، يُملأ عند الإقران. إذا حصلت البوابة على عنوان جديد، يجدها Homey من تلقاء نفسه."
+              },
+              "value": ""
+            },
+            {
+              "id": "port",
+              "type": "number",
+              "label": {
+                "en": "Modbus TCP port",
+                "nl": "Modbus TCP-poort",
+                "de": "Modbus-TCP-Port",
+                "fr": "Port Modbus TCP",
+                "it": "Porta Modbus TCP",
+                "sv": "Modbus TCP-port",
+                "no": "Modbus TCP-port",
+                "es": "Puerto Modbus TCP",
+                "da": "Modbus TCP-port",
+                "ru": "Порт Modbus TCP",
+                "pl": "Port Modbus TCP",
+                "ko": "Modbus TCP 포트",
+                "ar": "منفذ Modbus TCP"
+              },
+              "hint": {
+                "en": "Default 502.",
+                "nl": "Standaard 502.",
+                "de": "Standard 502.",
+                "fr": "Par défaut 502.",
+                "it": "Predefinita 502.",
+                "sv": "Standard 502.",
+                "no": "Standard 502.",
+                "es": "Por defecto 502.",
+                "da": "Standard 502.",
+                "ru": "По умолчанию 502.",
+                "pl": "Domyślnie 502.",
+                "ko": "기본값 502.",
+                "ar": "الافتراضي 502."
+              },
+              "value": 502,
+              "min": 1,
+              "max": 65535,
+              "step": 1
+            },
+            {
+              "id": "unit_id",
+              "type": "number",
+              "label": {
+                "en": "Modbus unit ID",
+                "nl": "Modbus unit-ID",
+                "de": "Modbus-Unit-ID",
+                "fr": "ID Modbus",
+                "it": "ID unità Modbus",
+                "sv": "Modbus enhets-ID",
+                "no": "Modbus enhets-ID",
+                "es": "ID de unidad Modbus",
+                "da": "Modbus enheds-ID",
+                "ru": "Адрес Modbus",
+                "pl": "ID urządzenia Modbus",
+                "ko": "Modbus 유닛 ID",
+                "ar": "معرّف وحدة Modbus"
+              },
+              "hint": {
+                "en": "Default 1.",
+                "nl": "Standaard 1.",
+                "de": "Standard 1.",
+                "fr": "Par défaut 1.",
+                "it": "Predefinito 1.",
+                "sv": "Standard 1.",
+                "no": "Standard 1.",
+                "es": "Por defecto 1.",
+                "da": "Standard 1.",
+                "ru": "По умолчанию 1.",
+                "pl": "Domyślnie 1.",
+                "ko": "기본값 1.",
+                "ar": "الافتراضي 1."
+              },
+              "value": 1,
+              "min": 1,
+              "max": 247,
+              "step": 1
+            },
+            {
+              "id": "poll_interval",
+              "type": "number",
+              "label": {
+                "en": "Update interval",
+                "nl": "Update-interval",
+                "de": "Aktualisierungsintervall",
+                "fr": "Intervalle de mise à jour",
+                "it": "Intervallo di aggiornamento",
+                "sv": "Uppdateringsintervall",
+                "no": "Oppdateringsintervall",
+                "es": "Intervalo de actualización",
+                "da": "Opdateringsinterval",
+                "ru": "Интервал обновления",
+                "pl": "Interwał aktualizacji",
+                "ko": "업데이트 간격",
+                "ar": "فاصل التحديث"
+              },
+              "hint": {
+                "en": "How often Homey reads the gateway. Applies to all devices of this gateway.",
+                "nl": "Hoe vaak Homey de gateway uitleest. Geldt voor alle apparaten van deze gateway.",
+                "de": "Wie oft Homey das Gateway ausliest. Gilt für alle Geräte dieses Gateways.",
+                "fr": "Fréquence de lecture de la passerelle par Homey. Vaut pour tous les appareils de cette passerelle.",
+                "it": "Ogni quanto Homey legge il gateway. Vale per tutti i dispositivi di questo gateway.",
+                "sv": "Hur ofta Homey läser av gatewayen. Gäller alla enheter för denna gateway.",
+                "no": "Hvor ofte Homey leser av gatewayen. Gjelder alle enheter for denne gatewayen.",
+                "es": "Con qué frecuencia Homey lee la pasarela. Se aplica a todos los dispositivos de esta pasarela.",
+                "da": "Hvor ofte Homey aflæser gatewayen. Gælder alle enheder for denne gateway.",
+                "ru": "Как часто Homey опрашивает шлюз. Действует для всех устройств этого шлюза.",
+                "pl": "Jak często Homey odczytuje bramkę. Dotyczy wszystkich urządzeń tej bramki.",
+                "ko": "Homey가 게이트웨이를 읽는 주기입니다. 이 게이트웨이의 모든 기기에 적용됩니다.",
+                "ar": "عدد مرات قراءة Homey للبوابة. ينطبق على جميع أجهزة هذه البوابة."
+              },
+              "value": 10,
+              "min": 2,
+              "max": 300,
+              "step": 1,
+              "units": {
+                "en": "s"
+              }
+            }
+          ]
+        },
+        {
+          "id": "gateway",
+          "type": "group",
+          "label": {
+            "en": "Gateway",
+            "nl": "Gateway",
+            "de": "Gateway",
+            "fr": "Passerelle",
+            "it": "Gateway",
+            "sv": "Gateway",
+            "no": "Gateway",
+            "es": "Pasarela",
+            "da": "Gateway",
+            "ru": "Шлюз",
+            "pl": "Bramka",
+            "ko": "게이트웨이",
+            "ar": "البوابة"
+          },
+          "children": [
+            {
+              "id": "serial",
+              "type": "label",
+              "label": {
+                "en": "Serial number",
+                "nl": "Serienummer",
+                "de": "Seriennummer",
+                "fr": "Numéro de série",
+                "it": "Numero di serie",
+                "sv": "Serienummer",
+                "no": "Serienummer",
+                "es": "Número de serie",
+                "da": "Serienummer",
+                "ru": "Серийный номер",
+                "pl": "Numer seryjny",
+                "ko": "일련번호",
+                "ar": "الرقم التسلسلي"
+              },
+              "value": ""
+            },
+            {
+              "id": "firmware_version",
+              "type": "label",
+              "label": {
+                "en": "Firmware",
+                "nl": "Firmware",
+                "de": "Firmware",
+                "fr": "Firmware",
+                "it": "Firmware",
+                "sv": "Firmware",
+                "no": "Fastvare",
+                "es": "Firmware",
+                "da": "Firmware",
+                "ru": "Прошивка",
+                "pl": "Oprogramowanie",
+                "ko": "펌웨어",
+                "ar": "البرنامج الثابت"
+              },
+              "value": ""
+            },
+            {
+              "id": "hardware_version",
+              "type": "label",
+              "label": {
+                "en": "Hardware version",
+                "nl": "Hardwareversie",
+                "de": "Hardwareversion",
+                "fr": "Version matérielle",
+                "it": "Versione hardware",
+                "sv": "Hårdvaruversion",
+                "no": "Maskinvareversjon",
+                "es": "Versión de hardware",
+                "da": "Hardwareversion",
+                "ru": "Версия оборудования",
+                "pl": "Wersja sprzętu",
+                "ko": "하드웨어 버전",
+                "ar": "إصدار العتاد"
+              },
+              "value": ""
+            },
+            {
+              "id": "protocol_version",
+              "type": "label",
+              "label": {
+                "en": "Modbus protocol version",
+                "nl": "Versie Modbus-protocol",
+                "de": "Modbus-Protokollversion",
+                "fr": "Version du protocole Modbus",
+                "it": "Versione protocollo Modbus",
+                "sv": "Modbus-protokollversion",
+                "no": "Modbus-protokollversjon",
+                "es": "Versión del protocolo Modbus",
+                "da": "Modbus-protokolversion",
+                "ru": "Версия протокола Modbus",
+                "pl": "Wersja protokołu Modbus",
+                "ko": "Modbus 프로토콜 버전",
+                "ar": "إصدار بروتوكول Modbus"
+              },
+              "value": ""
+            },
+            {
+              "id": "rated_pv_power",
+              "type": "label",
+              "label": {
+                "en": "Rated solar power",
+                "nl": "Nominaal zonnevermogen",
+                "de": "Solar-Nennleistung",
+                "fr": "Puissance solaire nominale",
+                "it": "Potenza solare nominale",
+                "sv": "Nominell soleffekt",
+                "no": "Nominell soleffekt",
+                "es": "Potencia solar nominal",
+                "da": "Nominel soleffekt",
+                "ru": "Номинальная мощность солнечных панелей",
+                "pl": "Moc znamionowa PV",
+                "ko": "태양광 정격 출력",
+                "ar": "القدرة الشمسية الاسمية"
+              },
+              "value": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "capabilities": {
+    "atmoce_battery_mode": {
+      "type": "enum",
+      "title": {
+        "en": "Battery mode",
+        "nl": "Batterijmodus",
+        "de": "Batteriemodus",
+        "fr": "Mode batterie",
+        "it": "Modalità batteria",
+        "sv": "Batteriläge",
+        "no": "Batterimodus",
+        "es": "Modo de batería",
+        "da": "Batteritilstand",
+        "ru": "Режим батареи",
+        "pl": "Tryb baterii",
+        "ko": "배터리 모드",
+        "ar": "وضع البطارية"
+      },
+      "desc": {
+        "en": "How the gateway operates the batteries",
+        "nl": "Hoe de gateway de batterijen aanstuurt",
+        "de": "Wie das Gateway die Batterien betreibt",
+        "fr": "Comment la passerelle pilote les batteries",
+        "it": "Come il gateway gestisce le batterie",
+        "sv": "Hur gatewayen styr batterierna",
+        "no": "Hvordan gatewayen styrer batteriene",
+        "es": "Cómo gestiona la pasarela las baterías",
+        "da": "Hvordan gatewayen styrer batterierne",
+        "ru": "Как шлюз управляет батареями",
+        "pl": "Jak bramka steruje bateriami",
+        "ko": "게이트웨이가 배터리를 운용하는 방식",
+        "ar": "كيف تدير البوابة البطاريات"
+      },
+      "values": [
+        {
+          "id": "self_consumption",
+          "title": {
+            "en": "Self-consumption",
+            "nl": "Eigen verbruik",
+            "de": "Eigenverbrauch",
+            "fr": "Autoconsommation",
+            "it": "Autoconsumo",
+            "sv": "Egenförbrukning",
+            "no": "Egenforbruk",
+            "es": "Autoconsumo",
+            "da": "Eget forbrug",
+            "ru": "Собственное потребление",
+            "pl": "Autokonsumpcja",
+            "ko": "자가 소비",
+            "ar": "الاستهلاك الذاتي"
+          }
+        },
+        {
+          "id": "time_of_use",
+          "title": {
+            "en": "Time of use",
+            "nl": "Tijdsafhankelijk",
+            "de": "Zeitabhängig",
+            "fr": "Plages horaires",
+            "it": "Fasce orarie",
+            "sv": "Tidsstyrt",
+            "no": "Tidsstyrt",
+            "es": "Por franjas horarias",
+            "da": "Tidsstyret",
+            "ru": "По времени суток",
+            "pl": "Według taryfy czasowej",
+            "ko": "시간대별",
+            "ar": "حسب وقت الاستخدام"
+          }
+        },
+        {
+          "id": "remote",
+          "title": {
+            "en": "Remote control",
+            "nl": "Op afstand gestuurd",
+            "de": "Fernsteuerung",
+            "fr": "Pilotage à distance",
+            "it": "Controllo remoto",
+            "sv": "Fjärrstyrt",
+            "no": "Fjernstyrt",
+            "es": "Control remoto",
+            "da": "Fjernstyret",
+            "ru": "Удалённое управление",
+            "pl": "Sterowanie zdalne",
+            "ko": "원격 제어",
+            "ar": "تحكم عن بُعد"
+          }
+        }
+      ],
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/battery_mode.svg"
+    },
+    "measure_battery_energy": {
+      "type": "number",
+      "title": {
+        "en": "Energy stored",
+        "nl": "Opgeslagen energie",
+        "de": "Gespeicherte Energie",
+        "fr": "Énergie stockée",
+        "it": "Energia accumulata",
+        "sv": "Lagrad energi",
+        "no": "Lagret energi",
+        "es": "Energía almacenada",
+        "da": "Lagret energi",
+        "ru": "Запасённая энергия",
+        "pl": "Zmagazynowana energia",
+        "ko": "저장된 에너지",
+        "ar": "الطاقة المخزنة"
+      },
+      "units": {
+        "en": "kWh"
+      },
+      "decimals": 2,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": true,
+      "icon": "/assets/capabilities/battery_energy.svg",
+      "desc": {
+        "en": "Estimate: battery level × total capacity",
+        "nl": "Schatting: batterijniveau × totale capaciteit",
+        "de": "Schätzung: Ladestand × Gesamtkapazität",
+        "fr": "Estimation : niveau de batterie × capacité totale",
+        "it": "Stima: livello batteria × capacità totale",
+        "sv": "Uppskattning: batterinivå × total kapacitet",
+        "no": "Anslag: batterinivå × total kapasitet",
+        "es": "Estimación: nivel de batería × capacidad total",
+        "da": "Skøn: batteriniveau × samlet kapacitet",
+        "ru": "Оценка: уровень заряда × полная ёмкость",
+        "pl": "Szacunek: poziom baterii × pojemność całkowita",
+        "ko": "추정값: 배터리 잔량 × 전체 용량",
+        "ar": "تقدير: مستوى البطارية × السعة الكلية"
+      }
+    },
+    "measure_self_sufficiency": {
+      "type": "number",
+      "title": {
+        "en": "Self-sufficiency today",
+        "nl": "Zelfvoorzienend vandaag",
+        "de": "Autarkie heute",
+        "fr": "Autonomie aujourd'hui",
+        "it": "Autosufficienza oggi",
+        "sv": "Självförsörjning idag",
+        "no": "Selvforsyning i dag",
+        "es": "Autosuficiencia hoy",
+        "da": "Selvforsyning i dag",
+        "ru": "Автономность сегодня",
+        "pl": "Samowystarczalność dziś",
+        "ko": "오늘 자급률",
+        "ar": "الاكتفاء الذاتي اليوم"
+      },
+      "units": {
+        "en": "%"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": true,
+      "icon": "/assets/capabilities/self_sufficiency.svg",
+      "desc": {
+        "en": "Share of today's home consumption not taken from the grid",
+        "nl": "Deel van het huisverbruik van vandaag dat niet van het net kwam",
+        "de": "Anteil des heutigen Hausverbrauchs, der nicht aus dem Netz kam",
+        "fr": "Part de la consommation d'aujourd'hui non prélevée sur le réseau",
+        "it": "Quota del consumo di oggi non prelevata dalla rete",
+        "sv": "Andel av dagens förbrukning som inte kom från elnätet",
+        "no": "Andel av dagens forbruk som ikke kom fra nettet",
+        "es": "Parte del consumo de hoy que no procede de la red",
+        "da": "Andel af dagens forbrug, der ikke kom fra nettet",
+        "ru": "Доля сегодняшнего потребления, не взятая из сети",
+        "pl": "Część dzisiejszego zużycia niepobrana z sieci",
+        "ko": "오늘 가정 소비 중 계통에서 받지 않은 비율",
+        "ar": "نسبة استهلاك اليوم التي لم تُسحب من الشبكة"
+      },
+      "min": 0,
+      "max": 100
+    },
+    "measure_time_to_empty": {
+      "type": "number",
+      "title": {
+        "en": "Time to empty",
+        "nl": "Tijd tot leeg",
+        "de": "Zeit bis leer",
+        "fr": "Temps jusqu'à vide",
+        "it": "Tempo al vuoto",
+        "sv": "Tid till tom",
+        "no": "Tid til tom",
+        "es": "Tiempo hasta vacío",
+        "da": "Tid til tom",
+        "ru": "До разряда",
+        "pl": "Czas do rozładowania",
+        "ko": "방전까지",
+        "ar": "الوقت حتى النفاد"
+      },
+      "units": {
+        "en": "min"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/time.svg",
+      "desc": {
+        "en": "Estimate at the current power",
+        "nl": "Schatting bij het huidige vermogen",
+        "de": "Schätzung bei aktueller Leistung",
+        "fr": "Estimation à la puissance actuelle",
+        "it": "Stima alla potenza attuale",
+        "sv": "Uppskattning vid nuvarande effekt",
+        "no": "Anslag ved nåværende effekt",
+        "es": "Estimación con la potencia actual",
+        "da": "Skøn ved den nuværende effekt",
+        "ru": "Оценка при текущей мощности",
+        "pl": "Szacunek przy obecnej mocy",
+        "ko": "현재 출력 기준 추정값",
+        "ar": "تقدير بالقدرة الحالية"
+      }
+    },
+    "measure_time_to_full": {
+      "type": "number",
+      "title": {
+        "en": "Time to full",
+        "nl": "Tijd tot vol",
+        "de": "Zeit bis voll",
+        "fr": "Temps jusqu'à plein",
+        "it": "Tempo al pieno",
+        "sv": "Tid till full",
+        "no": "Tid til full",
+        "es": "Tiempo hasta lleno",
+        "da": "Tid til fuld",
+        "ru": "До полного заряда",
+        "pl": "Czas do pełna",
+        "ko": "완충까지",
+        "ar": "الوقت حتى الامتلاء"
+      },
+      "units": {
+        "en": "min"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": false,
+      "icon": "/assets/capabilities/time.svg",
+      "desc": {
+        "en": "Estimate at the current power",
+        "nl": "Schatting bij het huidige vermogen",
+        "de": "Schätzung bei aktueller Leistung",
+        "fr": "Estimation à la puissance actuelle",
+        "it": "Stima alla potenza attuale",
+        "sv": "Uppskattning vid nuvarande effekt",
+        "no": "Anslag ved nåværende effekt",
+        "es": "Estimación con la potencia actual",
+        "da": "Skøn ved den nuværende effekt",
+        "ru": "Оценка при текущей мощности",
+        "pl": "Szacunek przy obecnej mocy",
+        "ko": "현재 출력 기준 추정값",
+        "ar": "تقدير بالقدرة الحالية"
+      }
+    }
+  }
+}

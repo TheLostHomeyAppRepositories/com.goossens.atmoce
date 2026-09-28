@@ -1,0 +1,1324 @@
+{
+  "triggers": [
+    {
+      "id": "atmoce_battery_mode_changed",
+      "title": {
+        "en": "The battery mode changed",
+        "nl": "De batterijmodus is veranderd",
+        "de": "Der Batteriemodus hat sich geändert",
+        "fr": "Le mode batterie a changé",
+        "it": "La modalità batteria è cambiata",
+        "sv": "Batteriläget ändrades",
+        "no": "Batterimodusen endret seg",
+        "es": "El modo de batería cambió",
+        "da": "Batteritilstanden er ændret",
+        "ru": "Режим батареи изменился",
+        "pl": "Tryb baterii się zmienił",
+        "ko": "배터리 모드가 변경됨",
+        "ar": "تغيّر وضع البطارية"
+      },
+      "tokens": [
+        {
+          "name": "atmoce_battery_mode",
+          "type": "string",
+          "title": {
+            "en": "Battery mode",
+            "nl": "Batterijmodus",
+            "de": "Batteriemodus",
+            "fr": "Mode batterie",
+            "it": "Modalità batteria",
+            "sv": "Batteriläge",
+            "no": "Batterimodus",
+            "es": "Modo de batería",
+            "da": "Batteritilstand",
+            "ru": "Режим батареи",
+            "pl": "Tryb baterii",
+            "ko": "배터리 모드",
+            "ar": "وضع البطارية"
+          },
+          "example": {
+            "en": "self_consumption"
+          }
+        }
+      ]
+    },
+    {
+      "id": "battery_level_below",
+      "title": {
+        "en": "Battery level dropped below a level",
+        "nl": "Batterijniveau is onder een niveau gezakt",
+        "de": "Ladestand ist unter einen Wert gefallen",
+        "fr": "Le niveau de batterie est passé sous un seuil",
+        "it": "Il livello batteria è sceso sotto una soglia",
+        "sv": "Batterinivån sjönk under en nivå",
+        "no": "Batterinivået falt under et nivå",
+        "es": "El nivel de batería bajó de un umbral",
+        "da": "Batteriniveauet faldt under et niveau",
+        "ru": "Уровень заряда опустился ниже порога",
+        "pl": "Poziom baterii spadł poniżej progu",
+        "ko": "배터리 잔량이 기준 아래로 떨어짐",
+        "ar": "انخفض مستوى البطارية دون حدّ معيّن"
+      },
+      "titleFormatted": {
+        "en": "Battery level dropped below [[level]]%",
+        "nl": "Batterijniveau is onder [[level]]% gezakt",
+        "de": "Ladestand ist unter [[level]] % gefallen",
+        "fr": "Le niveau de batterie est passé sous [[level]] %",
+        "it": "Il livello batteria è sceso sotto il [[level]]%",
+        "sv": "Batterinivån sjönk under [[level]] %",
+        "no": "Batterinivået falt under [[level]] %",
+        "es": "El nivel de batería bajó del [[level]] %",
+        "da": "Batteriniveauet faldt under [[level]] %",
+        "ru": "Уровень заряда опустился ниже [[level]] %",
+        "pl": "Poziom baterii spadł poniżej [[level]]%",
+        "ko": "배터리 잔량이 [[level]]% 아래로 떨어짐",
+        "ar": "انخفض مستوى البطارية دون [[level]]٪"
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "level",
+          "title": {
+            "en": "Level",
+            "nl": "Niveau",
+            "de": "Wert",
+            "fr": "Niveau",
+            "it": "Livello",
+            "sv": "Nivå",
+            "no": "Nivå",
+            "es": "Nivel",
+            "da": "Niveau",
+            "ru": "Уровень",
+            "pl": "Poziom",
+            "ko": "수준",
+            "ar": "المستوى"
+          },
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "placeholder": {
+            "en": "20"
+          }
+        }
+      ],
+      "tokens": [
+        {
+          "name": "level",
+          "type": "number",
+          "title": {
+            "en": "Battery level",
+            "nl": "Batterijniveau",
+            "de": "Ladestand",
+            "fr": "Niveau de batterie",
+            "it": "Livello batteria",
+            "sv": "Batterinivå",
+            "no": "Batterinivå",
+            "es": "Nivel de batería",
+            "da": "Batteriniveau",
+            "ru": "Уровень заряда",
+            "pl": "Poziom baterii",
+            "ko": "배터리 잔량",
+            "ar": "مستوى البطارية"
+          },
+          "example": 42
+        }
+      ]
+    },
+    {
+      "id": "battery_level_above",
+      "title": {
+        "en": "Battery level rose above a level",
+        "nl": "Batterijniveau is boven een niveau gestegen",
+        "de": "Ladestand ist über einen Wert gestiegen",
+        "fr": "Le niveau de batterie a dépassé un seuil",
+        "it": "Il livello batteria è salito sopra una soglia",
+        "sv": "Batterinivån steg över en nivå",
+        "no": "Batterinivået steg over et nivå",
+        "es": "El nivel de batería superó un umbral",
+        "da": "Batteriniveauet steg over et niveau",
+        "ru": "Уровень заряда поднялся выше порога",
+        "pl": "Poziom baterii wzrósł powyżej progu",
+        "ko": "배터리 잔량이 기준을 넘음",
+        "ar": "ارتفع مستوى البطارية فوق حدّ معيّن"
+      },
+      "titleFormatted": {
+        "en": "Battery level rose above [[level]]%",
+        "nl": "Batterijniveau is boven [[level]]% gestegen",
+        "de": "Ladestand ist über [[level]] % gestiegen",
+        "fr": "Le niveau de batterie a dépassé [[level]] %",
+        "it": "Il livello batteria è salito sopra il [[level]]%",
+        "sv": "Batterinivån steg över [[level]] %",
+        "no": "Batterinivået steg over [[level]] %",
+        "es": "El nivel de batería superó el [[level]] %",
+        "da": "Batteriniveauet steg over [[level]] %",
+        "ru": "Уровень заряда поднялся выше [[level]] %",
+        "pl": "Poziom baterii wzrósł powyżej [[level]]%",
+        "ko": "배터리 잔량이 [[level]]%를 넘음",
+        "ar": "ارتفع مستوى البطارية فوق [[level]]٪"
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "level",
+          "title": {
+            "en": "Level",
+            "nl": "Niveau",
+            "de": "Wert",
+            "fr": "Niveau",
+            "it": "Livello",
+            "sv": "Nivå",
+            "no": "Nivå",
+            "es": "Nivel",
+            "da": "Niveau",
+            "ru": "Уровень",
+            "pl": "Poziom",
+            "ko": "수준",
+            "ar": "المستوى"
+          },
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "placeholder": {
+            "en": "20"
+          }
+        }
+      ],
+      "tokens": [
+        {
+          "name": "level",
+          "type": "number",
+          "title": {
+            "en": "Battery level",
+            "nl": "Batterijniveau",
+            "de": "Ladestand",
+            "fr": "Niveau de batterie",
+            "it": "Livello batteria",
+            "sv": "Batterinivå",
+            "no": "Batterinivå",
+            "es": "Nivel de batería",
+            "da": "Batteriniveau",
+            "ru": "Уровень заряда",
+            "pl": "Poziom baterii",
+            "ko": "배터리 잔량",
+            "ar": "مستوى البطارية"
+          },
+          "example": 42
+        }
+      ]
+    },
+    {
+      "id": "battery_problem_started",
+      "title": {
+        "en": "A battery problem started",
+        "nl": "Er is een batterijprobleem",
+        "de": "Ein Batterieproblem ist aufgetreten",
+        "fr": "Un problème de batterie est survenu",
+        "it": "Si è verificato un problema alla batteria",
+        "sv": "Ett batteriproblem uppstod",
+        "no": "Det oppstod et batteriproblem",
+        "es": "Surgió un problema con la batería",
+        "da": "Der opstod et batteriproblem",
+        "ru": "Возникла проблема с батареей",
+        "pl": "Wystąpił problem z baterią",
+        "ko": "배터리 문제가 발생함",
+        "ar": "حدثت مشكلة في البطارية"
+      },
+      "hint": {
+        "en": "All batteries shut down, or a battery reports an alarm. Homey checks automatically whether your gateway reports this.",
+        "nl": "Alle batterijen zijn uitgeschakeld, of een batterij meldt een alarm. Homey controleert automatisch of je gateway dit meldt.",
+        "de": "Alle Batterien sind abgeschaltet oder eine Batterie meldet einen Alarm. Homey prüft automatisch, ob dein Gateway das meldet.",
+        "fr": "Toutes les batteries sont arrêtées, ou une batterie signale une alarme. Homey vérifie automatiquement si votre passerelle le signale.",
+        "it": "Tutte le batterie sono spente o una batteria segnala un allarme. Homey verifica automaticamente se il tuo gateway lo segnala.",
+        "sv": "Alla batterier är avstängda eller ett batteri rapporterar ett larm. Homey kontrollerar automatiskt om din gateway rapporterar detta.",
+        "no": "Alle batterier er slått av, eller et batteri melder en alarm. Homey sjekker automatisk om gatewayen din melder dette.",
+        "es": "Todas las baterías están apagadas o una batería indica una alarma. Homey comprueba automáticamente si tu pasarela lo indica.",
+        "da": "Alle batterier er slukket, eller et batteri melder en alarm. Homey tjekker automatisk, om din gateway melder dette.",
+        "ru": "Все батареи отключены или батарея сообщает об аварии. Homey автоматически проверяет, передаёт ли это ваш шлюз.",
+        "pl": "Wszystkie baterie są wyłączone lub bateria zgłasza alarm. Homey automatycznie sprawdza, czy twoja bramka to zgłasza.",
+        "ko": "모든 배터리가 꺼졌거나 배터리가 경보를 보고합니다. 게이트웨이가 이를 보고하는지 Homey가 자동으로 확인합니다.",
+        "ar": "جميع البطاريات متوقفة أو تُبلغ بطارية عن إنذار. يتحقق Homey تلقائيًا مما إذا كانت بوابتك تُبلغ بذلك."
+      },
+      "tokens": [
+        {
+          "name": "status",
+          "type": "string",
+          "title": {
+            "en": "Status",
+            "nl": "Status",
+            "de": "Status",
+            "fr": "État",
+            "it": "Stato",
+            "sv": "Status",
+            "no": "Status",
+            "es": "Estado",
+            "da": "Status",
+            "ru": "Состояние",
+            "pl": "Stan",
+            "ko": "상태",
+            "ar": "الحالة"
+          },
+          "example": {
+            "en": "faulty"
+          }
+        }
+      ]
+    },
+    {
+      "id": "battery_problem_cleared",
+      "title": {
+        "en": "The battery problem cleared",
+        "nl": "Het batterijprobleem is opgelost",
+        "de": "Das Batterieproblem ist behoben",
+        "fr": "Le problème de batterie a disparu",
+        "it": "Il problema alla batteria è risolto",
+        "sv": "Batteriproblemet är åtgärdat",
+        "no": "Batteriproblemet er borte",
+        "es": "El problema de la batería se ha resuelto",
+        "da": "Batteriproblemet er væk",
+        "ru": "Проблема с батареей устранена",
+        "pl": "Problem z baterią ustąpił",
+        "ko": "배터리 문제가 해제됨",
+        "ar": "زالت مشكلة البطارية"
+      },
+      "hint": {
+        "en": "All batteries shut down, or a battery reports an alarm. Homey checks automatically whether your gateway reports this.",
+        "nl": "Alle batterijen zijn uitgeschakeld, of een batterij meldt een alarm. Homey controleert automatisch of je gateway dit meldt.",
+        "de": "Alle Batterien sind abgeschaltet oder eine Batterie meldet einen Alarm. Homey prüft automatisch, ob dein Gateway das meldet.",
+        "fr": "Toutes les batteries sont arrêtées, ou une batterie signale une alarme. Homey vérifie automatiquement si votre passerelle le signale.",
+        "it": "Tutte le batterie sono spente o una batteria segnala un allarme. Homey verifica automaticamente se il tuo gateway lo segnala.",
+        "sv": "Alla batterier är avstängda eller ett batteri rapporterar ett larm. Homey kontrollerar automatiskt om din gateway rapporterar detta.",
+        "no": "Alle batterier er slått av, eller et batteri melder en alarm. Homey sjekker automatisk om gatewayen din melder dette.",
+        "es": "Todas las baterías están apagadas o una batería indica una alarma. Homey comprueba automáticamente si tu pasarela lo indica.",
+        "da": "Alle batterier er slukket, eller et batteri melder en alarm. Homey tjekker automatisk, om din gateway melder dette.",
+        "ru": "Все батареи отключены или батарея сообщает об аварии. Homey автоматически проверяет, передаёт ли это ваш шлюз.",
+        "pl": "Wszystkie baterie są wyłączone lub bateria zgłasza alarm. Homey automatycznie sprawdza, czy twoja bramka to zgłasza.",
+        "ko": "모든 배터리가 꺼졌거나 배터리가 경보를 보고합니다. 게이트웨이가 이를 보고하는지 Homey가 자동으로 확인합니다.",
+        "ar": "جميع البطاريات متوقفة أو تُبلغ بطارية عن إنذار. يتحقق Homey تلقائيًا مما إذا كانت بوابتك تُبلغ بذلك."
+      }
+    }
+  ],
+  "conditions": [
+    {
+      "id": "atmoce_battery_mode_is",
+      "title": {
+        "en": "Battery mode is !{{|not}} …",
+        "nl": "Batterijmodus is !{{|niet}} …",
+        "de": "Batteriemodus ist !{{|nicht}} …",
+        "fr": "Le mode batterie !{{est|n'est pas}} …",
+        "it": "La modalità batteria !{{è|non è}} …",
+        "sv": "Batteriläget är !{{|inte}} …",
+        "no": "Batterimodus er !{{|ikke}} …",
+        "es": "El modo de batería !{{es|no es}} …",
+        "da": "Batteritilstand er !{{|ikke}} …",
+        "ru": "Режим батареи !{{|не}} …",
+        "pl": "Tryb baterii !{{jest|nie jest}} …",
+        "ko": "배터리 모드가 …!{{입니다|이(가) 아닙니다}}",
+        "ar": "وضع البطارية !{{هو|ليس}} …"
+      },
+      "titleFormatted": {
+        "en": "Battery mode is !{{|not}} [[mode]]",
+        "nl": "Batterijmodus is !{{|niet}} [[mode]]",
+        "de": "Batteriemodus ist !{{|nicht}} [[mode]]",
+        "fr": "Le mode batterie !{{est|n'est pas}} [[mode]]",
+        "it": "La modalità batteria !{{è|non è}} [[mode]]",
+        "sv": "Batteriläget är !{{|inte}} [[mode]]",
+        "no": "Batterimodus er !{{|ikke}} [[mode]]",
+        "es": "El modo de batería !{{es|no es}} [[mode]]",
+        "da": "Batteritilstand er !{{|ikke}} [[mode]]",
+        "ru": "Режим батареи !{{|не}} [[mode]]",
+        "pl": "Tryb baterii !{{jest|nie jest}} [[mode]]",
+        "ko": "배터리 모드가 [[mode]]!{{입니다|이(가) 아닙니다}}",
+        "ar": "وضع البطارية !{{هو|ليس}} [[mode]]"
+      },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "mode",
+          "title": {
+            "en": "Mode",
+            "nl": "Modus",
+            "de": "Modus",
+            "fr": "Mode",
+            "it": "Modalità",
+            "sv": "Läge",
+            "no": "Modus",
+            "es": "Modo",
+            "da": "Tilstand",
+            "ru": "Режим",
+            "pl": "Tryb",
+            "ko": "모드",
+            "ar": "الوضع"
+          },
+          "values": [
+            {
+              "id": "self_consumption",
+              "title": {
+                "en": "Self-consumption",
+                "nl": "Eigen verbruik",
+                "de": "Eigenverbrauch",
+                "fr": "Autoconsommation",
+                "it": "Autoconsumo",
+                "sv": "Egenförbrukning",
+                "no": "Egenforbruk",
+                "es": "Autoconsumo",
+                "da": "Eget forbrug",
+                "ru": "Собственное потребление",
+                "pl": "Autokonsumpcja",
+                "ko": "자가 소비",
+                "ar": "الاستهلاك الذاتي"
+              }
+            },
+            {
+              "id": "time_of_use",
+              "title": {
+                "en": "Time of use",
+                "nl": "Tijdsafhankelijk",
+                "de": "Zeitabhängig",
+                "fr": "Plages horaires",
+                "it": "Fasce orarie",
+                "sv": "Tidsstyrt",
+                "no": "Tidsstyrt",
+                "es": "Por franjas horarias",
+                "da": "Tidsstyret",
+                "ru": "По времени суток",
+                "pl": "Według taryfy czasowej",
+                "ko": "시간대별",
+                "ar": "حسب وقت الاستخدام"
+              }
+            },
+            {
+              "id": "remote",
+              "title": {
+                "en": "Remote control",
+                "nl": "Op afstand gestuurd",
+                "de": "Fernsteuerung",
+                "fr": "Pilotage à distance",
+                "it": "Controllo remoto",
+                "sv": "Fjärrstyrt",
+                "no": "Fjernstyrt",
+                "es": "Control remoto",
+                "da": "Fjernstyret",
+                "ru": "Удалённое управление",
+                "pl": "Sterowanie zdalne",
+                "ko": "원격 제어",
+                "ar": "تحكم عن بُعد"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "battery_level_is_above",
+      "title": {
+        "en": "Battery level !{{is|is not}} above a level",
+        "nl": "Batterijniveau !{{is|is niet}} boven een niveau",
+        "de": "Ladestand !{{ist|ist nicht}} über einem Wert",
+        "fr": "Le niveau de batterie !{{est|n'est pas}} au-dessus d'un seuil",
+        "it": "Il livello batteria !{{è|non è}} sopra una soglia",
+        "sv": "Batterinivån !{{är|är inte}} över en nivå",
+        "no": "Batterinivået !{{er|er ikke}} over et nivå",
+        "es": "El nivel de batería !{{está|no está}} por encima de un umbral",
+        "da": "Batteriniveauet !{{er|er ikke}} over et niveau",
+        "ru": "Уровень заряда !{{выше|не выше}} порога",
+        "pl": "Poziom baterii !{{jest|nie jest}} powyżej progu",
+        "ko": "배터리 잔량이 기준 !{{초과|이하}}",
+        "ar": "مستوى البطارية !{{أعلى|ليس أعلى}} من حدّ معيّن"
+      },
+      "titleFormatted": {
+        "en": "Battery level !{{is|is not}} above [[level]]%",
+        "nl": "Batterijniveau !{{is|is niet}} boven [[level]]%",
+        "de": "Ladestand !{{ist|ist nicht}} über [[level]] %",
+        "fr": "Le niveau de batterie !{{est|n'est pas}} au-dessus de [[level]] %",
+        "it": "Il livello batteria !{{è|non è}} sopra il [[level]]%",
+        "sv": "Batterinivån !{{är|är inte}} över [[level]] %",
+        "no": "Batterinivået !{{er|er ikke}} over [[level]] %",
+        "es": "El nivel de batería !{{está|no está}} por encima del [[level]] %",
+        "da": "Batteriniveauet !{{er|er ikke}} over [[level]] %",
+        "ru": "Уровень заряда !{{выше|не выше}} [[level]] %",
+        "pl": "Poziom baterii !{{jest|nie jest}} powyżej [[level]]%",
+        "ko": "배터리 잔량이 [[level]]% !{{초과|이하}}",
+        "ar": "مستوى البطارية !{{أعلى|ليس أعلى}} من [[level]]٪"
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "level",
+          "title": {
+            "en": "Level",
+            "nl": "Niveau",
+            "de": "Wert",
+            "fr": "Niveau",
+            "it": "Livello",
+            "sv": "Nivå",
+            "no": "Nivå",
+            "es": "Nivel",
+            "da": "Niveau",
+            "ru": "Уровень",
+            "pl": "Poziom",
+            "ko": "수준",
+            "ar": "المستوى"
+          },
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "placeholder": {
+            "en": "20"
+          }
+        }
+      ]
+    },
+    {
+      "id": "battery_has_problem",
+      "title": {
+        "en": "There !{{is|is no}} battery problem",
+        "nl": "Er is !{{een|geen}} batterijprobleem",
+        "de": "Es liegt !{{ein|kein}} Batterieproblem vor",
+        "fr": "Il !{{y a|n'y a pas de}} problème de batterie",
+        "it": "!{{C’è|Non c’è}} un problema alla batteria",
+        "sv": "Det finns !{{ett|inget}} batteriproblem",
+        "no": "Det er !{{et|ingen}} batteriproblem",
+        "es": "!{{Hay|No hay}} un problema con la batería",
+        "da": "Der er !{{et|intet}} batteriproblem",
+        "ru": "Проблема с батареей !{{есть|отсутствует}}",
+        "pl": "Problem z baterią !{{występuje|nie występuje}}",
+        "ko": "배터리 문제가 !{{있음|없음}}",
+        "ar": "!{{توجد|لا توجد}} مشكلة في البطارية"
+      },
+      "hint": {
+        "en": "All batteries shut down, or a battery reports an alarm. Homey checks automatically whether your gateway reports this.",
+        "nl": "Alle batterijen zijn uitgeschakeld, of een batterij meldt een alarm. Homey controleert automatisch of je gateway dit meldt.",
+        "de": "Alle Batterien sind abgeschaltet oder eine Batterie meldet einen Alarm. Homey prüft automatisch, ob dein Gateway das meldet.",
+        "fr": "Toutes les batteries sont arrêtées, ou une batterie signale une alarme. Homey vérifie automatiquement si votre passerelle le signale.",
+        "it": "Tutte le batterie sono spente o una batteria segnala un allarme. Homey verifica automaticamente se il tuo gateway lo segnala.",
+        "sv": "Alla batterier är avstängda eller ett batteri rapporterar ett larm. Homey kontrollerar automatiskt om din gateway rapporterar detta.",
+        "no": "Alle batterier er slått av, eller et batteri melder en alarm. Homey sjekker automatisk om gatewayen din melder dette.",
+        "es": "Todas las baterías están apagadas o una batería indica una alarma. Homey comprueba automáticamente si tu pasarela lo indica.",
+        "da": "Alle batterier er slukket, eller et batteri melder en alarm. Homey tjekker automatisk, om din gateway melder dette.",
+        "ru": "Все батареи отключены или батарея сообщает об аварии. Homey автоматически проверяет, передаёт ли это ваш шлюз.",
+        "pl": "Wszystkie baterie są wyłączone lub bateria zgłasza alarm. Homey automatycznie sprawdza, czy twoja bramka to zgłasza.",
+        "ko": "모든 배터리가 꺼졌거나 배터리가 경보를 보고합니다. 게이트웨이가 이를 보고하는지 Homey가 자동으로 확인합니다.",
+        "ar": "جميع البطاريات متوقفة أو تُبلغ بطارية عن إنذار. يتحقق Homey تلقائيًا مما إذا كانت بوابتك تُبلغ بذلك."
+      }
+    }
+  ],
+  "actions": [
+    {
+      "id": "charge_at_power",
+      "title": {
+        "en": "Charge the battery at a power",
+        "nl": "Laad de batterij met een vermogen",
+        "de": "Batterie mit einer Leistung laden",
+        "fr": "Charger la batterie à une puissance",
+        "it": "Carica la batteria a una potenza",
+        "sv": "Ladda batteriet med en effekt",
+        "no": "Lad batteriet med en effekt",
+        "es": "Cargar la batería a una potencia",
+        "da": "Oplad batteriet med en effekt",
+        "ru": "Заряжать батарею с мощностью",
+        "pl": "Ładuj baterię z mocą",
+        "ko": "지정 출력으로 배터리 충전",
+        "ar": "اشحن البطارية بقدرة معيّنة"
+      },
+      "titleFormatted": {
+        "en": "Charge the battery at [[power]] W",
+        "nl": "Laad de batterij met [[power]] W",
+        "de": "Batterie mit [[power]] W laden",
+        "fr": "Charger la batterie à [[power]] W",
+        "it": "Carica la batteria a [[power]] W",
+        "sv": "Ladda batteriet med [[power]] W",
+        "no": "Lad batteriet med [[power]] W",
+        "es": "Cargar la batería a [[power]] W",
+        "da": "Oplad batteriet med [[power]] W",
+        "ru": "Заряжать батарею мощностью [[power]] Вт",
+        "pl": "Ładuj baterię mocą [[power]] W",
+        "ko": "배터리를 [[power]] W로 충전",
+        "ar": "اشحن البطارية بقدرة [[power]] واط"
+      },
+      "hint": {
+        "en": "Homey keeps control of the battery until you return it to the Atmozen mode.",
+        "nl": "Homey houdt de batterij in handen tot je haar teruggeeft aan de Atmozen-modus.",
+        "de": "Homey steuert die Batterie, bis du sie an den Atmozen-Modus zurückgibst.",
+        "fr": "Homey garde le contrôle de la batterie jusqu'à ce que vous la rendiez au mode Atmozen.",
+        "it": "Homey controlla la batteria finché non la riporti alla modalità Atmozen.",
+        "sv": "Homey styr batteriet tills du återlämnar det till Atmozen-läget.",
+        "no": "Homey styrer batteriet til du gir det tilbake til Atmozen-modusen.",
+        "es": "Homey controla la batería hasta que la devuelvas al modo de Atmozen.",
+        "da": "Homey styrer batteriet, indtil du giver det tilbage til Atmozen-tilstanden.",
+        "ru": "Homey управляет батареей, пока вы не вернёте её в режим Atmozen.",
+        "pl": "Homey steruje baterią, dopóki nie przywrócisz trybu Atmozen.",
+        "ko": "Atmozen 모드로 되돌릴 때까지 Homey가 배터리를 제어합니다.",
+        "ar": "يتحكم Homey في البطارية حتى تعيدها إلى وضع Atmozen."
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "power",
+          "title": {
+            "en": "Power",
+            "nl": "Vermogen",
+            "de": "Leistung",
+            "fr": "Puissance",
+            "it": "Potenza",
+            "sv": "Effekt",
+            "no": "Effekt",
+            "es": "Potencia",
+            "da": "Effekt",
+            "ru": "Мощность",
+            "pl": "Moc",
+            "ko": "출력",
+            "ar": "القدرة"
+          },
+          "min": 100,
+          "max": 30000,
+          "step": 100,
+          "placeholder": {
+            "en": "3000"
+          }
+        }
+      ]
+    },
+    {
+      "id": "discharge_at_power",
+      "title": {
+        "en": "Discharge the battery at a power",
+        "nl": "Ontlaad de batterij met een vermogen",
+        "de": "Batterie mit einer Leistung entladen",
+        "fr": "Décharger la batterie à une puissance",
+        "it": "Scarica la batteria a una potenza",
+        "sv": "Ladda ur batteriet med en effekt",
+        "no": "Lad ut batteriet med en effekt",
+        "es": "Descargar la batería a una potencia",
+        "da": "Aflad batteriet med en effekt",
+        "ru": "Разряжать батарею с мощностью",
+        "pl": "Rozładowuj baterię z mocą",
+        "ko": "지정 출력으로 배터리 방전",
+        "ar": "فرّغ البطارية بقدرة معيّنة"
+      },
+      "titleFormatted": {
+        "en": "Discharge the battery at [[power]] W",
+        "nl": "Ontlaad de batterij met [[power]] W",
+        "de": "Batterie mit [[power]] W entladen",
+        "fr": "Décharger la batterie à [[power]] W",
+        "it": "Scarica la batteria a [[power]] W",
+        "sv": "Ladda ur batteriet med [[power]] W",
+        "no": "Lad ut batteriet med [[power]] W",
+        "es": "Descargar la batería a [[power]] W",
+        "da": "Aflad batteriet med [[power]] W",
+        "ru": "Разряжать батарею мощностью [[power]] Вт",
+        "pl": "Rozładowuj baterię mocą [[power]] W",
+        "ko": "배터리를 [[power]] W로 방전",
+        "ar": "فرّغ البطارية بقدرة [[power]] واط"
+      },
+      "hint": {
+        "en": "Homey keeps control of the battery until you return it to the Atmozen mode.",
+        "nl": "Homey houdt de batterij in handen tot je haar teruggeeft aan de Atmozen-modus.",
+        "de": "Homey steuert die Batterie, bis du sie an den Atmozen-Modus zurückgibst.",
+        "fr": "Homey garde le contrôle de la batterie jusqu'à ce que vous la rendiez au mode Atmozen.",
+        "it": "Homey controlla la batteria finché non la riporti alla modalità Atmozen.",
+        "sv": "Homey styr batteriet tills du återlämnar det till Atmozen-läget.",
+        "no": "Homey styrer batteriet til du gir det tilbake til Atmozen-modusen.",
+        "es": "Homey controla la batería hasta que la devuelvas al modo de Atmozen.",
+        "da": "Homey styrer batteriet, indtil du giver det tilbage til Atmozen-tilstanden.",
+        "ru": "Homey управляет батареей, пока вы не вернёте её в режим Atmozen.",
+        "pl": "Homey steruje baterią, dopóki nie przywrócisz trybu Atmozen.",
+        "ko": "Atmozen 모드로 되돌릴 때까지 Homey가 배터리를 제어합니다.",
+        "ar": "يتحكم Homey في البطارية حتى تعيدها إلى وضع Atmozen."
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "power",
+          "title": {
+            "en": "Power",
+            "nl": "Vermogen",
+            "de": "Leistung",
+            "fr": "Puissance",
+            "it": "Potenza",
+            "sv": "Effekt",
+            "no": "Effekt",
+            "es": "Potencia",
+            "da": "Effekt",
+            "ru": "Мощность",
+            "pl": "Moc",
+            "ko": "출력",
+            "ar": "القدرة"
+          },
+          "min": 100,
+          "max": 30000,
+          "step": 100,
+          "placeholder": {
+            "en": "3000"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pause_battery",
+      "title": {
+        "en": "Pause the battery",
+        "nl": "Pauzeer de batterij",
+        "de": "Batterie pausieren",
+        "fr": "Mettre la batterie en pause",
+        "it": "Metti in pausa la batteria",
+        "sv": "Pausa batteriet",
+        "no": "Sett batteriet på pause",
+        "es": "Pausar la batería",
+        "da": "Sæt batteriet på pause",
+        "ru": "Приостановить батарею",
+        "pl": "Wstrzymaj baterię",
+        "ko": "배터리 일시 정지",
+        "ar": "أوقف البطارية مؤقتًا"
+      },
+      "hint": {
+        "en": "The battery neither charges nor discharges until you return it to the Atmozen mode.",
+        "nl": "De batterij laadt noch ontlaadt tot je haar teruggeeft aan de Atmozen-modus.",
+        "de": "Die Batterie lädt und entlädt nicht, bis du sie an den Atmozen-Modus zurückgibst.",
+        "fr": "La batterie ne charge ni ne décharge jusqu'à ce que vous la rendiez au mode Atmozen.",
+        "it": "La batteria non carica né scarica finché non la riporti alla modalità Atmozen.",
+        "sv": "Batteriet varken laddar eller laddar ur tills du återlämnar det till Atmozen-läget.",
+        "no": "Batteriet verken lader eller lader ut til du gir det tilbake til Atmozen-modusen.",
+        "es": "La batería no carga ni descarga hasta que la devuelvas al modo de Atmozen.",
+        "da": "Batteriet hverken oplader eller aflader, indtil du giver det tilbage til Atmozen-tilstanden.",
+        "ru": "Батарея не заряжается и не разряжается, пока вы не вернёте её в режим Atmozen.",
+        "pl": "Bateria nie ładuje się ani nie rozładowuje, dopóki nie przywrócisz trybu Atmozen.",
+        "ko": "Atmozen 모드로 되돌릴 때까지 배터리가 충전도 방전도 하지 않습니다.",
+        "ar": "لا تشحن البطارية ولا تُفرَّغ حتى تعيدها إلى وضع Atmozen."
+      }
+    },
+    {
+      "id": "resume_atmozen",
+      "title": {
+        "en": "Return the battery to the Atmozen mode",
+        "nl": "Geef de batterij terug aan de Atmozen-modus",
+        "de": "Batterie an den Atmozen-Modus zurückgeben",
+        "fr": "Rendre la batterie au mode Atmozen",
+        "it": "Riporta la batteria alla modalità Atmozen",
+        "sv": "Återlämna batteriet till Atmozen-läget",
+        "no": "Gi batteriet tilbake til Atmozen-modusen",
+        "es": "Devolver la batería al modo de Atmozen",
+        "da": "Giv batteriet tilbage til Atmozen-tilstanden",
+        "ru": "Вернуть батарею в режим Atmozen",
+        "pl": "Przywróć baterię do trybu Atmozen",
+        "ko": "배터리를 Atmozen 모드로 되돌리기",
+        "ar": "أعد البطارية إلى وضع Atmozen"
+      },
+      "hint": {
+        "en": "Ends Homey control and any forced charging or discharging. The battery follows the self-consumption or time-of-use mode set in Atmozen again.",
+        "nl": "Beëindigt Homey-sturing en geforceerd laden of ontladen. De batterij volgt weer de modus eigen verbruik of tijdsafhankelijk uit Atmozen.",
+        "de": "Beendet die Homey-Steuerung und erzwungenes Laden oder Entladen. Die Batterie folgt wieder dem in Atmozen eingestellten Modus Eigenverbrauch oder zeitabhängig.",
+        "fr": "Met fin au contrôle par Homey et à toute charge ou décharge forcée. La batterie suit à nouveau le mode autoconsommation ou plages horaires réglé dans Atmozen.",
+        "it": "Termina il controllo di Homey e ogni carica o scarica forzata. La batteria segue di nuovo la modalità autoconsumo o fasce orarie impostata in Atmozen.",
+        "sv": "Avslutar Homey-styrning och tvingad laddning eller urladdning. Batteriet följer åter läget egenförbrukning eller tidsstyrt i Atmozen.",
+        "no": "Avslutter Homey-styring og tvungen lading eller utlading. Batteriet følger igjen modusen egenforbruk eller tidsstyrt i Atmozen.",
+        "es": "Termina el control de Homey y cualquier carga o descarga forzada. La batería vuelve a seguir el modo autoconsumo o por franjas horarias de Atmozen.",
+        "da": "Afslutter Homey-styring og tvungen op- eller afladning. Batteriet følger igen tilstanden eget forbrug eller tidsstyret i Atmozen.",
+        "ru": "Завершает управление Homey и любой принудительный заряд или разряд. Батарея снова работает в режиме собственного потребления или по времени, заданном в Atmozen.",
+        "pl": "Kończy sterowanie przez Homey i wymuszone ładowanie lub rozładowanie. Bateria znów działa w trybie autokonsumpcji lub taryfy czasowej z Atmozen.",
+        "ko": "Homey 제어와 강제 충전·방전을 종료합니다. 배터리가 다시 Atmozen에서 설정한 자가 소비 또는 시간대별 모드를 따릅니다.",
+        "ar": "ينهي تحكم Homey وأي شحن أو تفريغ قسري. تعود البطارية لاتباع وضع الاستهلاك الذاتي أو وقت الاستخدام المحدد في Atmozen."
+      }
+    },
+    {
+      "id": "force_charge_to_soc",
+      "title": {
+        "en": "Charge the battery to a level",
+        "nl": "Laad de batterij tot een niveau",
+        "de": "Batterie bis zu einem Stand laden",
+        "fr": "Charger la batterie jusqu'à un niveau",
+        "it": "Carica la batteria fino a un livello",
+        "sv": "Ladda batteriet till en nivå",
+        "no": "Lad batteriet til et nivå",
+        "es": "Cargar la batería hasta un nivel",
+        "da": "Oplad batteriet til et niveau",
+        "ru": "Зарядить батарею до уровня",
+        "pl": "Naładuj baterię do poziomu",
+        "ko": "배터리를 지정 수준까지 충전",
+        "ar": "اشحن البطارية حتى مستوى معيّن"
+      },
+      "titleFormatted": {
+        "en": "Charge the battery to [[soc]]% at [[power]] W",
+        "nl": "Laad de batterij tot [[soc]]% met [[power]] W",
+        "de": "Batterie bis [[soc]] % mit [[power]] W laden",
+        "fr": "Charger la batterie jusqu'à [[soc]] % à [[power]] W",
+        "it": "Carica la batteria fino al [[soc]]% a [[power]] W",
+        "sv": "Ladda batteriet till [[soc]] % med [[power]] W",
+        "no": "Lad batteriet til [[soc]] % med [[power]] W",
+        "es": "Cargar la batería hasta el [[soc]] % a [[power]] W",
+        "da": "Oplad batteriet til [[soc]] % med [[power]] W",
+        "ru": "Зарядить батарею до [[soc]] % мощностью [[power]] Вт",
+        "pl": "Naładuj baterię do [[soc]]% mocą [[power]] W",
+        "ko": "배터리를 [[power]] W로 [[soc]]%까지 충전",
+        "ar": "اشحن البطارية حتى [[soc]]٪ بقدرة [[power]] واط"
+      },
+      "hint": {
+        "en": "Forced charging may take power from the grid, even when grid charging is disabled in Atmozen.",
+        "nl": "Geforceerd laden kan stroom van het net halen, ook als laden vanaf het net in Atmozen is uitgeschakeld.",
+        "de": "Erzwungenes Laden kann Strom aus dem Netz beziehen, auch wenn Netzladen in Atmozen deaktiviert ist.",
+        "fr": "La charge forcée peut prélever sur le réseau, même si la charge depuis le réseau est désactivée dans Atmozen.",
+        "it": "La carica forzata può prelevare dalla rete, anche se la carica da rete è disattivata in Atmozen.",
+        "sv": "Tvingad laddning kan ta ström från elnätet, även om nätladdning är avstängd i Atmozen.",
+        "no": "Tvungen lading kan hente strøm fra nettet, selv om nettlading er slått av i Atmozen.",
+        "es": "La carga forzada puede tomar energía de la red, aunque la carga desde la red esté desactivada en Atmozen.",
+        "da": "Tvungen opladning kan trække strøm fra nettet, selv om netopladning er slået fra i Atmozen.",
+        "ru": "Принудительный заряд может брать энергию из сети, даже если заряд от сети отключён в Atmozen.",
+        "pl": "Wymuszone ładowanie może pobierać energię z sieci, nawet gdy ładowanie z sieci jest wyłączone w Atmozen.",
+        "ko": "강제 충전은 Atmozen에서 계통 충전을 꺼 두었더라도 계통 전력을 사용할 수 있습니다.",
+        "ar": "قد يسحب الشحن القسري الطاقة من الشبكة حتى لو كان الشحن من الشبكة معطّلًا في Atmozen."
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "soc",
+          "title": {
+            "en": "Level",
+            "nl": "Niveau",
+            "de": "Ladestand",
+            "fr": "Niveau",
+            "it": "Livello",
+            "sv": "Nivå",
+            "no": "Nivå",
+            "es": "Nivel",
+            "da": "Niveau",
+            "ru": "Уровень",
+            "pl": "Poziom",
+            "ko": "수준",
+            "ar": "المستوى"
+          },
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "placeholder": {
+            "en": "90"
+          }
+        },
+        {
+          "type": "number",
+          "name": "power",
+          "title": {
+            "en": "Power",
+            "nl": "Vermogen",
+            "de": "Leistung",
+            "fr": "Puissance",
+            "it": "Potenza",
+            "sv": "Effekt",
+            "no": "Effekt",
+            "es": "Potencia",
+            "da": "Effekt",
+            "ru": "Мощность",
+            "pl": "Moc",
+            "ko": "출력",
+            "ar": "القدرة"
+          },
+          "min": 100,
+          "max": 30000,
+          "step": 100,
+          "placeholder": {
+            "en": "3000"
+          }
+        }
+      ]
+    },
+    {
+      "id": "force_charge_for",
+      "title": {
+        "en": "Charge the battery for a while",
+        "nl": "Laad de batterij een tijd",
+        "de": "Batterie eine Zeit lang laden",
+        "fr": "Charger la batterie pendant un moment",
+        "it": "Carica la batteria per un periodo",
+        "sv": "Ladda batteriet en stund",
+        "no": "Lad batteriet en stund",
+        "es": "Cargar la batería durante un tiempo",
+        "da": "Oplad batteriet i et stykke tid",
+        "ru": "Заряжать батарею некоторое время",
+        "pl": "Ładuj baterię przez pewien czas",
+        "ko": "일정 시간 배터리 충전",
+        "ar": "اشحن البطارية لمدة"
+      },
+      "titleFormatted": {
+        "en": "Charge the battery for [[minutes]] minutes at [[power]] W",
+        "nl": "Laad de batterij [[minutes]] minuten met [[power]] W",
+        "de": "Batterie [[minutes]] Minuten mit [[power]] W laden",
+        "fr": "Charger la batterie pendant [[minutes]] minutes à [[power]] W",
+        "it": "Carica la batteria per [[minutes]] minuti a [[power]] W",
+        "sv": "Ladda batteriet i [[minutes]] minuter med [[power]] W",
+        "no": "Lad batteriet i [[minutes]] minutter med [[power]] W",
+        "es": "Cargar la batería durante [[minutes]] minutos a [[power]] W",
+        "da": "Oplad batteriet i [[minutes]] minutter med [[power]] W",
+        "ru": "Заряжать батарею [[minutes]] мин мощностью [[power]] Вт",
+        "pl": "Ładuj baterię przez [[minutes]] min mocą [[power]] W",
+        "ko": "배터리를 [[power]] W로 [[minutes]]분 동안 충전",
+        "ar": "اشحن البطارية لمدة [[minutes]] دقيقة بقدرة [[power]] واط"
+      },
+      "hint": {
+        "en": "Forced charging may take power from the grid, even when grid charging is disabled in Atmozen.",
+        "nl": "Geforceerd laden kan stroom van het net halen, ook als laden vanaf het net in Atmozen is uitgeschakeld.",
+        "de": "Erzwungenes Laden kann Strom aus dem Netz beziehen, auch wenn Netzladen in Atmozen deaktiviert ist.",
+        "fr": "La charge forcée peut prélever sur le réseau, même si la charge depuis le réseau est désactivée dans Atmozen.",
+        "it": "La carica forzata può prelevare dalla rete, anche se la carica da rete è disattivata in Atmozen.",
+        "sv": "Tvingad laddning kan ta ström från elnätet, även om nätladdning är avstängd i Atmozen.",
+        "no": "Tvungen lading kan hente strøm fra nettet, selv om nettlading er slått av i Atmozen.",
+        "es": "La carga forzada puede tomar energía de la red, aunque la carga desde la red esté desactivada en Atmozen.",
+        "da": "Tvungen opladning kan trække strøm fra nettet, selv om netopladning er slået fra i Atmozen.",
+        "ru": "Принудительный заряд может брать энергию из сети, даже если заряд от сети отключён в Atmozen.",
+        "pl": "Wymuszone ładowanie może pobierać energię z sieci, nawet gdy ładowanie z sieci jest wyłączone w Atmozen.",
+        "ko": "강제 충전은 Atmozen에서 계통 충전을 꺼 두었더라도 계통 전력을 사용할 수 있습니다.",
+        "ar": "قد يسحب الشحن القسري الطاقة من الشبكة حتى لو كان الشحن من الشبكة معطّلًا في Atmozen."
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "minutes",
+          "title": {
+            "en": "Duration in minutes",
+            "nl": "Duur in minuten",
+            "de": "Dauer in Minuten",
+            "fr": "Durée en minutes",
+            "it": "Durata in minuti",
+            "sv": "Tid i minuter",
+            "no": "Varighet i minutter",
+            "es": "Duración en minutos",
+            "da": "Varighed i minutter",
+            "ru": "Длительность в минутах",
+            "pl": "Czas w minutach",
+            "ko": "시간(분)",
+            "ar": "المدة بالدقائق"
+          },
+          "min": 1,
+          "max": 1440,
+          "step": 1,
+          "placeholder": {
+            "en": "60"
+          }
+        },
+        {
+          "type": "number",
+          "name": "power",
+          "title": {
+            "en": "Power",
+            "nl": "Vermogen",
+            "de": "Leistung",
+            "fr": "Puissance",
+            "it": "Potenza",
+            "sv": "Effekt",
+            "no": "Effekt",
+            "es": "Potencia",
+            "da": "Effekt",
+            "ru": "Мощность",
+            "pl": "Moc",
+            "ko": "출력",
+            "ar": "القدرة"
+          },
+          "min": 100,
+          "max": 30000,
+          "step": 100,
+          "placeholder": {
+            "en": "3000"
+          }
+        }
+      ]
+    },
+    {
+      "id": "force_discharge_to_soc",
+      "title": {
+        "en": "Discharge the battery to a level",
+        "nl": "Ontlaad de batterij tot een niveau",
+        "de": "Batterie bis zu einem Stand entladen",
+        "fr": "Décharger la batterie jusqu'à un niveau",
+        "it": "Scarica la batteria fino a un livello",
+        "sv": "Ladda ur batteriet till en nivå",
+        "no": "Lad ut batteriet til et nivå",
+        "es": "Descargar la batería hasta un nivel",
+        "da": "Aflad batteriet til et niveau",
+        "ru": "Разрядить батарею до уровня",
+        "pl": "Rozładuj baterię do poziomu",
+        "ko": "배터리를 지정 수준까지 방전",
+        "ar": "فرّغ البطارية حتى مستوى معيّن"
+      },
+      "titleFormatted": {
+        "en": "Discharge the battery to [[soc]]% at [[power]] W",
+        "nl": "Ontlaad de batterij tot [[soc]]% met [[power]] W",
+        "de": "Batterie bis [[soc]] % mit [[power]] W entladen",
+        "fr": "Décharger la batterie jusqu'à [[soc]] % à [[power]] W",
+        "it": "Scarica la batteria fino al [[soc]]% a [[power]] W",
+        "sv": "Ladda ur batteriet till [[soc]] % med [[power]] W",
+        "no": "Lad ut batteriet til [[soc]] % med [[power]] W",
+        "es": "Descargar la batería hasta el [[soc]] % a [[power]] W",
+        "da": "Aflad batteriet til [[soc]] % med [[power]] W",
+        "ru": "Разрядить батарею до [[soc]] % мощностью [[power]] Вт",
+        "pl": "Rozładuj baterię do [[soc]]% mocą [[power]] W",
+        "ko": "배터리를 [[power]] W로 [[soc]]%까지 방전",
+        "ar": "فرّغ البطارية حتى [[soc]]٪ بقدرة [[power]] واط"
+      },
+      "hint": {
+        "en": "Forced discharging may feed power into the grid.",
+        "nl": "Geforceerd ontladen kan stroom aan het net teruggeven.",
+        "de": "Erzwungenes Entladen kann Strom ins Netz einspeisen.",
+        "fr": "La décharge forcée peut injecter du courant dans le réseau.",
+        "it": "La scarica forzata può immettere energia in rete.",
+        "sv": "Tvingad urladdning kan mata ut ström på elnätet.",
+        "no": "Tvungen utlading kan levere strøm til nettet.",
+        "es": "La descarga forzada puede inyectar energía a la red.",
+        "da": "Tvungen afladning kan sende strøm ud på nettet.",
+        "ru": "Принудительный разряд может отдавать энергию в сеть.",
+        "pl": "Wymuszone rozładowanie może oddawać energię do sieci.",
+        "ko": "강제 방전은 전력을 계통으로 내보낼 수 있습니다.",
+        "ar": "قد يضخ التفريغ القسري الطاقة إلى الشبكة."
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "soc",
+          "title": {
+            "en": "Level",
+            "nl": "Niveau",
+            "de": "Ladestand",
+            "fr": "Niveau",
+            "it": "Livello",
+            "sv": "Nivå",
+            "no": "Nivå",
+            "es": "Nivel",
+            "da": "Niveau",
+            "ru": "Уровень",
+            "pl": "Poziom",
+            "ko": "수준",
+            "ar": "المستوى"
+          },
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "placeholder": {
+            "en": "90"
+          }
+        },
+        {
+          "type": "number",
+          "name": "power",
+          "title": {
+            "en": "Power",
+            "nl": "Vermogen",
+            "de": "Leistung",
+            "fr": "Puissance",
+            "it": "Potenza",
+            "sv": "Effekt",
+            "no": "Effekt",
+            "es": "Potencia",
+            "da": "Effekt",
+            "ru": "Мощность",
+            "pl": "Moc",
+            "ko": "출력",
+            "ar": "القدرة"
+          },
+          "min": 100,
+          "max": 30000,
+          "step": 100,
+          "placeholder": {
+            "en": "3000"
+          }
+        }
+      ]
+    },
+    {
+      "id": "force_discharge_for",
+      "title": {
+        "en": "Discharge the battery for a while",
+        "nl": "Ontlaad de batterij een tijd",
+        "de": "Batterie eine Zeit lang entladen",
+        "fr": "Décharger la batterie pendant un moment",
+        "it": "Scarica la batteria per un periodo",
+        "sv": "Ladda ur batteriet en stund",
+        "no": "Lad ut batteriet en stund",
+        "es": "Descargar la batería durante un tiempo",
+        "da": "Aflad batteriet i et stykke tid",
+        "ru": "Разряжать батарею некоторое время",
+        "pl": "Rozładowuj baterię przez pewien czas",
+        "ko": "일정 시간 배터리 방전",
+        "ar": "فرّغ البطارية لمدة"
+      },
+      "titleFormatted": {
+        "en": "Discharge the battery for [[minutes]] minutes at [[power]] W",
+        "nl": "Ontlaad de batterij [[minutes]] minuten met [[power]] W",
+        "de": "Batterie [[minutes]] Minuten mit [[power]] W entladen",
+        "fr": "Décharger la batterie pendant [[minutes]] minutes à [[power]] W",
+        "it": "Scarica la batteria per [[minutes]] minuti a [[power]] W",
+        "sv": "Ladda ur batteriet i [[minutes]] minuter med [[power]] W",
+        "no": "Lad ut batteriet i [[minutes]] minutter med [[power]] W",
+        "es": "Descargar la batería durante [[minutes]] minutos a [[power]] W",
+        "da": "Aflad batteriet i [[minutes]] minutter med [[power]] W",
+        "ru": "Разряжать батарею [[minutes]] мин мощностью [[power]] Вт",
+        "pl": "Rozładowuj baterię przez [[minutes]] min mocą [[power]] W",
+        "ko": "배터리를 [[power]] W로 [[minutes]]분 동안 방전",
+        "ar": "فرّغ البطارية لمدة [[minutes]] دقيقة بقدرة [[power]] واط"
+      },
+      "hint": {
+        "en": "Forced discharging may feed power into the grid.",
+        "nl": "Geforceerd ontladen kan stroom aan het net teruggeven.",
+        "de": "Erzwungenes Entladen kann Strom ins Netz einspeisen.",
+        "fr": "La décharge forcée peut injecter du courant dans le réseau.",
+        "it": "La scarica forzata può immettere energia in rete.",
+        "sv": "Tvingad urladdning kan mata ut ström på elnätet.",
+        "no": "Tvungen utlading kan levere strøm til nettet.",
+        "es": "La descarga forzada puede inyectar energía a la red.",
+        "da": "Tvungen afladning kan sende strøm ud på nettet.",
+        "ru": "Принудительный разряд может отдавать энергию в сеть.",
+        "pl": "Wymuszone rozładowanie może oddawać energię do sieci.",
+        "ko": "강제 방전은 전력을 계통으로 내보낼 수 있습니다.",
+        "ar": "قد يضخ التفريغ القسري الطاقة إلى الشبكة."
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "minutes",
+          "title": {
+            "en": "Duration in minutes",
+            "nl": "Duur in minuten",
+            "de": "Dauer in Minuten",
+            "fr": "Durée en minutes",
+            "it": "Durata in minuti",
+            "sv": "Tid i minuter",
+            "no": "Varighet i minutter",
+            "es": "Duración en minutos",
+            "da": "Varighed i minutter",
+            "ru": "Длительность в минутах",
+            "pl": "Czas w minutach",
+            "ko": "시간(분)",
+            "ar": "المدة بالدقائق"
+          },
+          "min": 1,
+          "max": 1440,
+          "step": 1,
+          "placeholder": {
+            "en": "60"
+          }
+        },
+        {
+          "type": "number",
+          "name": "power",
+          "title": {
+            "en": "Power",
+            "nl": "Vermogen",
+            "de": "Leistung",
+            "fr": "Puissance",
+            "it": "Potenza",
+            "sv": "Effekt",
+            "no": "Effekt",
+            "es": "Potencia",
+            "da": "Effekt",
+            "ru": "Мощность",
+            "pl": "Moc",
+            "ko": "출력",
+            "ar": "القدرة"
+          },
+          "min": 100,
+          "max": 30000,
+          "step": 100,
+          "placeholder": {
+            "en": "3000"
+          }
+        }
+      ]
+    },
+    {
+      "id": "stop_forced",
+      "title": {
+        "en": "Stop forced charging or discharging",
+        "nl": "Stop geforceerd laden of ontladen",
+        "de": "Erzwungenes Laden oder Entladen beenden",
+        "fr": "Arrêter la charge ou décharge forcée",
+        "it": "Interrompi carica o scarica forzata",
+        "sv": "Avsluta tvingad laddning eller urladdning",
+        "no": "Stopp tvungen lading eller utlading",
+        "es": "Detener la carga o descarga forzada",
+        "da": "Stop tvungen op- eller afladning",
+        "ru": "Остановить принудительный заряд или разряд",
+        "pl": "Zatrzymaj wymuszone ładowanie lub rozładowanie",
+        "ko": "강제 충전 또는 방전 중지",
+        "ar": "أوقف الشحن أو التفريغ القسري"
+      },
+      "hint": {
+        "en": "The battery returns to the mode set in Atmozen.",
+        "nl": "De batterij keert terug naar de modus die in Atmozen is ingesteld.",
+        "de": "Die Batterie kehrt in den in Atmozen eingestellten Modus zurück.",
+        "fr": "La batterie revient au mode réglé dans Atmozen.",
+        "it": "La batteria torna alla modalità impostata in Atmozen.",
+        "sv": "Batteriet återgår till läget som är inställt i Atmozen.",
+        "no": "Batteriet går tilbake til modusen som er satt i Atmozen.",
+        "es": "La batería vuelve al modo configurado en Atmozen.",
+        "da": "Batteriet vender tilbage til den tilstand, der er valgt i Atmozen.",
+        "ru": "Батарея возвращается в режим, заданный в Atmozen.",
+        "pl": "Bateria wraca do trybu ustawionego w Atmozen.",
+        "ko": "배터리가 Atmozen에서 설정한 모드로 돌아갑니다.",
+        "ar": "تعود البطارية إلى الوضع المحدد في Atmozen."
+      }
+    },
+    {
+      "id": "limit_charging",
+      "title": {
+        "en": "Limit charging to a power",
+        "nl": "Beperk laden tot een vermogen",
+        "de": "Laden auf eine Leistung begrenzen",
+        "fr": "Limiter la charge à une puissance",
+        "it": "Limita la carica a una potenza",
+        "sv": "Begränsa laddning till en effekt",
+        "no": "Begrens lading til en effekt",
+        "es": "Limitar la carga a una potencia",
+        "da": "Begræns opladning til en effekt",
+        "ru": "Ограничить мощность заряда",
+        "pl": "Ogranicz ładowanie do mocy",
+        "ko": "충전을 지정 출력으로 제한",
+        "ar": "قيّد الشحن بقدرة معيّنة"
+      },
+      "titleFormatted": {
+        "en": "Limit charging to [[power]] W",
+        "nl": "Beperk laden tot [[power]] W",
+        "de": "Laden auf [[power]] W begrenzen",
+        "fr": "Limiter la charge à [[power]] W",
+        "it": "Limita la carica a [[power]] W",
+        "sv": "Begränsa laddning till [[power]] W",
+        "no": "Begrens lading til [[power]] W",
+        "es": "Limitar la carga a [[power]] W",
+        "da": "Begræns opladning til [[power]] W",
+        "ru": "Ограничить заряд до [[power]] Вт",
+        "pl": "Ogranicz ładowanie do [[power]] W",
+        "ko": "충전을 [[power]] W로 제한",
+        "ar": "قيّد الشحن بـ [[power]] واط"
+      },
+      "hint": {
+        "en": "The battery keeps its normal behaviour, but never above this power. 0 W blocks charging or discharging, for example while the car charges.",
+        "nl": "De batterij werkt gewoon verder, maar nooit boven dit vermogen. Met 0 W laadt of ontlaadt ze niet, bijvoorbeeld terwijl de auto laadt.",
+        "de": "Die Batterie arbeitet normal weiter, aber nie über dieser Leistung. 0 W sperrt Laden oder Entladen, etwa während das Auto lädt.",
+        "fr": "La batterie garde son fonctionnement normal, sans dépasser cette puissance. 0 W bloque la charge ou la décharge, par exemple pendant la recharge de la voiture.",
+        "it": "La batteria funziona normalmente, ma mai oltre questa potenza. 0 W blocca carica o scarica, ad esempio mentre l'auto è in ricarica.",
+        "sv": "Batteriet fungerar som vanligt, men aldrig över denna effekt. 0 W spärrar laddning eller urladdning, till exempel medan bilen laddar.",
+        "no": "Batteriet fungerer som vanlig, men aldri over denne effekten. 0 W sperrer lading eller utlading, for eksempel mens bilen lader.",
+        "es": "La batería funciona con normalidad, pero nunca por encima de esta potencia. 0 W bloquea la carga o descarga, por ejemplo mientras carga el coche.",
+        "da": "Batteriet fungerer som normalt, men aldrig over denne effekt. 0 W spærrer op- eller afladning, f.eks. mens bilen lader.",
+        "ru": "Батарея работает как обычно, но не выше этой мощности. 0 Вт блокирует заряд или разряд, например пока заряжается автомобиль.",
+        "pl": "Bateria działa normalnie, ale nigdy powyżej tej mocy. 0 W blokuje ładowanie lub rozładowanie, np. gdy ładuje się auto.",
+        "ko": "배터리는 평소대로 작동하지만 이 출력을 넘지 않습니다. 0 W이면 충전 또는 방전이 막힙니다(예: 차량 충전 중).",
+        "ar": "تعمل البطارية كالمعتاد لكن دون تجاوز هذه القدرة. 0 واط يمنع الشحن أو التفريغ، مثلًا أثناء شحن السيارة."
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "power",
+          "title": {
+            "en": "Power",
+            "nl": "Vermogen",
+            "de": "Leistung",
+            "fr": "Puissance",
+            "it": "Potenza",
+            "sv": "Effekt",
+            "no": "Effekt",
+            "es": "Potencia",
+            "da": "Effekt",
+            "ru": "Мощность",
+            "pl": "Moc",
+            "ko": "출력",
+            "ar": "القدرة"
+          },
+          "min": 0,
+          "max": 50000,
+          "step": 50,
+          "placeholder": {
+            "en": "0"
+          }
+        }
+      ]
+    },
+    {
+      "id": "limit_discharging",
+      "title": {
+        "en": "Limit discharging to a power",
+        "nl": "Beperk ontladen tot een vermogen",
+        "de": "Entladen auf eine Leistung begrenzen",
+        "fr": "Limiter la décharge à une puissance",
+        "it": "Limita la scarica a una potenza",
+        "sv": "Begränsa urladdning till en effekt",
+        "no": "Begrens utlading til en effekt",
+        "es": "Limitar la descarga a una potencia",
+        "da": "Begræns afladning til en effekt",
+        "ru": "Ограничить мощность разряда",
+        "pl": "Ogranicz rozładowanie do mocy",
+        "ko": "방전을 지정 출력으로 제한",
+        "ar": "قيّد التفريغ بقدرة معيّنة"
+      },
+      "titleFormatted": {
+        "en": "Limit discharging to [[power]] W",
+        "nl": "Beperk ontladen tot [[power]] W",
+        "de": "Entladen auf [[power]] W begrenzen",
+        "fr": "Limiter la décharge à [[power]] W",
+        "it": "Limita la scarica a [[power]] W",
+        "sv": "Begränsa urladdning till [[power]] W",
+        "no": "Begrens utlading til [[power]] W",
+        "es": "Limitar la descarga a [[power]] W",
+        "da": "Begræns afladning til [[power]] W",
+        "ru": "Ограничить разряд до [[power]] Вт",
+        "pl": "Ogranicz rozładowanie do [[power]] W",
+        "ko": "방전을 [[power]] W로 제한",
+        "ar": "قيّد التفريغ بـ [[power]] واط"
+      },
+      "hint": {
+        "en": "The battery keeps its normal behaviour, but never above this power. 0 W blocks charging or discharging, for example while the car charges.",
+        "nl": "De batterij werkt gewoon verder, maar nooit boven dit vermogen. Met 0 W laadt of ontlaadt ze niet, bijvoorbeeld terwijl de auto laadt.",
+        "de": "Die Batterie arbeitet normal weiter, aber nie über dieser Leistung. 0 W sperrt Laden oder Entladen, etwa während das Auto lädt.",
+        "fr": "La batterie garde son fonctionnement normal, sans dépasser cette puissance. 0 W bloque la charge ou la décharge, par exemple pendant la recharge de la voiture.",
+        "it": "La batteria funziona normalmente, ma mai oltre questa potenza. 0 W blocca carica o scarica, ad esempio mentre l'auto è in ricarica.",
+        "sv": "Batteriet fungerar som vanligt, men aldrig över denna effekt. 0 W spärrar laddning eller urladdning, till exempel medan bilen laddar.",
+        "no": "Batteriet fungerer som vanlig, men aldri over denne effekten. 0 W sperrer lading eller utlading, for eksempel mens bilen lader.",
+        "es": "La batería funciona con normalidad, pero nunca por encima de esta potencia. 0 W bloquea la carga o descarga, por ejemplo mientras carga el coche.",
+        "da": "Batteriet fungerer som normalt, men aldrig over denne effekt. 0 W spærrer op- eller afladning, f.eks. mens bilen lader.",
+        "ru": "Батарея работает как обычно, но не выше этой мощности. 0 Вт блокирует заряд или разряд, например пока заряжается автомобиль.",
+        "pl": "Bateria działa normalnie, ale nigdy powyżej tej mocy. 0 W blokuje ładowanie lub rozładowanie, np. gdy ładuje się auto.",
+        "ko": "배터리는 평소대로 작동하지만 이 출력을 넘지 않습니다. 0 W이면 충전 또는 방전이 막힙니다(예: 차량 충전 중).",
+        "ar": "تعمل البطارية كالمعتاد لكن دون تجاوز هذه القدرة. 0 واط يمنع الشحن أو التفريغ، مثلًا أثناء شحن السيارة."
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "power",
+          "title": {
+            "en": "Power",
+            "nl": "Vermogen",
+            "de": "Leistung",
+            "fr": "Puissance",
+            "it": "Potenza",
+            "sv": "Effekt",
+            "no": "Effekt",
+            "es": "Potencia",
+            "da": "Effekt",
+            "ru": "Мощность",
+            "pl": "Moc",
+            "ko": "출력",
+            "ar": "القدرة"
+          },
+          "min": 0,
+          "max": 50000,
+          "step": 50,
+          "placeholder": {
+            "en": "0"
+          }
+        }
+      ]
+    },
+    {
+      "id": "remove_battery_limits",
+      "title": {
+        "en": "Remove the charge and discharge limits",
+        "nl": "Verwijder de laad- en ontlaadlimiet",
+        "de": "Lade- und Entladegrenze aufheben",
+        "fr": "Supprimer les limites de charge et de décharge",
+        "it": "Rimuovi i limiti di carica e scarica",
+        "sv": "Ta bort laddnings- och urladdningsgränsen",
+        "no": "Fjern lade- og utladingsgrensen",
+        "es": "Quitar los límites de carga y descarga",
+        "da": "Fjern op- og afladningsgrænsen",
+        "ru": "Снять ограничения заряда и разряда",
+        "pl": "Usuń limity ładowania i rozładowania",
+        "ko": "충전·방전 제한 해제",
+        "ar": "أزل حدود الشحن والتفريغ"
+      }
+    }
+  ]
+}

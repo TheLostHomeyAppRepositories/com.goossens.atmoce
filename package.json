@@ -1,0 +1,30 @@
+{
+  "name": "com.goossens.atmoce",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Homey app for Atmoce solar and battery systems (local Modbus TCP).",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint --ext .mts .",
+    "test": "node --test \"test/**/*.test.mts\"",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p test/tsconfig.json",
+    "validate": "homey app validate --level publish",
+    "simulate": "node tools/simulator.mts",
+    "probe": "node tools/probe.mts"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "dependencies": {
+    "modbus-serial": "^8.0.25"
+  },
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.6",
+    "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.12",
+    "@types/node": "^22.20.4",
+    "eslint": "~8.57.1",
+    "eslint-config-athom": "~4.0.2",
+    "typescript": "npm:@typescript/typescript6@^6.0.2"
+  }
+}

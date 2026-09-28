@@ -1,0 +1,47 @@
+{
+  "pair": {
+    "title": "اربط بوابة Atmoce",
+    "intro": "يتواصل Homey مع البوابة مباشرةً عبر شبكتك المنزلية. فعّل Modbus-TCP في تطبيق Atmozen ضمن الإعدادات ← 3rd Party System؛ وستجد هناك عنوان IP أيضًا.",
+    "searching": "جارٍ البحث عن بوابات Atmoce في شبكتك…",
+    "found": "تم العثور عليها في شبكتك",
+    "none_found": "لم يُعثر على بوابة Atmoce تلقائيًا. تحقّق من تفعيل Modbus-TCP في Atmozen أو أدخل عنوان IP أدناه.",
+    "manual": "أو أدخل عنوان IP",
+    "already_added": "أُضيف بالفعل",
+    "host": "عنوان IP",
+    "advanced": "متقدم",
+    "port": "المنفذ",
+    "unit_id": "معرّف الوحدة",
+    "connect": "اتصال",
+    "continue": "متابعة",
+    "connecting": "جارٍ الاتصال…",
+    "connected": "تم الاتصال بالبوابة __serial__",
+    "solar": "الطاقة الشمسية",
+    "battery": "البطارية",
+    "firmware": "البرنامج الثابت",
+    "none": "لا يوجد",
+    "name_solar": "ألواح Atmoce الشمسية",
+    "name_battery": "بطارية Atmoce",
+    "name_grid": "عداد شبكة Atmoce"
+  },
+  "errors": {
+    "cannot_reach": "لا توجد بوابة Atmoce تستجيب على __host__. تحقّق من عنوان IP ومن تفعيل Modbus-TCP في Atmozen",
+    "other_gateway": "هذا العنوان يخص بوابة Atmoce أخرى (__serial__). أضف تلك البوابة كجهاز جديد",
+    "needs_firmware": "يتطلب ذلك البرنامج الثابت للبوابة __needed__ أو أحدث (هذه البوابة لديها __current__). تثبّت Atmoce التحديثات عبر السحابة؛ اسأل المُركِّب أو دعم Atmoce.",
+    "unreachable": "تعذّر الوصول إلى البوابة",
+    "not_connected": "لم يتم الاتصال بالبوابة بعد",
+    "host_required": "أدخل عنوان IP للبوابة",
+    "invalid_port": "أدخل منفذًا بين 1 و65535",
+    "invalid_unit_id": "أدخل معرّف وحدة بين 1 و247",
+    "no_battery": "لا تُبلغ هذه البوابة عن أي بطارية. أضف الألواح الشمسية أو عداد الشبكة بدلًا من ذلك",
+    "charge_limit": "يمكن شحن البطاريات بقدرة __max__ واط كحد أقصى",
+    "discharge_limit": "يمكن تفريغ البطاريات بقدرة __max__ واط كحد أقصى"
+  },
+  "warning": {
+    "system_fault": "يُبلغ نظام Atmoce عن عطل. افتح تطبيق Atmozen لمعرفة التفاصيل.",
+    "battery_faulty": "تُبلغ بطارية عن إنذار ولا تشحن ولا تُفرَّغ. افتح تطبيق Atmozen لمعرفة التفاصيل.",
+    "battery_shutdown": "جميع البطاريات متوقفة. افتح تطبيق Atmozen لمعرفة التفاصيل."
+  },
+  "settings": {
+    "not_detected": "لم يُكتشف بعد"
+  }
+}

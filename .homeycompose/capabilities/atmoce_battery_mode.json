@@ -1,0 +1,94 @@
+{
+  "type": "enum",
+  "title": {
+    "en": "Battery mode",
+    "nl": "Batterijmodus",
+    "de": "Batteriemodus",
+    "fr": "Mode batterie",
+    "it": "Modalità batteria",
+    "sv": "Batteriläge",
+    "no": "Batterimodus",
+    "es": "Modo de batería",
+    "da": "Batteritilstand",
+    "ru": "Режим батареи",
+    "pl": "Tryb baterii",
+    "ko": "배터리 모드",
+    "ar": "وضع البطارية"
+  },
+  "desc": {
+    "en": "How the gateway operates the batteries",
+    "nl": "Hoe de gateway de batterijen aanstuurt",
+    "de": "Wie das Gateway die Batterien betreibt",
+    "fr": "Comment la passerelle pilote les batteries",
+    "it": "Come il gateway gestisce le batterie",
+    "sv": "Hur gatewayen styr batterierna",
+    "no": "Hvordan gatewayen styrer batteriene",
+    "es": "Cómo gestiona la pasarela las baterías",
+    "da": "Hvordan gatewayen styrer batterierne",
+    "ru": "Как шлюз управляет батареями",
+    "pl": "Jak bramka steruje bateriami",
+    "ko": "게이트웨이가 배터리를 운용하는 방식",
+    "ar": "كيف تدير البوابة البطاريات"
+  },
+  "values": [
+    {
+      "id": "self_consumption",
+      "title": {
+        "en": "Self-consumption",
+        "nl": "Eigen verbruik",
+        "de": "Eigenverbrauch",
+        "fr": "Autoconsommation",
+        "it": "Autoconsumo",
+        "sv": "Egenförbrukning",
+        "no": "Egenforbruk",
+        "es": "Autoconsumo",
+        "da": "Eget forbrug",
+        "ru": "Собственное потребление",
+        "pl": "Autokonsumpcja",
+        "ko": "자가 소비",
+        "ar": "الاستهلاك الذاتي"
+      }
+    },
+    {
+      "id": "time_of_use",
+      "title": {
+        "en": "Time of use",
+        "nl": "Tijdsafhankelijk",
+        "de": "Zeitabhängig",
+        "fr": "Plages horaires",
+        "it": "Fasce orarie",
+        "sv": "Tidsstyrt",
+        "no": "Tidsstyrt",
+        "es": "Por franjas horarias",
+        "da": "Tidsstyret",
+        "ru": "По времени суток",
+        "pl": "Według taryfy czasowej",
+        "ko": "시간대별",
+        "ar": "حسب وقت الاستخدام"
+      }
+    },
+    {
+      "id": "remote",
+      "title": {
+        "en": "Remote control",
+        "nl": "Op afstand gestuurd",
+        "de": "Fernsteuerung",
+        "fr": "Pilotage à distance",
+        "it": "Controllo remoto",
+        "sv": "Fjärrstyrt",
+        "no": "Fjernstyrt",
+        "es": "Control remoto",
+        "da": "Fjernstyret",
+        "ru": "Удалённое управление",
+        "pl": "Sterowanie zdalne",
+        "ko": "원격 제어",
+        "ar": "تحكم عن بُعد"
+      }
+    }
+  ],
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": false,
+  "icon": "/assets/capabilities/battery_mode.svg"
+}

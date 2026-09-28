@@ -1,0 +1,172 @@
+{
+  "type": "group",
+  "label": {
+    "en": "Connection",
+    "nl": "Verbinding",
+    "de": "Verbindung",
+    "fr": "Connexion",
+    "it": "Connessione",
+    "sv": "Anslutning",
+    "no": "Tilkobling",
+    "es": "Conexión",
+    "da": "Forbindelse",
+    "ru": "Подключение",
+    "pl": "Połączenie",
+    "ko": "연결",
+    "ar": "الاتصال"
+  },
+  "children": [
+    {
+      "id": "host",
+      "type": "text",
+      "label": {
+        "en": "IP address",
+        "nl": "IP-adres",
+        "de": "IP-Adresse",
+        "fr": "Adresse IP",
+        "it": "Indirizzo IP",
+        "sv": "IP-adress",
+        "no": "IP-adresse",
+        "es": "Dirección IP",
+        "da": "IP-adresse",
+        "ru": "IP-адрес",
+        "pl": "Adres IP",
+        "ko": "IP 주소",
+        "ar": "عنوان IP"
+      },
+      "hint": {
+        "en": "IP address of the Atmoce gateway, filled in during pairing. If the gateway gets a new address, Homey finds it again by itself.",
+        "nl": "IP-adres van de Atmoce-gateway, ingevuld bij het koppelen. Krijgt de gateway een nieuw adres, dan vindt Homey hem vanzelf terug.",
+        "de": "IP-Adresse des Atmoce-Gateways, beim Koppeln eingetragen. Bekommt das Gateway eine neue Adresse, findet Homey es von selbst wieder.",
+        "fr": "Adresse IP de la passerelle Atmoce, renseignée lors de l'appairage. Si la passerelle change d'adresse, Homey la retrouve tout seul.",
+        "it": "Indirizzo IP del gateway Atmoce, inserito durante l'abbinamento. Se il gateway cambia indirizzo, Homey lo ritrova da solo.",
+        "sv": "Atmoce-gatewayens IP-adress, ifylld vid parkopplingen. Får gatewayen en ny adress hittar Homey den igen av sig själv.",
+        "no": "IP-adressen til Atmoce-gatewayen, fylt inn ved paring. Får gatewayen en ny adresse, finner Homey den igjen av seg selv.",
+        "es": "Dirección IP de la pasarela Atmoce, rellenada al emparejar. Si la pasarela cambia de dirección, Homey la vuelve a encontrar sola.",
+        "da": "Atmoce-gatewayens IP-adresse, udfyldt ved parring. Får gatewayen en ny adresse, finder Homey den selv igen.",
+        "ru": "IP-адрес шлюза Atmoce, заполняется при сопряжении. Если адрес шлюза изменится, Homey сам найдёт его снова.",
+        "pl": "Adres IP bramki Atmoce, uzupełniany przy parowaniu. Jeśli bramka dostanie nowy adres, Homey sam ją odnajdzie.",
+        "ko": "Atmoce 게이트웨이의 IP 주소로, 페어링할 때 입력됩니다. 게이트웨이 주소가 바뀌면 Homey가 스스로 다시 찾습니다.",
+        "ar": "عنوان IP لبوابة Atmoce، يُملأ عند الإقران. إذا حصلت البوابة على عنوان جديد، يجدها Homey من تلقاء نفسه."
+      },
+      "value": ""
+    },
+    {
+      "id": "port",
+      "type": "number",
+      "label": {
+        "en": "Modbus TCP port",
+        "nl": "Modbus TCP-poort",
+        "de": "Modbus-TCP-Port",
+        "fr": "Port Modbus TCP",
+        "it": "Porta Modbus TCP",
+        "sv": "Modbus TCP-port",
+        "no": "Modbus TCP-port",
+        "es": "Puerto Modbus TCP",
+        "da": "Modbus TCP-port",
+        "ru": "Порт Modbus TCP",
+        "pl": "Port Modbus TCP",
+        "ko": "Modbus TCP 포트",
+        "ar": "منفذ Modbus TCP"
+      },
+      "hint": {
+        "en": "Default 502.",
+        "nl": "Standaard 502.",
+        "de": "Standard 502.",
+        "fr": "Par défaut 502.",
+        "it": "Predefinita 502.",
+        "sv": "Standard 502.",
+        "no": "Standard 502.",
+        "es": "Por defecto 502.",
+        "da": "Standard 502.",
+        "ru": "По умолчанию 502.",
+        "pl": "Domyślnie 502.",
+        "ko": "기본값 502.",
+        "ar": "الافتراضي 502."
+      },
+      "value": 502,
+      "min": 1,
+      "max": 65535,
+      "step": 1
+    },
+    {
+      "id": "unit_id",
+      "type": "number",
+      "label": {
+        "en": "Modbus unit ID",
+        "nl": "Modbus unit-ID",
+        "de": "Modbus-Unit-ID",
+        "fr": "ID Modbus",
+        "it": "ID unità Modbus",
+        "sv": "Modbus enhets-ID",
+        "no": "Modbus enhets-ID",
+        "es": "ID de unidad Modbus",
+        "da": "Modbus enheds-ID",
+        "ru": "Адрес Modbus",
+        "pl": "ID urządzenia Modbus",
+        "ko": "Modbus 유닛 ID",
+        "ar": "معرّف وحدة Modbus"
+      },
+      "hint": {
+        "en": "Default 1.",
+        "nl": "Standaard 1.",
+        "de": "Standard 1.",
+        "fr": "Par défaut 1.",
+        "it": "Predefinito 1.",
+        "sv": "Standard 1.",
+        "no": "Standard 1.",
+        "es": "Por defecto 1.",
+        "da": "Standard 1.",
+        "ru": "По умолчанию 1.",
+        "pl": "Domyślnie 1.",
+        "ko": "기본값 1.",
+        "ar": "الافتراضي 1."
+      },
+      "value": 1,
+      "min": 1,
+      "max": 247,
+      "step": 1
+    },
+    {
+      "id": "poll_interval",
+      "type": "number",
+      "label": {
+        "en": "Update interval",
+        "nl": "Update-interval",
+        "de": "Aktualisierungsintervall",
+        "fr": "Intervalle de mise à jour",
+        "it": "Intervallo di aggiornamento",
+        "sv": "Uppdateringsintervall",
+        "no": "Oppdateringsintervall",
+        "es": "Intervalo de actualización",
+        "da": "Opdateringsinterval",
+        "ru": "Интервал обновления",
+        "pl": "Interwał aktualizacji",
+        "ko": "업데이트 간격",
+        "ar": "فاصل التحديث"
+      },
+      "hint": {
+        "en": "How often Homey reads the gateway. Applies to all devices of this gateway.",
+        "nl": "Hoe vaak Homey de gateway uitleest. Geldt voor alle apparaten van deze gateway.",
+        "de": "Wie oft Homey das Gateway ausliest. Gilt für alle Geräte dieses Gateways.",
+        "fr": "Fréquence de lecture de la passerelle par Homey. Vaut pour tous les appareils de cette passerelle.",
+        "it": "Ogni quanto Homey legge il gateway. Vale per tutti i dispositivi di questo gateway.",
+        "sv": "Hur ofta Homey läser av gatewayen. Gäller alla enheter för denna gateway.",
+        "no": "Hvor ofte Homey leser av gatewayen. Gjelder alle enheter for denne gatewayen.",
+        "es": "Con qué frecuencia Homey lee la pasarela. Se aplica a todos los dispositivos de esta pasarela.",
+        "da": "Hvor ofte Homey aflæser gatewayen. Gælder alle enheder for denne gateway.",
+        "ru": "Как часто Homey опрашивает шлюз. Действует для всех устройств этого шлюза.",
+        "pl": "Jak często Homey odczytuje bramkę. Dotyczy wszystkich urządzeń tej bramki.",
+        "ko": "Homey가 게이트웨이를 읽는 주기입니다. 이 게이트웨이의 모든 기기에 적용됩니다.",
+        "ar": "عدد مرات قراءة Homey للبوابة. ينطبق على جميع أجهزة هذه البوابة."
+      },
+      "value": 10,
+      "min": 2,
+      "max": 300,
+      "step": 1,
+      "units": {
+        "en": "s"
+      }
+    }
+  ]
+}

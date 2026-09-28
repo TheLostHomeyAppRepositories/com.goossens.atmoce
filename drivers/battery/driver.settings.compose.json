@@ -1,0 +1,217 @@
+[
+  {
+    "$extends": "connection",
+    "$id": "connection"
+  },
+  {
+    "id": "gateway",
+    "type": "group",
+    "label": {
+      "en": "Gateway",
+      "nl": "Gateway",
+      "de": "Gateway",
+      "fr": "Passerelle",
+      "it": "Gateway",
+      "sv": "Gateway",
+      "no": "Gateway",
+      "es": "Pasarela",
+      "da": "Gateway",
+      "ru": "Шлюз",
+      "pl": "Bramka",
+      "ko": "게이트웨이",
+      "ar": "البوابة"
+    },
+    "children": [
+      {
+        "id": "serial",
+        "type": "label",
+        "label": {
+          "en": "Serial number",
+          "nl": "Serienummer",
+          "de": "Seriennummer",
+          "fr": "Numéro de série",
+          "it": "Numero di serie",
+          "sv": "Serienummer",
+          "no": "Serienummer",
+          "es": "Número de serie",
+          "da": "Serienummer",
+          "ru": "Серийный номер",
+          "pl": "Numer seryjny",
+          "ko": "일련번호",
+          "ar": "الرقم التسلسلي"
+        },
+        "value": ""
+      },
+      {
+        "id": "firmware_version",
+        "type": "label",
+        "label": {
+          "en": "Firmware",
+          "nl": "Firmware",
+          "de": "Firmware",
+          "fr": "Firmware",
+          "it": "Firmware",
+          "sv": "Firmware",
+          "no": "Fastvare",
+          "es": "Firmware",
+          "da": "Firmware",
+          "ru": "Прошивка",
+          "pl": "Oprogramowanie",
+          "ko": "펌웨어",
+          "ar": "البرنامج الثابت"
+        },
+        "value": ""
+      },
+      {
+        "id": "hardware_version",
+        "type": "label",
+        "label": {
+          "en": "Hardware version",
+          "nl": "Hardwareversie",
+          "de": "Hardwareversion",
+          "fr": "Version matérielle",
+          "it": "Versione hardware",
+          "sv": "Hårdvaruversion",
+          "no": "Maskinvareversjon",
+          "es": "Versión de hardware",
+          "da": "Hardwareversion",
+          "ru": "Версия оборудования",
+          "pl": "Wersja sprzętu",
+          "ko": "하드웨어 버전",
+          "ar": "إصدار العتاد"
+        },
+        "value": ""
+      },
+      {
+        "id": "protocol_version",
+        "type": "label",
+        "label": {
+          "en": "Modbus protocol version",
+          "nl": "Versie Modbus-protocol",
+          "de": "Modbus-Protokollversion",
+          "fr": "Version du protocole Modbus",
+          "it": "Versione protocollo Modbus",
+          "sv": "Modbus-protokollversion",
+          "no": "Modbus-protokollversjon",
+          "es": "Versión del protocolo Modbus",
+          "da": "Modbus-protokolversion",
+          "ru": "Версия протокола Modbus",
+          "pl": "Wersja protokołu Modbus",
+          "ko": "Modbus 프로토콜 버전",
+          "ar": "إصدار بروتوكول Modbus"
+        },
+        "value": ""
+      },
+      {
+        "id": "storage_capacity",
+        "type": "label",
+        "label": {
+          "en": "Battery capacity",
+          "nl": "Batterijcapaciteit",
+          "de": "Batteriekapazität",
+          "fr": "Capacité de la batterie",
+          "it": "Capacità batteria",
+          "sv": "Batterikapacitet",
+          "no": "Batterikapasitet",
+          "es": "Capacidad de la batería",
+          "da": "Batterikapacitet",
+          "ru": "Ёмкость батареи",
+          "pl": "Pojemność baterii",
+          "ko": "배터리 용량",
+          "ar": "سعة البطارية"
+        },
+        "value": ""
+      },
+      {
+        "id": "rated_storage_power",
+        "type": "label",
+        "label": {
+          "en": "Rated battery power",
+          "nl": "Nominaal batterijvermogen",
+          "de": "Batterie-Nennleistung",
+          "fr": "Puissance nominale de la batterie",
+          "it": "Potenza nominale batteria",
+          "sv": "Nominell batterieffekt",
+          "no": "Nominell batterieffekt",
+          "es": "Potencia nominal de la batería",
+          "da": "Nominel batterieffekt",
+          "ru": "Номинальная мощность батареи",
+          "pl": "Moc znamionowa baterii",
+          "ko": "배터리 정격 출력",
+          "ar": "القدرة الاسمية للبطارية"
+        },
+        "value": ""
+      },
+      {
+        "id": "detected_discharge_limit",
+        "type": "label",
+        "label": {
+          "en": "Detected discharge limit",
+          "nl": "Gedetecteerde ontlaadlimiet",
+          "de": "Erkannte Entladegrenze",
+          "fr": "Limite de décharge détectée",
+          "it": "Limite di scarica rilevato",
+          "sv": "Upptäckt urladdningsgräns",
+          "no": "Oppdaget utladingsgrense",
+          "es": "Límite de descarga detectado",
+          "da": "Registreret afladningsgrænse",
+          "ru": "Обнаруженный предел разряда",
+          "pl": "Wykryty limit rozładowania",
+          "ko": "감지된 방전 한도",
+          "ar": "حد التفريغ المكتشف"
+        },
+        "value": "",
+        "hint": {
+          "en": "Learned automatically the first time the battery stops at the limit set in Atmozen. Used for the time to full and time to empty estimates.",
+          "nl": "Wordt automatisch geleerd zodra de batterij stopt op de limiet uit Atmozen. Gebruikt voor de schatting van de tijd tot vol en tot leeg.",
+          "de": "Wird automatisch gelernt, sobald die Batterie an der in Atmozen eingestellten Grenze stoppt. Genutzt für die Schätzung der Zeit bis voll und bis leer.",
+          "fr": "Appris automatiquement dès que la batterie s'arrête à la limite réglée dans Atmozen. Utilisé pour estimer le temps jusqu'à plein et jusqu'à vide.",
+          "it": "Appreso automaticamente quando la batteria si ferma al limite impostato in Atmozen. Usato per stimare il tempo al pieno e al vuoto.",
+          "sv": "Lärs in automatiskt när batteriet stannar vid gränsen som är inställd i Atmozen. Används för att uppskatta tid till full och tid till tom.",
+          "no": "Læres automatisk når batteriet stopper ved grensen satt i Atmozen. Brukes til å anslå tid til full og tid til tom.",
+          "es": "Se aprende automáticamente cuando la batería se detiene en el límite configurado en Atmozen. Se usa para estimar el tiempo hasta lleno y hasta vacío.",
+          "da": "Læres automatisk, når batteriet stopper ved grænsen, der er sat i Atmozen. Bruges til at anslå tid til fuld og tid til tom.",
+          "ru": "Определяется автоматически, когда батарея останавливается на пределе, заданном в Atmozen. Используется для оценки времени до полного заряда и до разряда.",
+          "pl": "Uczony automatycznie, gdy bateria zatrzyma się na limicie ustawionym w Atmozen. Służy do szacowania czasu do pełna i do rozładowania.",
+          "ko": "배터리가 Atmozen에서 설정한 한도에서 멈추면 자동으로 학습됩니다. 완충·방전까지 남은 시간 추정에 사용됩니다.",
+          "ar": "يُتعلَّم تلقائيًا عندما تتوقف البطارية عند الحد المضبوط في Atmozen. يُستخدم لتقدير الوقت حتى الامتلاء وحتى النفاد."
+        }
+      },
+      {
+        "id": "detected_charge_limit",
+        "type": "label",
+        "label": {
+          "en": "Detected charge limit",
+          "nl": "Gedetecteerde laadlimiet",
+          "de": "Erkannte Ladegrenze",
+          "fr": "Limite de charge détectée",
+          "it": "Limite di carica rilevato",
+          "sv": "Upptäckt laddningsgräns",
+          "no": "Oppdaget ladegrense",
+          "es": "Límite de carga detectado",
+          "da": "Registreret opladningsgrænse",
+          "ru": "Обнаруженный предел заряда",
+          "pl": "Wykryty limit ładowania",
+          "ko": "감지된 충전 한도",
+          "ar": "حد الشحن المكتشف"
+        },
+        "value": "",
+        "hint": {
+          "en": "Learned automatically the first time the battery stops at the limit set in Atmozen. Used for the time to full and time to empty estimates.",
+          "nl": "Wordt automatisch geleerd zodra de batterij stopt op de limiet uit Atmozen. Gebruikt voor de schatting van de tijd tot vol en tot leeg.",
+          "de": "Wird automatisch gelernt, sobald die Batterie an der in Atmozen eingestellten Grenze stoppt. Genutzt für die Schätzung der Zeit bis voll und bis leer.",
+          "fr": "Appris automatiquement dès que la batterie s'arrête à la limite réglée dans Atmozen. Utilisé pour estimer le temps jusqu'à plein et jusqu'à vide.",
+          "it": "Appreso automaticamente quando la batteria si ferma al limite impostato in Atmozen. Usato per stimare il tempo al pieno e al vuoto.",
+          "sv": "Lärs in automatiskt när batteriet stannar vid gränsen som är inställd i Atmozen. Används för att uppskatta tid till full och tid till tom.",
+          "no": "Læres automatisk når batteriet stopper ved grensen satt i Atmozen. Brukes til å anslå tid til full og tid til tom.",
+          "es": "Se aprende automáticamente cuando la batería se detiene en el límite configurado en Atmozen. Se usa para estimar el tiempo hasta lleno y hasta vacío.",
+          "da": "Læres automatisk, når batteriet stopper ved grænsen, der er sat i Atmozen. Bruges til at anslå tid til fuld og tid til tom.",
+          "ru": "Определяется автоматически, когда батарея останавливается на пределе, заданном в Atmozen. Используется для оценки времени до полного заряда и до разряда.",
+          "pl": "Uczony automatycznie, gdy bateria zatrzyma się na limicie ustawionym w Atmozen. Służy do szacowania czasu do pełna i do rozładowania.",
+          "ko": "배터리가 Atmozen에서 설정한 한도에서 멈추면 자동으로 학습됩니다. 완충·방전까지 남은 시간 추정에 사용됩니다.",
+          "ar": "يُتعلَّم تلقائيًا عندما تتوقف البطارية عند الحد المضبوط في Atmozen. يُستخدم لتقدير الوقت حتى الامتلاء وحتى النفاد."
+        }
+      }
+    ]
+  }
+]

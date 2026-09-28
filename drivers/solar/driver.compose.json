@@ -1,0 +1,85 @@
+{
+  "$extends": [
+    "defaults"
+  ],
+  "name": {
+    "en": "Solar panels",
+    "nl": "Zonnepanelen",
+    "de": "Solarmodule",
+    "fr": "Panneaux solaires",
+    "it": "Pannelli solari",
+    "sv": "Solpaneler",
+    "no": "Solcellepaneler",
+    "es": "Paneles solares",
+    "da": "Solpaneler",
+    "ru": "Солнечные панели",
+    "pl": "Panele słoneczne",
+    "ko": "태양광 패널",
+    "ar": "الألواح الشمسية"
+  },
+  "class": "solarpanel",
+  "capabilities": [
+    "measure_power",
+    "meter_power",
+    "meter_power.today"
+  ],
+  "capabilitiesOptions": {
+    "meter_power": {
+      "title": {
+        "en": "Total production",
+        "nl": "Totale opbrengst",
+        "de": "Gesamtertrag",
+        "fr": "Production totale",
+        "it": "Produzione totale",
+        "sv": "Total produktion",
+        "no": "Total produksjon",
+        "es": "Producción total",
+        "da": "Samlet produktion",
+        "ru": "Всего выработано",
+        "pl": "Produkcja łączna",
+        "ko": "총 발전량",
+        "ar": "إجمالي الإنتاج"
+      }
+    },
+    "meter_power.today": {
+      "title": {
+        "en": "Production today",
+        "nl": "Opbrengst vandaag",
+        "de": "Ertrag heute",
+        "fr": "Production aujourd'hui",
+        "it": "Produzione oggi",
+        "sv": "Produktion idag",
+        "no": "Produksjon i dag",
+        "es": "Producción hoy",
+        "da": "Produktion i dag",
+        "ru": "Выработано сегодня",
+        "pl": "Produkcja dziś",
+        "ko": "오늘 발전량",
+        "ar": "إنتاج اليوم"
+      }
+    },
+    "target_power": {
+      "title": {
+        "en": "Production limit",
+        "nl": "Productielimiet",
+        "de": "Produktionsgrenze",
+        "fr": "Limite de production",
+        "it": "Limite di produzione",
+        "sv": "Produktionsgräns",
+        "no": "Produksjonsgrense",
+        "es": "Límite de producción",
+        "da": "Produktionsgrænse",
+        "ru": "Предел генерации",
+        "pl": "Limit produkcji",
+        "ko": "발전 제한",
+        "ar": "حد الإنتاج"
+      },
+      "min": 0,
+      "max": 10000,
+      "step": 10
+    }
+  },
+  "energy": {
+    "meterPowerExportedCapability": "meter_power"
+  }
+}

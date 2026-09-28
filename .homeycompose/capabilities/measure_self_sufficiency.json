@@ -1,0 +1,44 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Self-sufficiency today",
+    "nl": "Zelfvoorzienend vandaag",
+    "de": "Autarkie heute",
+    "fr": "Autonomie aujourd'hui",
+    "it": "Autosufficienza oggi",
+    "sv": "Självförsörjning idag",
+    "no": "Selvforsyning i dag",
+    "es": "Autosuficiencia hoy",
+    "da": "Selvforsyning i dag",
+    "ru": "Автономность сегодня",
+    "pl": "Samowystarczalność dziś",
+    "ko": "오늘 자급률",
+    "ar": "الاكتفاء الذاتي اليوم"
+  },
+  "units": {
+    "en": "%"
+  },
+  "decimals": 0,
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": true,
+  "icon": "/assets/capabilities/self_sufficiency.svg",
+  "desc": {
+    "en": "Share of today's home consumption not taken from the grid",
+    "nl": "Deel van het huisverbruik van vandaag dat niet van het net kwam",
+    "de": "Anteil des heutigen Hausverbrauchs, der nicht aus dem Netz kam",
+    "fr": "Part de la consommation d'aujourd'hui non prélevée sur le réseau",
+    "it": "Quota del consumo di oggi non prelevata dalla rete",
+    "sv": "Andel av dagens förbrukning som inte kom från elnätet",
+    "no": "Andel av dagens forbruk som ikke kom fra nettet",
+    "es": "Parte del consumo de hoy que no procede de la red",
+    "da": "Andel af dagens forbrug, der ikke kom fra nettet",
+    "ru": "Доля сегодняшнего потребления, не взятая из сети",
+    "pl": "Część dzisiejszego zużycia niepobrana z sieci",
+    "ko": "오늘 가정 소비 중 계통에서 받지 않은 비율",
+    "ar": "نسبة استهلاك اليوم التي لم تُسحب من الشبكة"
+  },
+  "min": 0,
+  "max": 100
+}

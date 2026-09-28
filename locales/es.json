@@ -1,0 +1,47 @@
+{
+  "pair": {
+    "title": "Conecta tu pasarela Atmoce",
+    "intro": "Homey se comunica directamente con la pasarela a través de tu red doméstica. Activa Modbus-TCP en la app Atmozen en Ajustes → 3rd Party System; ahí también verás la dirección IP.",
+    "searching": "Buscando pasarelas Atmoce en tu red…",
+    "found": "Encontradas en tu red",
+    "none_found": "No se encontró ninguna pasarela Atmoce automáticamente. Comprueba que Modbus-TCP esté activado en Atmozen o introduce la dirección IP abajo.",
+    "manual": "O introduce la dirección IP",
+    "already_added": "ya añadido",
+    "host": "Dirección IP",
+    "advanced": "Avanzado",
+    "port": "Puerto",
+    "unit_id": "ID de unidad",
+    "connect": "Conectar",
+    "continue": "Continuar",
+    "connecting": "Conectando…",
+    "connected": "Conectado a la pasarela __serial__",
+    "solar": "Solar",
+    "battery": "Batería",
+    "firmware": "Firmware",
+    "none": "ninguna",
+    "name_solar": "Paneles solares Atmoce",
+    "name_battery": "Batería Atmoce",
+    "name_grid": "Contador de red Atmoce"
+  },
+  "errors": {
+    "cannot_reach": "Ninguna pasarela Atmoce responde en __host__. Comprueba la dirección IP y que Modbus-TCP esté activado en Atmozen",
+    "other_gateway": "Esta dirección pertenece a otra pasarela Atmoce (__serial__). Añade esa pasarela como un dispositivo nuevo",
+    "needs_firmware": "Requiere el firmware de pasarela __needed__ o posterior (esta pasarela tiene __current__). Atmoce instala actualizaciones por la nube; pregunta a tu instalador o al soporte de Atmoce.",
+    "unreachable": "Pasarela inaccesible",
+    "not_connected": "Aún no conectado a la pasarela",
+    "host_required": "Introduce la dirección IP de la pasarela",
+    "invalid_port": "Introduce un puerto entre 1 y 65535",
+    "invalid_unit_id": "Introduce un ID de unidad entre 1 y 247",
+    "no_battery": "Esta pasarela no indica ninguna batería. Añade en su lugar los paneles solares o el contador de red",
+    "charge_limit": "Las baterías pueden cargar como máximo a __max__ W",
+    "discharge_limit": "Las baterías pueden descargar como máximo a __max__ W"
+  },
+  "warning": {
+    "system_fault": "El sistema Atmoce indica una avería. Abre la app Atmozen para ver los detalles.",
+    "battery_faulty": "Una batería indica una alarma y no carga ni descarga. Abre la app Atmozen para ver los detalles.",
+    "battery_shutdown": "Todas las baterías están apagadas. Abre la app Atmozen para ver los detalles."
+  },
+  "settings": {
+    "not_detected": "Aún no detectado"
+  }
+}

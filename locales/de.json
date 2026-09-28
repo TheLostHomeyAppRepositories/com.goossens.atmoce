@@ -1,0 +1,47 @@
+{
+  "pair": {
+    "title": "Atmoce-Gateway verbinden",
+    "intro": "Homey spricht direkt über dein Heimnetz mit dem Gateway. Aktiviere Modbus-TCP in der Atmozen-App unter Einstellungen → 3rd Party System; dort steht auch die IP-Adresse.",
+    "searching": "Dein Netzwerk wird nach Atmoce-Gateways durchsucht…",
+    "found": "In deinem Netzwerk gefunden",
+    "none_found": "Kein Atmoce-Gateway automatisch gefunden. Prüfe, ob Modbus-TCP in Atmozen aktiv ist, oder gib unten die IP-Adresse ein.",
+    "manual": "Oder IP-Adresse eingeben",
+    "already_added": "bereits hinzugefügt",
+    "host": "IP-Adresse",
+    "advanced": "Erweitert",
+    "port": "Port",
+    "unit_id": "Unit-ID",
+    "connect": "Verbinden",
+    "continue": "Weiter",
+    "connecting": "Verbinde…",
+    "connected": "Mit Gateway __serial__ verbunden",
+    "solar": "Solar",
+    "battery": "Batterie",
+    "firmware": "Firmware",
+    "none": "keine",
+    "name_solar": "Atmoce-Solarmodule",
+    "name_battery": "Atmoce-Batterie",
+    "name_grid": "Atmoce-Netzzähler"
+  },
+  "errors": {
+    "cannot_reach": "Unter __host__ antwortet kein Atmoce-Gateway. Prüfe die IP-Adresse und ob Modbus-TCP in Atmozen aktiv ist",
+    "other_gateway": "Diese Adresse gehört zu einem anderen Atmoce-Gateway (__serial__). Füge dieses Gateway als neues Gerät hinzu",
+    "needs_firmware": "Dafür ist Gateway-Firmware __needed__ oder neuer nötig (dieses Gateway hat __current__). Atmoce installiert Updates über die Cloud; frage deinen Installateur oder den Atmoce-Support.",
+    "unreachable": "Gateway nicht erreichbar",
+    "not_connected": "Noch nicht mit dem Gateway verbunden",
+    "host_required": "Gib die IP-Adresse des Gateways ein",
+    "invalid_port": "Gib einen Port zwischen 1 und 65535 ein",
+    "invalid_unit_id": "Gib eine Unit-ID zwischen 1 und 247 ein",
+    "no_battery": "Dieses Gateway meldet keine Batterie. Füge stattdessen die Solarmodule oder den Netzzähler hinzu",
+    "charge_limit": "Die Batterien können höchstens mit __max__ W laden",
+    "discharge_limit": "Die Batterien können höchstens mit __max__ W entladen"
+  },
+  "warning": {
+    "system_fault": "Das Atmoce-System meldet eine Störung. Details in der Atmozen-App.",
+    "battery_faulty": "Eine Batterie meldet einen Alarm und lädt und entlädt nicht. Details in der Atmozen-App.",
+    "battery_shutdown": "Alle Batterien sind abgeschaltet. Details in der Atmozen-App."
+  },
+  "settings": {
+    "not_detected": "Noch nicht erkannt"
+  }
+}

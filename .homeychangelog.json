@@ -1,0 +1,17 @@
+{
+  "1.0.0": {
+    "en": "First version: solar panels, home battery and grid meter of your Atmoce system, locally in Homey Energy, with battery control from Homey and Flows.",
+    "nl": "Eerste versie: zonnepanelen, thuisbatterij en netmeter van je Atmoce-systeem, lokaal in Homey Energie, met batterijsturing vanuit Homey en Flows.",
+    "de": "Erste Version: Solarmodule, Heimspeicher und Netzzähler deines Atmoce-Systems, lokal in Homey Energy, mit Batteriesteuerung aus Homey und Flows.",
+    "fr": "Première version : panneaux solaires, batterie domestique et compteur réseau de votre système Atmoce, en local dans Homey Energy, avec pilotage de la batterie depuis Homey et les Flows.",
+    "it": "Prima versione: pannelli solari, batteria domestica e contatore di rete del tuo sistema Atmoce, in locale in Homey Energy, con controllo della batteria da Homey e dai Flow.",
+    "sv": "Första versionen: solpaneler, hemmabatteri och nätmätare för ditt Atmoce-system, lokalt i Homey Energy, med batteristyrning från Homey och Flows.",
+    "no": "Første versjon: solcellepaneler, hjemmebatteri og nettmåler for Atmoce-systemet ditt, lokalt i Homey Energy, med batteristyring fra Homey og Flows.",
+    "es": "Primera versión: paneles solares, batería doméstica y contador de red de tu sistema Atmoce, en local en Homey Energy, con control de la batería desde Homey y los Flows.",
+    "da": "Første version: solpaneler, hjemmebatteri og netmåler for dit Atmoce-system, lokalt i Homey Energy, med batteristyring fra Homey og Flows.",
+    "ru": "Первая версия: солнечные панели, домашний аккумулятор и сетевой счётчик системы Atmoce локально в Homey Energy, с управлением батареей из Homey и Flow.",
+    "pl": "Pierwsza wersja: panele słoneczne, magazyn energii i licznik sieciowy systemu Atmoce, lokalnie w Homey Energy, ze sterowaniem baterią z Homey i Flow.",
+    "ko": "첫 버전: Atmoce 시스템의 태양광 패널, 가정용 배터리, 계통 계량기를 Homey Energy에서 로컬로 사용하고, Homey와 Flow에서 배터리를 제어합니다.",
+    "ar": "الإصدار الأول: الألواح الشمسية والبطارية المنزلية وعداد الشبكة لنظام Atmoce محليًا في Homey Energy، مع التحكم في البطارية من Homey وFlow."
+  }
+}

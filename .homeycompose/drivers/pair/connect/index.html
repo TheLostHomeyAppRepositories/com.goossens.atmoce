@@ -1,0 +1,373 @@
+<!--
+  Shared pairing view for all Atmoce drivers.
+  Homey Compose copies this template to drivers/<driver>/pair/connect.html on build.
+-->
+<style>
+  .atmoce {
+    --atmoce-brand: #d03050;
+    --atmoce-ok: #1f9d55;
+    --atmoce-muted: rgba(127, 127, 127, 0.9);
+    --atmoce-surface: rgba(127, 127, 127, 0.08);
+  }
+
+  .atmoce-intro {
+    margin: 0 0 1.25em;
+    line-height: 1.45;
+  }
+
+
+  .atmoce-advanced {
+    margin-top: 0.5em;
+  }
+
+  .atmoce-advanced > summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 0.5em 0;
+    color: var(--atmoce-muted);
+    font-size: 0.9em;
+  }
+
+  .atmoce-advanced > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .atmoce-advanced > summary::before {
+    content: '›';
+    display: inline-block;
+    width: 1em;
+    transition: transform 0.15s ease;
+  }
+
+  .atmoce-advanced[open] > summary::before {
+    transform: rotate(90deg);
+  }
+
+  :dir(rtl) .atmoce-advanced > summary::before {
+    transform: scaleX(-1);
+  }
+
+  :dir(rtl) .atmoce-advanced[open] > summary::before {
+    transform: rotate(90deg);
+  }
+
+  .atmoce-row {
+    display: flex;
+    gap: 0.75em;
+  }
+
+  .atmoce-row > .homey-form-group {
+    flex: 1;
+  }
+
+  .atmoce-message {
+    margin: 1em 0 0;
+    padding: 0.75em 1em;
+    border-radius: 10px;
+    line-height: 1.4;
+    border-inline-start: 4px solid var(--atmoce-brand);
+    background: var(--atmoce-surface);
+  }
+
+  .atmoce-card {
+    margin: 1em 0 0;
+    padding: 1em;
+    border-radius: 12px;
+    background: var(--atmoce-surface);
+    border-inline-start: 4px solid var(--atmoce-ok);
+  }
+
+  .atmoce-card h2 {
+    margin: 0 0 0.6em;
+    font-size: 1em;
+    font-weight: 600;
+  }
+
+  .atmoce-card dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.35em 1em;
+    margin: 0;
+  }
+
+  .atmoce-card dt {
+    color: var(--atmoce-muted);
+  }
+
+  .atmoce-card dd {
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .atmoce-actions {
+    margin-top: 1.5em;
+  }
+
+  .atmoce-discovery {
+    margin: 0 0 1.25em;
+  }
+
+  .atmoce-discovery h2,
+  .atmoce-manual {
+    margin: 0 0 0.6em;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: var(--atmoce-muted);
+  }
+
+  .atmoce-searching {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    color: var(--atmoce-muted);
+  }
+
+  .atmoce-spinner {
+    width: 1em;
+    height: 1em;
+    border: 2px solid var(--atmoce-surface);
+    border-top-color: var(--atmoce-brand);
+    border-radius: 50%;
+    animation: atmoce-spin 0.8s linear infinite;
+  }
+
+  @keyframes atmoce-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .atmoce-gateway {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+    margin: 0 0 0.5em;
+    padding: 0.8em 1em;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: var(--atmoce-surface);
+    color: inherit;
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+  }
+
+  .atmoce-gateway:hover,
+  .atmoce-gateway:focus-visible {
+    border-color: var(--atmoce-brand);
+    outline: none;
+  }
+
+  .atmoce-gateway strong {
+    display: block;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .atmoce-gateway small {
+    color: var(--atmoce-muted);
+  }
+
+  .atmoce-gateway span:last-child {
+    color: var(--atmoce-brand);
+    font-size: 1.4em;
+  }
+
+  :dir(rtl) .atmoce-gateway span:last-child {
+    transform: scaleX(-1);
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+</style>
+
+<div class="atmoce">
+  <header class="homey-header">
+    <h1 class="homey-title" data-i18n="pair.title"></h1>
+  </header>
+
+  <p class="atmoce-intro" data-i18n="pair.intro"></p>
+
+  <section class="atmoce-discovery" aria-live="polite">
+    <p id="searching" class="atmoce-searching"><span class="atmoce-spinner" aria-hidden="true"></span><span data-i18n="pair.searching"></span></p>
+    <div id="found" hidden>
+      <h2 data-i18n="pair.found"></h2>
+      <div id="gateways"></div>
+    </div>
+    <p id="none-found" class="atmoce-message" hidden data-i18n="pair.none_found"></p>
+  </section>
+
+  <p class="atmoce-manual" data-i18n="pair.manual"></p>
+
+  <form id="form" class="homey-form" novalidate>
+    <div class="homey-form-group">
+      <label class="homey-form-label" for="host" data-i18n="pair.host"></label>
+      <input class="homey-form-input" id="host" type="text" inputmode="decimal" autocomplete="off"
+        autocapitalize="off" spellcheck="false" placeholder="192.168.1.50" dir="ltr" />
+    </div>
+
+    <details class="atmoce-advanced">
+      <summary data-i18n="pair.advanced"></summary>
+      <div class="atmoce-row">
+        <div class="homey-form-group">
+          <label class="homey-form-label" for="port" data-i18n="pair.port"></label>
+          <input class="homey-form-input" id="port" type="number" inputmode="numeric" min="1" max="65535" value="502" dir="ltr" />
+        </div>
+        <div class="homey-form-group">
+          <label class="homey-form-label" for="unitId" data-i18n="pair.unit_id"></label>
+          <input class="homey-form-input" id="unitId" type="number" inputmode="numeric" min="1" max="247" value="1" dir="ltr" />
+        </div>
+      </div>
+    </details>
+
+    <p id="error" class="atmoce-message" role="alert" hidden></p>
+
+    <section id="result" class="atmoce-card" aria-live="polite" hidden>
+      <h2 id="result-title"></h2>
+      <dl>
+        <dt data-i18n="pair.firmware"></dt><dd id="result-firmware" dir="ltr"></dd>
+        <dt data-i18n="pair.solar"></dt><dd id="result-solar" dir="ltr"></dd>
+        <dt data-i18n="pair.battery"></dt><dd id="result-battery" dir="ltr"></dd>
+      </dl>
+    </section>
+
+    <div class="atmoce-actions">
+      <button id="connect" type="submit" class="homey-button-primary-full" data-i18n="pair.connect"></button>
+      <button id="continue" type="button" class="homey-button-primary-full" data-i18n="pair.continue" hidden></button>
+    </div>
+  </form>
+</div>
+
+<script type="application/javascript">
+  (function () {
+    var form = document.getElementById('form');
+    var host = document.getElementById('host');
+    var port = document.getElementById('port');
+    var unitId = document.getElementById('unitId');
+    var connectButton = document.getElementById('connect');
+    var continueButton = document.getElementById('continue');
+    var error = document.getElementById('error');
+    var result = document.getElementById('result');
+    var busy = false;
+
+    function number(value, decimals) {
+      return Number(value).toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+    }
+
+    function showError(err) {
+      error.textContent = (err && err.message) || String(err);
+      error.hidden = false;
+    }
+
+    function reset() {
+      error.hidden = true;
+      result.hidden = true;
+      continueButton.hidden = true;
+      connectButton.hidden = false;
+    }
+
+    function showResult(gateway) {
+      document.getElementById('result-title').textContent = Homey.__('pair.connected', { serial: gateway.serial });
+      document.getElementById('result-firmware').textContent = gateway.firmwareVersion;
+      document.getElementById('result-solar').textContent = gateway.ratedPvPowerW > 0
+        ? number(gateway.ratedPvPowerW / 1000, 2) + ' kW'
+        : Homey.__('pair.none');
+      document.getElementById('result-battery').textContent = gateway.storageCapacityKwh > 0
+        ? number(gateway.storageCapacityKwh, 2) + ' kWh'
+        : Homey.__('pair.none');
+      result.hidden = false;
+      connectButton.hidden = true;
+      continueButton.hidden = false;
+    }
+
+    function connect() {
+      if (busy) return;
+      busy = true;
+      reset();
+      connectButton.disabled = true;
+      connectButton.textContent = Homey.__('pair.connecting');
+      Homey.emit('connect', { host: host.value, port: port.value, unitId: unitId.value })
+        .then(showResult)
+        .catch(showError)
+        .then(function () {
+          busy = false;
+          connectButton.disabled = false;
+          connectButton.textContent = Homey.__('pair.connect');
+        });
+    }
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      connect();
+    });
+
+    // Homey's pair iframe handles clicks on homey-button-* elements itself and stops
+    // propagation, so listen in the capture phase.
+    document.addEventListener('click', function (event) {
+      if (event.target === connectButton) {
+        event.preventDefault();
+        connect();
+      } else if (event.target === continueButton) {
+        event.preventDefault();
+        Homey.nextView();
+      }
+    }, true);
+
+    function showGateways(gateways) {
+      document.getElementById('searching').hidden = true;
+      if (!gateways || gateways.length === 0) {
+        document.getElementById('none-found').hidden = false;
+        return;
+      }
+      var list = document.getElementById('gateways');
+      gateways.forEach(function (gateway) {
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'atmoce-gateway';
+        var text = document.createElement('span');
+        var title = document.createElement('strong');
+        title.textContent = gateway.serial;
+        title.dir = 'ltr';
+        var detail = document.createElement('small');
+        detail.textContent = gateway.host + (gateway.paired ? ' · ' + Homey.__('pair.already_added') : '');
+        text.appendChild(title);
+        text.appendChild(detail);
+        var arrow = document.createElement('span');
+        arrow.textContent = '›';
+        arrow.setAttribute('aria-hidden', 'true');
+        button.appendChild(text);
+        button.appendChild(arrow);
+        button.addEventListener('click', function () {
+          host.value = gateway.host;
+          port.value = 502;
+          unitId.value = 1;
+          connect();
+        }, true);
+        list.appendChild(button);
+      });
+      document.getElementById('found').hidden = false;
+    }
+
+    [host, port, unitId].forEach(function (input) {
+      input.addEventListener('input', function () {
+        if (!result.hidden || !error.hidden) reset();
+      });
+    });
+
+    Homey.emit('defaults')
+      .then(function (defaults) {
+        if (!defaults) return;
+        host.value = defaults.host || '';
+        port.value = defaults.port || 502;
+        unitId.value = defaults.unitId || 1;
+      })
+      .catch(function () { /* keep the empty form */ })
+      .then(function () {
+        return Homey.emit('discover');
+      })
+      .then(showGateways)
+      .catch(function () {
+        showGateways([]);
+      });
+  })();
+</script>

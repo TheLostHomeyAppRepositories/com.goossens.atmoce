@@ -1,0 +1,47 @@
+{
+  "pair": {
+    "title": "Anslut din Atmoce-gateway",
+    "intro": "Homey pratar direkt med gatewayen via ditt hemnätverk. Slå på Modbus-TCP i Atmozen-appen under Inställningar → 3rd Party System; där visas även IP-adressen.",
+    "searching": "Söker efter Atmoce-gatewayer i ditt nätverk…",
+    "found": "Hittade i ditt nätverk",
+    "none_found": "Ingen Atmoce-gateway hittades automatiskt. Kontrollera att Modbus-TCP är på i Atmozen, eller ange IP-adressen nedan.",
+    "manual": "Eller ange IP-adressen",
+    "already_added": "redan tillagd",
+    "host": "IP-adress",
+    "advanced": "Avancerat",
+    "port": "Port",
+    "unit_id": "Enhets-ID",
+    "connect": "Anslut",
+    "continue": "Fortsätt",
+    "connecting": "Ansluter…",
+    "connected": "Ansluten till gateway __serial__",
+    "solar": "Sol",
+    "battery": "Batteri",
+    "firmware": "Firmware",
+    "none": "inget",
+    "name_solar": "Atmoce solpaneler",
+    "name_battery": "Atmoce batteri",
+    "name_grid": "Atmoce nätmätare"
+  },
+  "errors": {
+    "cannot_reach": "Ingen Atmoce-gateway svarar på __host__. Kontrollera IP-adressen och att Modbus-TCP är på i Atmozen",
+    "other_gateway": "Adressen tillhör en annan Atmoce-gateway (__serial__). Lägg till den gatewayen som en ny enhet",
+    "needs_firmware": "Detta kräver gateway-firmware __needed__ eller senare (denna gateway har __current__). Atmoce installerar uppdateringar via molnet; fråga din installatör eller Atmoce support.",
+    "unreachable": "Gatewayen går inte att nå",
+    "not_connected": "Inte ansluten till gatewayen än",
+    "host_required": "Ange gatewayens IP-adress",
+    "invalid_port": "Ange en port mellan 1 och 65535",
+    "invalid_unit_id": "Ange ett enhets-ID mellan 1 och 247",
+    "no_battery": "Gatewayen rapporterar inget batteri. Lägg till solpanelerna eller nätmätaren i stället",
+    "charge_limit": "Batterierna kan laddas med högst __max__ W",
+    "discharge_limit": "Batterierna kan laddas ur med högst __max__ W"
+  },
+  "warning": {
+    "system_fault": "Atmoce-systemet rapporterar ett fel. Öppna Atmozen-appen för detaljer.",
+    "battery_faulty": "Ett batteri rapporterar ett larm och varken laddar eller laddar ur. Öppna Atmozen-appen för detaljer.",
+    "battery_shutdown": "Alla batterier är avstängda. Öppna Atmozen-appen för detaljer."
+  },
+  "settings": {
+    "not_detected": "Inte upptäckt än"
+  }
+}
