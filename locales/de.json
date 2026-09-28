@@ -43,5 +43,19 @@
   },
   "settings": {
     "not_detected": "Noch nicht erkannt"
+  },
+  "widget": {
+    "title": "Energiefluss",
+    "waiting": "Warte auf das Atmoce-Gateway…",
+    "home": "Haus",
+    "grid": "Netz",
+    "battery": "Batterie",
+    "charging": "Lädt",
+    "discharging": "Entlädt",
+    "importing": "Aus dem Netz",
+    "exporting": "Ins Netz",
+    "produced": "Heute erzeugt",
+    "consumed": "Heute verbraucht",
+    "self_sufficient": "Autark"
   }
 }

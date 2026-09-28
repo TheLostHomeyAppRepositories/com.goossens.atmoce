@@ -43,5 +43,19 @@
   },
   "settings": {
     "not_detected": "Non ancora rilevato"
+  },
+  "widget": {
+    "title": "Flusso di energia",
+    "waiting": "In attesa del gateway Atmoce…",
+    "home": "Casa",
+    "grid": "Rete",
+    "battery": "Batteria",
+    "charging": "In carica",
+    "discharging": "In scarica",
+    "importing": "Dalla rete",
+    "exporting": "Verso la rete",
+    "produced": "Prodotto oggi",
+    "consumed": "Consumato oggi",
+    "self_sufficient": "Autosufficiente"
   }
 }

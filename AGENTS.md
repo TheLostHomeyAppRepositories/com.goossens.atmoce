@@ -289,13 +289,30 @@ When adding a string, add it in all 13 languages in the same change.
   survive a gateway restart (the app re-asserts mode 4 anyway), and the interaction with
   Atmozen's "Export Power to Grid" switch.
 
+### Energy-flow widget (`widgets/energy-flow/`)
+
+- Homey Dashboard tile: solar / grid / home / battery nodes with animated flows (dots move
+  along a line in the flow direction, faster with more power; flows < 10 W are hidden as
+  noise), battery SOC ring and state, optional "today" row (produced, consumed,
+  self-sufficiency). Uses Homey's widget CSS variables → light/dark mode for free.
+- Data: `lib/energy-flow.mts` (pure, tested) splits the snapshot into flows (solar serves
+  home → battery → grid; home is then served by battery → grid). The app pushes it on every
+  poll with `homey.api.realtime('energyflow', …)`; the widget also fetches once via
+  `GET /?serial=` (`widgets/energy-flow/api.mts`).
+- Setting `gateway` (autocomplete of gateways by serial, registered in app.mts) is only
+  needed with more than one gateway; empty = the first one. `show_today` toggles the row.
+- The design is our own implementation of the common "power flow" layout (as popularised by
+  Home Assistant's power-flow-card-plus); no Atmoce artwork is used.
+- Preview images: 1024×1024, transparent, no text (Homey guideline), light and dark.
+
 ### Device indicator
 
 Homey groups `alarm_` capabilities into the default indicator ("By default all capabilities
 with this prefix are grouped", capabilities docs), and there is no manifest option to pick
 the default. Hence: no `alarm_` capability on the solar device (fault = `setWarning` +
-`system_fault_*` Flow cards), and `measure_battery` first in the battery's capability list
-(observed: an untouched device shows its first `measure_` capability).
+`system_fault_*` Flow cards), `measure_battery` first in the battery's capability list, and
+`measure_power.consumption` first on the grid meter (observed: an untouched device shows its
+first `measure_` capability; verify on the next fresh grid-meter pairing).
 
 ## 8. Common pitfalls
 

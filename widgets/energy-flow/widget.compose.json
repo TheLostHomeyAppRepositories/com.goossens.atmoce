@@ -1,0 +1,80 @@
+{
+  "name": {
+    "en": "Energy flow",
+    "nl": "Energiestroom",
+    "de": "Energiefluss",
+    "fr": "Flux d'énergie",
+    "it": "Flusso di energia",
+    "sv": "Energiflöde",
+    "no": "Energiflyt",
+    "es": "Flujo de energía",
+    "da": "Energiflow",
+    "ru": "Поток энергии",
+    "pl": "Przepływ energii",
+    "ko": "에너지 흐름",
+    "ar": "تدفق الطاقة"
+  },
+  "height": 320,
+  "settings": [
+    {
+      "id": "gateway",
+      "type": "autocomplete",
+      "title": {
+        "en": "Gateway",
+        "nl": "Gateway",
+        "de": "Gateway",
+        "fr": "Passerelle",
+        "it": "Gateway",
+        "sv": "Gateway",
+        "no": "Gateway",
+        "es": "Pasarela",
+        "da": "Gateway",
+        "ru": "Шлюз",
+        "pl": "Bramka",
+        "ko": "게이트웨이",
+        "ar": "البوابة"
+      },
+      "hint": {
+        "en": "Only needed with more than one Atmoce gateway.",
+        "nl": "Alleen nodig met meer dan één Atmoce-gateway.",
+        "de": "Nur bei mehr als einem Atmoce-Gateway nötig.",
+        "fr": "Utile seulement avec plusieurs passerelles Atmoce.",
+        "it": "Serve solo con più di un gateway Atmoce.",
+        "sv": "Behövs bara med fler än en Atmoce-gateway.",
+        "no": "Trengs bare med mer enn én Atmoce-gateway.",
+        "es": "Solo necesario con más de una pasarela Atmoce.",
+        "da": "Kun nødvendig med mere end én Atmoce-gateway.",
+        "ru": "Нужно, только если шлюзов Atmoce несколько.",
+        "pl": "Potrzebne tylko przy więcej niż jednej bramce Atmoce.",
+        "ko": "Atmoce 게이트웨이가 여러 대일 때만 필요합니다.",
+        "ar": "مطلوب فقط عند وجود أكثر من بوابة Atmoce."
+      }
+    },
+    {
+      "id": "show_today",
+      "type": "checkbox",
+      "title": {
+        "en": "Show today's totals",
+        "nl": "Totalen van vandaag tonen",
+        "de": "Heutige Summen anzeigen",
+        "fr": "Afficher les totaux du jour",
+        "it": "Mostra i totali di oggi",
+        "sv": "Visa dagens summor",
+        "no": "Vis dagens totaler",
+        "es": "Mostrar los totales de hoy",
+        "da": "Vis dagens totaler",
+        "ru": "Показывать итоги за сегодня",
+        "pl": "Pokaż dzisiejsze sumy",
+        "ko": "오늘 합계 표시",
+        "ar": "عرض إجماليات اليوم"
+      },
+      "value": true
+    }
+  ],
+  "api": {
+    "getFlow": {
+      "method": "GET",
+      "path": "/"
+    }
+  }
+}

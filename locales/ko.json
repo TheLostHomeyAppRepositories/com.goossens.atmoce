@@ -43,5 +43,19 @@
   },
   "settings": {
     "not_detected": "아직 감지되지 않음"
+  },
+  "widget": {
+    "title": "에너지 흐름",
+    "waiting": "Atmoce 게이트웨이를 기다리는 중…",
+    "home": "집",
+    "grid": "계통",
+    "battery": "배터리",
+    "charging": "충전 중",
+    "discharging": "방전 중",
+    "importing": "계통에서",
+    "exporting": "계통으로",
+    "produced": "오늘 발전량",
+    "consumed": "오늘 소비량",
+    "self_sufficient": "자급률"
   }
 }

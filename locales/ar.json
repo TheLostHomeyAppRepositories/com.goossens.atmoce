@@ -43,5 +43,19 @@
   },
   "settings": {
     "not_detected": "لم يُكتشف بعد"
+  },
+  "widget": {
+    "title": "تدفق الطاقة",
+    "waiting": "في انتظار بوابة Atmoce…",
+    "home": "المنزل",
+    "grid": "الشبكة",
+    "battery": "البطارية",
+    "charging": "يشحن",
+    "discharging": "يُفرَّغ",
+    "importing": "من الشبكة",
+    "exporting": "إلى الشبكة",
+    "produced": "أُنتج اليوم",
+    "consumed": "استُهلك اليوم",
+    "self_sufficient": "الاكتفاء الذاتي"
   }
 }

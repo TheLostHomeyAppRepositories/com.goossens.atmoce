@@ -43,5 +43,19 @@
   },
   "settings": {
     "not_detected": "Jeszcze nie wykryto"
+  },
+  "widget": {
+    "title": "Przepływ energii",
+    "waiting": "Oczekiwanie na bramkę Atmoce…",
+    "home": "Dom",
+    "grid": "Sieć",
+    "battery": "Bateria",
+    "charging": "Ładowanie",
+    "discharging": "Rozładowanie",
+    "importing": "Z sieci",
+    "exporting": "Do sieci",
+    "produced": "Wyprodukowano dziś",
+    "consumed": "Zużyto dziś",
+    "self_sufficient": "Samowystarczalność"
   }
 }

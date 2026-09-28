@@ -43,5 +43,19 @@
   },
   "settings": {
     "not_detected": "Nog niet gedetecteerd"
+  },
+  "widget": {
+    "title": "Energiestroom",
+    "waiting": "Wachten op de Atmoce-gateway…",
+    "home": "Huis",
+    "grid": "Net",
+    "battery": "Batterij",
+    "charging": "Laden",
+    "discharging": "Ontladen",
+    "importing": "Van het net",
+    "exporting": "Naar het net",
+    "produced": "Opgewekt vandaag",
+    "consumed": "Verbruikt vandaag",
+    "self_sufficient": "Zelfvoorzienend"
   }
 }

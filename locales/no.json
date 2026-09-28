@@ -43,5 +43,19 @@
   },
   "settings": {
     "not_detected": "Ikke oppdaget ennå"
+  },
+  "widget": {
+    "title": "Energiflyt",
+    "waiting": "Venter på Atmoce-gatewayen…",
+    "home": "Hjem",
+    "grid": "Nett",
+    "battery": "Batteri",
+    "charging": "Lader",
+    "discharging": "Lader ut",
+    "importing": "Fra nettet",
+    "exporting": "Til nettet",
+    "produced": "Produsert i dag",
+    "consumed": "Forbrukt i dag",
+    "self_sufficient": "Selvforsynt"
   }
 }

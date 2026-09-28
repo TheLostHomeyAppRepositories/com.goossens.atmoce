@@ -19,8 +19,8 @@
   },
   "class": "sensor",
   "capabilities": [
-    "measure_power",
     "measure_power.consumption",
+    "measure_power",
     "meter_power.imported",
     "meter_power.exported",
     "meter_power.imported_today",

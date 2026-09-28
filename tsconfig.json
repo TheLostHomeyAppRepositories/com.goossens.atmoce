@@ -13,5 +13,5 @@
     "rewriteRelativeImportExtensions": true,
     "sourceMap": true
   },
-  "include": ["app.mts", "lib/**/*.mts", "drivers/**/*.mts"]
+  "include": ["app.mts", "lib/**/*.mts", "drivers/**/*.mts", "widgets/**/*.mts"]
 }

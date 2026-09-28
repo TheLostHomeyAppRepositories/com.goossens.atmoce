@@ -43,5 +43,19 @@
   },
   "settings": {
     "not_detected": "Inte upptäckt än"
+  },
+  "widget": {
+    "title": "Energiflöde",
+    "waiting": "Väntar på Atmoce-gatewayen…",
+    "home": "Hem",
+    "grid": "Elnät",
+    "battery": "Batteri",
+    "charging": "Laddar",
+    "discharging": "Laddar ur",
+    "importing": "Från nätet",
+    "exporting": "Till nätet",
+    "produced": "Producerat idag",
+    "consumed": "Förbrukat idag",
+    "self_sufficient": "Självförsörjande"
   }
 }

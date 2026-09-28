@@ -20,6 +20,9 @@ Flow cards:
   exporting / importing.
 - **Solar:** production started / stopped, is producing, system fault started / cleared / is active.
 
+**Dashboard widget "Energy flow"**: live solar → home → battery → grid flows with the battery
+level and today's production, consumption and self-sufficiency.
+
 ## Setup
 
 1. In the Atmozen app, turn on **Modbus-TCP** under *Settings → 3rd Party System*.

@@ -43,5 +43,19 @@
   },
   "settings": {
     "not_detected": "Aún no detectado"
+  },
+  "widget": {
+    "title": "Flujo de energía",
+    "waiting": "Esperando a la pasarela Atmoce…",
+    "home": "Casa",
+    "grid": "Red",
+    "battery": "Batería",
+    "charging": "Cargando",
+    "discharging": "Descargando",
+    "importing": "De la red",
+    "exporting": "A la red",
+    "produced": "Producido hoy",
+    "consumed": "Consumido hoy",
+    "self_sufficient": "Autosuficiente"
   }
 }

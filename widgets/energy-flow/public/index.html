@@ -1,0 +1,336 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    :root {
+      --flow-solar: var(--homey-color-orange, #f5a623);
+      --flow-grid: var(--homey-color-blue, #2c7be5);
+      --flow-battery: var(--homey-color-green, #1fb35b);
+      --flow-home: var(--homey-text-color, #1c1c1e);
+      --flow-line: var(--homey-line-color-light, rgba(127, 127, 127, 0.25));
+      --flow-muted: var(--homey-text-color-light, rgba(127, 127, 127, 0.9));
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .flow {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .line {
+      fill: none;
+      stroke: var(--flow-line);
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
+    .line.active {
+      stroke-opacity: 1;
+    }
+
+    .dot {
+      r: 3.2;
+    }
+
+    .node circle.ring-bg {
+      fill: var(--homey-background-color, #fff);
+      stroke-width: 2.5;
+    }
+
+    .node .value {
+      font-size: 12px;
+      font-weight: var(--homey-font-weight-bold, 600);
+      fill: var(--homey-text-color, currentColor);
+      text-anchor: middle;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .node .label {
+      font-size: 9.5px;
+      fill: var(--flow-muted);
+      text-anchor: middle;
+    }
+
+    .node .icon {
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .solar .ring-bg, .solar .icon { stroke: var(--flow-solar); }
+    .grid .ring-bg, .grid .icon { stroke: var(--flow-grid); }
+    .battery .ring-bg { stroke: var(--flow-line); }
+    .battery .icon, .battery .soc { stroke: var(--flow-battery); }
+    .home .ring-bg, .home .icon { stroke: var(--flow-home); }
+
+    .battery .soc {
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      transition: stroke-dasharray 0.6s ease;
+    }
+
+    .today {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--homey-su-2, 8px);
+      margin-top: var(--homey-su-2, 8px);
+      padding-top: var(--homey-su-3, 12px);
+      border-top: 1px solid var(--flow-line);
+      text-align: center;
+    }
+
+    .today .number {
+      font-size: var(--homey-font-size-medium, 16px);
+      font-weight: var(--homey-font-weight-bold, 600);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .today .unit {
+      font-size: var(--homey-font-size-small, 12px);
+      color: var(--flow-muted);
+      margin-inline-start: 2px;
+    }
+
+    .today .caption {
+      font-size: var(--homey-font-size-small, 12px);
+      color: var(--flow-muted);
+    }
+
+    .bar {
+      height: 4px;
+      margin-top: 4px;
+      border-radius: 2px;
+      background: var(--flow-line);
+      overflow: hidden;
+    }
+
+    .bar > span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: var(--flow-battery);
+      transition: width 0.6s ease;
+    }
+
+    .waiting {
+      padding: var(--homey-su-6, 24px) 0;
+      text-align: center;
+      color: var(--flow-muted);
+    }
+
+    .stale .flow, .stale .today {
+      opacity: 0.45;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="homey-widget">
+  <div id="waiting" class="waiting homey-text-regular" data-i18n="widget.waiting"></div>
+
+  <div id="content" hidden>
+    <svg class="flow" viewBox="0 0 300 244" role="img" aria-labelledby="flow-title">
+      <title id="flow-title" data-i18n="widget.title"></title>
+      <!-- Lines between the nodes (node centres: solar 150,36 · grid 42,116 · home 258,116 · battery 150,196). -->
+      <path id="solar-home" class="line" d="M170 50 Q 216 72 236 98" />
+      <path id="solar-grid" class="line" d="M130 50 Q 84 72 64 98" />
+      <path id="solar-battery" class="line" d="M150 64 L 150 168" />
+      <path id="grid-home" class="line" d="M70 116 L 230 116" />
+      <path id="battery-home" class="line" d="M170 182 Q 216 160 236 134" />
+      <path id="battery-grid" class="line" d="M130 182 Q 84 160 64 134" />
+      <g id="dots"></g>
+
+      <g class="node solar" transform="translate(150 36)">
+        <circle class="ring-bg" r="26" />
+        <g class="icon" transform="translate(-9 -9)">
+          <circle cx="9" cy="9" r="4" /><path d="M9 0v2.2M9 15.8V18M0 9h2.2M15.8 9H18M2.6 2.6l1.6 1.6M13.8 13.8l1.6 1.6M2.6 15.4l1.6-1.6M13.8 4.2l1.6-1.6" />
+        </g>
+        <text class="value" id="solar-value" y="-33"></text>
+      </g>
+
+      <g class="node grid" transform="translate(42 116)">
+        <circle class="ring-bg" r="26" />
+        <g class="icon" transform="translate(-8 -10)">
+          <path d="M8 0 3 20M8 0l5 20M2 6h12M4 12h8M5 5l6 7M11 5 5 12" />
+        </g>
+        <text class="value" id="grid-value" y="42"></text>
+        <text class="label" id="grid-label" y="54"></text>
+      </g>
+
+      <g class="node home" transform="translate(258 116)">
+        <circle class="ring-bg" r="26" />
+        <g class="icon" transform="translate(-9 -9)">
+          <path d="M1 8.5 9 1.5l8 7M3.5 7v9.5h11V7M7.5 16.5v-5h3v5" />
+        </g>
+        <text class="value" id="home-value" y="42"></text>
+        <text class="label" data-i18n="widget.home" y="54"></text>
+      </g>
+
+      <g class="node battery" id="battery-node" transform="translate(150 196)">
+        <circle class="ring-bg" r="26" />
+        <circle class="soc" id="soc-ring" r="26" transform="rotate(-90)" stroke-dasharray="0 164" />
+        <g class="icon" transform="translate(-5 -9)">
+          <rect x="0.5" y="2" width="9" height="15" rx="1.5" /><path d="M3.5 0.5h3M3 9h4" />
+        </g>
+        <text class="value" id="battery-value" y="41"></text>
+        <text class="label" id="battery-label" y="53"></text>
+      </g>
+    </svg>
+
+    <div class="today" id="today">
+      <div>
+        <div><span class="number" id="produced"></span><span class="unit">kWh</span></div>
+        <div class="caption" data-i18n="widget.produced"></div>
+      </div>
+      <div>
+        <div><span class="number" id="consumed"></span><span class="unit">kWh</span></div>
+        <div class="caption" data-i18n="widget.consumed"></div>
+      </div>
+      <div>
+        <div><span class="number" id="self"></span><span class="unit">%</span></div>
+        <div class="caption" data-i18n="widget.self_sufficient"></div>
+        <div class="bar"><span id="self-bar"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    function onHomeyReady(Homey) {
+      var settings = Homey.getSettings() || {};
+      var serial = settings.gateway && settings.gateway.serial ? settings.gateway.serial : '';
+      var showToday = settings.show_today !== false;
+      var lastUpdate = 0;
+      var ready = false;
+      var SVG = 'http://www.w3.org/2000/svg';
+      /** Flows below this are measurement noise (e.g. a battery idling at a few W). */
+      var MIN_FLOW_W = 10;
+
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        el.textContent = Homey.__(el.getAttribute('data-i18n'));
+      });
+      document.getElementById('today').hidden = !showToday;
+
+      function watts(w) {
+        var abs = Math.abs(w);
+        if (abs < 1000) return Math.round(abs) + ' W';
+        return (abs / 1000).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' kW';
+      }
+
+      function number(value, decimals) {
+        return value === null || value === undefined
+          ? '–'
+          : Number(value).toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+      }
+
+      /** Moving dots along a line; more power = faster, direction from → to. */
+      function animate(pathId, powerW, reverse, color) {
+        var path = document.getElementById(pathId);
+        var active = powerW >= MIN_FLOW_W;
+        path.style.stroke = active ? color : '';
+        path.style.strokeOpacity = active ? '0.35' : '';
+        if (!active) return;
+        var seconds = Math.max(0.9, 3.2 - Math.log10(powerW) * 0.7);
+        for (var i = 0; i < 3; i += 1) {
+          var dot = document.createElementNS(SVG, 'circle');
+          dot.setAttribute('class', 'dot');
+          dot.setAttribute('r', '3.2');
+          dot.setAttribute('fill', color);
+          var motion = document.createElementNS(SVG, 'animateMotion');
+          motion.setAttribute('dur', seconds + 's');
+          motion.setAttribute('repeatCount', 'indefinite');
+          motion.setAttribute('begin', (-i * seconds / 3) + 's');
+          motion.setAttribute('keyPoints', reverse ? '1;0' : '0;1');
+          motion.setAttribute('keyTimes', '0;1');
+          motion.setAttribute('calcMode', 'linear');
+          var mpath = document.createElementNS(SVG, 'mpath');
+          mpath.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#' + pathId);
+          mpath.setAttribute('href', '#' + pathId);
+          motion.appendChild(mpath);
+          dot.appendChild(motion);
+          document.getElementById('dots').appendChild(dot);
+        }
+      }
+
+      function render(flow) {
+        if (!flow || flow.error) return;
+        if (serial && flow.serial !== serial) return;
+        lastUpdate = Date.now();
+        document.body.classList.remove('stale');
+        document.getElementById('waiting').hidden = true;
+        document.getElementById('content').hidden = false;
+
+        var css = getComputedStyle(document.documentElement);
+        var solar = css.getPropertyValue('--flow-solar').trim() || '#f5a623';
+        var grid = css.getPropertyValue('--flow-grid').trim() || '#2c7be5';
+        var battery = css.getPropertyValue('--flow-battery').trim() || '#1fb35b';
+
+        document.getElementById('dots').textContent = '';
+        var f = flow.flows;
+        animate('solar-home', f.solarToHome, false, solar);
+        animate('solar-grid', f.solarToGrid, false, solar);
+        animate('solar-battery', f.solarToBattery, false, solar);
+        animate('grid-home', f.gridToHome, false, grid);
+        animate('battery-home', f.batteryToHome, false, battery);
+        animate('battery-grid', f.gridToBattery, true, grid);
+        if (f.batteryToGrid >= MIN_FLOW_W) animate('battery-grid', f.batteryToGrid, false, battery);
+
+        document.getElementById('solar-value').textContent = watts(flow.solarW);
+        document.getElementById('home-value').textContent = watts(flow.homeW);
+        document.getElementById('grid-value').textContent = watts(flow.gridW);
+        document.getElementById('grid-label').textContent = Homey.__(
+          flow.gridW >= MIN_FLOW_W ? 'widget.importing' : flow.gridW <= -MIN_FLOW_W ? 'widget.exporting' : 'widget.grid',
+        );
+
+        document.getElementById('battery-node').style.display = flow.hasBattery ? '' : 'none';
+        document.getElementById('solar-battery').style.display = flow.hasBattery ? '' : 'none';
+        document.getElementById('battery-home').style.display = flow.hasBattery ? '' : 'none';
+        document.getElementById('battery-grid').style.display = flow.hasBattery ? '' : 'none';
+        if (flow.hasBattery) {
+          document.getElementById('battery-value').textContent = watts(flow.batteryW);
+          var state = flow.batteryW >= MIN_FLOW_W ? 'widget.charging' : flow.batteryW <= -MIN_FLOW_W ? 'widget.discharging' : 'widget.battery';
+          document.getElementById('battery-label').textContent = Homey.__(state) + ' · ' + Math.round(flow.socPercent) + ' %';
+          var circumference = 2 * Math.PI * 26;
+          var filled = circumference * Math.max(0, Math.min(100, flow.socPercent)) / 100;
+          document.getElementById('soc-ring').setAttribute('stroke-dasharray', filled + ' ' + circumference);
+        }
+
+        document.getElementById('produced').textContent = number(flow.today.producedKwh, 1);
+        document.getElementById('consumed').textContent = number(flow.today.consumedKwh, 1);
+        document.getElementById('self').textContent = number(flow.today.selfSufficiencyPercent, 0);
+        document.getElementById('self-bar').style.width = (flow.today.selfSufficiencyPercent || 0) + '%';
+
+        if (!ready) {
+          ready = true;
+          Homey.ready();
+        }
+      }
+
+      Homey.on('energyflow', render);
+      Homey.api('GET', '/?serial=' + encodeURIComponent(serial), {})
+        .then(render)
+        .catch(function () { /* realtime updates will follow */ })
+        .then(function () {
+          if (!ready) {
+            ready = true;
+            Homey.ready();
+          }
+        });
+
+      // Dim the widget when no update arrived for a minute (gateway unreachable).
+      setInterval(function () {
+        if (lastUpdate && Date.now() - lastUpdate > 60000) document.body.classList.add('stale');
+      }, 15000);
+    }
+  </script>
+</body>
+</html>

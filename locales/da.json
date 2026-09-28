@@ -43,5 +43,19 @@
   },
   "settings": {
     "not_detected": "Endnu ikke registreret"
+  },
+  "widget": {
+    "title": "Energiflow",
+    "waiting": "Venter på Atmoce-gatewayen…",
+    "home": "Hjem",
+    "grid": "Net",
+    "battery": "Batteri",
+    "charging": "Lader",
+    "discharging": "Aflader",
+    "importing": "Fra nettet",
+    "exporting": "Til nettet",
+    "produced": "Produceret i dag",
+    "consumed": "Forbrugt i dag",
+    "self_sufficient": "Selvforsynende"
   }
 }

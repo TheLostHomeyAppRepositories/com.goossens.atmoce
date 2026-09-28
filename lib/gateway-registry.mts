@@ -1,5 +1,7 @@
 import { type FoundGateway, scanForGateways, subnetHosts } from './discovery.mts';
-import { AtmoceGateway, type Timers, readIdentity } from './gateway.mts';
+import {
+  AtmoceGateway, type Snapshot, type Timers, readIdentity,
+} from './gateway.mts';
 import {
   type Endpoint,
   type Logger,
@@ -57,12 +59,22 @@ export class GatewayRegistry {
   private readonly timers: Timers;
   private readonly logger: Logger;
   private readonly localAddress: () => Promise<string>;
+  private readonly onSnapshot: ((gateway: AtmoceGateway, snapshot: Snapshot) => void) | undefined;
 
-  /** `localAddress` is `homey.cloud.getLocalAddress`, used to find the LAN to search. */
-  constructor(timers: Timers, logger: Logger, localAddress: () => Promise<string>) {
+  /**
+   * `localAddress` is `homey.cloud.getLocalAddress`, used to find the LAN to search.
+   * `onSnapshot` receives every poll result of every gateway (e.g. for the dashboard widget).
+   */
+  constructor(
+    timers: Timers,
+    logger: Logger,
+    localAddress: () => Promise<string>,
+    onSnapshot?: (gateway: AtmoceGateway, snapshot: Snapshot) => void,
+  ) {
     this.timers = timers;
     this.logger = logger;
     this.localAddress = localAddress;
+    this.onSnapshot = onSnapshot;
   }
 
   acquire(serial: string, settings: ConnectionSettings, owner: object): AtmoceGateway {
@@ -78,6 +90,8 @@ export class GatewayRegistry {
       entry = {
         gateway, owners: new Set(), relocatedAt: 0, relocating: null,
       };
+      const { onSnapshot } = this;
+      if (onSnapshot) gateway.on('snapshot', (snapshot: Snapshot) => onSnapshot(gateway, snapshot));
       this.entries.set(serial, entry);
       gateway.start();
     }
@@ -96,6 +110,11 @@ export class GatewayRegistry {
 
   get(serial: string): AtmoceGateway | undefined {
     return this.entries.get(serial)?.gateway;
+  }
+
+  /** All gateways in use, sorted by serial. */
+  list(): AtmoceGateway[] {
+    return [...this.entries.values()].map(({ gateway }) => gateway).sort((a, b) => a.serial.localeCompare(b.serial));
   }
 
   /** A known gateway, for pre-filling the pairing form. */

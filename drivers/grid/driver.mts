@@ -4,7 +4,8 @@ import type { ProbeResult } from '../../lib/gateway-registry.mts';
 import type GridDevice from './device.mts';
 
 /** Capabilities of the grid meter, in display order (see driver.compose.json). */
-export const GRID_POWER = ['measure_power', 'measure_power.consumption'];
+/** Home consumption first: it becomes the default device indicator (grid power stays the Energy value). */
+export const GRID_POWER = ['measure_power.consumption', 'measure_power'];
 export const GRID_METERS = [
   'meter_power.imported',
   'meter_power.exported',

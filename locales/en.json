@@ -43,5 +43,19 @@
   },
   "settings": {
     "not_detected": "Not detected yet"
+  },
+  "widget": {
+    "title": "Energy flow",
+    "waiting": "Waiting for the Atmoce gateway…",
+    "home": "Home",
+    "grid": "Grid",
+    "battery": "Battery",
+    "charging": "Charging",
+    "discharging": "Discharging",
+    "importing": "From grid",
+    "exporting": "To grid",
+    "produced": "Produced today",
+    "consumed": "Consumed today",
+    "self_sufficient": "Self-sufficient"
   }
 }

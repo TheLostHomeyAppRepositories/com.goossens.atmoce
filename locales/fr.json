@@ -43,5 +43,19 @@
   },
   "settings": {
     "not_detected": "Pas encore détectée"
+  },
+  "widget": {
+    "title": "Flux d'énergie",
+    "waiting": "En attente de la passerelle Atmoce…",
+    "home": "Maison",
+    "grid": "Réseau",
+    "battery": "Batterie",
+    "charging": "En charge",
+    "discharging": "En décharge",
+    "importing": "Du réseau",
+    "exporting": "Vers le réseau",
+    "produced": "Produit aujourd'hui",
+    "consumed": "Consommé aujourd'hui",
+    "self_sufficient": "Autonome"
   }
 }

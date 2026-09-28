@@ -43,5 +43,19 @@
   },
   "settings": {
     "not_detected": "Ещё не обнаружен"
+  },
+  "widget": {
+    "title": "Поток энергии",
+    "waiting": "Ожидание шлюза Atmoce…",
+    "home": "Дом",
+    "grid": "Сеть",
+    "battery": "Батарея",
+    "charging": "Заряжается",
+    "discharging": "Разряжается",
+    "importing": "Из сети",
+    "exporting": "В сеть",
+    "produced": "Выработано сегодня",
+    "consumed": "Потреблено сегодня",
+    "self_sufficient": "Автономность"
   }
 }
