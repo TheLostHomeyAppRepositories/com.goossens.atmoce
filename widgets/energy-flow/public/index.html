@@ -4,16 +4,18 @@
   <meta charset="utf-8" />
   <style>
     :root {
-      --flow-solar: var(--homey-color-orange, #f5a623);
-      --flow-grid: var(--homey-color-blue, #2c7be5);
-      --flow-battery: var(--homey-color-green, #1fb35b);
-      --flow-home: var(--homey-text-color, #1c1c1e);
-      --flow-line: var(--homey-line-color-light, rgba(127, 127, 127, 0.25));
-      --flow-muted: var(--homey-text-color-light, rgba(127, 127, 127, 0.9));
+      --solar: var(--homey-color-orange, #f59e0b);
+      --grid: var(--homey-color-blue, #3478f6);
+      --battery: var(--homey-color-green, #23b26d);
+      --home: var(--homey-text-color, #1c1c1e);
+      --muted: var(--homey-text-color-light, #8e8e93);
+      --track: var(--homey-line-color-light, rgba(127, 127, 127, 0.18));
+      --surface: var(--homey-background-color, #fff);
     }
 
     body {
       margin: 0;
+      -webkit-font-smoothing: antialiased;
     }
 
     .flow {
@@ -23,92 +25,158 @@
       overflow: visible;
     }
 
-    .line {
+    /* Lines */
+    .track {
       fill: none;
-      stroke: var(--flow-line);
-      stroke-width: 2;
+      stroke: var(--track);
+      stroke-width: 2.5;
       stroke-linecap: round;
+      transition: opacity 0.6s ease;
     }
 
-    .line.active {
-      stroke-opacity: 1;
+    .track.hidden {
+      opacity: 0;
+    }
+
+    .stream {
+      fill: none;
+      stroke-width: 3.5;
+      stroke-linecap: round;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .stream.on {
+      opacity: 0.55;
     }
 
     .dot {
-      r: 3.2;
+      filter: url(#glow);
     }
 
-    .node circle.ring-bg {
-      fill: var(--homey-background-color, #fff);
+    /* Nodes */
+    .halo {
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .node.active .halo {
+      opacity: 1;
+      animation: breathe 3.2s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); opacity: 0.55; }
+      50% { transform: scale(1.08); opacity: 0.2; }
+    }
+
+    .halo, .face {
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .face {
       stroke-width: 2.5;
     }
 
-    .node .value {
-      font-size: 12px;
-      font-weight: var(--homey-font-weight-bold, 600);
-      fill: var(--homey-text-color, currentColor);
-      text-anchor: middle;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .node .label {
-      font-size: 9.5px;
-      fill: var(--flow-muted);
-      text-anchor: middle;
-    }
-
-    .node .icon {
+    .icon {
       fill: none;
-      stroke-width: 1.8;
+      stroke-width: 2;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
-    .solar .ring-bg, .solar .icon { stroke: var(--flow-solar); }
-    .grid .ring-bg, .grid .icon { stroke: var(--flow-grid); }
-    .battery .ring-bg { stroke: var(--flow-line); }
-    .battery .icon, .battery .soc { stroke: var(--flow-battery); }
-    .home .ring-bg, .home .icon { stroke: var(--flow-home); }
-
-    .battery .soc {
-      fill: none;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      transition: stroke-dasharray 0.6s ease;
+    .value {
+      font-size: 15px;
+      font-weight: var(--homey-font-weight-bold, 700);
+      fill: var(--homey-text-color, currentColor);
+      text-anchor: middle;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.2px;
     }
 
+    .label {
+      font-size: 8.5px;
+      font-weight: var(--homey-font-weight-medium, 500);
+      fill: var(--muted);
+      text-anchor: middle;
+      text-transform: uppercase;
+      letter-spacing: 0.9px;
+    }
+
+    .solar .face { stroke: var(--solar); fill: var(--solar); fill-opacity: 0.1; }
+    .solar .icon { stroke: var(--solar); }
+    .solar .halo { fill: var(--solar); fill-opacity: 0.18; }
+    .grid .face { stroke: var(--grid); fill: var(--grid); fill-opacity: 0.1; }
+    .grid .icon { stroke: var(--grid); }
+    .grid .halo { fill: var(--grid); fill-opacity: 0.16; }
+    .home .face { stroke: var(--home); fill: var(--home); fill-opacity: 0.06; }
+    .home .icon { stroke: var(--home); }
+    .home .halo { fill: var(--home); fill-opacity: 0.08; }
+    .battery .face { stroke: var(--track); fill: var(--battery); fill-opacity: 0.08; }
+    .battery .icon { stroke: var(--battery); }
+    .battery .halo { fill: var(--battery); fill-opacity: 0.16; }
+
+    .soc {
+      fill: none;
+      stroke: var(--battery);
+      stroke-width: 3;
+      stroke-linecap: round;
+      transition: stroke-dasharray 0.8s ease;
+    }
+
+    .cell-fill {
+      fill: var(--battery);
+      transition: height 0.8s ease, y 0.8s ease;
+    }
+
+    .moon, .sun {
+      transition: opacity 0.6s ease;
+    }
+
+    /* Today */
     .today {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: var(--homey-su-2, 8px);
-      margin-top: var(--homey-su-2, 8px);
-      padding-top: var(--homey-su-3, 12px);
-      border-top: 1px solid var(--flow-line);
+      margin-top: var(--homey-su-3, 12px);
+    }
+
+    .tile {
+      padding: var(--homey-su-2, 8px) var(--homey-su-2, 8px) var(--homey-su-3, 10px);
+      border-radius: 12px;
+      background: var(--track);
       text-align: center;
+      min-width: 0;
     }
 
-    .today .number {
-      font-size: var(--homey-font-size-medium, 16px);
-      font-weight: var(--homey-font-weight-bold, 600);
+    .tile .number {
+      font-size: var(--homey-font-size-medium, 17px);
+      font-weight: var(--homey-font-weight-bold, 700);
       font-variant-numeric: tabular-nums;
+      letter-spacing: -0.3px;
     }
 
-    .today .unit {
-      font-size: var(--homey-font-size-small, 12px);
-      color: var(--flow-muted);
+    .tile .unit {
+      font-size: 11px;
+      color: var(--muted);
       margin-inline-start: 2px;
     }
 
-    .today .caption {
-      font-size: var(--homey-font-size-small, 12px);
-      color: var(--flow-muted);
+    .tile .caption {
+      margin-top: 2px;
+      font-size: 10px;
+      line-height: 1.25;
+      color: var(--muted);
+      overflow-wrap: anywhere;
     }
 
     .bar {
       height: 4px;
-      margin-top: 4px;
+      margin: 6px auto 0;
+      max-width: 72px;
       border-radius: 2px;
-      background: var(--flow-line);
+      background: var(--track);
       overflow: hidden;
     }
 
@@ -116,18 +184,24 @@
       display: block;
       height: 100%;
       width: 0;
-      background: var(--flow-battery);
-      transition: width 0.6s ease;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--solar), var(--battery));
+      transition: width 0.8s ease;
     }
 
     .waiting {
       padding: var(--homey-su-6, 24px) 0;
       text-align: center;
-      color: var(--flow-muted);
+      color: var(--muted);
     }
 
     .stale .flow, .stale .today {
-      opacity: 0.45;
+      opacity: 0.4;
+      transition: opacity 0.6s ease;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .node.active .halo { animation: none; }
     }
 
     [hidden] {
@@ -139,64 +213,95 @@
   <div id="waiting" class="waiting homey-text-regular" data-i18n="widget.waiting"></div>
 
   <div id="content" hidden>
-    <svg class="flow" viewBox="0 0 300 244" role="img" aria-labelledby="flow-title">
+    <svg class="flow" viewBox="0 0 320 262" role="img" aria-labelledby="flow-title">
       <title id="flow-title" data-i18n="widget.title"></title>
-      <!-- Lines between the nodes (node centres: solar 150,36 · grid 42,116 · home 258,116 · battery 150,196). -->
-      <path id="solar-home" class="line" d="M170 50 Q 216 72 236 98" />
-      <path id="solar-grid" class="line" d="M130 50 Q 84 72 64 98" />
-      <path id="solar-battery" class="line" d="M150 64 L 150 168" />
-      <path id="grid-home" class="line" d="M70 116 L 230 116" />
-      <path id="battery-home" class="line" d="M170 182 Q 216 160 236 134" />
-      <path id="battery-grid" class="line" d="M130 182 Q 84 160 64 134" />
+      <defs>
+        <filter id="glow" x="-200%" y="-200%" width="500%" height="500%">
+          <feGaussianBlur stdDeviation="1.6" result="blur" />
+          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+        <radialGradient id="sunlight" cx="50%" cy="18%" r="46%">
+          <stop offset="0%" style="stop-color: var(--solar); stop-opacity: 0.16" />
+          <stop offset="100%" style="stop-color: var(--solar); stop-opacity: 0" />
+        </radialGradient>
+        <!-- Gradients follow each line from one node colour to the other (userSpaceOnUse). -->
+        <linearGradient id="g-solar-home" gradientUnits="userSpaceOnUse" x1="160" y1="48" x2="268" y2="128"><stop offset="0" style="stop-color: var(--solar)" /><stop offset="1" style="stop-color: var(--solar); stop-opacity: 0.35" /></linearGradient>
+        <linearGradient id="g-solar-grid" gradientUnits="userSpaceOnUse" x1="160" y1="48" x2="52" y2="128"><stop offset="0" style="stop-color: var(--solar)" /><stop offset="1" style="stop-color: var(--grid)" /></linearGradient>
+        <linearGradient id="g-solar-battery" gradientUnits="userSpaceOnUse" x1="160" y1="48" x2="160" y2="208"><stop offset="0" style="stop-color: var(--solar)" /><stop offset="1" style="stop-color: var(--battery)" /></linearGradient>
+        <linearGradient id="g-grid-home" gradientUnits="userSpaceOnUse" x1="52" y1="128" x2="268" y2="128"><stop offset="0" style="stop-color: var(--grid)" /><stop offset="1" style="stop-color: var(--grid); stop-opacity: 0.35" /></linearGradient>
+        <linearGradient id="g-battery-home" gradientUnits="userSpaceOnUse" x1="160" y1="208" x2="268" y2="128"><stop offset="0" style="stop-color: var(--battery)" /><stop offset="1" style="stop-color: var(--battery); stop-opacity: 0.35" /></linearGradient>
+        <linearGradient id="g-battery-grid" gradientUnits="userSpaceOnUse" x1="160" y1="208" x2="52" y2="128"><stop offset="0" style="stop-color: var(--battery)" /><stop offset="1" style="stop-color: var(--grid)" /></linearGradient>
+      <g id="lines">
+        <path id="solar-home" d="M184 58 Q 236 76 252 104" />
+        <path id="solar-grid" d="M136 58 Q 84 76 68 104" />
+        <path id="solar-battery" d="M160 80 L 160 176" />
+        <path id="grid-home" d="M84 128 L 236 128" />
+        <path id="battery-home" d="M184 198 Q 236 180 252 152" />
+        <path id="battery-grid" d="M136 198 Q 84 180 68 152" />
+      </g>
+      </defs>
+
+      <rect id="sky" x="-40" y="-40" width="400" height="330" fill="url(#sunlight)" opacity="0" style="transition: opacity 1s ease" />
+
+      <!-- Node centres: solar 160,48 · grid 52,128 · home 268,128 · battery 160,208 -->
+      <g id="tracks"></g>
+      <g id="streams"></g>
       <g id="dots"></g>
 
-      <g class="node solar" transform="translate(150 36)">
-        <circle class="ring-bg" r="26" />
-        <g class="icon" transform="translate(-9 -9)">
-          <circle cx="9" cy="9" r="4" /><path d="M9 0v2.2M9 15.8V18M0 9h2.2M15.8 9H18M2.6 2.6l1.6 1.6M13.8 13.8l1.6 1.6M2.6 15.4l1.6-1.6M13.8 4.2l1.6-1.6" />
+      <g class="node solar" id="node-solar" transform="translate(160 48)">
+        <circle class="halo" r="38" />
+        <circle class="face" r="30" />
+        <g class="icon sun" id="sun-icon">
+          <circle r="6.5" />
+          <path d="M0 -14v3.5M0 10.5v3.5M-14 0h3.5M10.5 0h3.5M-9.9 -9.9l2.5 2.5M7.4 7.4l2.5 2.5M-9.9 9.9l2.5 -2.5M7.4 -7.4l2.5 -2.5" />
         </g>
-        <text class="value" id="solar-value" y="-33"></text>
+        <g class="icon moon" id="moon-icon" style="opacity:0">
+          <path d="M5 -9.5A10 10 0 1 0 9.5 5 7.8 7.8 0 0 1 5 -9.5z" />
+        </g>
+        <text class="value" id="solar-value" y="-39"></text>
       </g>
 
-      <g class="node grid" transform="translate(42 116)">
-        <circle class="ring-bg" r="26" />
-        <g class="icon" transform="translate(-8 -10)">
-          <path d="M8 0 3 20M8 0l5 20M2 6h12M4 12h8M5 5l6 7M11 5 5 12" />
-        </g>
-        <text class="value" id="grid-value" y="42"></text>
-        <text class="label" id="grid-label" y="54"></text>
+      <g class="node grid" id="node-grid" transform="translate(52 128)">
+        <circle class="halo" r="38" />
+        <circle class="face" r="30" />
+        <g class="icon"><path d="M0 -13 -7 13M0 -13 7 13M-9 -5h18M-6 3h12M-5 -5l10 8M5 -5 -5 3M-2.5 -13h5" /></g>
+        <text class="value" id="grid-value" y="49"></text>
+        <text class="label" id="grid-label" y="61"></text>
       </g>
 
-      <g class="node home" transform="translate(258 116)">
-        <circle class="ring-bg" r="26" />
-        <g class="icon" transform="translate(-9 -9)">
-          <path d="M1 8.5 9 1.5l8 7M3.5 7v9.5h11V7M7.5 16.5v-5h3v5" />
-        </g>
-        <text class="value" id="home-value" y="42"></text>
-        <text class="label" data-i18n="widget.home" y="54"></text>
+      <g class="node home" id="node-home" transform="translate(268 128)">
+        <circle class="halo" r="38" />
+        <circle class="face" r="30" />
+        <g class="icon"><path d="M-12 1 0 -10l12 11M-8.5 -2v12.5h17V-2M-2.8 10.5V4h5.6v6.5" /></g>
+        <text class="value" id="home-value" y="49"></text>
+        <text class="label" data-i18n="widget.home" y="61"></text>
       </g>
 
-      <g class="node battery" id="battery-node" transform="translate(150 196)">
-        <circle class="ring-bg" r="26" />
-        <circle class="soc" id="soc-ring" r="26" transform="rotate(-90)" stroke-dasharray="0 164" />
-        <g class="icon" transform="translate(-5 -9)">
-          <rect x="0.5" y="2" width="9" height="15" rx="1.5" /><path d="M3.5 0.5h3M3 9h4" />
+      <g class="node battery" id="node-battery" transform="translate(160 208)">
+        <circle class="halo" r="38" />
+        <circle class="face" r="30" />
+        <circle class="soc" id="soc-ring" r="30" transform="rotate(-90)" stroke-dasharray="0 189" />
+        <g class="icon">
+          <rect x="-6.5" y="-10" width="13" height="21" rx="2.5" />
+          <path d="M-2.5 -13h5" />
         </g>
-        <text class="value" id="battery-value" y="41"></text>
-        <text class="label" id="battery-label" y="53"></text>
+        <clipPath id="cell-clip"><rect x="-4.5" y="-8" width="9" height="17" rx="1.2" /></clipPath>
+        <rect class="cell-fill" id="cell-fill" x="-4.5" y="9" width="9" height="0" clip-path="url(#cell-clip)" />
+        <text class="value" id="battery-value" y="49"></text>
+        <text class="label" id="battery-label" y="61"></text>
       </g>
     </svg>
 
     <div class="today" id="today">
-      <div>
+      <div class="tile">
         <div><span class="number" id="produced"></span><span class="unit">kWh</span></div>
         <div class="caption" data-i18n="widget.produced"></div>
       </div>
-      <div>
+      <div class="tile">
         <div><span class="number" id="consumed"></span><span class="unit">kWh</span></div>
         <div class="caption" data-i18n="widget.consumed"></div>
       </div>
-      <div>
+      <div class="tile">
         <div><span class="number" id="self"></span><span class="unit">%</span></div>
         <div class="caption" data-i18n="widget.self_sufficient"></div>
         <div class="bar"><span id="self-bar"></span></div>
@@ -209,16 +314,48 @@
       var settings = Homey.getSettings() || {};
       var serial = settings.gateway && settings.gateway.serial ? settings.gateway.serial : '';
       var showToday = settings.show_today !== false;
-      var lastUpdate = 0;
-      var ready = false;
       var SVG = 'http://www.w3.org/2000/svg';
       /** Flows below this are measurement noise (e.g. a battery idling at a few W). */
       var MIN_FLOW_W = 10;
+      var LINES = ['solar-home', 'solar-grid', 'solar-battery', 'grid-home', 'battery-home', 'battery-grid'];
+      var lastUpdate = 0;
+      var readyCalled = false;
+      var lastHeight = 0;
 
       document.querySelectorAll('[data-i18n]').forEach(function (el) {
         el.textContent = Homey.__(el.getAttribute('data-i18n'));
       });
       document.getElementById('today').hidden = !showToday;
+
+      // Static track + stream per line, created once.
+      LINES.forEach(function (id) {
+        var d = document.getElementById(id).getAttribute('d');
+        var track = document.createElementNS(SVG, 'path');
+        track.setAttribute('d', d);
+        track.setAttribute('class', 'track');
+        track.id = 'track-' + id;
+        document.getElementById('tracks').appendChild(track);
+        var stream = document.createElementNS(SVG, 'path');
+        stream.setAttribute('d', d);
+        stream.setAttribute('class', 'stream');
+        stream.setAttribute('stroke', 'url(#g-' + id + ')');
+        stream.id = 'stream-' + id;
+        document.getElementById('streams').appendChild(stream);
+      });
+
+      /** The widget sizes itself to its content, so nothing is cut off at any width. */
+      function fitHeight() {
+        var height = Math.ceil(document.body.scrollHeight);
+        if (Math.abs(height - lastHeight) < 2) return;
+        lastHeight = height;
+        if (!readyCalled) {
+          readyCalled = true;
+          Homey.ready({ height: height });
+        } else if (Homey.setHeight) {
+          Homey.setHeight(height);
+        }
+      }
+      window.addEventListener('resize', fitHeight);
 
       function watts(w) {
         var abs = Math.abs(w);
@@ -232,33 +369,37 @@
           : Number(value).toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
       }
 
-      /** Moving dots along a line; more power = faster, direction from → to. */
-      function animate(pathId, powerW, reverse, color) {
-        var path = document.getElementById(pathId);
-        var active = powerW >= MIN_FLOW_W;
-        path.style.stroke = active ? color : '';
-        path.style.strokeOpacity = active ? '0.35' : '';
-        if (!active) return;
-        var seconds = Math.max(0.9, 3.2 - Math.log10(powerW) * 0.7);
-        for (var i = 0; i < 3; i += 1) {
+      function colour(name) {
+        return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      }
+
+      /** Glowing dots moving along a line; more power = faster and denser, from → to. */
+      function stream(id, powerW, reverse, dotColour) {
+        if (powerW < MIN_FLOW_W) return false;
+        document.getElementById('stream-' + id).classList.add('on');
+        var seconds = Math.max(1.1, 3.6 - Math.log10(powerW) * 0.75);
+        var count = powerW > 3000 ? 4 : powerW > 800 ? 3 : 2;
+        for (var i = 0; i < count; i += 1) {
           var dot = document.createElementNS(SVG, 'circle');
           dot.setAttribute('class', 'dot');
-          dot.setAttribute('r', '3.2');
-          dot.setAttribute('fill', color);
+          dot.setAttribute('r', powerW > 2000 ? '3.4' : '2.8');
+          dot.setAttribute('fill', dotColour);
           var motion = document.createElementNS(SVG, 'animateMotion');
           motion.setAttribute('dur', seconds + 's');
           motion.setAttribute('repeatCount', 'indefinite');
-          motion.setAttribute('begin', (-i * seconds / 3) + 's');
+          motion.setAttribute('begin', (-i * seconds / count) + 's');
           motion.setAttribute('keyPoints', reverse ? '1;0' : '0;1');
           motion.setAttribute('keyTimes', '0;1');
-          motion.setAttribute('calcMode', 'linear');
+          motion.setAttribute('calcMode', 'spline');
+          motion.setAttribute('keySplines', '0.4 0 0.6 1');
           var mpath = document.createElementNS(SVG, 'mpath');
-          mpath.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#' + pathId);
-          mpath.setAttribute('href', '#' + pathId);
+          mpath.setAttribute('href', '#' + id);
+          mpath.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#' + id);
           motion.appendChild(mpath);
           dot.appendChild(motion);
           document.getElementById('dots').appendChild(dot);
         }
+        return true;
       }
 
       function render(flow) {
@@ -269,20 +410,31 @@
         document.getElementById('waiting').hidden = true;
         document.getElementById('content').hidden = false;
 
-        var css = getComputedStyle(document.documentElement);
-        var solar = css.getPropertyValue('--flow-solar').trim() || '#f5a623';
-        var grid = css.getPropertyValue('--flow-grid').trim() || '#2c7be5';
-        var battery = css.getPropertyValue('--flow-battery').trim() || '#1fb35b';
+        var f = flow.flows;
+        var solar = colour('--solar') || '#f59e0b';
+        var grid = colour('--grid') || '#3478f6';
+        var battery = colour('--battery') || '#23b26d';
 
         document.getElementById('dots').textContent = '';
-        var f = flow.flows;
-        animate('solar-home', f.solarToHome, false, solar);
-        animate('solar-grid', f.solarToGrid, false, solar);
-        animate('solar-battery', f.solarToBattery, false, solar);
-        animate('grid-home', f.gridToHome, false, grid);
-        animate('battery-home', f.batteryToHome, false, battery);
-        animate('battery-grid', f.gridToBattery, true, grid);
-        if (f.batteryToGrid >= MIN_FLOW_W) animate('battery-grid', f.batteryToGrid, false, battery);
+        LINES.forEach(function (id) { document.getElementById('stream-' + id).classList.remove('on'); });
+        var active = { solar: false, grid: false, home: false, battery: false };
+        function mark(a, b) { active[a] = true; active[b] = true; }
+        if (stream('solar-home', f.solarToHome, false, solar)) mark('solar', 'home');
+        if (stream('solar-grid', f.solarToGrid, false, solar)) mark('solar', 'grid');
+        if (stream('solar-battery', f.solarToBattery, false, solar)) mark('solar', 'battery');
+        if (stream('grid-home', f.gridToHome, false, grid)) mark('grid', 'home');
+        if (stream('battery-home', f.batteryToHome, false, battery)) mark('battery', 'home');
+        if (stream('battery-grid', f.gridToBattery, true, grid)) mark('grid', 'battery');
+        if (stream('battery-grid', f.batteryToGrid, false, battery)) mark('battery', 'grid');
+        ['solar', 'grid', 'home', 'battery'].forEach(function (name) {
+          document.getElementById('node-' + name).classList.toggle('active', active[name]);
+        });
+
+        // Day or night: the sun glows while producing, a moon replaces it when there is none.
+        var producing = flow.solarW >= MIN_FLOW_W;
+        document.getElementById('sky').setAttribute('opacity', producing ? '1' : '0');
+        document.getElementById('sun-icon').style.opacity = producing ? '1' : '0';
+        document.getElementById('moon-icon').style.opacity = producing ? '0' : '0.8';
 
         document.getElementById('solar-value').textContent = watts(flow.solarW);
         document.getElementById('home-value').textContent = watts(flow.homeW);
@@ -291,17 +443,22 @@
           flow.gridW >= MIN_FLOW_W ? 'widget.importing' : flow.gridW <= -MIN_FLOW_W ? 'widget.exporting' : 'widget.grid',
         );
 
-        document.getElementById('battery-node').style.display = flow.hasBattery ? '' : 'none';
-        document.getElementById('solar-battery').style.display = flow.hasBattery ? '' : 'none';
-        document.getElementById('battery-home').style.display = flow.hasBattery ? '' : 'none';
-        document.getElementById('battery-grid').style.display = flow.hasBattery ? '' : 'none';
-        if (flow.hasBattery) {
+        var hasBattery = flow.hasBattery;
+        document.getElementById('node-battery').style.display = hasBattery ? '' : 'none';
+        ['solar-battery', 'battery-home', 'battery-grid'].forEach(function (id) {
+          document.getElementById('track-' + id).classList.toggle('hidden', !hasBattery);
+        });
+        if (hasBattery) {
+          var soc = Math.max(0, Math.min(100, flow.socPercent));
           document.getElementById('battery-value').textContent = watts(flow.batteryW);
           var state = flow.batteryW >= MIN_FLOW_W ? 'widget.charging' : flow.batteryW <= -MIN_FLOW_W ? 'widget.discharging' : 'widget.battery';
-          document.getElementById('battery-label').textContent = Homey.__(state) + ' · ' + Math.round(flow.socPercent) + ' %';
-          var circumference = 2 * Math.PI * 26;
-          var filled = circumference * Math.max(0, Math.min(100, flow.socPercent)) / 100;
-          document.getElementById('soc-ring').setAttribute('stroke-dasharray', filled + ' ' + circumference);
+          document.getElementById('battery-label').textContent = Homey.__(state) + ' · ' + Math.round(soc) + '%';
+          var circumference = 2 * Math.PI * 30;
+          document.getElementById('soc-ring').setAttribute('stroke-dasharray', (circumference * soc / 100) + ' ' + circumference);
+          var cell = document.getElementById('cell-fill');
+          var height = 17 * soc / 100;
+          cell.setAttribute('height', height);
+          cell.setAttribute('y', 9 - height);
         }
 
         document.getElementById('produced').textContent = number(flow.today.producedKwh, 1);
@@ -309,24 +466,16 @@
         document.getElementById('self').textContent = number(flow.today.selfSufficiencyPercent, 0);
         document.getElementById('self-bar').style.width = (flow.today.selfSufficiencyPercent || 0) + '%';
 
-        if (!ready) {
-          ready = true;
-          Homey.ready();
-        }
+        fitHeight();
       }
 
       Homey.on('energyflow', render);
       Homey.api('GET', '/?serial=' + encodeURIComponent(serial), {})
         .then(render)
         .catch(function () { /* realtime updates will follow */ })
-        .then(function () {
-          if (!ready) {
-            ready = true;
-            Homey.ready();
-          }
-        });
+        .then(fitHeight);
 
-      // Dim the widget when no update arrived for a minute (gateway unreachable).
+      // Dim when no update arrived for a minute (gateway unreachable).
       setInterval(function () {
         if (lastUpdate && Date.now() - lastUpdate > 60000) document.body.classList.add('stale');
       }, 15000);
