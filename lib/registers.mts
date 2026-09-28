@@ -103,6 +103,7 @@ export const FORCED_DURATION_MAX_MIN = 1440;
 export type StorageStatus = 'charging' | 'discharging' | 'idle';
 export type StorageMode = 'self_consumption' | 'time_of_use' | 'remote';
 export type ForcedCommand = 'charge' | 'discharge' | 'exit' | 'self_consumption' | 'standby';
+export type ForcedMode = 'target_soc' | 'duration' | 'target_soc_or_duration' | 'none';
 
 // ---------------------------------------------------------------------------
 // Primitive decoders. `words` is the register block; `offset` is relative to it.
@@ -318,7 +319,7 @@ export interface Control {
   /** #47: last forced command. */
   forcedCommand: ForcedCommand | null;
   /** #48 */
-  forcedMode: 'target_soc' | 'duration' | null;
+  forcedMode: ForcedMode | null;
   /** #49 */
   forcedTargetSoc: number;
   /** #50 */
@@ -332,7 +333,10 @@ export interface Control {
 const FORCED_COMMANDS: Readonly<Record<number, ForcedCommand>> = {
   0: 'charge', 1: 'discharge', 2: 'exit', 4: 'self_consumption', 99: 'standby',
 };
-const FORCED_MODES: Readonly<Record<number, 'target_soc' | 'duration'>> = { 0: 'target_soc', 1: 'duration' };
+/** 60311: 0 target SOC, 1 duration; V1.6 adds 2 (target SOC or duration) and 3 (ignore both). */
+const FORCED_MODES: Readonly<Record<number, ForcedMode>> = {
+  0: 'target_soc', 1: 'duration', 2: 'target_soc_or_duration', 3: 'none',
+};
 
 export function decodeControl(control: readonly number[], forced: readonly number[]): Control {
   const c = (address: number) => address - BLOCKS.control.start;
@@ -341,7 +345,8 @@ export function decodeControl(control: readonly number[], forced: readonly numbe
   const mode = u16(forced, f(60311));
   return {
     remoteControl: u16(control, c(60301)) === 1,
-    activePowerFixedW: i32(control, c(60302)),
+    // V1.2 listed 60302 as I32, V1.6 as U32 ("Grid Active Power Fixed Value Regulation").
+    activePowerFixedW: u32(control, c(60302)),
     activePowerPercent: scale(u16(control, c(60304)), 10),
     forcedCommand: FORCED_COMMANDS[command] ?? null,
     forcedMode: FORCED_MODES[mode] ?? null,
