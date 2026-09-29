@@ -25,6 +25,11 @@ Flow cards:
   "Target power mode", "Battery charging state") work as well.
 - **Grid:** export / import started and stopped, export / import rose above X W, is
   exporting / importing.
+- **Solar surplus** (grid meter): surplus of at least X W for N minutes, surplus has been gone
+  for N minutes, surplus is at least X W for N minutes. Surplus is what flows to the grid, so
+  with a battery only what the battery can no longer absorb, averaged over 2 minutes against
+  passing clouds. "Gone" also watches the battery, which covers dips once it is full. Works
+  the same without a battery.
 - **Solar:** production started / stopped, is producing, system fault started / cleared / is active.
 
 **Dashboard widget "Energy flow"**: live solar → home → battery → grid flows with the battery

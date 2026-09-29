@@ -29,6 +29,7 @@
     "measure_current",
     "meter_power.consumption_today",
     "measure_self_sufficiency",
+    "measure_power.surplus",
     "button.test_connection"
   ],
   "capabilitiesOptions": {
@@ -267,6 +268,23 @@
         "pl": "Od razu odczytuje bramkę i umieszcza na osi czasu raport ze szczegółami połączenia.",
         "ko": "게이트웨이를 즉시 읽고 연결 정보가 담긴 보고서를 타임라인에 올립니다.",
         "ar": "يقرأ البوابة فورًا ويضع تقريرًا بتفاصيل الاتصال على الخط الزمني."
+      }
+    },
+    "measure_power.surplus": {
+      "title": {
+        "en": "Solar surplus",
+        "nl": "Zonne-overschot",
+        "de": "Solarüberschuss",
+        "fr": "Surplus solaire",
+        "it": "Surplus solare",
+        "sv": "Solöverskott",
+        "no": "Soloverskudd",
+        "es": "Excedente solar",
+        "da": "Soloverskud",
+        "ru": "Солнечный излишек",
+        "pl": "Nadwyżka solarna",
+        "ko": "태양광 잉여",
+        "ar": "الفائض الشمسي"
       }
     }
   },

@@ -405,6 +405,225 @@
         "ko": "게이트웨이가 독립 운전(백업)을 보고합니다. 게이트웨이가 이를 보고하는지 Homey가 자동으로 확인합니다.",
         "ar": "تُبلغ البوابة عن التشغيل دون الشبكة (احتياطي). يتحقق Homey تلقائيًا مما إذا كانت بوابتك تُبلغ بذلك."
       }
+    },
+    {
+      "id": "solar_surplus_held",
+      "title": {
+        "en": "Solar surplus lasted a while",
+        "nl": "Zonne-overschot houdt een tijd aan",
+        "de": "Solarüberschuss hält eine Weile an",
+        "fr": "Le surplus solaire dure depuis un moment",
+        "it": "Il surplus solare dura da un po'",
+        "sv": "Solöverskottet har hållit i sig en stund",
+        "no": "Soloverskuddet har vart en stund",
+        "es": "El excedente solar dura un rato",
+        "da": "Soloverskuddet har varet et stykke tid",
+        "ru": "Солнечный излишек держится некоторое время",
+        "pl": "Nadwyżka solarna utrzymuje się od jakiegoś czasu",
+        "ko": "태양광 잉여가 한동안 유지됨",
+        "ar": "استمر فائض الطاقة الشمسية لفترة"
+      },
+      "titleFormatted": {
+        "en": "Solar surplus of at least [[power]] W for [[minutes]] minutes",
+        "nl": "Zonne-overschot van minstens [[power]] W gedurende [[minutes]] minuten",
+        "de": "Solarüberschuss von mindestens [[power]] W für [[minutes]] Minuten",
+        "fr": "Surplus solaire d'au moins [[power]] W pendant [[minutes]] minutes",
+        "it": "Surplus solare di almeno [[power]] W per [[minutes]] minuti",
+        "sv": "Solöverskott på minst [[power]] W i [[minutes]] minuter",
+        "no": "Soloverskudd på minst [[power]] W i [[minutes]] minutter",
+        "es": "Excedente solar de al menos [[power]] W durante [[minutes]] minutos",
+        "da": "Soloverskud på mindst [[power]] W i [[minutes]] minutter",
+        "ru": "Солнечный излишек не менее [[power]] Вт в течение [[minutes]] мин",
+        "pl": "Nadwyżka solarna co najmniej [[power]] W przez [[minutes]] min",
+        "ko": "태양광 잉여가 [[minutes]]분 동안 [[power]] W 이상",
+        "ar": "فائض شمسي لا يقل عن [[power]] واط لمدة [[minutes]] دقيقة"
+      },
+      "hint": {
+        "en": "Surplus is the solar power that flows to the grid: what the home doesn't use and, with a battery, what the battery can no longer absorb. It is averaged over 2 minutes so a passing cloud does not count. Starts once when it stayed at or above the power the whole time. Use your appliance's power plus about 200 W, and switch it off with \"Solar surplus has been gone for a while\".",
+        "nl": "Overschot is de zonnestroom die naar het net gaat: wat het huis niet verbruikt en, met een batterij, wat de batterij niet meer kan opnemen. Het wordt gemiddeld over 2 minuten, zodat een voorbijtrekkende wolk niet meetelt. Start één keer zodra het de hele tijd op of boven het vermogen bleef. Neem het vermogen van je apparaat plus zo'n 200 W, en schakel het uit met „Zonne-overschot is een tijd weg”.",
+        "de": "Überschuss ist der Solarstrom, der ins Netz fließt: was das Haus nicht verbraucht und, mit Batterie, was die Batterie nicht mehr aufnehmen kann. Er wird über 2 Minuten gemittelt, damit eine vorbeiziehende Wolke nicht zählt. Startet einmal, wenn er die ganze Zeit auf oder über der Leistung blieb. Nimm die Leistung deines Geräts plus etwa 200 W und schalte es mit „Solarüberschuss ist eine Weile weg“ wieder aus.",
+        "fr": "Le surplus est l'énergie solaire qui part sur le réseau : ce que la maison ne consomme pas et, avec une batterie, ce que la batterie ne peut plus absorber. Il est moyenné sur 2 minutes pour qu'un nuage passager ne compte pas. Se déclenche une fois quand il est resté au niveau de la puissance ou au-dessus pendant toute la durée. Prenez la puissance de votre appareil plus environ 200 W, et arrêtez-le avec « Le surplus solaire a disparu depuis un moment ».",
+        "it": "Il surplus è l'energia solare che va in rete: quella che la casa non consuma e, con una batteria, quella che la batteria non riesce più ad assorbire. È mediato su 2 minuti perché una nuvola di passaggio non conti. Si attiva una volta quando è rimasto alla potenza o sopra per tutto il tempo. Usa la potenza del tuo apparecchio più circa 200 W e spegnilo con «Il surplus solare è assente da un po'».",
+        "sv": "Överskott är solel som går ut på elnätet: det hemmet inte använder och, med ett batteri, det batteriet inte längre kan ta emot. Det räknas som genomsnitt över 2 minuter så att ett förbipasserande moln inte räknas. Startar en gång när det hållit sig på eller över effekten hela tiden. Ta apparatens effekt plus cirka 200 W och stäng av den med ”Solöverskottet har varit borta en stund”.",
+        "no": "Overskudd er solstrøm som går ut på nettet: det hjemmet ikke bruker og, med batteri, det batteriet ikke lenger kan ta opp. Det beregnes som snitt over 2 minutter så en forbipasserende sky ikke teller. Starter én gang når det har holdt seg på eller over effekten hele tiden. Bruk apparatets effekt pluss rundt 200 W, og slå det av med «Soloverskuddet har vært borte en stund».",
+        "es": "El excedente es la energía solar que va a la red: lo que la casa no consume y, con batería, lo que la batería ya no puede absorber. Se promedia en 2 minutos para que una nube pasajera no cuente. Se activa una vez cuando se ha mantenido en la potencia o por encima todo el tiempo. Usa la potencia de tu aparato más unos 200 W y apágalo con «El excedente solar desapareció hace un rato».",
+        "da": "Overskud er solstrøm, der går ud på nettet: det, hjemmet ikke bruger, og med batteri det, batteriet ikke længere kan optage. Det beregnes som gennemsnit over 2 minutter, så en forbipasserende sky ikke tæller. Starter én gang, når det har holdt sig på eller over effekten hele tiden. Brug apparatets effekt plus ca. 200 W, og sluk det med »Soloverskuddet har været væk et stykke tid«.",
+        "ru": "Излишек — это солнечная энергия, которая уходит в сеть: то, что дом не потребляет, а при наличии батареи — то, что батарея уже не может принять. Он усредняется за 2 минуты, чтобы проходящее облако не учитывалось. Срабатывает один раз, когда он всё это время держался на уровне мощности или выше. Укажите мощность прибора плюс около 200 Вт и выключайте его картой «Солнечного излишка нет некоторое время».",
+        "pl": "Nadwyżka to energia słoneczna, która trafia do sieci: to, czego dom nie zużywa, a przy baterii to, czego bateria nie może już przyjąć. Jest uśredniana z 2 minut, by przelotna chmura się nie liczyła. Uruchamia się raz, gdy przez cały czas utrzymywała się na poziomie mocy lub wyżej. Podaj moc urządzenia plus ok. 200 W i wyłączaj je kartą „Nadwyżki solarnej brak od jakiegoś czasu”.",
+        "ko": "잉여는 계통으로 나가는 태양광 전력입니다. 집에서 쓰지 않는 전력이며, 배터리가 있으면 배터리가 더 이상 받아들일 수 없는 전력입니다. 지나가는 구름이 영향을 주지 않도록 2분 평균을 사용합니다. 전체 시간 동안 설정 출력 이상을 유지하면 한 번 실행됩니다. 기기 소비전력에 약 200 W를 더한 값을 쓰고, '태양광 잉여가 한동안 없음'으로 끄세요.",
+        "ar": "الفائض هو الطاقة الشمسية التي تذهب إلى الشبكة: ما لا يستهلكه المنزل، ومع وجود بطارية ما لم تعد البطارية قادرة على استيعابه. يُحسب بمتوسط دقيقتين حتى لا تُحتسب سحابة عابرة. يعمل مرة واحدة عندما يبقى عند القدرة أو فوقها طوال المدة. استخدم قدرة جهازك مضافًا إليها نحو 200 واط، وأطفئه ببطاقة «غاب الفائض الشمسي لفترة»."
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "power",
+          "title": {
+            "en": "Power",
+            "nl": "Vermogen",
+            "de": "Leistung",
+            "fr": "Puissance",
+            "it": "Potenza",
+            "sv": "Effekt",
+            "no": "Effekt",
+            "es": "Potencia",
+            "da": "Effekt",
+            "ru": "Мощность",
+            "pl": "Moc",
+            "ko": "출력",
+            "ar": "القدرة"
+          },
+          "min": 50,
+          "max": 30000,
+          "step": 50,
+          "placeholder": {
+            "en": "2200"
+          }
+        },
+        {
+          "type": "number",
+          "name": "minutes",
+          "title": {
+            "en": "Minutes",
+            "nl": "Minuten",
+            "de": "Minuten",
+            "fr": "Minutes",
+            "it": "Minuti",
+            "sv": "Minuter",
+            "no": "Minutter",
+            "es": "Minutos",
+            "da": "Minutter",
+            "ru": "Минуты",
+            "pl": "Minuty",
+            "ko": "분",
+            "ar": "الدقائق"
+          },
+          "min": 1,
+          "max": 240,
+          "step": 1,
+          "placeholder": {
+            "en": "30"
+          }
+        }
+      ],
+      "tokens": [
+        {
+          "name": "surplus",
+          "type": "number",
+          "title": {
+            "en": "Surplus",
+            "nl": "Overschot",
+            "de": "Überschuss",
+            "fr": "Surplus",
+            "it": "Surplus",
+            "sv": "Överskott",
+            "no": "Overskudd",
+            "es": "Excedente",
+            "da": "Overskud",
+            "ru": "Излишек",
+            "pl": "Nadwyżka",
+            "ko": "잉여",
+            "ar": "الفائض"
+          },
+          "example": 2500
+        }
+      ]
+    },
+    {
+      "id": "solar_surplus_ended",
+      "title": {
+        "en": "Solar surplus has been gone for a while",
+        "nl": "Zonne-overschot is een tijd weg",
+        "de": "Solarüberschuss ist eine Weile weg",
+        "fr": "Le surplus solaire a disparu depuis un moment",
+        "it": "Il surplus solare è assente da un po'",
+        "sv": "Solöverskottet har varit borta en stund",
+        "no": "Soloverskuddet har vært borte en stund",
+        "es": "El excedente solar desapareció hace un rato",
+        "da": "Soloverskuddet har været væk et stykke tid",
+        "ru": "Солнечного излишка нет некоторое время",
+        "pl": "Nadwyżki solarnej brak od jakiegoś czasu",
+        "ko": "태양광 잉여가 한동안 없음",
+        "ar": "غاب الفائض الشمسي لفترة"
+      },
+      "titleFormatted": {
+        "en": "Solar surplus has been gone for [[minutes]] minutes",
+        "nl": "Zonne-overschot is [[minutes]] minuten weg",
+        "de": "Solarüberschuss ist seit [[minutes]] Minuten weg",
+        "fr": "Le surplus solaire a disparu depuis [[minutes]] minutes",
+        "it": "Il surplus solare è assente da [[minutes]] minuti",
+        "sv": "Solöverskottet har varit borta i [[minutes]] minuter",
+        "no": "Soloverskuddet har vært borte i [[minutes]] minutter",
+        "es": "El excedente solar lleva [[minutes]] minutos desaparecido",
+        "da": "Soloverskuddet har været væk i [[minutes]] minutter",
+        "ru": "Солнечного излишка нет [[minutes]] мин",
+        "pl": "Nadwyżki solarnej brak od [[minutes]] min",
+        "ko": "태양광 잉여가 [[minutes]]분 동안 없음",
+        "ar": "غاب الفائض الشمسي لمدة [[minutes]] دقيقة"
+      },
+      "hint": {
+        "en": "Starts once when the home has taken at least 200 W from the grid, or from the battery if you have one, the whole time. The battery counts because a full Atmoce battery covers dips itself, so an appliance started on surplus would otherwise drain it.",
+        "nl": "Start één keer zodra het huis de hele tijd minstens 200 W uit het net haalt, of uit de batterij als je er een hebt. De batterij telt mee omdat een volle Atmoce-batterij dipjes zelf opvangt, en een apparaat dat op overschot is gestart haar anders leegtrekt.",
+        "de": "Startet einmal, wenn das Haus die ganze Zeit mindestens 200 W aus dem Netz bezieht, oder aus der Batterie, falls vorhanden. Die Batterie zählt, weil eine volle Atmoce-Batterie Einbrüche selbst ausgleicht und ein mit Überschuss gestartetes Gerät sie sonst leeren würde.",
+        "fr": "Se déclenche une fois quand la maison a prélevé au moins 200 W sur le réseau, ou sur la batterie si vous en avez une, pendant toute la durée. La batterie compte car une batterie Atmoce pleine compense elle-même les baisses, et un appareil lancé sur le surplus la viderait sinon.",
+        "it": "Si attiva una volta quando la casa ha prelevato almeno 200 W dalla rete, o dalla batteria se ne hai una, per tutto il tempo. La batteria conta perché una batteria Atmoce piena copre da sola i cali, e un apparecchio avviato sul surplus altrimenti la scaricherebbe.",
+        "sv": "Startar en gång när hemmet hela tiden har tagit minst 200 W från elnätet, eller från batteriet om du har ett. Batteriet räknas eftersom ett fullt Atmoce-batteri själv täcker svackor, och en apparat som startats på överskott annars skulle tömma det.",
+        "no": "Starter én gang når hjemmet hele tiden har tatt minst 200 W fra nettet, eller fra batteriet hvis du har et. Batteriet teller fordi et fullt Atmoce-batteri selv dekker dipper, og et apparat som er startet på overskudd ellers ville tømt det.",
+        "es": "Se activa una vez cuando la casa ha tomado al menos 200 W de la red, o de la batería si tienes una, todo el tiempo. La batería cuenta porque una batería Atmoce llena cubre ella misma las caídas, y un aparato encendido con excedente la vaciaría.",
+        "da": "Starter én gang, når hjemmet hele tiden har taget mindst 200 W fra nettet, eller fra batteriet hvis du har et. Batteriet tæller, fordi et fuldt Atmoce-batteri selv dækker dyk, og et apparat startet på overskud ellers ville tømme det.",
+        "ru": "Срабатывает один раз, когда дом всё это время берёт не менее 200 Вт из сети, а при наличии батареи — и из неё. Батарея учитывается, потому что полная батарея Atmoce сама покрывает провалы, и прибор, запущенный на излишке, иначе разрядил бы её.",
+        "pl": "Uruchamia się raz, gdy dom przez cały czas pobiera co najmniej 200 W z sieci albo z baterii, jeśli ją masz. Bateria się liczy, bo pełna bateria Atmoce sama pokrywa spadki, a urządzenie włączone na nadwyżce by ją rozładowało.",
+        "ko": "집이 전체 시간 동안 계통에서, 또는 배터리가 있으면 배터리에서 200 W 이상을 가져오면 한 번 실행됩니다. 가득 찬 Atmoce 배터리는 부족분을 스스로 채우므로, 잉여로 켠 기기가 배터리를 비울 수 있어 배터리도 포함합니다.",
+        "ar": "يعمل مرة واحدة عندما يأخذ المنزل 200 واط على الأقل من الشبكة، أو من البطارية إن وُجدت، طوال المدة. تُحتسب البطارية لأن بطارية Atmoce الممتلئة تغطي الانخفاضات بنفسها، وكان جهاز شُغّل على الفائض سيفرغها."
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "minutes",
+          "title": {
+            "en": "Minutes",
+            "nl": "Minuten",
+            "de": "Minuten",
+            "fr": "Minutes",
+            "it": "Minuti",
+            "sv": "Minuter",
+            "no": "Minutter",
+            "es": "Minutos",
+            "da": "Minutter",
+            "ru": "Минуты",
+            "pl": "Minuty",
+            "ko": "분",
+            "ar": "الدقائق"
+          },
+          "min": 1,
+          "max": 240,
+          "step": 1,
+          "placeholder": {
+            "en": "5"
+          }
+        }
+      ],
+      "tokens": [
+        {
+          "name": "power",
+          "type": "number",
+          "title": {
+            "en": "Power from grid and battery",
+            "nl": "Vermogen uit net en batterij",
+            "de": "Leistung aus Netz und Batterie",
+            "fr": "Puissance du réseau et de la batterie",
+            "it": "Potenza da rete e batteria",
+            "sv": "Effekt från nät och batteri",
+            "no": "Effekt fra nett og batteri",
+            "es": "Potencia de la red y la batería",
+            "da": "Effekt fra net og batteri",
+            "ru": "Мощность из сети и батареи",
+            "pl": "Moc z sieci i baterii",
+            "ko": "계통 및 배터리 전력",
+            "ar": "القدرة من الشبكة والبطارية"
+          },
+          "example": 600
+        }
+      ]
     }
   ],
   "conditions": [
@@ -542,6 +761,106 @@
         "ko": "수전이 제한 !{{됨|되지 않음}}",
         "ar": "الاستيراد !{{مقيّد|غير مقيّد}}"
       }
+    },
+    {
+      "id": "solar_surplus_is",
+      "title": {
+        "en": "Solar surplus !{{is|is not}} at least a power for a while",
+        "nl": "Zonne-overschot !{{is|is niet}} een tijd minstens een vermogen",
+        "de": "Solarüberschuss !{{ist|ist nicht}} eine Weile mindestens eine Leistung",
+        "fr": "Le surplus solaire !{{est|n'est pas}} d'au moins une puissance depuis un moment",
+        "it": "Il surplus solare !{{è|non è}} almeno una potenza da un po'",
+        "sv": "Solöverskottet !{{är|är inte}} minst en effekt sedan en stund",
+        "no": "Soloverskuddet !{{er|er ikke}} minst en effekt i en stund",
+        "es": "El excedente solar !{{es|no es}} de al menos una potencia desde hace un rato",
+        "da": "Soloverskuddet !{{er|er ikke}} mindst en effekt i et stykke tid",
+        "ru": "Солнечный излишек !{{|не }}держится на уровне мощности некоторое время",
+        "pl": "Nadwyżka solarna !{{wynosi|nie wynosi}} co najmniej moc od jakiegoś czasu",
+        "ko": "태양광 잉여가 한동안 설정 출력 이상!{{임|이 아님}}",
+        "ar": "الفائض الشمسي !{{|ليس }}عند قدرة معيّنة على الأقل منذ فترة"
+      },
+      "titleFormatted": {
+        "en": "Solar surplus !{{is|is not}} at least [[power]] W for [[minutes]] minutes",
+        "nl": "Zonne-overschot !{{is|is niet}} [[minutes]] minuten minstens [[power]] W",
+        "de": "Solarüberschuss !{{ist|ist nicht}} seit [[minutes]] Minuten mindestens [[power]] W",
+        "fr": "Le surplus solaire !{{est|n'est pas}} d'au moins [[power]] W depuis [[minutes]] minutes",
+        "it": "Il surplus solare !{{è|non è}} di almeno [[power]] W da [[minutes]] minuti",
+        "sv": "Solöverskottet !{{är|är inte}} minst [[power]] W sedan [[minutes]] minuter",
+        "no": "Soloverskuddet !{{er|er ikke}} minst [[power]] W i [[minutes]] minutter",
+        "es": "El excedente solar !{{es|no es}} de al menos [[power]] W desde hace [[minutes]] minutos",
+        "da": "Soloverskuddet !{{er|er ikke}} mindst [[power]] W i [[minutes]] minutter",
+        "ru": "Солнечный излишек !{{|не }}держится на уровне не менее [[power]] Вт [[minutes]] мин",
+        "pl": "Nadwyżka solarna !{{wynosi|nie wynosi}} co najmniej [[power]] W od [[minutes]] min",
+        "ko": "태양광 잉여가 [[minutes]]분 동안 [[power]] W 이상!{{임|이 아님}}",
+        "ar": "الفائض الشمسي !{{|ليس }}عند [[power]] واط على الأقل منذ [[minutes]] دقيقة"
+      },
+      "hint": {
+        "en": "Use 0 minutes to check only the current 2-minute average. An appliance that runs on the surplus uses it itself, so switch it off with \"Solar surplus has been gone for a while\" instead.",
+        "nl": "Met 0 minuten kijk je alleen naar het huidige gemiddelde over 2 minuten. Een apparaat dat op het overschot draait, verbruikt het zelf; schakel het daarom uit met „Zonne-overschot is een tijd weg”.",
+        "de": "Mit 0 Minuten prüfst du nur den aktuellen 2-Minuten-Mittelwert. Ein Gerät, das mit dem Überschuss läuft, verbraucht ihn selbst; schalte es daher mit „Solarüberschuss ist eine Weile weg“ aus.",
+        "fr": "Avec 0 minute, seule la moyenne actuelle sur 2 minutes est vérifiée. Un appareil qui fonctionne sur le surplus le consomme lui-même ; arrêtez-le donc avec « Le surplus solaire a disparu depuis un moment ».",
+        "it": "Con 0 minuti controlli solo la media attuale su 2 minuti. Un apparecchio che funziona con il surplus lo consuma da sé; spegnilo quindi con «Il surplus solare è assente da un po'».",
+        "sv": "Med 0 minuter kontrolleras bara det aktuella 2-minutersgenomsnittet. En apparat som går på överskottet förbrukar det själv; stäng därför av den med ”Solöverskottet har varit borta en stund”.",
+        "no": "Med 0 minutter sjekkes bare det nåværende 2-minuttersnittet. Et apparat som går på overskuddet, bruker det selv; slå det derfor av med «Soloverskuddet har vært borte en stund».",
+        "es": "Con 0 minutos solo se comprueba la media actual de 2 minutos. Un aparato que funciona con el excedente lo consume él mismo; apágalo con «El excedente solar desapareció hace un rato».",
+        "da": "Med 0 minutter tjekkes kun det aktuelle 2-minutters gennemsnit. Et apparat, der kører på overskuddet, bruger det selv; sluk det derfor med »Soloverskuddet har været væk et stykke tid«.",
+        "ru": "При 0 минут проверяется только текущее среднее за 2 минуты. Прибор, работающий на излишке, сам его потребляет, поэтому выключайте его картой «Солнечного излишка нет некоторое время».",
+        "pl": "Przy 0 minut sprawdzana jest tylko bieżąca średnia z 2 minut. Urządzenie działające na nadwyżce samo ją zużywa, więc wyłączaj je kartą „Nadwyżki solarnej brak od jakiegoś czasu”.",
+        "ko": "0분이면 현재 2분 평균만 확인합니다. 잉여로 작동하는 기기는 잉여를 스스로 소비하므로 '태양광 잉여가 한동안 없음'으로 끄세요.",
+        "ar": "مع 0 دقيقة يُفحص متوسط الدقيقتين الحالي فقط. الجهاز الذي يعمل على الفائض يستهلكه بنفسه، لذا أطفئه ببطاقة «غاب الفائض الشمسي لفترة»."
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "power",
+          "title": {
+            "en": "Power",
+            "nl": "Vermogen",
+            "de": "Leistung",
+            "fr": "Puissance",
+            "it": "Potenza",
+            "sv": "Effekt",
+            "no": "Effekt",
+            "es": "Potencia",
+            "da": "Effekt",
+            "ru": "Мощность",
+            "pl": "Moc",
+            "ko": "출력",
+            "ar": "القدرة"
+          },
+          "min": 50,
+          "max": 30000,
+          "step": 50,
+          "placeholder": {
+            "en": "2200"
+          }
+        },
+        {
+          "type": "number",
+          "name": "minutes",
+          "title": {
+            "en": "Minutes",
+            "nl": "Minuten",
+            "de": "Minuten",
+            "fr": "Minutes",
+            "it": "Minuti",
+            "sv": "Minuter",
+            "no": "Minutter",
+            "es": "Minutos",
+            "da": "Minutter",
+            "ru": "Минуты",
+            "pl": "Minuty",
+            "ko": "분",
+            "ar": "الدقائق"
+          },
+          "min": 0,
+          "max": 240,
+          "step": 1,
+          "placeholder": {
+            "en": "30"
+          }
+        }
+      ]
     }
   ],
   "actions": [

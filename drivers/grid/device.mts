@@ -7,9 +7,10 @@ import {
   selfSufficiencyTodayPercent,
 } from '../../lib/derived.mts';
 import type { Snapshot } from '../../lib/gateway.mts';
-import { gridPowerForHomey } from '../../lib/registers.mts';
+import { batteryPowerForHomey, gridPowerForHomey } from '../../lib/registers.mts';
+import { SurplusTracker } from '../../lib/surplus.mts';
 
-const ADDED_AFTER_1_0 = ['measure_power.consumption', 'meter_power.consumption_today', 'measure_self_sufficiency'];
+const ADDED_AFTER_1_0 = ['measure_power.consumption', 'meter_power.consumption_today', 'measure_self_sufficiency', 'measure_power.surplus'];
 
 /**
  * Grid connection point measured by the gateway (class `sensor`, cumulative meter:
@@ -27,6 +28,7 @@ export default class GridDevice extends AtmoceDevice {
   private readonly exportState = new Hysteresis((w) => -w >= THRESHOLDS.grid.on, (w) => -w < THRESHOLDS.grid.off);
   private readonly importState = new Hysteresis((w) => w >= THRESHOLDS.grid.on, (w) => w < THRESHOLDS.grid.off);
   private previousGridW: number | null = null;
+  private readonly surplus = new SurplusTracker();
 
   /** V1.5 on/off-grid status (60096), persisted so a restart does not re-trigger Flows. */
   get offGrid(): boolean {
@@ -39,6 +41,20 @@ export default class GridDevice extends AtmoceDevice {
 
   get importing(): boolean {
     return this.importState.active;
+  }
+
+  /** Solar surplus (see lib/surplus.mts) has been at least `powerW` for `minutes`; Flow condition. */
+  surplusHeld(minutes: number, powerW: number): boolean {
+    return this.surplus.surplusHeld(minutes, powerW);
+  }
+
+  /** Run listeners of the surplus trigger cards: true only at the poll the condition is reached. */
+  surplusStarted(minutes: number, powerW: number): boolean {
+    return this.surplus.surplusStarted(minutes, powerW);
+  }
+
+  surplusEnded(minutes: number): boolean {
+    return this.surplus.surplusEnded(minutes);
   }
 
   protected override async onDeviceInit(): Promise<void> {
@@ -68,7 +84,17 @@ export default class GridDevice extends AtmoceDevice {
     }
 
     await this.triggerFlows(gridW);
+    await this.updateSurplus(snapshot, gridW);
     if (gridState?.offGrid != null) await this.updateOffGrid(gridState.offGrid, snapshot);
+  }
+
+  private async updateSurplus(snapshot: Snapshot, gridW: number): Promise<void> {
+    const sample = this.surplus.add(snapshot.startedAt, gridW, batteryPowerForHomey(snapshot.status.storagePowerW), this.gateway.pollIntervalMs);
+    await this.update('measure_power.surplus', sample.surplusW);
+    const { flow } = this.homey;
+    await flow.getDeviceTriggerCard('solar_surplus_held')
+      .trigger(this, { surplus: sample.surplusW }, {});
+    await flow.getDeviceTriggerCard('solar_surplus_ended').trigger(this, { power: sample.deficitW }, {});
   }
 
   private async updateOffGrid(offGrid: boolean, snapshot: Snapshot): Promise<void> {

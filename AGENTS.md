@@ -314,6 +314,20 @@ When adding a string, add it in all 13 languages in the same change.
   Home Assistant's power-flow-card-plus); no Atmoce artwork is used.
 - Preview images: 1024×1024, transparent, no text (Homey guideline), light and dark.
 
+### Solar surplus cards (`lib/surplus.mts`, grid meter)
+
+- Battery first, as evcc: surplus = grid export (what the battery can no longer absorb);
+  deficit = grid import + battery discharge. Without a battery both reduce to export / import.
+- 2-minute rolling average (a passing cloud does not reset a timer); 240 minutes of averaged
+  samples are kept so "held for N minutes" works for any Flow's power/duration without
+  per-Flow state; a gap longer than max(90 s, 3 × poll interval) breaks "held".
+- Triggers fire once at the poll where the condition is first reached (edge on the history).
+  After an app restart a duration starts from zero.
+- Stop on deficit ≥ 200 W, not on "surplus below threshold": the appliance consumes the
+  surplus itself, and a full Atmoce battery covers dips, so grid import alone would let an
+  appliance drain the battery. Design from evcc, PV Excess Control, SMA, Fronius, Loxone docs.
+- No battery-level token: it would read 0 % on systems without a battery.
+
 ### Timeline notifications and diagnostics
 
 - Device alarms (`AtmoceDevice.notify`): solar system fault (60066), battery faulty / all shut
