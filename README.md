@@ -1,5 +1,9 @@
 # Atmoce for Homey
 
+**[➜ Install Atmoce from the Homey App Store](https://homey.app/a/com.goossens.atmoce)**
+
+That's the easiest way to get the app, and it keeps itself up to date. Installing from this repository is only needed for development.
+
 Local Homey Pro integration for Atmoce solar and battery systems. It talks to the Atmoce
 gateway (M-Gateway MG100, built into the M-Combiner MC100 and MC100-T) over the official
 Modbus TCP interface, without any cloud connection.
