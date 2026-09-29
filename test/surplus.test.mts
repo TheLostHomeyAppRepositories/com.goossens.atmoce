@@ -148,3 +148,36 @@ describe('SurplusTracker battery-first dial', () => {
     assert.deepEqual(withDial.current, without.current);
   });
 });
+
+describe('SurplusTracker triggers', () => {
+  it('a Flow created or changed while the surplus already holds fires at the next poll', () => {
+    const tracker = new SurplusTracker();
+    const at = feed(tracker, 0, 40, -1300);
+    // Nobody asked for 1000 W / 15 min until now (threshold was changed from 2500).
+    const { fires } = countFires(tracker, at, 5, -1300, 0, () => tracker.surplusStarted(15, 1000));
+    assert.equal(fires, 1);
+  });
+
+  it('Flows with the same arguments all fire at the same poll, and only once', () => {
+    const tracker = new SurplusTracker();
+    let firstFlow = 0;
+    let secondFlow = 0;
+    countFires(tracker, 0, 40, -2500, 0, () => {
+      const a = tracker.surplusStarted(30, 2200);
+      const b = tracker.surplusStarted(30, 2200);
+      if (a) firstFlow += 1;
+      if (b) secondFlow += 1;
+      return a;
+    });
+    assert.equal(firstFlow, 1);
+    assert.equal(secondFlow, 1);
+  });
+
+  it('fires again after the surplus was gone and came back', () => {
+    const tracker = new SurplusTracker();
+    let { at } = countFires(tracker, 0, 40, -2500, 0, () => tracker.surplusStarted(30, 2200));
+    at = feed(tracker, at, 10, 500);
+    const again = countFires(tracker, at, 40, -2500, 0, () => tracker.surplusStarted(30, 2200));
+    assert.equal(again.fires, 1);
+  });
+});

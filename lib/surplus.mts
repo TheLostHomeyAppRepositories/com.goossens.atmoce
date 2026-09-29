@@ -51,6 +51,12 @@ export class SurplusTracker {
   private readonly history: SurplusSample[] = [];
   /** A longer gap between samples breaks "held for": the gateway was not answering. */
   private maxGapMs = 90_000;
+  /**
+   * Per trigger condition (kind, power, duration): the poll at which it fired during the current
+   * hold. A Flow created or changed while the condition already holds then fires at the next poll,
+   * and Flows with the same arguments all fire at that same poll. Cleared when the hold breaks.
+   */
+  private readonly firedAt = new Map<string, number>();
 
   /** Adds one poll; `pollIntervalMs` sets how long a gap between samples may be. */
   add({
@@ -76,18 +82,29 @@ export class SurplusTracker {
     return this.heldAt(this.history.length - 1, minutes, (s) => s.surplusW >= powerW);
   }
 
-  /** True once, at the poll where the surplus has been at least `powerW` for `minutes`. */
+  /** True once per hold: the surplus has been at least `powerW` for `minutes` (see firedAt). */
   surplusStarted(minutes: number, powerW: number): boolean {
-    const pick = (s: SurplusSample) => s.surplusW >= powerW;
-    const last = this.history.length - 1;
-    return this.heldAt(last, minutes, pick) && !this.heldAt(last - 1, minutes, pick);
+    return this.fireOnce(`surplus:${minutes}:${powerW}`, this.surplusHeld(minutes, powerW));
   }
 
-  /** True once, at the poll where the home has taken power from the grid or battery for `minutes`. */
+  /** True once per hold: the home has taken power from the grid or battery for `minutes`. */
   surplusEnded(minutes: number): boolean {
-    const pick = (s: SurplusSample) => s.deficitW >= DEFICIT_THRESHOLD_W;
-    const last = this.history.length - 1;
-    return this.heldAt(last, minutes, pick) && !this.heldAt(last - 1, minutes, pick);
+    const held = this.heldAt(this.history.length - 1, minutes, (s) => s.deficitW >= DEFICIT_THRESHOLD_W);
+    return this.fireOnce(`deficit:${minutes}`, held);
+  }
+
+  private fireOnce(key: string, held: boolean): boolean {
+    const now = this.current?.at;
+    if (!held || now === undefined) {
+      this.firedAt.delete(key);
+      return false;
+    }
+    const fired = this.firedAt.get(key);
+    if (fired === undefined) {
+      this.firedAt.set(key, now);
+      return true;
+    }
+    return fired === now;
   }
 
   /** `pick` held for every sample from `minutes` before sample `end` up to it, without gaps. */
