@@ -4,9 +4,12 @@
 
 That's the easiest way to get the app, and it keeps itself up to date. Installing from this repository is only needed for development.
 
-Local Homey Pro integration for Atmoce solar and battery systems. It talks to the Atmoce
-gateway (M-Gateway MG100, built into the M-Combiner MC100 and MC100-T) over the official
-Modbus TCP interface, without any cloud connection.
+Local Homey Pro integration for Atmoce solar and battery systems. Homey talks directly to the
+Atmoce gateway you already have (the M-Gateway MG100, or the one built into the M-Combiner
+MC100 and MC100-T) over your home network, Wi-Fi or Ethernet, without any cloud connection.
+
+**No extra hardware needed.** The gateway has Atmoce's official Modbus TCP interface built in:
+you only switch it on in the Atmozen app. No Modbus adapter, no cabling, no extra meter.
 
 | Device | In Homey Energy | What you get |
 |---|---|---|
@@ -39,7 +42,8 @@ timeline — handy to paste into an issue.
 
 ## Setup
 
-1. In the Atmozen app, turn on **Modbus-TCP** under *Settings → 3rd Party System*.
+1. In the Atmozen app, turn on **Modbus-TCP** under *Settings → 3rd Party System*. That's a
+   software switch on your gateway; nothing to buy or install.
 2. In Homey: *Devices → + → Atmoce*, pick Solar panels, Home battery or Grid meter. Homey
    searches the network and lists the Atmoce gateways it finds; tap yours (or enter the IP
    address). Add the other two the same way.
