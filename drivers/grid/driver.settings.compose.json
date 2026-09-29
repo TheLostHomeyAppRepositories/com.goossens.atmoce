@@ -105,6 +105,68 @@
     ]
   },
   {
+    "id": "surplus_group",
+    "type": "group",
+    "label": {
+      "en": "Solar surplus",
+      "nl": "Zonne-overschot",
+      "de": "Solarüberschuss",
+      "fr": "Surplus solaire",
+      "it": "Surplus solare",
+      "sv": "Solöverskott",
+      "no": "Soloverskudd",
+      "es": "Excedente solar",
+      "da": "Soloverskud",
+      "ru": "Солнечный излишек",
+      "pl": "Nadwyżka solarna",
+      "ko": "태양광 잉여",
+      "ar": "الفائض الشمسي"
+    },
+    "children": [
+      {
+        "id": "surplus_battery_first",
+        "type": "number",
+        "label": {
+          "en": "Battery first up to",
+          "nl": "Batterij eerst tot",
+          "de": "Batterie zuerst bis",
+          "fr": "Batterie d'abord jusqu'à",
+          "it": "Prima la batteria fino al",
+          "sv": "Batteriet först upp till",
+          "no": "Batteriet først opp til",
+          "es": "Primero la batería hasta",
+          "da": "Batteriet først op til",
+          "ru": "Сначала батарея до",
+          "pl": "Najpierw bateria do",
+          "ko": "배터리 우선 충전 기준",
+          "ar": "البطارية أولًا حتى"
+        },
+        "hint": {
+          "en": "Up to this battery level the battery fills first and only what flows to the grid is surplus. Above it, the battery's charging power counts as surplus too, so appliances can start earlier while the battery keeps charging with what is left. 100% (default) is pure battery first; for example 80% suits sunny summer days. Has no effect without a battery.",
+          "nl": "Tot dit batterijniveau laadt eerst de batterij en is alleen wat naar het net gaat overschot. Daarboven telt ook het laadvermogen van de batterij als overschot, zodat apparaten eerder kunnen starten terwijl de batterij met de rest verder laadt. 100% (standaard) is volledig batterij eerst; 80% past bijvoorbeeld bij zonnige zomerdagen. Zonder batterij heeft dit geen effect.",
+          "de": "Bis zu diesem Ladestand lädt zuerst die Batterie, und nur was ins Netz fließt, ist Überschuss. Darüber zählt auch die Ladeleistung der Batterie als Überschuss, sodass Geräte früher starten können, während die Batterie mit dem Rest weiterlädt. 100 % (Standard) heißt ganz Batterie zuerst; 80 % passt etwa zu sonnigen Sommertagen. Ohne Batterie ohne Wirkung.",
+          "fr": "Jusqu'à ce niveau de batterie, la batterie se charge d'abord et seul ce qui part sur le réseau est du surplus. Au-delà, la puissance de charge de la batterie compte aussi comme surplus, pour que les appareils démarrent plus tôt pendant que la batterie continue à se charger avec le reste. 100 % (par défaut) signifie batterie d'abord ; 80 % convient par exemple aux journées d'été ensoleillées. Sans effet sans batterie.",
+          "it": "Fino a questo livello si carica prima la batteria e solo ciò che va in rete è surplus. Oltre, anche la potenza di carica della batteria conta come surplus, così gli apparecchi possono partire prima mentre la batteria continua a caricarsi con il resto. 100% (predefinito) significa solo batteria prima; 80% va bene per esempio nelle giornate estive di sole. Senza batteria non ha effetto.",
+          "sv": "Upp till denna batterinivå laddas batteriet först och bara det som går ut på elnätet är överskott. Över den räknas även batteriets laddeffekt som överskott, så att apparater kan starta tidigare medan batteriet laddar vidare med resten. 100 % (standard) betyder helt batteriet först; 80 % passar till exempel soliga sommardagar. Utan batteri har detta ingen effekt.",
+          "no": "Opp til dette batterinivået lades batteriet først, og bare det som går ut på nettet er overskudd. Over det teller også batteriets ladeeffekt som overskudd, så apparater kan starte tidligere mens batteriet lader videre med resten. 100 % (standard) betyr helt batteriet først; 80 % passer for eksempel for solrike sommerdager. Uten batteri har dette ingen effekt.",
+          "es": "Hasta este nivel de batería se carga primero la batería y solo lo que va a la red es excedente. Por encima, la potencia de carga de la batería también cuenta como excedente, para que los aparatos arranquen antes mientras la batería sigue cargando con el resto. 100 % (predeterminado) es solo batería primero; 80 % va bien, por ejemplo, en días soleados de verano. Sin batería no tiene efecto.",
+          "da": "Op til dette batteriniveau oplades batteriet først, og kun det, der går ud på nettet, er overskud. Over det tæller batteriets ladeeffekt også som overskud, så apparater kan starte tidligere, mens batteriet lader videre med resten. 100 % (standard) betyder helt batteriet først; 80 % passer for eksempel til solrige sommerdage. Uden batteri har det ingen effekt.",
+          "ru": "До этого уровня заряда сначала заряжается батарея, и излишком считается только то, что уходит в сеть. Выше него излишком считается и мощность заряда батареи, поэтому приборы могут включиться раньше, а батарея продолжает заряжаться остатком. 100 % (по умолчанию) — сначала только батарея; 80 %, например, подходит для солнечных летних дней. Без батареи не действует.",
+          "pl": "Do tego poziomu najpierw ładuje się bateria, a nadwyżką jest tylko to, co trafia do sieci. Powyżej także moc ładowania baterii liczy się jako nadwyżka, więc urządzenia mogą ruszyć wcześniej, a bateria ładuje się dalej resztą. 100% (domyślnie) oznacza wyłącznie baterię najpierw; 80% pasuje np. do słonecznych letnich dni. Bez baterii nie działa.",
+          "ko": "이 배터리 잔량까지는 배터리를 먼저 충전하고, 계통으로 나가는 전력만 잉여로 봅니다. 그 이상에서는 배터리 충전 전력도 잉여로 계산되어, 배터리가 나머지로 계속 충전되는 동안 기기를 더 일찍 켤 수 있습니다. 100%(기본값)는 배터리 우선이며, 예를 들어 80%는 맑은 여름날에 적합합니다. 배터리가 없으면 영향이 없습니다.",
+          "ar": "حتى مستوى البطارية هذا تُشحن البطارية أولًا، ولا يُعد فائضًا إلا ما يذهب إلى الشبكة. فوقه تُحتسب قدرة شحن البطارية فائضًا أيضًا، فتبدأ الأجهزة مبكرًا بينما تواصل البطارية الشحن بما تبقى. 100% (الافتراضي) يعني البطارية أولًا فقط؛ و80% مثلًا تناسب أيام الصيف المشمسة. لا تأثير له دون بطارية."
+        },
+        "value": 100,
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "units": {
+          "en": "%"
+        }
+      }
+    ]
+  },
+  {
     "$extends": "notifications",
     "$id": "notifications_group"
   },

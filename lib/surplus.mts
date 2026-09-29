@@ -6,6 +6,9 @@
  *   the Atmoce covers dips from the battery, so grid import alone would let an appliance
  *   started on surplus drain the battery.
  * Without a battery the battery power is 0, so surplus is simply export and deficit is import.
+ * Battery first is a dial (evcc `prioritySoc`, Loxone `MinSoc`): from `chargeCountsFromPercent`
+ * battery level on, the battery's charging power counts as surplus too, so appliances can start
+ * while the battery keeps charging with what is left. 100 % (default) is pure battery first.
  * Both are averaged over AVERAGE_MS so a passing cloud does not reset a timer. The averaged
  * samples of the last MAX_DURATION_MIN are kept, so "held for N minutes" is answered for any
  * power and duration a Flow asks, without per-Flow state. Pure, unit-tested.
@@ -19,9 +22,24 @@ const MINUTE_MS = 60_000;
 // A few minutes more than the longest duration: "held for" needs a sample from before the period.
 const HISTORY_MS = (MAX_DURATION_MIN + 5) * MINUTE_MS;
 
+export interface SurplusInput {
+  at: number;
+  /** Homey sign: + import, − export. */
+  gridW: number;
+  /** Homey sign: + charging, − discharging; 0 without a battery. */
+  batteryW: number;
+  socPercent: number;
+}
+
+export interface SurplusOptions {
+  pollIntervalMs: number;
+  /** From this battery level on, charging power counts as surplus (100: only export). */
+  chargeCountsFromPercent: number;
+}
+
 export interface SurplusSample {
   at: number;
-  /** Averaged power to the grid (W, ≥ 0). */
+  /** Averaged power to the grid, plus battery charging above the dial (W, ≥ 0). */
   surplusW: number;
   /** Averaged power from the grid plus from the battery (W, ≥ 0). */
   deficitW: number;
@@ -34,13 +52,13 @@ export class SurplusTracker {
   /** A longer gap between samples breaks "held for": the gateway was not answering. */
   private maxGapMs = 90_000;
 
-  /**
-   * Adds one poll. `gridW` and `batteryW` use Homey's signs (grid + import, battery + charging).
-   * `pollIntervalMs` sets how long a gap between samples may be.
-   */
-  add(at: number, gridW: number, batteryW: number, pollIntervalMs: number): SurplusSample {
+  /** Adds one poll; `pollIntervalMs` sets how long a gap between samples may be. */
+  add({
+    at, gridW, batteryW, socPercent,
+  }: SurplusInput, { pollIntervalMs, chargeCountsFromPercent }: SurplusOptions): SurplusSample {
     this.maxGapMs = Math.max(90_000, 3 * pollIntervalMs);
-    this.raw.push({ at, surplusW: Math.max(0, -gridW), deficitW: Math.max(0, gridW) + Math.max(0, -batteryW) });
+    const chargeW = socPercent >= chargeCountsFromPercent ? Math.max(0, batteryW) : 0;
+    this.raw.push({ at, surplusW: Math.max(0, -gridW) + chargeW, deficitW: Math.max(0, gridW) + Math.max(0, -batteryW) });
     while (this.raw.length > 1 && (this.raw[0] as SurplusSample).at <= at - AVERAGE_MS) this.raw.shift();
     const average = (key: 'surplusW' | 'deficitW') => Math.round(this.raw.reduce((sum, s) => sum + s[key], 0) / this.raw.length);
     const sample = { at, surplusW: average('surplusW'), deficitW: average('deficitW') };

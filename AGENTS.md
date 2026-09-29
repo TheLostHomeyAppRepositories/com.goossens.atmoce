@@ -327,6 +327,11 @@ When adding a string, add it in all 13 languages in the same change.
   surplus itself, and a full Atmoce battery covers dips, so grid import alone would let an
   appliance drain the battery. Design from evcc, PV Excess Control, SMA, Fronius, Loxone docs.
 - No battery-level token: it would read 0 % on systems without a battery.
+- Grid meter setting `surplus_battery_first` (default 100, group id `surplus_group`): from that
+  battery level on, charging power counts as surplus (evcc `prioritySoc`). One dial instead of a
+  second "with/without battery" card set: the two definitions only differ while the battery
+  charges, and are identical without one. Load-first gains ~1–2 c/kWh (storage losses) when the
+  battery fills anyway; whether it loses depends on what the energy would cost otherwise.
 
 ### Timeline notifications and diagnostics
 

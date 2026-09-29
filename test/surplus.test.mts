@@ -6,12 +6,16 @@ import { SurplusTracker } from '../lib/surplus.mts';
 const POLL_MS = 10_000;
 const MIN = 60_000;
 
+const BATTERY_FIRST = { pollIntervalMs: POLL_MS, chargeCountsFromPercent: 100 };
+
 /** Feeds `minutes` of polls with a fixed grid/battery power (Homey signs); returns the new time. */
-function feed(tracker: SurplusTracker, from: number, minutes: number, gridW: number, batteryW = 0): number {
+function feed(tracker: SurplusTracker, from: number, minutes: number, gridW: number, batteryW = 0, socPercent = 50, options = BATTERY_FIRST): number {
   let at = from;
   for (let i = 0; i < (minutes * MIN) / POLL_MS; i++) {
     at += POLL_MS;
-    tracker.add(at, gridW, batteryW, POLL_MS);
+    tracker.add({
+      at, gridW, batteryW, socPercent,
+    }, options);
   }
   return at;
 }
@@ -22,7 +26,9 @@ function countFires(tracker: SurplusTracker, from: number, minutes: number, grid
   let fires = 0;
   for (let i = 0; i < (minutes * MIN) / POLL_MS; i++) {
     at += POLL_MS;
-    tracker.add(at, gridW, batteryW, POLL_MS);
+    tracker.add({
+      at, gridW, batteryW, socPercent: 50,
+    }, BATTERY_FIRST);
     if (check()) fires += 1;
   }
   return { at, fires };
@@ -109,5 +115,36 @@ describe('SurplusTracker without a battery', () => {
     const low = countFires(tracker, at, 2, -100, 0, () => tracker.surplusEnded(5));
     const importing = countFires(tracker, low.at, 8, 400, 0, () => tracker.surplusEnded(5));
     assert.equal(low.fires + importing.fires, 1);
+  });
+});
+
+describe('SurplusTracker battery-first dial', () => {
+  const FROM_80 = { pollIntervalMs: POLL_MS, chargeCountsFromPercent: 80 };
+
+  it('below the dial the battery charges first: charging is not surplus', () => {
+    const tracker = new SurplusTracker();
+    feed(tracker, 0, 35, 0, 3000, 70, FROM_80);
+    assert.equal(tracker.surplusHeld(30, 2200), false);
+  });
+
+  it('from the dial on, charging power counts as surplus too', () => {
+    const tracker = new SurplusTracker();
+    feed(tracker, 0, 35, -500, 2500, 85, FROM_80);
+    assert.equal(tracker.current?.surplusW, 3000);
+    assert.equal(tracker.surplusHeld(30, 2200), true);
+  });
+
+  it('at 100 % (default) only export counts, whatever the battery level', () => {
+    const tracker = new SurplusTracker();
+    feed(tracker, 0, 35, 0, 3000, 99);
+    assert.equal(tracker.surplusHeld(30, 200), false);
+  });
+
+  it('has no effect without a battery', () => {
+    const withDial = new SurplusTracker();
+    const without = new SurplusTracker();
+    feed(withDial, 0, 35, -2500, 0, 0, { pollIntervalMs: POLL_MS, chargeCountsFromPercent: 0 });
+    feed(without, 0, 35, -2500, 0, 0);
+    assert.deepEqual(withDial.current, without.current);
   });
 });

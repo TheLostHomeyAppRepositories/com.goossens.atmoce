@@ -89,7 +89,16 @@ export default class GridDevice extends AtmoceDevice {
   }
 
   private async updateSurplus(snapshot: Snapshot, gridW: number): Promise<void> {
-    const sample = this.surplus.add(snapshot.startedAt, gridW, batteryPowerForHomey(snapshot.status.storagePowerW), this.gateway.pollIntervalMs);
+    const sample = this.surplus.add({
+      at: snapshot.startedAt,
+      gridW,
+      batteryW: batteryPowerForHomey(snapshot.status.storagePowerW),
+      socPercent: snapshot.phases.socPercent,
+    }, {
+      pollIntervalMs: this.gateway.pollIntervalMs,
+      // Devices paired before the setting existed: battery first.
+      chargeCountsFromPercent: (this.getSetting('surplus_battery_first') as number | null) ?? 100,
+    });
     await this.update('measure_power.surplus', sample.surplusW);
     const { flow } = this.homey;
     await flow.getDeviceTriggerCard('solar_surplus_held')
