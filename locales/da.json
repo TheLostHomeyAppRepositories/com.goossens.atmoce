@@ -57,6 +57,8 @@
     "exporting": "Til nettet",
     "produced": "Produceret i dag",
     "consumed": "Forbrugt i dag",
+    "full_at": "Fuld kl. __time__",
+    "empty_at": "Tom kl. __time__",
     "self_sufficient": "Selvforsynende"
   },
   "notify": {

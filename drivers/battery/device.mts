@@ -78,7 +78,8 @@ export default class BatteryDevice extends AtmoceDevice {
     };
   }
 
-  private get learnedLimits(): LearnedLimits {
+  /** Atmozen charge/discharge cut-offs learned so far (also used by the dashboard widget). */
+  get learnedLimits(): LearnedLimits {
     const stored = this.getStoreValue('learnedLimits') as Partial<LearnedLimits> | null;
     return { chargeLimitPercent: stored?.chargeLimitPercent ?? null, dischargeLimitPercent: stored?.dischargeLimitPercent ?? null };
   }

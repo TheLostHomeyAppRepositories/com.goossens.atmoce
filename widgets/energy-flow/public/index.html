@@ -95,6 +95,16 @@
       letter-spacing: -0.2px;
     }
 
+    /* Time the battery reaches its charge/discharge limit, under the battery label. */
+    .eta {
+      font-size: 8.5px;
+      font-weight: var(--homey-font-weight-medium, 500);
+      fill: var(--battery);
+      text-anchor: middle;
+      text-transform: uppercase;
+      letter-spacing: 0.9px;
+    }
+
     .label {
       font-size: 8.5px;
       font-weight: var(--homey-font-weight-medium, 500);
@@ -213,7 +223,7 @@
   <div id="waiting" class="waiting homey-text-regular" data-i18n="widget.waiting"></div>
 
   <div id="content" hidden>
-    <svg class="flow" viewBox="0 0 320 262" role="img" aria-labelledby="flow-title">
+    <svg class="flow" viewBox="0 0 320 282" role="img" aria-labelledby="flow-title">
       <title id="flow-title" data-i18n="widget.title"></title>
       <defs>
         <filter id="glow" x="-200%" y="-200%" width="500%" height="500%">
@@ -289,6 +299,7 @@
         <rect class="cell-fill" id="cell-fill" x="-4.5" y="9" width="9" height="0" clip-path="url(#cell-clip)" />
         <text class="value" id="battery-value" y="49"></text>
         <text class="label" id="battery-label" y="61"></text>
+        <text class="eta" id="battery-eta" y="73"></text>
       </g>
     </svg>
 
@@ -361,6 +372,18 @@
         var abs = Math.abs(w);
         if (abs < 1000) return Math.round(abs) + ' W';
         return (abs / 1000).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' kW';
+      }
+
+      /**
+       * "Full at 14:20" / "Empty at 23:40": a clock time reads faster than a duration. Rounded to
+       * 5 minutes so it does not jitter with every poll; the weekday is added beyond 24 hours.
+       */
+      function eta(key, minutes) {
+        if (minutes === null || minutes === undefined || minutes <= 0) return '';
+        var step = 5 * 60000;
+        var at = new Date(Math.round((Date.now() + minutes * 60000) / step) * step);
+        var options = minutes >= 24 * 60 ? { weekday: 'short', hour: '2-digit', minute: '2-digit' } : { hour: '2-digit', minute: '2-digit' };
+        return Homey.__(key).replace('__time__', at.toLocaleTimeString(undefined, options));
       }
 
       function number(value, decimals) {
@@ -453,6 +476,9 @@
           document.getElementById('battery-value').textContent = watts(flow.batteryW);
           var state = flow.batteryW >= MIN_FLOW_W ? 'widget.charging' : flow.batteryW <= -MIN_FLOW_W ? 'widget.discharging' : 'widget.battery';
           document.getElementById('battery-label').textContent = Homey.__(state) + ' · ' + Math.round(soc) + '%';
+          document.getElementById('battery-eta').textContent = flow.batteryW >= MIN_FLOW_W
+            ? eta('widget.full_at', flow.minutesToFull)
+            : flow.batteryW <= -MIN_FLOW_W ? eta('widget.empty_at', flow.minutesToEmpty) : '';
           var circumference = 2 * Math.PI * 30;
           document.getElementById('soc-ring').setAttribute('stroke-dasharray', (circumference * soc / 100) + ' ' + circumference);
           var cell = document.getElementById('cell-fill');

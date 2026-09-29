@@ -57,6 +57,8 @@
     "exporting": "Ins Netz",
     "produced": "Heute erzeugt",
     "consumed": "Heute verbraucht",
+    "full_at": "Voll um __time__",
+    "empty_at": "Leer um __time__",
     "self_sufficient": "Autark"
   },
   "notify": {

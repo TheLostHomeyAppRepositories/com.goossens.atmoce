@@ -57,6 +57,8 @@
     "exporting": "To grid",
     "produced": "Produced today",
     "consumed": "Consumed today",
+    "full_at": "Full at __time__",
+    "empty_at": "Empty at __time__",
     "self_sufficient": "Self-sufficient"
   },
   "notify": {

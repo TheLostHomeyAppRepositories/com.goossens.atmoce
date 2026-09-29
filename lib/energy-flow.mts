@@ -6,6 +6,8 @@
 import {
   consumptionTodayKwh,
   homeConsumptionW,
+  minutesToEmpty,
+  minutesToFull,
   selfSufficiencyTodayPercent,
 } from './derived.mts';
 import type { Snapshot } from './gateway.mts';
@@ -20,6 +22,9 @@ export interface EnergyFlow {
   gridW: number;
   socPercent: number;
   hasBattery: boolean;
+  /** Estimates at the current battery power, up to the Atmozen limits when learned; null when not moving that way. */
+  minutesToFull: number | null;
+  minutesToEmpty: number | null;
   /** Flows between nodes in W (all ≥ 0). */
   flows: {
     solarToHome: number;
@@ -38,12 +43,21 @@ export interface EnergyFlow {
   receivedAt: number;
 }
 
+/** The batteries behind a gateway, for the time estimates. */
+export interface BatteryInfo {
+  capacityKwh: number;
+  /** Learned Atmozen cut-offs (see LimitLearner); null until detected. */
+  chargeLimitPercent: number | null;
+  dischargeLimitPercent: number | null;
+}
+
 /**
  * Splits the node values into flows: solar serves the home first, then the battery, then
  * the grid; the rest of the home comes from the battery, then the grid. Measurement noise
  * between the registers is absorbed by clamping, so flows never go negative.
  */
-export function energyFlow(serial: string, snapshot: Snapshot, hasBattery: boolean): EnergyFlow {
+export function energyFlow(serial: string, snapshot: Snapshot, battery: BatteryInfo | null): EnergyFlow {
+  const hasBattery = battery !== null;
   const { status, phases, energy } = snapshot;
   const solarW = Math.max(0, status.pvPowerW);
   const batteryW = batteryPowerForHomey(status.storagePowerW);
@@ -72,6 +86,12 @@ export function energyFlow(serial: string, snapshot: Snapshot, hasBattery: boole
     gridW: Math.round(gridW),
     socPercent: phases.socPercent,
     hasBattery,
+    minutesToFull: battery
+      ? minutesToFull(phases.socPercent, battery.capacityKwh, batteryW, battery.chargeLimitPercent ?? 100)
+      : null,
+    minutesToEmpty: battery
+      ? minutesToEmpty(phases.socPercent, battery.capacityKwh, batteryW, battery.dischargeLimitPercent ?? 0)
+      : null,
     flows: {
       solarToHome: round(solarToHome),
       solarToBattery: round(solarToBattery),

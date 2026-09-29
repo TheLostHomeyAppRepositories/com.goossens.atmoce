@@ -57,6 +57,8 @@
     "exporting": "Naar het net",
     "produced": "Opgewekt vandaag",
     "consumed": "Verbruikt vandaag",
+    "full_at": "Vol om __time__",
+    "empty_at": "Leeg om __time__",
     "self_sufficient": "Zelfvoorzienend"
   },
   "notify": {

@@ -57,6 +57,8 @@
     "exporting": "إلى الشبكة",
     "produced": "أُنتج اليوم",
     "consumed": "استُهلك اليوم",
+    "full_at": "ممتلئة عند __time__",
+    "empty_at": "فارغة عند __time__",
     "self_sufficient": "الاكتفاء الذاتي"
   },
   "notify": {

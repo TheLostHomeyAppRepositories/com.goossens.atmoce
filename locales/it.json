@@ -57,6 +57,8 @@
     "exporting": "Verso la rete",
     "produced": "Prodotto oggi",
     "consumed": "Consumato oggi",
+    "full_at": "Piena alle __time__",
+    "empty_at": "Vuota alle __time__",
     "self_sufficient": "Autosufficiente"
   },
   "notify": {

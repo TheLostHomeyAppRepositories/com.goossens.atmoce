@@ -1,8 +1,9 @@
 import Homey from 'homey';
 
 import { AtmoceDevice } from './lib/atmoce-device.mts';
-import { type EnergyFlow, energyFlow } from './lib/energy-flow.mts';
+import { type BatteryInfo, type EnergyFlow, energyFlow } from './lib/energy-flow.mts';
 import { formatDuration, formatTime } from './lib/format.mts';
+import type BatteryDevice from './drivers/battery/device.mts';
 import type { AtmoceGateway, Timers } from './lib/gateway.mts';
 import { type GatewayAlert, GatewayAlerts } from './lib/gateway-alerts.mts';
 import { GatewayRegistry } from './lib/gateway-registry.mts';
@@ -120,7 +121,19 @@ export default class AtmoceApp extends Homey.App {
     if (!gateway.snapshot || !gateway.isAvailable) return null;
     const { identity } = gateway;
     const hasBattery = identity !== null && (identity.storageCapacityKwh > 0 || identity.ratedStoragePowerW > 0);
-    return energyFlow(gateway.serial, gateway.snapshot, hasBattery);
+    return energyFlow(gateway.serial, gateway.snapshot, hasBattery ? this.batteryInfo(gateway) : null);
+  }
+
+  /** Capacity from the gateway; charge/discharge limits as learned by the battery device, if paired. */
+  private batteryInfo(gateway: AtmoceGateway): BatteryInfo {
+    const device = this.homey.drivers.getDriver('battery').getDevices()
+      .find((candidate) => (candidate.getData() as { id: string }).id === gateway.serial) as BatteryDevice | undefined;
+    const limits = device?.learnedLimits;
+    return {
+      capacityKwh: gateway.identity?.storageCapacityKwh ?? 0,
+      chargeLimitPercent: limits?.chargeLimitPercent ?? null,
+      dischargeLimitPercent: limits?.dischargeLimitPercent ?? null,
+    };
   }
 
   private publishEnergyFlow(gateway: AtmoceGateway): void {

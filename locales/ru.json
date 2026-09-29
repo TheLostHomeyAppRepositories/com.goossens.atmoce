@@ -57,6 +57,8 @@
     "exporting": "В сеть",
     "produced": "Выработано сегодня",
     "consumed": "Потреблено сегодня",
+    "full_at": "Полная в __time__",
+    "empty_at": "Пустая в __time__",
     "self_sufficient": "Автономность"
   },
   "notify": {

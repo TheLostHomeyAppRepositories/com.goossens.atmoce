@@ -57,6 +57,8 @@
     "exporting": "계통으로",
     "produced": "오늘 발전량",
     "consumed": "오늘 소비량",
+    "full_at": "__time__ 완충 예정",
+    "empty_at": "__time__ 방전 예정",
     "self_sufficient": "자급률"
   },
   "notify": {
