@@ -3235,7 +3235,8 @@
         "target_power": {
           "min": -10000,
           "max": 10000,
-          "step": 10
+          "step": 10,
+          "uiComponent": null
         },
         "button.test_connection": {
           "maintenanceAction": true,
@@ -4784,7 +4785,8 @@
           },
           "min": 0,
           "max": 10000,
-          "step": 10
+          "step": 10,
+          "uiComponent": null
         },
         "button.test_connection": {
           "maintenanceAction": true,

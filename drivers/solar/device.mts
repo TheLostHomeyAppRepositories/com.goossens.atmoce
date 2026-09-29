@@ -96,14 +96,12 @@ export default class SolarDevice extends AtmoceDevice {
     const ratedW = this.ratedPvPowerW;
     if (!this.gateway.supportsPowerLimits || ratedW <= 0) return;
     await this.addMissingCapabilities(CURTAILMENT);
-    if (this.getStoreValue('curtailmentOptions') !== `${ratedW}:v2`) {
-      // setCapabilityOptions replaces the options, so pass the manifest's (translated) title along.
-      const manifestOptions = (this.driver.manifest as { capabilitiesOptions?: Record<string, object> })
-        .capabilitiesOptions?.target_power ?? {};
+    // v3: the manifest options hide the slider (uiComponent: null); earlier devices showed it.
+    if (this.getStoreValue('curtailmentOptions') !== `${ratedW}:v3`) {
       await this.setCapabilityOptions('target_power', {
-        ...manifestOptions, min: 0, max: ratedW, step: TARGET_POWER_STEP_W,
+        ...this.manifestOptions('target_power'), min: 0, max: ratedW, step: TARGET_POWER_STEP_W,
       });
-      await this.setStoreValue('curtailmentOptions', `${ratedW}:v2`);
+      await this.setStoreValue('curtailmentOptions', `${ratedW}:v3`);
     }
     if (this.getCapabilityValue('target_power_mode') === null) await this.setCapabilityValue('target_power_mode', 'device');
     if (this.getCapabilityValue('target_power') === null) await this.setCapabilityValue('target_power', ratedW);

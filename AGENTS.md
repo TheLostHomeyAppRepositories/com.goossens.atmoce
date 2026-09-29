@@ -352,6 +352,15 @@ When adding a string, add it in all 13 languages in the same change.
   VERIFIED 2026-09-28 on Homey Pro 13.5.0: added to existing devices by `addCapability` with
   the manifest title; the report arrived on the timeline in Dutch.
 
+### No target power sliders on the device screen
+
+`capabilitiesOptions.target_power.uiComponent: null` on battery and solar (as the Sessy app; of
+six Homey battery apps checked only Sessy hides it). The big slider was far too easy to hit by
+accident. The capability keeps working for Homey Energy and its Flow cards; the mode picker stays.
+`setCapabilityOptions` replaces options, so runtime range updates spread `manifestOptions()`;
+existing devices are migrated once (battery store `targetPowerOptions`, solar `curtailmentOptions`
+`:v3`). VERIFIED 2026-09-29 on Homey Pro 13.5: the slider component is gone from both devices.
+
 ### Device indicator
 
 Homey groups `alarm_` capabilities into the default indicator ("By default all capabilities

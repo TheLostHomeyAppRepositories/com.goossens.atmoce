@@ -63,6 +63,11 @@ export default class BatteryDevice extends AtmoceDevice {
     // A fresh device has no mode yet; the gateway starts in its own (Atmozen) mode.
     if (this.getCapabilityValue('target_power_mode') === null) await this.setCapabilityValue('target_power_mode', 'device');
     this.reapplyTargetPower = this.getCapabilityValue('target_power_mode') === 'homey';
+    // Devices paired before 1.0.2 still show the target power slider; hide it (manifest options).
+    if (this.getStoreValue('targetPowerOptions') !== 'hidden-slider') {
+      await this.applyTargetPowerOptions(this.powerRangeW);
+      await this.setStoreValue('targetPowerOptions', 'hidden-slider');
+    }
     this.registerMultipleCapabilityListener(
       ['target_power', 'target_power_mode'],
       async (values: TargetPowerChange) => this.onTargetPower(values),
@@ -298,6 +303,18 @@ export default class BatteryDevice extends AtmoceDevice {
     await flow.getDeviceTriggerCard(card).trigger(this, tokens, state);
   }
 
+  /**
+   * target_power options: the manifest's (slider hidden: `uiComponent: null`, too easy to hit by
+   * accident; Homey Energy and the Flow cards keep using the capability) plus the power range.
+   */
+  private async applyTargetPowerOptions(rangeW: number): Promise<void> {
+    await this.setCapabilityOptions('target_power', {
+      ...this.manifestOptions('target_power'),
+      ...(rangeW > 0 ? { min: -rangeW, max: rangeW } : {}),
+      step: TARGET_POWER_STEP_W,
+    });
+  }
+
   /** Widest power (W) the batteries have been reported to handle; 0 when unknown. */
   private get powerRangeW(): number {
     return (this.getStoreValue('powerRangeW') as number | null) ?? 0;
@@ -314,7 +331,7 @@ export default class BatteryDevice extends AtmoceDevice {
     const widest = Math.max(...candidatesW);
     if (widest <= this.powerRangeW) return;
     const rangeW = Math.ceil(widest / 100) * 100;
-    await this.setCapabilityOptions('target_power', { min: -rangeW, max: rangeW, step: TARGET_POWER_STEP_W });
+    await this.applyTargetPowerOptions(rangeW);
     await this.setStoreValue('powerRangeW', rangeW);
     this.log(`target_power range widened to ±${rangeW} W`);
   }

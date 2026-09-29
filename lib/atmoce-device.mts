@@ -207,6 +207,15 @@ export abstract class AtmoceDevice extends Homey.Device {
     });
   }
 
+  /**
+   * Capability options from the driver manifest. setCapabilityOptions replaces a capability's
+   * options, so runtime changes pass these along (translated title, hidden UI component).
+   */
+  protected manifestOptions(capability: string): Record<string, unknown> {
+    return (this.driver.manifest as { capabilitiesOptions?: Record<string, Record<string, unknown>> })
+      .capabilitiesOptions?.[capability] ?? {};
+  }
+
   /** Adds capabilities introduced after the device was paired (appended, values follow on the next poll). */
   protected async addMissingCapabilities(capabilities: readonly string[]): Promise<void> {
     for (const capability of capabilities) {
