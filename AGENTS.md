@@ -312,7 +312,7 @@ When adding a string, add it in all 13 languages in the same change.
   needed with more than one gateway; empty = the first one. `show_today` toggles the row.
 - The design is our own implementation of the common "power flow" layout (as popularised by
   Home Assistant's power-flow-card-plus); no Atmoce artwork is used.
-- Preview images: 1024×1024, transparent, no text (Homey guideline), light and dark.
+- Preview images: 1024×1024, transparent, no text or screenshots (Homey guideline), light and dark: the widget card with shadow, its layout, and grey bars where the real widget shows values (scratchpad gen_preview3.py). Real screenshots live in docs/images for the GitHub README only.
 
 ### Solar surplus cards (`lib/surplus.mts`, grid meter)
 

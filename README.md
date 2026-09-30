@@ -36,6 +36,11 @@ Flow cards:
 **Dashboard widget "Energy flow"**: live solar → home → battery → grid flows with the battery
 level and today's production, consumption and self-sufficiency.
 
+<p align="center">
+  <img src="docs/images/widget-light.png" width="360" alt="Energy flow widget, light theme: solar charging the battery and powering the home">
+  <img src="docs/images/widget-dark.png" width="360" alt="Energy flow widget, dark theme">
+</p>
+
 **Timeline notifications** (can be turned off per device): system fault, battery alarm or
 shutdown, grid outage, each with the register value and the system state at that moment, and
 when it clears (with how long it lasted); a gateway that has not answered for 10 minutes and
