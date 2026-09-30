@@ -1,6 +1,6 @@
 {
   "id": "com.goossens.atmoce",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "compatibility": ">=12.13.0",
   "sdk": 3,
   "runtime": "nodejs",
@@ -9,19 +9,19 @@
     "en": "Atmoce"
   },
   "description": {
-    "en": "Solar, battery and grid live in Homey Energy, with smart local battery control.",
-    "nl": "Zon, batterij en net live in Homey Energie, met slimme lokale batterijsturing.",
-    "de": "Solar, Batterie und Netz live in Homey Energy, mit smarter lokaler Batteriesteuerung.",
-    "fr": "Solaire, batterie et réseau en direct dans Homey Energy, avec pilotage local de la batterie.",
-    "it": "Solare, batteria e rete in tempo reale in Homey Energy, con controllo locale della batteria.",
-    "sv": "Sol, batteri och elnät i realtid i Homey Energy, med smart lokal batteristyrning.",
-    "no": "Sol, batteri og strømnett i sanntid i Homey Energy, med smart lokal batteristyring.",
-    "es": "Solar, batería y red en tiempo real en Homey Energy, con control local de la batería.",
-    "da": "Sol, batteri og elnet live i Homey Energy, med smart lokal batteristyring.",
-    "ru": "Солнце, батарея и сеть в реальном времени в Homey Energy и локальное управление батареей.",
-    "pl": "Słońce, bateria i sieć na żywo w Homey Energy, z lokalnym sterowaniem baterią.",
-    "ko": "태양광, 배터리, 계통을 Homey Energy에서 실시간으로 보고 배터리를 로컬로 제어하세요.",
-    "ar": "الطاقة الشمسية والبطارية والشبكة مباشرةً في Homey Energy، مع تحكم محلي ذكي بالبطارية."
+    "en": "Solar, battery and grid with smart local battery control.",
+    "nl": "Zon, batterij en net met slimme lokale batterijsturing.",
+    "de": "Solar, Batterie und Netz mit smarter lokaler Batteriesteuerung.",
+    "fr": "Solaire, batterie et réseau avec pilotage local intelligent de la batterie.",
+    "it": "Solare, batteria e rete con controllo locale intelligente della batteria.",
+    "sv": "Sol, batteri och elnät med smart lokal batteristyrning.",
+    "no": "Sol, batteri og strømnett med smart lokal batteristyring.",
+    "es": "Solar, batería y red con control local inteligente de la batería.",
+    "da": "Sol, batteri og elnet med smart lokal batteristyring.",
+    "ru": "Солнце, батарея и сеть с умным локальным управлением батареей.",
+    "pl": "Słońce, bateria i sieć z inteligentnym lokalnym sterowaniem baterią.",
+    "ko": "태양광, 배터리, 계통, 그리고 스마트한 로컬 배터리 제어.",
+    "ar": "الطاقة الشمسية والبطارية والشبكة مع تحكم محلي ذكي بالبطارية."
   },
   "category": ["energy"],
   "tags": {

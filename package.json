@@ -1,6 +1,6 @@
 {
   "name": "com.goossens.atmoce",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "description": "Homey app for Atmoce solar and battery systems (local Modbus TCP).",
   "license": "MIT",
