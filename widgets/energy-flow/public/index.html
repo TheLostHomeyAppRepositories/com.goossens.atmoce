@@ -375,15 +375,11 @@
       }
 
       /**
-       * "Full at 14:20" / "Empty at 23:40": a clock time reads faster than a duration. Rounded to
-       * 5 minutes so it does not jitter with every poll; the weekday is added beyond 24 hours.
+       * "Full at 17:20" / "Empty at 23:40". The app formats the clock time in Homey's language and
+       * time zone (rounded to 5 minutes), so it never follows a phone set to another language.
        */
-      function eta(key, minutes) {
-        if (minutes === null || minutes === undefined || minutes <= 0) return '';
-        var step = 5 * 60000;
-        var at = new Date(Math.round((Date.now() + minutes * 60000) / step) * step);
-        var options = minutes >= 24 * 60 ? { weekday: 'short', hour: '2-digit', minute: '2-digit' } : { hour: '2-digit', minute: '2-digit' };
-        return Homey.__(key).replace('__time__', at.toLocaleTimeString(undefined, options));
+      function eta(key, time) {
+        return time ? Homey.__(key).replace('__time__', time) : '';
       }
 
       function number(value, decimals) {
@@ -477,8 +473,8 @@
           var state = flow.batteryW >= MIN_FLOW_W ? 'widget.charging' : flow.batteryW <= -MIN_FLOW_W ? 'widget.discharging' : 'widget.battery';
           document.getElementById('battery-label').textContent = Homey.__(state) + ' · ' + Math.round(soc) + '%';
           document.getElementById('battery-eta').textContent = flow.batteryW >= MIN_FLOW_W
-            ? eta('widget.full_at', flow.minutesToFull)
-            : flow.batteryW <= -MIN_FLOW_W ? eta('widget.empty_at', flow.minutesToEmpty) : '';
+            ? eta('widget.full_at', flow.fullAt)
+            : flow.batteryW <= -MIN_FLOW_W ? eta('widget.empty_at', flow.emptyAt) : '';
           var circumference = 2 * Math.PI * 30;
           document.getElementById('soc-ring').setAttribute('stroke-dasharray', (circumference * soc / 100) + ' ' + circumference);
           var cell = document.getElementById('cell-fill');

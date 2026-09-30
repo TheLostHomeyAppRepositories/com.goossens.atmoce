@@ -25,6 +25,19 @@ export function formatDuration(ms: number, language: string): string {
   return rest ? `${days} ${unit(rest, 'hour', language)}` : days;
 }
 
+/**
+ * Clock time `minutes` from `now`, rounded to 5 minutes, in Homey's language and time zone
+ * ("17:20", "5:20 PM"); the weekday is added when it is a day or more away. Formatted on
+ * Homey rather than in the widget, so it never follows a phone set to another language.
+ */
+export function formatClockIn(minutes: number, now: number, language: string, timeZone: string): string {
+  const step = 5 * MINUTE_MS;
+  const at = Math.round((now + minutes * MINUTE_MS) / step) * step;
+  const options: Intl.DateTimeFormatOptions = { hour: 'numeric', minute: '2-digit', timeZone };
+  if (minutes >= DAY_MIN) options.weekday = 'short';
+  return new Intl.DateTimeFormat(language, options).format(at);
+}
+
 /** Date and time in Homey's time zone, e.g. "28/09/2026, 14:02". */
 export function formatTime(timestamp: number, language: string, timeZone: string): string {
   return new Intl.DateTimeFormat(language, { dateStyle: 'short', timeStyle: 'short', timeZone }).format(timestamp);

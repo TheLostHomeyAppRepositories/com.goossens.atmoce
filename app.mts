@@ -2,7 +2,7 @@ import Homey from 'homey';
 
 import { AtmoceDevice } from './lib/atmoce-device.mts';
 import { type BatteryInfo, type EnergyFlow, energyFlow } from './lib/energy-flow.mts';
-import { formatDuration, formatTime } from './lib/format.mts';
+import { formatClockIn, formatDuration, formatTime } from './lib/format.mts';
 import type BatteryDevice from './drivers/battery/device.mts';
 import type { AtmoceGateway, Timers } from './lib/gateway.mts';
 import { type GatewayAlert, GatewayAlerts } from './lib/gateway-alerts.mts';
@@ -121,7 +121,13 @@ export default class AtmoceApp extends Homey.App {
     if (!gateway.snapshot || !gateway.isAvailable) return null;
     const { identity } = gateway;
     const hasBattery = identity !== null && (identity.storageCapacityKwh > 0 || identity.ratedStoragePowerW > 0);
-    return energyFlow(gateway.serial, gateway.snapshot, hasBattery ? this.batteryInfo(gateway) : null);
+    const flow = energyFlow(gateway.serial, gateway.snapshot, hasBattery ? this.batteryInfo(gateway) : null);
+    return { ...flow, fullAt: this.clockIn(flow.minutesToFull), emptyAt: this.clockIn(flow.minutesToEmpty) };
+  }
+
+  private clockIn(minutes: number | null): string | null {
+    if (minutes === null || minutes <= 0) return null;
+    return formatClockIn(minutes, Date.now(), this.homey.i18n.getLanguage(), this.homey.clock.getTimezone());
   }
 
   /** Capacity from the gateway; charge/discharge limits as learned by the battery device, if paired. */

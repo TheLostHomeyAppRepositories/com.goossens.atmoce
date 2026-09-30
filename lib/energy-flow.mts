@@ -25,6 +25,9 @@ export interface EnergyFlow {
   /** Estimates at the current battery power, up to the Atmozen limits when learned; null when not moving that way. */
   minutesToFull: number | null;
   minutesToEmpty: number | null;
+  /** The same as clock times in Homey's language and time zone, filled in by the app. */
+  fullAt: string | null;
+  emptyAt: string | null;
   /** Flows between nodes in W (all ≥ 0). */
   flows: {
     solarToHome: number;
@@ -106,6 +109,8 @@ export function energyFlow(serial: string, snapshot: Snapshot, battery: BatteryI
       consumedKwh: consumptionTodayKwh(energy),
       selfSufficiencyPercent: selfSufficiencyTodayPercent(energy),
     },
+    fullAt: null,
+    emptyAt: null,
     receivedAt: snapshot.startedAt,
   };
 }
