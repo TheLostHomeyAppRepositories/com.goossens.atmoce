@@ -59,6 +59,7 @@
     "consumed": "Consumido hoy",
     "full_at": "Llena a las __time__",
     "empty_at": "Vacía a las __time__",
+    "exported_today": "Hoy __kwh__ kWh a la red",
     "self_sufficient": "Autosuficiente"
   },
   "notify": {

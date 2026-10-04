@@ -59,6 +59,7 @@
     "consumed": "استُهلك اليوم",
     "full_at": "ممتلئة عند __time__",
     "empty_at": "فارغة عند __time__",
+    "exported_today": "اليوم __kwh__ kWh إلى الشبكة",
     "self_sufficient": "الاكتفاء الذاتي"
   },
   "notify": {

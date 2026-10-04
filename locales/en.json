@@ -59,6 +59,7 @@
     "consumed": "Consumed today",
     "full_at": "Full at __time__",
     "empty_at": "Empty at __time__",
+    "exported_today": "__kwh__ kWh to grid today",
     "self_sufficient": "Self-sufficient"
   },
   "notify": {

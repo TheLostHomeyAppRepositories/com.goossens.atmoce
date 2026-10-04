@@ -105,6 +105,15 @@
       letter-spacing: 0.9px;
     }
 
+    /* What went to the grid today, under the grid label. */
+    .grid-today {
+      font-size: 8.5px;
+      font-weight: var(--homey-font-weight-medium, 500);
+      fill: var(--grid);
+      text-anchor: middle;
+      letter-spacing: 0.3px;
+    }
+
     .label {
       font-size: 8.5px;
       font-weight: var(--homey-font-weight-medium, 500);
@@ -277,6 +286,7 @@
         <g class="icon"><path d="M0 -13 -7 13M0 -13 7 13M-9 -5h18M-6 3h12M-5 -5l10 8M5 -5 -5 3M-2.5 -13h5" /></g>
         <text class="value" id="grid-value" y="49"></text>
         <text class="label" id="grid-label" y="61"></text>
+        <text class="grid-today" id="grid-today" y="73"></text>
       </g>
 
       <g class="node home" id="node-home" transform="translate(268 128)">
@@ -461,6 +471,10 @@
         document.getElementById('grid-label').textContent = Homey.__(
           flow.gridW >= MIN_FLOW_W ? 'widget.importing' : flow.gridW <= -MIN_FLOW_W ? 'widget.exporting' : 'widget.grid',
         );
+        var exported = flow.today.exportedKwh;
+        document.getElementById('grid-today').textContent = showToday && exported >= 0.05
+          ? Homey.__('widget.exported_today').replace('__kwh__', number(exported, 1))
+          : '';
 
         var hasBattery = flow.hasBattery;
         document.getElementById('node-battery').style.display = hasBattery ? '' : 'none';

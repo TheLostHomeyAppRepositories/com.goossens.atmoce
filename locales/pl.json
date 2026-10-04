@@ -59,6 +59,7 @@
     "consumed": "Zużyto dziś",
     "full_at": "Pełna o __time__",
     "empty_at": "Pusta o __time__",
+    "exported_today": "Dziś __kwh__ kWh do sieci",
     "self_sufficient": "Samowystarczalność"
   },
   "notify": {

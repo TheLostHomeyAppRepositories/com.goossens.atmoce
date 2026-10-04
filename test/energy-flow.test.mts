@@ -50,6 +50,7 @@ describe('energyFlow', () => {
     assert.equal(flow.flows.gridToHome, 9);
     assert.equal(flow.flows.solarToHome, 0);
     assert.equal(flow.today.selfSufficiencyPercent, 85);
+    assert.equal(flow.today.exportedKwh, 0.2);
   });
 
   it('sunny afternoon: solar serves home, battery, then grid', () => {

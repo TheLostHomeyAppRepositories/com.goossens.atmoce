@@ -59,6 +59,7 @@
     "consumed": "Forbrugt i dag",
     "full_at": "Fuld kl. __time__",
     "empty_at": "Tom kl. __time__",
+    "exported_today": "I dag __kwh__ kWh til nettet",
     "self_sufficient": "Selvforsynende"
   },
   "notify": {

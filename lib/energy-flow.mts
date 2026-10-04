@@ -41,6 +41,7 @@ export interface EnergyFlow {
   today: {
     producedKwh: number;
     consumedKwh: number;
+    exportedKwh: number;
     selfSufficiencyPercent: number | null;
   };
   receivedAt: number;
@@ -107,6 +108,7 @@ export function energyFlow(serial: string, snapshot: Snapshot, battery: BatteryI
     today: {
       producedKwh: energy.pvTodayKwh,
       consumedKwh: consumptionTodayKwh(energy),
+      exportedKwh: energy.exportedTodayKwh,
       selfSufficiencyPercent: selfSufficiencyTodayPercent(energy),
     },
     fullAt: null,

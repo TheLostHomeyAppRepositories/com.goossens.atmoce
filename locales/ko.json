@@ -59,6 +59,7 @@
     "consumed": "오늘 소비량",
     "full_at": "__time__ 완충 예정",
     "empty_at": "__time__ 방전 예정",
+    "exported_today": "오늘 전력망으로 __kwh__ kWh",
     "self_sufficient": "자급률"
   },
   "notify": {
