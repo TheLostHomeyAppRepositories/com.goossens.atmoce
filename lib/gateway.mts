@@ -17,6 +17,7 @@ import {
   type Control,
   type Energy,
   FIRMWARE,
+  type ForcedCommand,
   type GridState,
   type Identity,
   type Limits,
@@ -149,9 +150,13 @@ export class AtmoceGateway extends EventEmitter {
   private readonly optionalSkippedUntil = new Map<OptionalBlock, number>();
   private readonly optionalAnswered = new Set<OptionalBlock>();
   private gridStateCheck: GridStateCheck | null = null;
-  /** The app put 60310 in self-consumption (4) so the gateway accepts the power limits. */
-  private limitModeOwned = false;
   private limitModeAssertedAt = 0;
+  /**
+   * Last value the app wrote to 60310, until a snapshot taken after that write reflects it.
+   * Flow cards run back to back (e.g. a forced charge, then a discharge limit), faster than
+   * the next poll, so decisions must not rely on the snapshot alone.
+   */
+  private forcedWritten: { command: ForcedCommand; at: number } | null = null;
 
   constructor(options: GatewayOptions) {
     super();
@@ -264,7 +269,7 @@ export class AtmoceGateway extends EventEmitter {
   async resumeLocalControl(): Promise<void> {
     await this.write(WRITE.dispatchPower, encodeI32(0));
     await this.write(WRITE.communicationControlMode, [0]);
-    if (this.limitsActive() && this.snapshot?.control?.forcedCommand === 'exit') await this.enterLimitMode();
+    if (this.limitsActive() && this.currentForcedCommand() === 'exit') await this.enterLimitMode();
     this.refresh();
   }
 
@@ -282,7 +287,7 @@ export class AtmoceGateway extends EventEmitter {
       await this.write(WRITE.forcedDuration, [clampInteger(target.minutes, 0, FORCED_DURATION_MAX_MIN)]);
       await this.write(WRITE.forcedMode, [FORCED_MODE.duration]);
     }
-    await this.write(WRITE.forcedCommand, [FORCED_COMMAND[direction]]);
+    await this.writeForcedCommand(direction, FORCED_COMMAND[direction]);
     this.refresh();
   }
 
@@ -291,8 +296,7 @@ export class AtmoceGateway extends EventEmitter {
     if (this.limitsActive()) {
       await this.enterLimitMode();
     } else {
-      await this.write(WRITE.forcedCommand, [FORCED_COMMAND.exit]);
-      this.limitModeOwned = false;
+      await this.writeForcedCommand('exit', FORCED_COMMAND.exit);
     }
     this.refresh();
   }
@@ -316,28 +320,39 @@ export class AtmoceGateway extends EventEmitter {
     this.refresh();
   }
 
+  /** 60310 as the gateway has it now: the app's own last write wins over an older snapshot. */
+  private currentForcedCommand(): ForcedCommand | null {
+    const written = this.forcedWritten;
+    if (written && (!this.snapshot || this.snapshot.startedAt < written.at)) return written.command;
+    return this.snapshot?.control?.forcedCommand ?? null;
+  }
+
+  private async writeForcedCommand(command: ForcedCommand, value: number): Promise<void> {
+    await this.write(WRITE.forcedCommand, [value]);
+    this.forcedWritten = { command, at: Date.now() };
+  }
+
   private limitsActive(): boolean {
     return hasActiveLimit(this.snapshot?.powerLimits ?? null);
   }
 
   private async ensureLimitsAccepted(): Promise<void> {
-    const control = this.snapshot?.control;
-    if (control?.remoteControl) return;
-    if (control && control.forcedCommand !== 'exit' && control.forcedCommand !== null) return;
+    if (this.snapshot?.control?.remoteControl) return;
+    const forced = this.currentForcedCommand();
+    if (forced !== 'exit' && forced !== null) return;
     await this.enterLimitMode();
   }
 
   private async enterLimitMode(): Promise<void> {
-    await this.write(WRITE.forcedCommand, [FORCED_COMMAND.selfConsumption]);
-    this.limitModeOwned = true;
+    await this.writeForcedCommand('self_consumption', FORCED_COMMAND.selfConsumption);
     this.limitModeAssertedAt = Date.now();
   }
 
   private async leaveLimitMode(): Promise<void> {
-    const forced = this.snapshot?.control?.forcedCommand;
-    if (!this.limitModeOwned && forced !== 'self_consumption') return;
-    await this.write(WRITE.forcedCommand, [FORCED_COMMAND.exit]);
-    this.limitModeOwned = false;
+    const forced = this.currentForcedCommand();
+    // A forced charge/discharge (or standby) set after the limits owns 60310 now: leave it.
+    if (forced !== 'self_consumption') return;
+    await this.writeForcedCommand('exit', FORCED_COMMAND.exit);
   }
 
   /**
@@ -347,7 +362,7 @@ export class AtmoceGateway extends EventEmitter {
   private async keepLimitsEnforced(snapshot: Snapshot): Promise<void> {
     const { control } = snapshot;
     if (!this.supportsPowerLimits || !hasActiveLimit(snapshot.powerLimits) || !control) return;
-    if (control.remoteControl || control.forcedCommand !== 'exit') return;
+    if (control.remoteControl || this.currentForcedCommand() !== 'exit') return;
     if (Date.now() - this.limitModeAssertedAt < LIMIT_MODE_REASSERT_MS) return;
     this.options.logger.log('Power limits active but the gateway left self-consumption mode; re-asserting');
     await this.enterLimitMode().catch((err) => this.options.logger.error('Re-asserting limit mode failed:', errorMessage(err)));

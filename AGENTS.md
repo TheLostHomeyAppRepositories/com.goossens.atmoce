@@ -75,6 +75,9 @@ Written against the spec and a simulator only. Check these on a real installatio
    60301 = 1 first. For forced charge/discharge (#47) the spec says nothing: evcc writes
    60310 without 60301, the HA integration says writes are ignored in local mode. The app
    currently does *not* touch 60301 for forced commands. Decide on hardware.
+4b. **Does a forced run with a duration (60311 = 1) end by itself?** The spec does not say what
+   the gateway does when 60313 runs out (back to 60310 = 2?). The app relies on it; not yet
+   observed on hardware. TEMPO ROOD uses target SOC and stops explicitly at 06:00.
 4. **Does the gateway time out remote control?** Unknown. If Homey dies without a clean
    `onUninit`, the battery could keep the last dispatch setpoint. On a clean stop the
    battery device hands control back (`handBackControl`).
@@ -288,6 +291,13 @@ When adding a string, add it in all 13 languages in the same change.
   2 when the last limit is removed. `stopForced` / `resumeLocalControl` keep 4 while limits
   are active, and each poll re-asserts 4 (≤ every 5 min) if the gateway dropped back to 2.
 - Firmware below .29: the cards throw `errors.needs_firmware`; solar curtailment is not added.
+- **60310 decisions use the app's own last write** (`currentForcedCommand`), not only the last
+  snapshot: Flow cards run back to back, faster than the next poll. Bug found 2026-10-06: TEMPO
+  ROOD's "charge to 100 %" followed directly by "limit discharging to 0 W" read a stale
+  60310 = 2, wrote 4 to get the limit accepted and so cancelled the forced charge. A limit set
+  during a forced run is accepted as is (60310 ≠ 2), and removing the last limit only writes
+  60310 = 2 when 60310 is still 4 (a forced run that started meanwhile keeps running).
+  Covered by the "red night" tests in `test/gateway.test.mts`.
 - Active limits count as "commanded" for `LimitLearner` (live limits then reflect the caps).
 - ✅ VERIFIED 2026-09-28 (MC100, fw 01.01.00.29.03, user-requested temporary test): in
   normal mode `setPowerLimit('discharge', 1000)` wrote 60310 = 4 then 60320 = 1000; the

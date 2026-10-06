@@ -155,6 +155,52 @@ describe('AtmoceGateway against the simulator', () => {
     assert.equal(snap.control?.forcedCommand, 'self_consumption');
   });
 
+  it('red night: a discharge limit right after a forced charge keeps the charge (no poll in between)', async () => {
+    gateway.start();
+    await nextSnapshot(gateway);
+    simulator.writes.length = 0;
+    await gateway.force('charge', { kind: 'target_soc', socPercent: 100, powerW: 2500 });
+    await gateway.setPowerLimit('discharge', 0);
+    assert.deepEqual(simulator.writes, [
+      { address: 60314, values: [0, 2500] },
+      { address: 60312, values: [100] },
+      { address: 60311, values: [0] },
+      { address: 60310, values: [0] },
+      { address: 60320, values: [0, 0] }, // accepted: 60310 ≠ 2, so no switch to 4
+    ]);
+    const snap = await nextSnapshot(gateway);
+    assert.equal(snap.control?.forcedCommand, 'charge');
+  });
+
+  it('red night 06:00: stop forced keeps the limits, removing them returns to normal mode', async () => {
+    gateway.start();
+    await nextSnapshot(gateway);
+    await gateway.force('charge', { kind: 'target_soc', socPercent: 100, powerW: 2500 });
+    await gateway.setPowerLimit('discharge', 0);
+    simulator.writes.length = 0;
+    await gateway.stopForced();
+    await gateway.setPowerLimit('charge', null);
+    await gateway.setPowerLimit('discharge', null);
+    assert.deepEqual(simulator.writes, [
+      { address: 60310, values: [4] },
+      { address: 60318, values: [0xffff, 0xffff] },
+      { address: 60320, values: [0xffff, 0xffff] },
+      { address: 60310, values: [2] },
+    ]);
+    const snap = await nextSnapshot(gateway);
+    assert.equal(snap.control?.forcedCommand, 'exit');
+  });
+
+  it('removing a limit during a forced charge leaves the forced charge running', async () => {
+    gateway.start();
+    await nextSnapshot(gateway);
+    await gateway.setPowerLimit('export', 0);
+    await gateway.force('charge', { kind: 'duration', minutes: 60, powerW: 2000 });
+    simulator.writes.length = 0;
+    await gateway.setPowerLimit('export', null);
+    assert.deepEqual(simulator.writes, [{ address: 60324, values: [0xffff, 0xffff] }]);
+  });
+
   it('power limit: removing the last one returns to normal mode (2)', async () => {
     gateway.start();
     await nextSnapshot(gateway);
