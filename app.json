@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.goossens.atmoce",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "compatibility": ">=12.13.0",
   "sdk": 3,
   "runtime": "nodejs",
@@ -1940,19 +1940,19 @@
           "ar": "اشحن البطارية بقدرة [[power]] واط"
         },
         "hint": {
-          "en": "Homey keeps control of the battery until you return it to the Atmozen mode.",
-          "nl": "Homey houdt de batterij in handen tot je haar teruggeeft aan de Atmozen-modus.",
-          "de": "Homey steuert die Batterie, bis du sie an den Atmozen-Modus zurückgibst.",
-          "fr": "Homey garde le contrôle de la batterie jusqu'à ce que vous la rendiez au mode Atmozen.",
-          "it": "Homey controlla la batteria finché non la riporti alla modalità Atmozen.",
-          "sv": "Homey styr batteriet tills du återlämnar det till Atmozen-läget.",
-          "no": "Homey styrer batteriet til du gir det tilbake til Atmozen-modusen.",
-          "es": "Homey controla la batería hasta que la devuelvas al modo de Atmozen.",
-          "da": "Homey styrer batteriet, indtil du giver det tilbage til Atmozen-tilstanden.",
-          "ru": "Homey управляет батареей, пока вы не вернёте её в режим Atmozen.",
-          "pl": "Homey steruje baterią, dopóki nie przywrócisz trybu Atmozen.",
-          "ko": "Atmozen 모드로 되돌릴 때까지 Homey가 배터리를 제어합니다.",
-          "ar": "يتحكم Homey في البطارية حتى تعيدها إلى وضع Atmozen."
+          "en": "Homey keeps control of the battery until you return it to the Atmozen mode. From the grid only when Grid recharging is on in Atmozen (Battery working mode); otherwise the battery only charges from the sun.",
+          "nl": "Homey houdt de batterij in handen tot je haar teruggeeft aan de Atmozen-modus. Van het net alleen als Netladen (Grid recharging) aanstaat in Atmozen (Batterijwerkmodus); anders laadt de batterij alleen met zon.",
+          "de": "Homey steuert die Batterie, bis du sie an den Atmozen-Modus zurückgibst. Aus dem Netz nur, wenn Netzladen (Grid recharging) in Atmozen aktiv ist (Batteriebetriebsmodus); sonst lädt die Batterie nur mit Solarstrom.",
+          "fr": "Homey garde le contrôle de la batterie jusqu'à ce que vous la rendiez au mode Atmozen. Depuis le réseau uniquement si « Recharge du réseau » est activé dans Atmozen (Mode de travail de batterie) ; sinon la batterie ne se charge qu'au solaire.",
+          "it": "Homey controlla la batteria finché non la riporti alla modalità Atmozen. Dalla rete solo se Ricarica dalla rete (Grid recharging) è attivo in Atmozen (Modalità di funzionamento batteria); altrimenti la batteria si carica solo con il sole.",
+          "sv": "Homey styr batteriet tills du återlämnar det till Atmozen-läget. Från elnätet bara om Nätladdning (Grid recharging) är på i Atmozen (Batteriets driftläge); annars laddar batteriet bara med sol.",
+          "no": "Homey styrer batteriet til du gir det tilbake til Atmozen-modusen. Fra strømnettet bare når Nettlading (Grid recharging) er på i Atmozen (Batteriets driftsmodus); ellers lader batteriet bare med sol.",
+          "es": "Homey controla la batería hasta que la devuelvas al modo de Atmozen. Desde la red solo si Recarga desde la red (Grid recharging) está activado en Atmozen (Modo de funcionamiento de la batería); si no, la batería solo se carga con el sol.",
+          "da": "Homey styrer batteriet, indtil du giver det tilbage til Atmozen-tilstanden. Fra elnettet kun når Netopladning (Grid recharging) er slået til i Atmozen (Batteriets driftstilstand); ellers oplader batteriet kun med sol.",
+          "ru": "Homey управляет батареей, пока вы не вернёте её в режим Atmozen. От сети — только если в Atmozen включено «Зарядка от сети (Grid recharging)» (Режим работы батареи); иначе батарея заряжается только от солнца.",
+          "pl": "Homey steruje baterią, dopóki nie przywrócisz trybu Atmozen. Z sieci tylko wtedy, gdy w Atmozen włączono „Ładowanie z sieci (Grid recharging)” (Tryb pracy baterii); w przeciwnym razie bateria ładuje się tylko ze słońca.",
+          "ko": "Atmozen 모드로 되돌릴 때까지 Homey가 배터리를 제어합니다. Atmozen(배터리 작동 모드)에서 '계통 충전 (Grid recharging)'이(가) 켜져 있을 때만 계통에서 충전합니다. 그렇지 않으면 태양광으로만 충전합니다.",
+          "ar": "يتحكم Homey في البطارية حتى تعيدها إلى وضع Atmozen. من الشبكة فقط عند تفعيل «الشحن من الشبكة (Grid recharging)» في Atmozen ‏(وضع عمل البطارية)، وإلا تُشحن البطارية من الشمس فقط."
         },
         "args": [
           {
@@ -2020,19 +2020,19 @@
           "ar": "فرّغ البطارية بقدرة [[power]] واط"
         },
         "hint": {
-          "en": "Homey keeps control of the battery until you return it to the Atmozen mode.",
-          "nl": "Homey houdt de batterij in handen tot je haar teruggeeft aan de Atmozen-modus.",
-          "de": "Homey steuert die Batterie, bis du sie an den Atmozen-Modus zurückgibst.",
-          "fr": "Homey garde le contrôle de la batterie jusqu'à ce que vous la rendiez au mode Atmozen.",
-          "it": "Homey controlla la batteria finché non la riporti alla modalità Atmozen.",
-          "sv": "Homey styr batteriet tills du återlämnar det till Atmozen-läget.",
-          "no": "Homey styrer batteriet til du gir det tilbake til Atmozen-modusen.",
-          "es": "Homey controla la batería hasta que la devuelvas al modo de Atmozen.",
-          "da": "Homey styrer batteriet, indtil du giver det tilbage til Atmozen-tilstanden.",
-          "ru": "Homey управляет батареей, пока вы не вернёте её в режим Atmozen.",
-          "pl": "Homey steruje baterią, dopóki nie przywrócisz trybu Atmozen.",
-          "ko": "Atmozen 모드로 되돌릴 때까지 Homey가 배터리를 제어합니다.",
-          "ar": "يتحكم Homey في البطارية حتى تعيدها إلى وضع Atmozen."
+          "en": "Homey keeps control of the battery until you return it to the Atmozen mode. Into the grid only when Export power to grid is on in Atmozen (Battery working mode); otherwise the battery only covers your home.",
+          "nl": "Homey houdt de batterij in handen tot je haar teruggeeft aan de Atmozen-modus. Naar het net alleen als Exporteren naar het net (Export power to grid) aanstaat in Atmozen (Batterijwerkmodus); anders dekt de batterij alleen je huis.",
+          "de": "Homey steuert die Batterie, bis du sie an den Atmozen-Modus zurückgibst. Ins Netz nur, wenn Energie ins Netz exportieren (Export power to grid) in Atmozen aktiv ist (Batteriebetriebsmodus); sonst deckt die Batterie nur dein Haus.",
+          "fr": "Homey garde le contrôle de la batterie jusqu'à ce que vous la rendiez au mode Atmozen. Vers le réseau uniquement si « Exporter l'énergie vers le réseau » est activé dans Atmozen (Mode de travail de batterie) ; sinon la batterie ne couvre que la maison.",
+          "it": "Homey controlla la batteria finché non la riporti alla modalità Atmozen. Verso la rete solo se Esporta energia in rete (Export power to grid) è attivo in Atmozen (Modalità di funzionamento batteria); altrimenti la batteria copre solo la casa.",
+          "sv": "Homey styr batteriet tills du återlämnar det till Atmozen-läget. Till elnätet bara om Exportera energi till elnätet (Export power to grid) är på i Atmozen (Batteriets driftläge); annars täcker batteriet bara hemmet.",
+          "no": "Homey styrer batteriet til du gir det tilbake til Atmozen-modusen. Til strømnettet bare når Eksporter energi til nettet (Export power to grid) er på i Atmozen (Batteriets driftsmodus); ellers dekker batteriet bare hjemmet.",
+          "es": "Homey controla la batería hasta que la devuelvas al modo de Atmozen. Hacia la red solo si Exportar energía a la red (Export power to grid) está activado en Atmozen (Modo de funcionamiento de la batería); si no, la batería solo cubre la casa.",
+          "da": "Homey styrer batteriet, indtil du giver det tilbage til Atmozen-tilstanden. Til elnettet kun når Eksportér energi til nettet (Export power to grid) er slået til i Atmozen (Batteriets driftstilstand); ellers dækker batteriet kun hjemmet.",
+          "ru": "Homey управляет батареей, пока вы не вернёте её в режим Atmozen. В сеть — только если в Atmozen включено «Экспорт энергии в сеть (Export power to grid)» (Режим работы батареи); иначе батарея покрывает только дом.",
+          "pl": "Homey steruje baterią, dopóki nie przywrócisz trybu Atmozen. Do sieci tylko wtedy, gdy w Atmozen włączono „Eksport energii do sieci (Export power to grid)” (Tryb pracy baterii); w przeciwnym razie bateria pokrywa tylko dom.",
+          "ko": "Atmozen 모드로 되돌릴 때까지 Homey가 배터리를 제어합니다. Atmozen(배터리 작동 모드)에서 '계통으로 에너지 내보내기 (Export power to grid)'이(가) 켜져 있을 때만 계통으로 방전합니다. 그렇지 않으면 집 소비만 감당합니다.",
+          "ar": "يتحكم Homey في البطارية حتى تعيدها إلى وضع Atmozen. إلى الشبكة فقط عند تفعيل «تصدير الطاقة إلى الشبكة (Export power to grid)» في Atmozen ‏(وضع عمل البطارية)، وإلا تغطي البطارية استهلاك المنزل فقط."
         },
         "args": [
           {
@@ -2180,19 +2180,19 @@
           "ar": "اشحن البطارية حتى [[soc]]٪ بقدرة [[power]] واط"
         },
         "hint": {
-          "en": "Forced charging may take power from the grid, even when grid charging is disabled in Atmozen.",
-          "nl": "Geforceerd laden kan stroom van het net halen, ook als laden vanaf het net in Atmozen is uitgeschakeld.",
-          "de": "Erzwungenes Laden kann Strom aus dem Netz beziehen, auch wenn Netzladen in Atmozen deaktiviert ist.",
-          "fr": "La charge forcée peut prélever sur le réseau, même si la charge depuis le réseau est désactivée dans Atmozen.",
-          "it": "La carica forzata può prelevare dalla rete, anche se la carica da rete è disattivata in Atmozen.",
-          "sv": "Tvingad laddning kan ta ström från elnätet, även om nätladdning är avstängd i Atmozen.",
-          "no": "Tvungen lading kan hente strøm fra nettet, selv om nettlading er slått av i Atmozen.",
-          "es": "La carga forzada puede tomar energía de la red, aunque la carga desde la red esté desactivada en Atmozen.",
-          "da": "Tvungen opladning kan trække strøm fra nettet, selv om netopladning er slået fra i Atmozen.",
-          "ru": "Принудительный заряд может брать энергию из сети, даже если заряд от сети отключён в Atmozen.",
-          "pl": "Wymuszone ładowanie może pobierać energię z sieci, nawet gdy ładowanie z sieci jest wyłączone w Atmozen.",
-          "ko": "강제 충전은 Atmozen에서 계통 충전을 꺼 두었더라도 계통 전력을 사용할 수 있습니다.",
-          "ar": "قد يسحب الشحن القسري الطاقة من الشبكة حتى لو كان الشحن من الشبكة معطّلًا في Atmozen."
+          "en": "From the grid only when Grid recharging is on in Atmozen (Battery working mode); otherwise the battery only charges from the sun.",
+          "nl": "Van het net alleen als Netladen (Grid recharging) aanstaat in Atmozen (Batterijwerkmodus); anders laadt de batterij alleen met zon.",
+          "de": "Aus dem Netz nur, wenn Netzladen (Grid recharging) in Atmozen aktiv ist (Batteriebetriebsmodus); sonst lädt die Batterie nur mit Solarstrom.",
+          "fr": "Depuis le réseau uniquement si « Recharge du réseau » est activé dans Atmozen (Mode de travail de batterie) ; sinon la batterie ne se charge qu'au solaire.",
+          "it": "Dalla rete solo se Ricarica dalla rete (Grid recharging) è attivo in Atmozen (Modalità di funzionamento batteria); altrimenti la batteria si carica solo con il sole.",
+          "sv": "Från elnätet bara om Nätladdning (Grid recharging) är på i Atmozen (Batteriets driftläge); annars laddar batteriet bara med sol.",
+          "no": "Fra strømnettet bare når Nettlading (Grid recharging) er på i Atmozen (Batteriets driftsmodus); ellers lader batteriet bare med sol.",
+          "es": "Desde la red solo si Recarga desde la red (Grid recharging) está activado en Atmozen (Modo de funcionamiento de la batería); si no, la batería solo se carga con el sol.",
+          "da": "Fra elnettet kun når Netopladning (Grid recharging) er slået til i Atmozen (Batteriets driftstilstand); ellers oplader batteriet kun med sol.",
+          "ru": "От сети — только если в Atmozen включено «Зарядка от сети (Grid recharging)» (Режим работы батареи); иначе батарея заряжается только от солнца.",
+          "pl": "Z sieci tylko wtedy, gdy w Atmozen włączono „Ładowanie z sieci (Grid recharging)” (Tryb pracy baterii); w przeciwnym razie bateria ładuje się tylko ze słońca.",
+          "ko": "Atmozen(배터리 작동 모드)에서 '계통 충전 (Grid recharging)'이(가) 켜져 있을 때만 계통에서 충전합니다. 그렇지 않으면 태양광으로만 충전합니다.",
+          "ar": "من الشبكة فقط عند تفعيل «الشحن من الشبكة (Grid recharging)» في Atmozen ‏(وضع عمل البطارية)، وإلا تُشحن البطارية من الشمس فقط."
         },
         "args": [
           {
@@ -2285,19 +2285,19 @@
           "ar": "اشحن البطارية لمدة [[minutes]] دقيقة بقدرة [[power]] واط"
         },
         "hint": {
-          "en": "Forced charging may take power from the grid, even when grid charging is disabled in Atmozen.",
-          "nl": "Geforceerd laden kan stroom van het net halen, ook als laden vanaf het net in Atmozen is uitgeschakeld.",
-          "de": "Erzwungenes Laden kann Strom aus dem Netz beziehen, auch wenn Netzladen in Atmozen deaktiviert ist.",
-          "fr": "La charge forcée peut prélever sur le réseau, même si la charge depuis le réseau est désactivée dans Atmozen.",
-          "it": "La carica forzata può prelevare dalla rete, anche se la carica da rete è disattivata in Atmozen.",
-          "sv": "Tvingad laddning kan ta ström från elnätet, även om nätladdning är avstängd i Atmozen.",
-          "no": "Tvungen lading kan hente strøm fra nettet, selv om nettlading er slått av i Atmozen.",
-          "es": "La carga forzada puede tomar energía de la red, aunque la carga desde la red esté desactivada en Atmozen.",
-          "da": "Tvungen opladning kan trække strøm fra nettet, selv om netopladning er slået fra i Atmozen.",
-          "ru": "Принудительный заряд может брать энергию из сети, даже если заряд от сети отключён в Atmozen.",
-          "pl": "Wymuszone ładowanie może pobierać energię z sieci, nawet gdy ładowanie z sieci jest wyłączone w Atmozen.",
-          "ko": "강제 충전은 Atmozen에서 계통 충전을 꺼 두었더라도 계통 전력을 사용할 수 있습니다.",
-          "ar": "قد يسحب الشحن القسري الطاقة من الشبكة حتى لو كان الشحن من الشبكة معطّلًا في Atmozen."
+          "en": "From the grid only when Grid recharging is on in Atmozen (Battery working mode); otherwise the battery only charges from the sun.",
+          "nl": "Van het net alleen als Netladen (Grid recharging) aanstaat in Atmozen (Batterijwerkmodus); anders laadt de batterij alleen met zon.",
+          "de": "Aus dem Netz nur, wenn Netzladen (Grid recharging) in Atmozen aktiv ist (Batteriebetriebsmodus); sonst lädt die Batterie nur mit Solarstrom.",
+          "fr": "Depuis le réseau uniquement si « Recharge du réseau » est activé dans Atmozen (Mode de travail de batterie) ; sinon la batterie ne se charge qu'au solaire.",
+          "it": "Dalla rete solo se Ricarica dalla rete (Grid recharging) è attivo in Atmozen (Modalità di funzionamento batteria); altrimenti la batteria si carica solo con il sole.",
+          "sv": "Från elnätet bara om Nätladdning (Grid recharging) är på i Atmozen (Batteriets driftläge); annars laddar batteriet bara med sol.",
+          "no": "Fra strømnettet bare når Nettlading (Grid recharging) er på i Atmozen (Batteriets driftsmodus); ellers lader batteriet bare med sol.",
+          "es": "Desde la red solo si Recarga desde la red (Grid recharging) está activado en Atmozen (Modo de funcionamiento de la batería); si no, la batería solo se carga con el sol.",
+          "da": "Fra elnettet kun når Netopladning (Grid recharging) er slået til i Atmozen (Batteriets driftstilstand); ellers oplader batteriet kun med sol.",
+          "ru": "От сети — только если в Atmozen включено «Зарядка от сети (Grid recharging)» (Режим работы батареи); иначе батарея заряжается только от солнца.",
+          "pl": "Z sieci tylko wtedy, gdy w Atmozen włączono „Ładowanie z sieci (Grid recharging)” (Tryb pracy baterii); w przeciwnym razie bateria ładuje się tylko ze słońca.",
+          "ko": "Atmozen(배터리 작동 모드)에서 '계통 충전 (Grid recharging)'이(가) 켜져 있을 때만 계통에서 충전합니다. 그렇지 않으면 태양광으로만 충전합니다.",
+          "ar": "من الشبكة فقط عند تفعيل «الشحن من الشبكة (Grid recharging)» في Atmozen ‏(وضع عمل البطارية)، وإلا تُشحن البطارية من الشمس فقط."
         },
         "args": [
           {
@@ -2390,19 +2390,19 @@
           "ar": "فرّغ البطارية حتى [[soc]]٪ بقدرة [[power]] واط"
         },
         "hint": {
-          "en": "Forced discharging may feed power into the grid.",
-          "nl": "Geforceerd ontladen kan stroom aan het net teruggeven.",
-          "de": "Erzwungenes Entladen kann Strom ins Netz einspeisen.",
-          "fr": "La décharge forcée peut injecter du courant dans le réseau.",
-          "it": "La scarica forzata può immettere energia in rete.",
-          "sv": "Tvingad urladdning kan mata ut ström på elnätet.",
-          "no": "Tvungen utlading kan levere strøm til nettet.",
-          "es": "La descarga forzada puede inyectar energía a la red.",
-          "da": "Tvungen afladning kan sende strøm ud på nettet.",
-          "ru": "Принудительный разряд может отдавать энергию в сеть.",
-          "pl": "Wymuszone rozładowanie może oddawać energię do sieci.",
-          "ko": "강제 방전은 전력을 계통으로 내보낼 수 있습니다.",
-          "ar": "قد يضخ التفريغ القسري الطاقة إلى الشبكة."
+          "en": "Into the grid only when Export power to grid is on in Atmozen (Battery working mode); otherwise the battery only covers your home.",
+          "nl": "Naar het net alleen als Exporteren naar het net (Export power to grid) aanstaat in Atmozen (Batterijwerkmodus); anders dekt de batterij alleen je huis.",
+          "de": "Ins Netz nur, wenn Energie ins Netz exportieren (Export power to grid) in Atmozen aktiv ist (Batteriebetriebsmodus); sonst deckt die Batterie nur dein Haus.",
+          "fr": "Vers le réseau uniquement si « Exporter l'énergie vers le réseau » est activé dans Atmozen (Mode de travail de batterie) ; sinon la batterie ne couvre que la maison.",
+          "it": "Verso la rete solo se Esporta energia in rete (Export power to grid) è attivo in Atmozen (Modalità di funzionamento batteria); altrimenti la batteria copre solo la casa.",
+          "sv": "Till elnätet bara om Exportera energi till elnätet (Export power to grid) är på i Atmozen (Batteriets driftläge); annars täcker batteriet bara hemmet.",
+          "no": "Til strømnettet bare når Eksporter energi til nettet (Export power to grid) er på i Atmozen (Batteriets driftsmodus); ellers dekker batteriet bare hjemmet.",
+          "es": "Hacia la red solo si Exportar energía a la red (Export power to grid) está activado en Atmozen (Modo de funcionamiento de la batería); si no, la batería solo cubre la casa.",
+          "da": "Til elnettet kun når Eksportér energi til nettet (Export power to grid) er slået til i Atmozen (Batteriets driftstilstand); ellers dækker batteriet kun hjemmet.",
+          "ru": "В сеть — только если в Atmozen включено «Экспорт энергии в сеть (Export power to grid)» (Режим работы батареи); иначе батарея покрывает только дом.",
+          "pl": "Do sieci tylko wtedy, gdy w Atmozen włączono „Eksport energii do sieci (Export power to grid)” (Tryb pracy baterii); w przeciwnym razie bateria pokrywa tylko dom.",
+          "ko": "Atmozen(배터리 작동 모드)에서 '계통으로 에너지 내보내기 (Export power to grid)'이(가) 켜져 있을 때만 계통으로 방전합니다. 그렇지 않으면 집 소비만 감당합니다.",
+          "ar": "إلى الشبكة فقط عند تفعيل «تصدير الطاقة إلى الشبكة (Export power to grid)» في Atmozen ‏(وضع عمل البطارية)، وإلا تغطي البطارية استهلاك المنزل فقط."
         },
         "args": [
           {
@@ -2495,19 +2495,19 @@
           "ar": "فرّغ البطارية لمدة [[minutes]] دقيقة بقدرة [[power]] واط"
         },
         "hint": {
-          "en": "Forced discharging may feed power into the grid.",
-          "nl": "Geforceerd ontladen kan stroom aan het net teruggeven.",
-          "de": "Erzwungenes Entladen kann Strom ins Netz einspeisen.",
-          "fr": "La décharge forcée peut injecter du courant dans le réseau.",
-          "it": "La scarica forzata può immettere energia in rete.",
-          "sv": "Tvingad urladdning kan mata ut ström på elnätet.",
-          "no": "Tvungen utlading kan levere strøm til nettet.",
-          "es": "La descarga forzada puede inyectar energía a la red.",
-          "da": "Tvungen afladning kan sende strøm ud på nettet.",
-          "ru": "Принудительный разряд может отдавать энергию в сеть.",
-          "pl": "Wymuszone rozładowanie może oddawać energię do sieci.",
-          "ko": "강제 방전은 전력을 계통으로 내보낼 수 있습니다.",
-          "ar": "قد يضخ التفريغ القسري الطاقة إلى الشبكة."
+          "en": "Into the grid only when Export power to grid is on in Atmozen (Battery working mode); otherwise the battery only covers your home.",
+          "nl": "Naar het net alleen als Exporteren naar het net (Export power to grid) aanstaat in Atmozen (Batterijwerkmodus); anders dekt de batterij alleen je huis.",
+          "de": "Ins Netz nur, wenn Energie ins Netz exportieren (Export power to grid) in Atmozen aktiv ist (Batteriebetriebsmodus); sonst deckt die Batterie nur dein Haus.",
+          "fr": "Vers le réseau uniquement si « Exporter l'énergie vers le réseau » est activé dans Atmozen (Mode de travail de batterie) ; sinon la batterie ne couvre que la maison.",
+          "it": "Verso la rete solo se Esporta energia in rete (Export power to grid) è attivo in Atmozen (Modalità di funzionamento batteria); altrimenti la batteria copre solo la casa.",
+          "sv": "Till elnätet bara om Exportera energi till elnätet (Export power to grid) är på i Atmozen (Batteriets driftläge); annars täcker batteriet bara hemmet.",
+          "no": "Til strømnettet bare når Eksporter energi til nettet (Export power to grid) er på i Atmozen (Batteriets driftsmodus); ellers dekker batteriet bare hjemmet.",
+          "es": "Hacia la red solo si Exportar energía a la red (Export power to grid) está activado en Atmozen (Modo de funcionamiento de la batería); si no, la batería solo cubre la casa.",
+          "da": "Til elnettet kun når Eksportér energi til nettet (Export power to grid) er slået til i Atmozen (Batteriets driftstilstand); ellers dækker batteriet kun hjemmet.",
+          "ru": "В сеть — только если в Atmozen включено «Экспорт энергии в сеть (Export power to grid)» (Режим работы батареи); иначе батарея покрывает только дом.",
+          "pl": "Do sieci tylko wtedy, gdy w Atmozen włączono „Eksport energii do sieci (Export power to grid)” (Tryb pracy baterii); w przeciwnym razie bateria pokrywa tylko dom.",
+          "ko": "Atmozen(배터리 작동 모드)에서 '계통으로 에너지 내보내기 (Export power to grid)'이(가) 켜져 있을 때만 계통으로 방전합니다. 그렇지 않으면 집 소비만 감당합니다.",
+          "ar": "إلى الشبكة فقط عند تفعيل «تصدير الطاقة إلى الشبكة (Export power to grid)» في Atmozen ‏(وضع عمل البطارية)، وإلا تغطي البطارية استهلاك المنزل فقط."
         },
         "args": [
           {

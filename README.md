@@ -63,6 +63,24 @@ If the gateway later gets a new IP address, Homey finds it again by its serial n
 
 The MC100L (Lite) has no local interface and is not supported.
 
+## Tips
+
+Atmozen settings (*Battery working mode*) that decide what Homey can do:
+
+| Setting | What it does for Homey |
+|---|---|
+| **Grid recharging** | Lets Homey charge the battery from the grid (forced charge, target power). Off: the battery only charges from the sun, whatever Homey asks. Its power is a ceiling. |
+| **Export power to grid** | Lets the battery discharge into the grid. Off: it only covers your home. |
+| **Working mode** | What the battery does when Homey asks nothing, usually Self-consumption. |
+| **Energy limit** | The battery's lowest and highest level. Not readable over Modbus; the app learns it. |
+
+If Homey asks for grid charging or export and the battery ignores it, the app says so on the
+timeline (at most once a day).
+
+In Homey Energy, keep the Atmoce grid meter as the only main meter: exclude other meters
+(Linky, P1) from the total, or the grid is counted twice. For the solar forecast, set your
+panels under *Energy → Settings → Panel configuration*.
+
 ## Development
 
 See [AGENTS.md](AGENTS.md) for architecture, decisions, open hardware questions and the

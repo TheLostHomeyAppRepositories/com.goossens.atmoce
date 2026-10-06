@@ -58,5 +58,20 @@
     "pl": "Widżet Przepływ energii pokazuje teraz pod siecią, ile oddano dziś do sieci. Poprawka: limit baterii ustawiony zaraz po wymuszonym ładowaniu (na przykład w tym samym Flow) nie anuluje już ładowania.",
     "ko": "에너지 흐름 위젯이 이제 계통 아래에 오늘 계통으로 보낸 전력량을 표시합니다. 수정: 강제 충전 직후(예: 같은 Flow 안에서) 설정한 배터리 제한이 더 이상 강제 충전을 취소하지 않습니다.",
     "ar": "تعرض أداة تدفق الطاقة الآن أسفل الشبكة مقدار ما أُرسل إلى الشبكة اليوم. إصلاح: لم يعد حدّ البطارية الذي يُضبط مباشرةً بعد شحن إجباري (مثلًا في نفس Flow) يلغي هذا الشحن."
+  },
+  "1.0.4": {
+    "en": "Charging from the grid and discharging into it only work when Grid recharging and Export power to grid are on in Atmozen. The charge and discharge cards now say so, and the app puts a message on the timeline when the battery ignores such a request.",
+    "nl": "Laden van het net en ontladen naar het net werken alleen als Netladen en Exporteren naar het net aanstaan in Atmozen. De laad- en ontlaadkaarten zeggen dat nu, en de app zet een melding op de tijdlijn als de batterij zo'n opdracht negeert.",
+    "de": "Laden aus dem Netz und Entladen ins Netz funktionieren nur, wenn Netzladen und Energie ins Netz exportieren in Atmozen aktiv sind. Die Lade- und Entladekarten weisen jetzt darauf hin, und die App meldet es in der Zeitleiste, wenn die Batterie eine solche Anforderung ignoriert.",
+    "fr": "La charge depuis le réseau et la décharge vers le réseau ne fonctionnent que si Recharge du réseau et Exporter l'énergie vers le réseau sont activés dans Atmozen. Les cartes de charge et de décharge l'indiquent maintenant, et l'app le signale dans la timeline quand la batterie ignore une telle demande.",
+    "it": "La carica dalla rete e la scarica verso la rete funzionano solo se Ricarica dalla rete ed Esporta energia in rete sono attivi in Atmozen. Le schede di carica e scarica ora lo indicano, e l'app lo segnala nella timeline quando la batteria ignora una tale richiesta.",
+    "sv": "Laddning från elnätet och urladdning till elnätet fungerar bara när Nätladdning och Exportera energi till elnätet är på i Atmozen. Laddnings- och urladdningskorten säger det nu, och appen meddelar i tidslinjen när batteriet ignorerar en sådan begäran.",
+    "no": "Lading fra strømnettet og utlading til nettet fungerer bare når Nettlading og Eksporter energi til nettet er på i Atmozen. Lade- og utladekortene sier det nå, og appen gir beskjed i tidslinjen når batteriet ignorerer en slik forespørsel.",
+    "es": "La carga desde la red y la descarga hacia la red solo funcionan si Recarga desde la red y Exportar energía a la red están activados en Atmozen. Las tarjetas de carga y descarga ahora lo indican, y la app lo avisa en la línea de tiempo cuando la batería ignora una petición así.",
+    "da": "Opladning fra elnettet og afladning til nettet virker kun, når Netopladning og Eksportér energi til nettet er slået til i Atmozen. Lade- og aflade-kortene siger det nu, og appen giver besked på tidslinjen, når batteriet ignorerer en sådan anmodning.",
+    "ru": "Зарядка от сети и разрядка в сеть работают, только если в Atmozen включены «Зарядка от сети» и «Экспорт энергии в сеть». Карточки зарядки и разрядки теперь об этом сообщают, а приложение пишет в ленту, если батарея игнорирует такой запрос.",
+    "pl": "Ładowanie z sieci i rozładowanie do sieci działają tylko wtedy, gdy w Atmozen włączono „Ładowanie z sieci” i „Eksport energii do sieci”. Karty ładowania i rozładowania teraz o tym mówią, a aplikacja informuje na osi czasu, gdy bateria ignoruje takie polecenie.",
+    "ko": "계통 충전과 계통으로의 방전은 Atmozen에서 '계통 충전'과 '계통으로 에너지 내보내기'가 켜져 있을 때만 작동합니다. 이제 충전 및 방전 카드에 이 내용이 표시되며, 배터리가 이러한 요청을 무시하면 앱이 타임라인에 알립니다.",
+    "ar": "لا يعمل الشحن من الشبكة والتفريغ إليها إلا عند تفعيل «الشحن من الشبكة» و«تصدير الطاقة إلى الشبكة» في Atmozen. تذكر بطاقات الشحن والتفريغ ذلك الآن، ويُعلم التطبيق على الخط الزمني عندما تتجاهل البطارية مثل هذا الطلب."
   }
 }

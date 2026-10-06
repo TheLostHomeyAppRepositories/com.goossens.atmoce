@@ -291,6 +291,14 @@ When adding a string, add it in all 13 languages in the same change.
   2 when the last limit is removed. `stopForced` / `resumeLocalControl` keep 4 while limits
   are active, and each poll re-asserts 4 (≤ every 5 min) if the gateway dropped back to 2.
 - Firmware below .29: the cards throw `errors.needs_firmware`; solar curtailment is not added.
+- **Atmozen "Grid recharging" and "Export power to grid" gate grid flows** (not on Modbus, not in
+  the official cloud API). ✅ VERIFIED 2026-10-06 (MC100 fw .29.03): forced charge 3000 W with
+  grid recharging off charged only PV − home (grid 0 W, also via dispatch 60316); with it on,
+  exactly 3000 W with the grid adding ±1220 W. Forced discharge 3000 W with export off stayed at
+  0 W while PV covered the home. The spec's "may be charged from the grid" note is wrong for this
+  setup (the old card hint said so; fixed in 1.0.4). `lib/grid-permission.mts` recognises it
+  (3 min, battery below 80 % of the request and no more than PV − home / home load) and the
+  battery device puts one timeline message per switch per day.
 - **60310 decisions use the app's own last write** (`currentForcedCommand`), not only the last
   snapshot: Flow cards run back to back, faster than the next poll. Bug found 2026-10-06: TEMPO
   ROOD's "charge to 100 %" followed directly by "limit discharging to 0 W" read a stale

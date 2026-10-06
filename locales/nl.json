@@ -70,6 +70,8 @@
     "battery_faulty": "**__device__**: minstens één batterij heeft een actief alarm en de batterijen laden en ontladen niet meer (bedrijfsstatus 60098 = 4). Open de Atmozen-app voor de details van het alarm. __context__",
     "battery_shutdown": "**__device__**: alle batterijen zijn uitgeschakeld (bedrijfsstatus 60098 = 3). Open de Atmozen-app voor details. __context__",
     "battery_problem_cleared": "**__device__**: de batterijen werken weer normaal.",
+    "grid_recharging_off": "**__device__** laadt niet van het net: Homey vraagt __power__ W, maar de batterij neemt alleen zonnestroom. Zet Netladen (Grid recharging) aan in de Atmozen-app (Batterijwerkmodus).",
+    "export_power_off": "**__device__** ontlaadt niet naar het net: Homey vraagt __power__ W, maar de batterij dekt alleen je huis. Wil je dat toch, zet dan Exporteren naar het net (Export power to grid) aan in de Atmozen-app (Batterijwerkmodus).",
     "grid_outage": "**__device__**: stroomuitval. Het net is weg en het systeem draait los van het net (60096 = 1). __context__",
     "grid_restored": "**__device__**: het net is terug en het systeem is er weer mee verbonden.",
     "connection_lost": "**Atmoce-gateway __serial__** antwoordt al __duration__ niet op __host__ (__error__). Homey blijft proberen en zoekt het netwerk af voor het geval het adres veranderd is.",

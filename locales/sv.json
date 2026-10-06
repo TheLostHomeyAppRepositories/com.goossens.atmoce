@@ -70,6 +70,8 @@
     "battery_faulty": "**__device__**: minst ett batteri har ett aktivt larm och batterierna laddar inte längre (driftstatus 60098 = 4). Öppna Atmozen-appen för detaljer om larmet. __context__",
     "battery_shutdown": "**__device__**: alla batterier har stängts av (driftstatus 60098 = 3). Öppna Atmozen-appen för detaljer. __context__",
     "battery_problem_cleared": "**__device__**: batterierna fungerar normalt igen.",
+    "grid_recharging_off": "**__device__** laddar inte från elnätet: Homey begär __power__ W, men batteriet tar bara solel. Slå på Nätladdning (Grid recharging) i Atmozen-appen (Batteriets driftläge).",
+    "export_power_off": "**__device__** laddar inte ur mot elnätet: Homey begär __power__ W, men batteriet täcker bara hemmet. Vill du tillåta det, slå på Exportera energi till elnätet (Export power to grid) i Atmozen-appen (Batteriets driftläge).",
     "grid_outage": "**__device__**: strömavbrott. Elnätet är borta och systemet går i ödrift (60096 = 1). __context__",
     "grid_restored": "**__device__**: elnätet är tillbaka och systemet är anslutet igen.",
     "connection_lost": "**Atmoce-gateway __serial__** har inte svarat på __duration__ på __host__ (__error__). Homey fortsätter försöka och söker i nätverket ifall adressen har ändrats.",

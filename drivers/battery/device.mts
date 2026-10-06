@@ -2,10 +2,12 @@ import { AtmoceDevice } from '../../lib/atmoce-device.mts';
 import type { ForcedTarget, Snapshot } from '../../lib/gateway.mts';
 import {
   equivalentFullCycles,
+  homeConsumptionW,
   minutesToEmpty,
   minutesToFull,
   storedEnergyKwh,
 } from '../../lib/derived.mts';
+import { type GridPermission, GridPermissionCheck } from '../../lib/grid-permission.mts';
 import { type LearnedLimits, LimitLearner } from '../../lib/limit-learner.mts';
 import {
   type Control,
@@ -17,6 +19,15 @@ import {
 } from '../../lib/registers.mts';
 
 type TargetPowerMode = 'device' | 'homey';
+
+/** What Homey asks of the battery right now: + charge, − discharge (W); null when nothing. */
+function requestedPowerW(control: Control | null): number | null {
+  if (!control) return null;
+  if (control.forcedCommand === 'charge') return control.forcedPowerW;
+  if (control.forcedCommand === 'discharge') return -control.forcedPowerW;
+  if (control.remoteControl && control.dispatchPowerW !== 0) return -control.dispatchPowerW;
+  return null;
+}
 
 /** Same step as capabilitiesOptions.target_power in driver.compose.json. */
 const TARGET_POWER_STEP_W = 10;
@@ -57,6 +68,7 @@ export default class BatteryDevice extends AtmoceDevice {
   private lastWriteAt = 0;
   private previousSoc: number | null = null;
   private readonly limitLearner = new LimitLearner();
+  private readonly gridPermission = new GridPermissionCheck();
 
   protected override async onDeviceInit(): Promise<void> {
     await this.addMissingCapabilities(ADDED_AFTER_1_0);
@@ -266,6 +278,7 @@ export default class BatteryDevice extends AtmoceDevice {
     if (snapshot.gridState?.runningStatus) await this.updateProblem(snapshot.gridState.runningStatus, snapshot);
     await this.updateEstimates(phases.socPercent, batteryPowerForHomey(status.storagePowerW), energy.dischargedTotalKwh);
     await this.triggerLevelFlows(phases.socPercent);
+    await this.checkGridPermission(snapshot);
 
     if (this.reapplyTargetPower) {
       this.reapplyTargetPower = false;
@@ -289,6 +302,43 @@ export default class BatteryDevice extends AtmoceDevice {
     const { chargeLimitPercent, dischargeLimitPercent } = this.learnedLimits;
     await this.update('measure_time_to_full', minutesToFull(socPercent, capacityKwh, batteryPowerW, chargeLimitPercent ?? 100));
     await this.update('measure_time_to_empty', minutesToEmpty(socPercent, capacityKwh, batteryPowerW, dischargeLimitPercent ?? 0));
+  }
+
+  /**
+   * Homey asks for charging from or discharging into the grid, but the battery only follows
+   * the sun or the home: Atmozen's "Grid recharging" or "Export power to grid" is off.
+   * At most one timeline message per switch per day.
+   */
+  private async checkGridPermission(snapshot: Snapshot): Promise<void> {
+    const {
+      status, phases, control, limits,
+    } = snapshot;
+    const requestedW = requestedPowerW(control);
+    const { chargeLimitPercent, dischargeLimitPercent } = this.learnedLimits;
+    let stopSocPercent = requestedW !== null && requestedW < 0 ? (dischargeLimitPercent ?? 10) : (chargeLimitPercent ?? 100);
+    if (control?.forcedMode === 'target_soc' && (control.forcedCommand === 'charge' || control.forcedCommand === 'discharge')) {
+      stopSocPercent = control.forcedCommand === 'charge'
+        ? Math.min(control.forcedTargetSoc, stopSocPercent)
+        : Math.max(control.forcedTargetSoc, stopSocPercent);
+    }
+    const missing = this.gridPermission.add({
+      at: snapshot.startedAt,
+      requestedW,
+      batteryW: batteryPowerForHomey(status.storagePowerW),
+      pvW: status.pvPowerW,
+      homeW: homeConsumptionW(status),
+      socPercent: phases.socPercent,
+      maxChargeW: limits?.maxChargePowerW ?? null,
+      maxDischargeW: limits?.maxDischargePowerW ?? null,
+      stopSocPercent,
+    }, this.gateway.pollIntervalMs);
+    if (!missing) return;
+    const notified = (this.getStoreValue('gridPermissionNotifiedAt') as Partial<Record<GridPermission, number>> | null) ?? {};
+    const context = this.context(snapshot);
+    this.log(`Battery ignores the request of ${requestedW} W: Atmozen ${missing} looks off; ${context}`);
+    if (Date.now() - (notified[missing] ?? 0) < 24 * 3_600_000) return;
+    await this.setStoreValue('gridPermissionNotifiedAt', { ...notified, [missing]: Date.now() });
+    await this.notify(`${missing}_off`, { power: Math.abs(requestedW ?? 0) });
   }
 
   /** "Battery level dropped below / rose above" fire once per crossing (see driver.mts). */

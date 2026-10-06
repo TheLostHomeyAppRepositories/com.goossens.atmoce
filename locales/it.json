@@ -70,6 +70,8 @@
     "battery_faulty": "**__device__**: almeno una batteria ha un allarme attivo e le batterie non caricano né scaricano più (stato di funzionamento 60098 = 4). Apri l'app Atmozen per i dettagli dell'allarme. __context__",
     "battery_shutdown": "**__device__**: tutte le batterie si sono spente (stato di funzionamento 60098 = 3). Apri l'app Atmozen per i dettagli. __context__",
     "battery_problem_cleared": "**__device__**: le batterie funzionano di nuovo normalmente.",
+    "grid_recharging_off": "**__device__** non si carica dalla rete: Homey chiede __power__ W, ma la batteria prende solo energia solare. Attiva Ricarica dalla rete (Grid recharging) nell'app Atmozen (Modalità di funzionamento batteria).",
+    "export_power_off": "**__device__** non si scarica verso la rete: Homey chiede __power__ W, ma la batteria copre solo la casa. Per consentirlo, attiva Esporta energia in rete (Export power to grid) nell'app Atmozen (Modalità di funzionamento batteria).",
     "grid_outage": "**__device__**: blackout. La rete è assente e il sistema funziona in isola (60096 = 1). __context__",
     "grid_restored": "**__device__**: la rete è tornata e il sistema è di nuovo collegato.",
     "connection_lost": "**Gateway Atmoce __serial__**: nessuna risposta da __duration__ su __host__ (__error__). Homey continua a provare e cerca nella rete nel caso l'indirizzo sia cambiato.",

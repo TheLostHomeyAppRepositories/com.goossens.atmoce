@@ -70,6 +70,8 @@
     "battery_faulty": "**__device__**: 하나 이상의 배터리에 경보가 발생해 배터리 충방전이 멈췄습니다 (운전 상태 60098 = 4). 경보 세부 정보는 Atmozen 앱에서 확인하세요. __context__",
     "battery_shutdown": "**__device__**: 모든 배터리가 꺼졌습니다 (운전 상태 60098 = 3). 자세한 내용은 Atmozen 앱에서 확인하세요. __context__",
     "battery_problem_cleared": "**__device__**: 배터리가 다시 정상적으로 작동합니다.",
+    "grid_recharging_off": "**__device__**이(가) 계통에서 충전하지 않습니다. Homey가 __power__ W를 요청했지만 배터리는 태양광 전력만 받습니다. Atmozen 앱(배터리 작동 모드)에서 '계통 충전 (Grid recharging)'을(를) 켜세요.",
+    "export_power_off": "**__device__**이(가) 계통으로 방전하지 않습니다. Homey가 __power__ W를 요청했지만 배터리는 집 소비만 감당합니다. 허용하려면 Atmozen 앱(배터리 작동 모드)에서 '계통으로 에너지 내보내기 (Export power to grid)'을(를) 켜세요.",
     "grid_outage": "**__device__**: 정전입니다. 계통 전원이 끊겨 시스템이 독립 운전 중입니다 (60096 = 1). __context__",
     "grid_restored": "**__device__**: 계통 전원이 복구되어 시스템이 다시 연결되었습니다.",
     "connection_lost": "**Atmoce 게이트웨이 __serial__**가 __duration__ 동안 __host__에서 응답하지 않습니다 (__error__). Homey는 계속 시도하며 주소가 바뀌었을 경우를 대비해 네트워크를 검색합니다.",
