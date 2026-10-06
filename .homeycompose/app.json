@@ -1,6 +1,6 @@
 {
   "id": "com.goossens.atmoce",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "compatibility": ">=12.13.0",
   "sdk": 3,
   "runtime": "nodejs",

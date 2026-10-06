@@ -43,5 +43,20 @@
     "pl": "Nadwyżka słoneczna na liczniku sieciowym: nowe karty Flow do uruchamiania urządzeń przy nadwyżce (najpierw bateria, działa też bez baterii) oraz ustawienie „Najpierw bateria do”. Widżet Przepływ energii pokazuje, kiedy bateria będzie pełna lub pusta. Suwaki mocy docelowej są ukryte przed przypadkowym dotknięciem; karty Flow i Homey Energy działają jak dotąd.",
     "ko": "계통 계량기의 태양광 잉여: 잉여 전력으로 가전을 켜는 새 Flow 카드(배터리 우선, 배터리 없이도 동작)와 \"배터리 우선 충전 기준\" 설정이 추가되었습니다. 에너지 흐름 위젯에 배터리가 가득 차거나 비는 시각이 표시됩니다. 목표 출력 슬라이더는 실수로 누르지 않도록 숨겼으며, Flow 카드와 Homey Energy는 그대로 동작합니다.",
     "ar": "فائض الطاقة الشمسية على عداد الشبكة: بطاقات Flow جديدة لتشغيل الأجهزة على الفائض (البطارية أولًا، وتعمل أيضًا بدون بطارية) والإعداد «البطارية أولًا حتى». تعرض أداة تدفق الطاقة متى ستمتلئ البطارية أو تفرغ. أشرطة تمرير القدرة المستهدفة مخفية لتجنّب اللمس غير المقصود؛ وتعمل بطاقات Flow وHomey Energy كما كانت."
+  },
+  "1.0.3": {
+    "en": "The Energy flow widget now shows how much went to the grid today, under the grid. Fix: a battery limit set right after a forced charge (for example in the same Flow) no longer cancels the forced charge.",
+    "nl": "De widget Energiestroom toont nu onder het net hoeveel er vandaag teruggeleverd is. Fix: een batterijlimiet die meteen na een geforceerde lading wordt ingesteld (bijvoorbeeld in dezelfde Flow) annuleert die lading niet meer.",
+    "de": "Das Widget Energiefluss zeigt jetzt unter dem Netz, wie viel heute eingespeist wurde. Behoben: Eine Batteriegrenze direkt nach einer erzwungenen Ladung (zum Beispiel im selben Flow) bricht die Ladung nicht mehr ab.",
+    "fr": "Le widget Flux d'énergie affiche maintenant sous le réseau ce qui a été injecté aujourd'hui. Correction : une limite de batterie réglée juste après une charge forcée (par exemple dans le même Flow) n'annule plus cette charge.",
+    "it": "Il widget Flusso di energia ora mostra sotto la rete quanto è stato immesso oggi. Correzione: un limite della batteria impostato subito dopo una carica forzata (ad esempio nello stesso Flow) non annulla più la carica.",
+    "sv": "Widgeten Energiflöde visar nu under elnätet hur mycket som matats ut i dag. Åtgärdat: en batterigräns som ställs in direkt efter en tvingad laddning (till exempel i samma Flow) avbryter inte längre laddningen.",
+    "no": "Widgeten Energiflyt viser nå under strømnettet hvor mye som er levert ut i dag. Rettet: en batterigrense som settes rett etter en tvungen lading (for eksempel i samme Flow) avbryter ikke lenger ladingen.",
+    "es": "El widget Flujo de energía muestra ahora bajo la red cuánto se ha inyectado hoy. Corrección: un límite de batería fijado justo después de una carga forzada (por ejemplo en el mismo Flow) ya no cancela la carga.",
+    "da": "Widgetten Energiflow viser nu under elnettet, hvor meget der er leveret ud i dag. Rettet: en batterigrænse, der sættes lige efter en tvungen opladning (for eksempel i samme Flow), annullerer ikke længere opladningen.",
+    "ru": "Виджет «Поток энергии» теперь показывает под сетью, сколько энергии сегодня отдано в сеть. Исправлено: ограничение батареи, заданное сразу после принудительной зарядки (например, в том же Flow), больше не отменяет зарядку.",
+    "pl": "Widżet Przepływ energii pokazuje teraz pod siecią, ile oddano dziś do sieci. Poprawka: limit baterii ustawiony zaraz po wymuszonym ładowaniu (na przykład w tym samym Flow) nie anuluje już ładowania.",
+    "ko": "에너지 흐름 위젯이 이제 계통 아래에 오늘 계통으로 보낸 전력량을 표시합니다. 수정: 강제 충전 직후(예: 같은 Flow 안에서) 설정한 배터리 제한이 더 이상 강제 충전을 취소하지 않습니다.",
+    "ar": "تعرض أداة تدفق الطاقة الآن أسفل الشبكة مقدار ما أُرسل إلى الشبكة اليوم. إصلاح: لم يعد حدّ البطارية الذي يُضبط مباشرةً بعد شحن إجباري (مثلًا في نفس Flow) يلغي هذا الشحن."
   }
 }
