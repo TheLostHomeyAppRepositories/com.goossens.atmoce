@@ -69,13 +69,13 @@ export default class BatteryDevice extends AtmoceDevice {
   private previousSoc: number | null = null;
   private previousDischargeW: number | null = null;
   private dischargeW = 0;
+  private readonly limitLearner = new LimitLearner();
+  private readonly gridPermission = new GridPermissionCheck();
 
   /** Current discharging power (W, ≥ 0; 0 while charging or idle); Flow condition. */
   get dischargingW(): number {
     return this.dischargeW;
   }
-  private readonly limitLearner = new LimitLearner();
-  private readonly gridPermission = new GridPermissionCheck();
 
   protected override async onDeviceInit(): Promise<void> {
     await this.addMissingCapabilities(ADDED_AFTER_1_0);
