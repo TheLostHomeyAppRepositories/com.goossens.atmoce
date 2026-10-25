@@ -207,6 +207,103 @@
       ]
     },
     {
+      "id": "battery_discharge_above",
+      "title": {
+        "en": "Discharging rose above a power",
+        "nl": "Ontladen steeg boven een vermogen",
+        "de": "Entladen stieg über eine Leistung",
+        "fr": "La décharge a dépassé une puissance",
+        "it": "La scarica ha superato una potenza",
+        "sv": "Urladdningen steg över en effekt",
+        "no": "Utladingen steg over en effekt",
+        "es": "La descarga superó una potencia",
+        "da": "Afladningen steg over en effekt",
+        "ru": "Разряд превысил мощность",
+        "pl": "Rozładowanie przekroczyło moc",
+        "ko": "방전이 설정 출력을 넘음",
+        "ar": "ارتفع التفريغ فوق قدرة معيّنة"
+      },
+      "titleFormatted": {
+        "en": "Discharging rose above [[power]] W",
+        "nl": "Ontladen steeg boven [[power]] W",
+        "de": "Entladen stieg über [[power]] W",
+        "fr": "La décharge a dépassé [[power]] W",
+        "it": "La scarica ha superato [[power]] W",
+        "sv": "Urladdningen steg över [[power]] W",
+        "no": "Utladingen steg over [[power]] W",
+        "es": "La descarga superó [[power]] W",
+        "da": "Afladningen steg over [[power]] W",
+        "ru": "Разряд превысил [[power]] Вт",
+        "pl": "Rozładowanie przekroczyło [[power]] W",
+        "ko": "방전이 [[power]] W를 넘음",
+        "ar": "ارتفع التفريغ فوق [[power]] واط"
+      },
+      "hint": {
+        "en": "Fires once each time the battery's discharging power rises above this power. Charging does not count. Measured at every poll, without averaging.",
+        "nl": "Gaat telkens één keer af als het ontlaadvermogen van de batterij boven dit vermogen stijgt. Laden telt niet. Gemeten bij elke uitlezing, zonder middeling.",
+        "de": "Löst jedes Mal einmal aus, wenn die Entladeleistung der Batterie über diese Leistung steigt. Laden zählt nicht. Bei jeder Abfrage gemessen, ohne Mittelung.",
+        "fr": "Se déclenche une fois chaque fois que la puissance de décharge de la batterie dépasse cette puissance. La charge ne compte pas. Mesuré à chaque lecture, sans moyenne.",
+        "it": "Scatta una volta ogni volta che la potenza di scarica della batteria supera questa potenza. La carica non conta. Misurato a ogni lettura, senza media.",
+        "sv": "Utlöses en gång varje gång batteriets urladdningseffekt stiger över denna effekt. Laddning räknas inte. Mäts vid varje avläsning, utan medelvärde.",
+        "no": "Utløses én gang hver gang batteriets utladingseffekt stiger over denne effekten. Lading teller ikke. Målt ved hver avlesning, uten snitt.",
+        "es": "Se activa una vez cada vez que la potencia de descarga de la batería supera esta potencia. La carga no cuenta. Se mide en cada lectura, sin promediar.",
+        "da": "Udløses én gang hver gang batteriets afladningseffekt stiger over denne effekt. Opladning tæller ikke. Målt ved hver aflæsning, uden gennemsnit.",
+        "ru": "Срабатывает один раз каждый раз, когда мощность разряда батареи превышает эту мощность. Заряд не учитывается. Измеряется при каждом опросе, без усреднения.",
+        "pl": "Uruchamia się raz za każdym razem, gdy moc rozładowania baterii przekroczy tę moc. Ładowanie się nie liczy. Mierzone przy każdym odczycie, bez uśredniania.",
+        "ko": "배터리 방전 출력이 이 출력을 넘을 때마다 한 번 실행됩니다. 충전은 포함되지 않습니다. 매 읽기마다 평균 없이 측정합니다.",
+        "ar": "ينطلق مرة واحدة في كل مرة ترتفع فيها قدرة تفريغ البطارية فوق هذه القدرة. الشحن لا يُحتسب. يُقاس عند كل قراءة دون متوسط."
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "power",
+          "title": {
+            "en": "Power",
+            "nl": "Vermogen",
+            "de": "Leistung",
+            "fr": "Puissance",
+            "it": "Potenza",
+            "sv": "Effekt",
+            "no": "Effekt",
+            "es": "Potencia",
+            "da": "Effekt",
+            "ru": "Мощность",
+            "pl": "Moc",
+            "ko": "출력",
+            "ar": "القدرة"
+          },
+          "min": 0,
+          "max": 30000,
+          "step": 10,
+          "placeholder": {
+            "en": "100"
+          }
+        }
+      ],
+      "tokens": [
+        {
+          "name": "power",
+          "type": "number",
+          "title": {
+            "en": "Discharging power",
+            "nl": "Ontlaadvermogen",
+            "de": "Entladeleistung",
+            "fr": "Puissance de décharge",
+            "it": "Potenza di scarica",
+            "sv": "Urladdningseffekt",
+            "no": "Utladingseffekt",
+            "es": "Potencia de descarga",
+            "da": "Afladningseffekt",
+            "ru": "Мощность разряда",
+            "pl": "Moc rozładowania",
+            "ko": "방전 출력",
+            "ar": "قدرة التفريغ"
+          },
+          "example": 350
+        }
+      ]
+    },
+    {
       "id": "battery_problem_started",
       "title": {
         "en": "A battery problem started",
@@ -464,6 +561,81 @@
           "step": 1,
           "placeholder": {
             "en": "20"
+          }
+        }
+      ]
+    },
+    {
+      "id": "battery_discharging_is",
+      "title": {
+        "en": "The battery !{{is|is not}} discharging at least a power",
+        "nl": "De batterij !{{ontlaadt|ontlaadt niet}} minstens een vermogen",
+        "de": "Die Batterie !{{entlädt|entlädt nicht}} mit mindestens einer Leistung",
+        "fr": "La batterie !{{se décharge|ne se décharge pas}} d'au moins une puissance",
+        "it": "La batteria !{{si scarica|non si scarica}} di almeno una potenza",
+        "sv": "Batteriet !{{laddar|laddar inte}} ur med minst en effekt",
+        "no": "Batteriet !{{lader|lader ikke}} ut med minst en effekt",
+        "es": "La batería !{{se descarga|no se descarga}} con al menos una potencia",
+        "da": "Batteriet !{{aflader|aflader ikke}} med mindst en effekt",
+        "ru": "Батарея !{{|не }}разряжается с мощностью не менее заданной",
+        "pl": "Bateria !{{rozładowuje się|nie rozładowuje się}} z co najmniej daną mocą",
+        "ko": "배터리가 설정 출력 이상으로 !{{방전 중임|방전 중이 아님}}",
+        "ar": "البطارية !{{تتفرغ|لا تتفرغ}} بقدرة معيّنة على الأقل"
+      },
+      "titleFormatted": {
+        "en": "The battery !{{is|is not}} discharging at least [[power]] W",
+        "nl": "De batterij !{{ontlaadt|ontlaadt niet}} minstens [[power]] W",
+        "de": "Die Batterie !{{entlädt|entlädt nicht}} mit mindestens [[power]] W",
+        "fr": "La batterie !{{se décharge|ne se décharge pas}} d'au moins [[power]] W",
+        "it": "La batteria !{{si scarica|non si scarica}} di almeno [[power]] W",
+        "sv": "Batteriet !{{laddar|laddar inte}} ur med minst [[power]] W",
+        "no": "Batteriet !{{lader|lader ikke}} ut med minst [[power]] W",
+        "es": "La batería !{{se descarga|no se descarga}} con al menos [[power]] W",
+        "da": "Batteriet !{{aflader|aflader ikke}} med mindst [[power]] W",
+        "ru": "Батарея !{{|не }}разряжается с мощностью не менее [[power]] Вт",
+        "pl": "Bateria !{{rozładowuje się|nie rozładowuje się}} z mocą co najmniej [[power]] W",
+        "ko": "배터리가 [[power]] W 이상으로 !{{방전 중임|방전 중이 아님}}",
+        "ar": "البطارية !{{تتفرغ|لا تتفرغ}} بقدرة [[power]] واط على الأقل"
+      },
+      "hint": {
+        "en": "Checks the discharging power at the last poll. Charging or idle counts as 0 W.",
+        "nl": "Controleert het ontlaadvermogen bij de laatste uitlezing. Laden of stilstaan telt als 0 W.",
+        "de": "Prüft die Entladeleistung bei der letzten Abfrage. Laden oder Stillstand zählt als 0 W.",
+        "fr": "Vérifie la puissance de décharge à la dernière lecture. La charge ou l'arrêt compte pour 0 W.",
+        "it": "Controlla la potenza di scarica all'ultima lettura. Carica o inattività contano come 0 W.",
+        "sv": "Kontrollerar urladdningseffekten vid senaste avläsningen. Laddning eller vila räknas som 0 W.",
+        "no": "Sjekker utladingseffekten ved siste avlesning. Lading eller hvile teller som 0 W.",
+        "es": "Comprueba la potencia de descarga en la última lectura. Cargar o estar en reposo cuenta como 0 W.",
+        "da": "Kontrollerer afladningseffekten ved seneste aflæsning. Opladning eller hvile tæller som 0 W.",
+        "ru": "Проверяет мощность разряда при последнем опросе. Заряд или простой считается как 0 Вт.",
+        "pl": "Sprawdza moc rozładowania przy ostatnim odczycie. Ładowanie lub bezczynność liczy się jako 0 W.",
+        "ko": "마지막 읽기의 방전 출력을 확인합니다. 충전 중이거나 대기 중이면 0 W로 봅니다.",
+        "ar": "يتحقق من قدرة التفريغ عند آخر قراءة. الشحن أو التوقف يُحتسب 0 واط."
+      },
+      "args": [
+        {
+          "type": "number",
+          "name": "power",
+          "title": {
+            "en": "Power",
+            "nl": "Vermogen",
+            "de": "Leistung",
+            "fr": "Puissance",
+            "it": "Potenza",
+            "sv": "Effekt",
+            "no": "Effekt",
+            "es": "Potencia",
+            "da": "Effekt",
+            "ru": "Мощность",
+            "pl": "Moc",
+            "ko": "출력",
+            "ar": "القدرة"
+          },
+          "min": 0,
+          "max": 30000,
+          "step": 10,
+          "placeholder": {
+            "en": "100"
           }
         }
       ]

@@ -180,4 +180,36 @@ describe('SurplusTracker triggers', () => {
     const again = countFires(tracker, at, 40, -2500, 0, () => tracker.surplusStarted(30, 2200));
     assert.equal(again.fires, 1);
   });
+
+  it('a small appliance fed by the battery ends the surplus with a low deficit threshold (2026-10-25)', () => {
+    const tracker = new SurplusTracker();
+    // Battery full, 3 kW to the grid: surplus. Then the sun drops and the battery feeds a 170 W pump.
+    let at = feed(tracker, 0, 15, -3000, 0, 100);
+    assert.equal(tracker.surplusHeld(10, 300), true);
+    at = feed(tracker, at, 15, 0, -170, 99);
+    assert.equal(tracker.current?.netW, -170);
+    assert.equal(tracker.deficitHeld(10, 200), false, 'the old fixed 200 W never ends it');
+    assert.equal(tracker.deficitHeld(10, 50), true);
+    const { fires } = countFires(tracker, at, 20, 0, -170, () => tracker.deficitStarted(10, 50));
+    assert.equal(fires, 1, 'fires once per hold');
+  });
+
+  it('net surplus is signed: export and allowed charging minus import and discharging', () => {
+    const tracker = new SurplusTracker();
+    let at = feed(tracker, 0, 3, -800, 500, 90, { pollIntervalMs: POLL_MS, chargeCountsFromPercent: 80 });
+    assert.equal(tracker.current?.netW, 1300, 'charging above the battery-first level counts');
+    at = feed(tracker, at, 3, -800, 500, 50, { pollIntervalMs: POLL_MS, chargeCountsFromPercent: 80 });
+    assert.equal(tracker.current?.netW, 800, 'below it only the export counts');
+    feed(tracker, at, 3, 300, -400, 50);
+    assert.equal(tracker.current?.netW, -700);
+  });
+
+  it('the deprecated "surplus ended" keeps its fixed 200 W', () => {
+    const tracker = new SurplusTracker();
+    feed(tracker, 0, 12, 250, 0);
+    assert.equal(tracker.surplusEnded(10), true);
+    const other = new SurplusTracker();
+    feed(other, 0, 12, 150, 0);
+    assert.equal(other.surplusEnded(10), false);
+  });
 });

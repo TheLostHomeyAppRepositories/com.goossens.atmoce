@@ -19,7 +19,7 @@ export const THREE_PHASE = [
   'measure_voltage.l2', 'measure_current.l2',
   'measure_voltage.l3', 'measure_current.l3',
 ];
-export const GRID_DERIVED = ['meter_power.consumption_today', 'measure_self_sufficiency', 'measure_power.surplus'];
+export const GRID_DERIVED = ['meter_power.consumption_today', 'measure_self_sufficiency', 'measure_power.surplus', 'measure_power.net_surplus'];
 
 interface CrossingState {
   previous: number | null;
@@ -57,6 +57,10 @@ export default class GridDriver extends AtmoceDriver {
       .registerRunListener(async ({ device, minutes }: Omit<SurplusArgs, 'power'>) => device.surplusEnded(minutes));
     flow.getConditionCard('solar_surplus_is')
       .registerRunListener(async ({ device, power, minutes }: SurplusArgs) => device.surplusHeld(minutes, power));
+    flow.getDeviceTriggerCard('solar_deficit_held')
+      .registerRunListener(async ({ device, power, minutes }: SurplusArgs) => device.deficitStarted(minutes, power));
+    flow.getConditionCard('solar_deficit_is')
+      .registerRunListener(async ({ device, power, minutes }: SurplusArgs) => device.deficitHeld(minutes, power));
   }
 
   protected override pairDevice({ phaseCount }: ProbeResult): Pick<PairDevice, 'name' | 'capabilities'> {

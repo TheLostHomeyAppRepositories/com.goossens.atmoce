@@ -10,7 +10,7 @@ import type { Snapshot } from '../../lib/gateway.mts';
 import { batteryPowerForHomey, gridPowerForHomey } from '../../lib/registers.mts';
 import { SurplusTracker } from '../../lib/surplus.mts';
 
-const ADDED_AFTER_1_0 = ['measure_power.consumption', 'meter_power.consumption_today', 'measure_self_sufficiency', 'measure_power.surplus'];
+const ADDED_AFTER_1_0 = ['measure_power.consumption', 'meter_power.consumption_today', 'measure_self_sufficiency', 'measure_power.surplus', 'measure_power.net_surplus'];
 
 /**
  * Grid connection point measured by the gateway (class `sensor`, cumulative meter:
@@ -57,6 +57,16 @@ export default class GridDevice extends AtmoceDevice {
     return this.surplus.surplusEnded(minutes);
   }
 
+  /** The home has taken at least `powerW` from the grid or battery for `minutes`; Flow condition. */
+  deficitHeld(minutes: number, powerW: number): boolean {
+    return this.surplus.deficitHeld(minutes, powerW);
+  }
+
+  /** Run listener of the "home draws from the grid or battery" trigger: true at the poll it is reached. */
+  deficitStarted(minutes: number, powerW: number): boolean {
+    return this.surplus.deficitStarted(minutes, powerW);
+  }
+
   protected override async onDeviceInit(): Promise<void> {
     await this.addMissingCapabilities(ADDED_AFTER_1_0);
   }
@@ -100,10 +110,12 @@ export default class GridDevice extends AtmoceDevice {
       chargeCountsFromPercent: (this.getSetting('surplus_battery_first') as number | null) ?? 100,
     });
     await this.update('measure_power.surplus', sample.surplusW);
+    await this.update('measure_power.net_surplus', sample.netW);
     const { flow } = this.homey;
     await flow.getDeviceTriggerCard('solar_surplus_held')
       .trigger(this, { surplus: sample.surplusW }, {});
     await flow.getDeviceTriggerCard('solar_surplus_ended').trigger(this, { power: sample.deficitW }, {});
+    await flow.getDeviceTriggerCard('solar_deficit_held').trigger(this, { deficit: sample.deficitW }, {});
   }
 
   private async updateOffGrid(offGrid: boolean, snapshot: Snapshot): Promise<void> {

@@ -67,6 +67,13 @@ export default class BatteryDevice extends AtmoceDevice {
   /** Snapshots taken before this moment may predate our own write; skip external sync. */
   private lastWriteAt = 0;
   private previousSoc: number | null = null;
+  private previousDischargeW: number | null = null;
+  private dischargeW = 0;
+
+  /** Current discharging power (W, ≥ 0; 0 while charging or idle); Flow condition. */
+  get dischargingW(): number {
+    return this.dischargeW;
+  }
   private readonly limitLearner = new LimitLearner();
   private readonly gridPermission = new GridPermissionCheck();
 
@@ -278,6 +285,7 @@ export default class BatteryDevice extends AtmoceDevice {
     if (snapshot.gridState?.runningStatus) await this.updateProblem(snapshot.gridState.runningStatus, snapshot);
     await this.updateEstimates(phases.socPercent, batteryPowerForHomey(status.storagePowerW), energy.dischargedTotalKwh);
     await this.triggerLevelFlows(phases.socPercent);
+    await this.triggerDischargeFlows(Math.max(0, -batteryPowerForHomey(status.storagePowerW)));
     await this.checkGridPermission(snapshot);
 
     if (this.reapplyTargetPower) {
@@ -351,6 +359,16 @@ export default class BatteryDevice extends AtmoceDevice {
     const tokens = { level: socPercent };
     const card = socPercent < previous ? 'battery_level_below' : 'battery_level_above';
     await flow.getDeviceTriggerCard(card).trigger(this, tokens, state);
+  }
+
+  /** "Discharging rose above a power" fires once per crossing (see driver.mts). */
+  private async triggerDischargeFlows(dischargeW: number): Promise<void> {
+    this.dischargeW = dischargeW;
+    const previous = this.previousDischargeW;
+    this.previousDischargeW = dischargeW;
+    if (previous === null || dischargeW <= previous) return;
+    await this.homey.flow.getDeviceTriggerCard('battery_discharge_above')
+      .trigger(this, { power: dischargeW }, { previous, current: dischargeW });
   }
 
   /**

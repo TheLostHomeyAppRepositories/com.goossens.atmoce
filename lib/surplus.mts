@@ -9,6 +9,10 @@
  * Battery first is a dial (evcc `prioritySoc`, Loxone `MinSoc`): from `chargeCountsFromPercent`
  * battery level on, the battery's charging power counts as surplus too, so appliances can start
  * while the battery keeps charging with what is left. 100 % (default) is pure battery first.
+ * Net surplus = surplus − deficit (signed, as evcc's site power and Home Assistant's "PV excess"):
+ * negative while the home lives on the grid or the battery.
+ * "Surplus gone" takes a deficit threshold chosen per Flow: a small appliance fed by the battery
+ * (a 170 W pool pump) never reached the old fixed 200 W (seen 2026-10-25).
  * Both are averaged over AVERAGE_MS so a passing cloud does not reset a timer. The averaged
  * samples of the last MAX_DURATION_MIN are kept, so "held for N minutes" is answered for any
  * power and duration a Flow asks, without per-Flow state. Pure, unit-tested.
@@ -16,7 +20,7 @@
 
 export const AVERAGE_MS = 2 * 60_000;
 export const MAX_DURATION_MIN = 240;
-/** Taking at least this much from the grid or battery means the surplus is gone (evcc example: 200 W). */
+/** Fixed deficit of the deprecated "surplus ended" card; the newer cards take it as an argument. */
 export const DEFICIT_THRESHOLD_W = 200;
 const MINUTE_MS = 60_000;
 // A few minutes more than the longest duration: "held for" needs a sample from before the period.
@@ -43,11 +47,13 @@ export interface SurplusSample {
   surplusW: number;
   /** Averaged power from the grid plus from the battery (W, ≥ 0). */
   deficitW: number;
+  /** surplusW − deficitW: negative while the home takes power from the grid or battery. */
+  netW: number;
 }
 
 export class SurplusTracker {
 
-  private readonly raw: SurplusSample[] = [];
+  private readonly raw: Omit<SurplusSample, 'netW'>[] = [];
   private readonly history: SurplusSample[] = [];
   /** A longer gap between samples breaks "held for": the gateway was not answering. */
   private maxGapMs = 90_000;
@@ -65,9 +71,13 @@ export class SurplusTracker {
     this.maxGapMs = Math.max(90_000, 3 * pollIntervalMs);
     const chargeW = socPercent >= chargeCountsFromPercent ? Math.max(0, batteryW) : 0;
     this.raw.push({ at, surplusW: Math.max(0, -gridW) + chargeW, deficitW: Math.max(0, gridW) + Math.max(0, -batteryW) });
-    while (this.raw.length > 1 && (this.raw[0] as SurplusSample).at <= at - AVERAGE_MS) this.raw.shift();
+    while (this.raw.length > 1 && (this.raw[0] as Omit<SurplusSample, 'netW'>).at <= at - AVERAGE_MS) this.raw.shift();
     const average = (key: 'surplusW' | 'deficitW') => Math.round(this.raw.reduce((sum, s) => sum + s[key], 0) / this.raw.length);
-    const sample = { at, surplusW: average('surplusW'), deficitW: average('deficitW') };
+    const surplusW = average('surplusW');
+    const deficitW = average('deficitW');
+    const sample = {
+      at, surplusW, deficitW, netW: surplusW - deficitW,
+    };
     this.history.push(sample);
     while (this.history.length > 1 && (this.history[0] as SurplusSample).at < at - HISTORY_MS) this.history.shift();
     return sample;
@@ -87,10 +97,19 @@ export class SurplusTracker {
     return this.fireOnce(`surplus:${minutes}:${powerW}`, this.surplusHeld(minutes, powerW));
   }
 
-  /** True once per hold: the home has taken power from the grid or battery for `minutes`. */
+  /** True once per hold: the home has taken at least 200 W from the grid or battery for `minutes` (deprecated card). */
   surplusEnded(minutes: number): boolean {
-    const held = this.heldAt(this.history.length - 1, minutes, (s) => s.deficitW >= DEFICIT_THRESHOLD_W);
-    return this.fireOnce(`deficit:${minutes}`, held);
+    return this.deficitStarted(minutes, DEFICIT_THRESHOLD_W);
+  }
+
+  /** The home has taken at least `powerW` from the grid or battery for the last `minutes` (0: right now). */
+  deficitHeld(minutes: number, powerW: number): boolean {
+    return this.heldAt(this.history.length - 1, minutes, (s) => s.deficitW >= powerW);
+  }
+
+  /** True once per hold: the home has taken at least `powerW` from the grid or battery for `minutes`. */
+  deficitStarted(minutes: number, powerW: number): boolean {
+    return this.fireOnce(`deficit:${minutes}:${powerW}`, this.deficitHeld(minutes, powerW));
   }
 
   private fireOnce(key: string, held: boolean): boolean {

@@ -30,6 +30,7 @@
     "meter_power.consumption_today",
     "measure_self_sufficiency",
     "measure_power.surplus",
+    "measure_power.net_surplus",
     "button.test_connection"
   ],
   "capabilitiesOptions": {
@@ -285,6 +286,23 @@
         "pl": "Nadwyżka solarna",
         "ko": "태양광 잉여",
         "ar": "الفائض الشمسي"
+      }
+    },
+    "measure_power.net_surplus": {
+      "title": {
+        "en": "Net solar surplus",
+        "nl": "Netto zonne-overschot",
+        "de": "Netto-Solarüberschuss",
+        "fr": "Surplus solaire net",
+        "it": "Surplus solare netto",
+        "sv": "Nettosolöverskott",
+        "no": "Netto soloverskudd",
+        "es": "Excedente solar neto",
+        "da": "Netto soloverskud",
+        "ru": "Чистый солнечный излишек",
+        "pl": "Nadwyżka solarna netto",
+        "ko": "순 태양광 잉여",
+        "ar": "صافي الفائض الشمسي"
       }
     }
   },

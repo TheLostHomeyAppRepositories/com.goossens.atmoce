@@ -1,10 +1,12 @@
 {
   "id": "com.goossens.atmoce",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "compatibility": ">=12.13.0",
   "sdk": 3,
   "runtime": "nodejs",
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "name": {
     "en": "Atmoce"
   },
@@ -23,21 +25,130 @@
     "ko": "태양광, 배터리, 계통, 그리고 스마트한 로컬 배터리 제어.",
     "ar": "الطاقة الشمسية والبطارية والشبكة مع تحكم محلي ذكي بالبطارية."
   },
-  "category": ["energy"],
+  "category": [
+    "energy"
+  ],
   "tags": {
-    "en": ["atmoce", "atmozen", "solar", "microinverter", "home battery", "energy", "modbus", "m-combiner", "mc100", "mg100"],
-    "nl": ["atmoce", "atmozen", "zonnepanelen", "micro-omvormer", "thuisbatterij", "energie", "modbus"],
-    "de": ["atmoce", "atmozen", "photovoltaik", "mikrowechselrichter", "heimspeicher", "energie", "modbus"],
-    "fr": ["atmoce", "atmozen", "solaire", "micro-onduleur", "batterie domestique", "énergie", "modbus"],
-    "it": ["atmoce", "atmozen", "fotovoltaico", "microinverter", "batteria domestica", "energia", "modbus"],
-    "sv": ["atmoce", "atmozen", "solceller", "mikroväxelriktare", "hemmabatteri", "energi", "modbus"],
-    "no": ["atmoce", "atmozen", "solceller", "mikroinverter", "hjemmebatteri", "energi", "modbus"],
-    "es": ["atmoce", "atmozen", "solar", "microinversor", "batería doméstica", "energía", "modbus"],
-    "da": ["atmoce", "atmozen", "solceller", "mikroinverter", "hjemmebatteri", "energi", "modbus"],
-    "ru": ["atmoce", "atmozen", "солнечные панели", "микроинвертор", "домашний аккумулятор", "энергия", "modbus"],
-    "pl": ["atmoce", "atmozen", "fotowoltaika", "mikrofalownik", "magazyn energii", "energia", "modbus"],
-    "ko": ["atmoce", "atmozen", "태양광", "마이크로인버터", "가정용 배터리", "에너지", "modbus"],
-    "ar": ["atmoce", "atmozen", "الطاقة الشمسية", "عاكس صغير", "بطارية منزلية", "الطاقة", "modbus"]
+    "en": [
+      "atmoce",
+      "atmozen",
+      "solar",
+      "microinverter",
+      "home battery",
+      "energy",
+      "modbus",
+      "m-combiner",
+      "mc100",
+      "mg100"
+    ],
+    "nl": [
+      "atmoce",
+      "atmozen",
+      "zonnepanelen",
+      "micro-omvormer",
+      "thuisbatterij",
+      "energie",
+      "modbus"
+    ],
+    "de": [
+      "atmoce",
+      "atmozen",
+      "photovoltaik",
+      "mikrowechselrichter",
+      "heimspeicher",
+      "energie",
+      "modbus"
+    ],
+    "fr": [
+      "atmoce",
+      "atmozen",
+      "solaire",
+      "micro-onduleur",
+      "batterie domestique",
+      "énergie",
+      "modbus"
+    ],
+    "it": [
+      "atmoce",
+      "atmozen",
+      "fotovoltaico",
+      "microinverter",
+      "batteria domestica",
+      "energia",
+      "modbus"
+    ],
+    "sv": [
+      "atmoce",
+      "atmozen",
+      "solceller",
+      "mikroväxelriktare",
+      "hemmabatteri",
+      "energi",
+      "modbus"
+    ],
+    "no": [
+      "atmoce",
+      "atmozen",
+      "solceller",
+      "mikroinverter",
+      "hjemmebatteri",
+      "energi",
+      "modbus"
+    ],
+    "es": [
+      "atmoce",
+      "atmozen",
+      "solar",
+      "microinversor",
+      "batería doméstica",
+      "energía",
+      "modbus"
+    ],
+    "da": [
+      "atmoce",
+      "atmozen",
+      "solceller",
+      "mikroinverter",
+      "hjemmebatteri",
+      "energi",
+      "modbus"
+    ],
+    "ru": [
+      "atmoce",
+      "atmozen",
+      "солнечные панели",
+      "микроинвертор",
+      "домашний аккумулятор",
+      "энергия",
+      "modbus"
+    ],
+    "pl": [
+      "atmoce",
+      "atmozen",
+      "fotowoltaika",
+      "mikrofalownik",
+      "magazyn energii",
+      "energia",
+      "modbus"
+    ],
+    "ko": [
+      "atmoce",
+      "atmozen",
+      "태양광",
+      "마이크로인버터",
+      "가정용 배터리",
+      "에너지",
+      "modbus"
+    ],
+    "ar": [
+      "atmoce",
+      "atmozen",
+      "الطاقة الشمسية",
+      "عاكس صغير",
+      "بطارية منزلية",
+      "الطاقة",
+      "modbus"
+    ]
   },
   "brandColor": "#D1606D",
   "permissions": [],

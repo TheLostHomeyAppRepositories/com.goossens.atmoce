@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.goossens.atmoce",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "compatibility": ">=12.13.0",
   "sdk": 3,
   "runtime": "nodejs",
@@ -389,6 +389,108 @@
               "ar": "مستوى البطارية"
             },
             "example": 42
+          }
+        ]
+      },
+      {
+        "id": "battery_discharge_above",
+        "title": {
+          "en": "Discharging rose above a power",
+          "nl": "Ontladen steeg boven een vermogen",
+          "de": "Entladen stieg über eine Leistung",
+          "fr": "La décharge a dépassé une puissance",
+          "it": "La scarica ha superato una potenza",
+          "sv": "Urladdningen steg över en effekt",
+          "no": "Utladingen steg over en effekt",
+          "es": "La descarga superó una potencia",
+          "da": "Afladningen steg over en effekt",
+          "ru": "Разряд превысил мощность",
+          "pl": "Rozładowanie przekroczyło moc",
+          "ko": "방전이 설정 출력을 넘음",
+          "ar": "ارتفع التفريغ فوق قدرة معيّنة"
+        },
+        "titleFormatted": {
+          "en": "Discharging rose above [[power]] W",
+          "nl": "Ontladen steeg boven [[power]] W",
+          "de": "Entladen stieg über [[power]] W",
+          "fr": "La décharge a dépassé [[power]] W",
+          "it": "La scarica ha superato [[power]] W",
+          "sv": "Urladdningen steg över [[power]] W",
+          "no": "Utladingen steg over [[power]] W",
+          "es": "La descarga superó [[power]] W",
+          "da": "Afladningen steg over [[power]] W",
+          "ru": "Разряд превысил [[power]] Вт",
+          "pl": "Rozładowanie przekroczyło [[power]] W",
+          "ko": "방전이 [[power]] W를 넘음",
+          "ar": "ارتفع التفريغ فوق [[power]] واط"
+        },
+        "hint": {
+          "en": "Fires once each time the battery's discharging power rises above this power. Charging does not count. Measured at every poll, without averaging.",
+          "nl": "Gaat telkens één keer af als het ontlaadvermogen van de batterij boven dit vermogen stijgt. Laden telt niet. Gemeten bij elke uitlezing, zonder middeling.",
+          "de": "Löst jedes Mal einmal aus, wenn die Entladeleistung der Batterie über diese Leistung steigt. Laden zählt nicht. Bei jeder Abfrage gemessen, ohne Mittelung.",
+          "fr": "Se déclenche une fois chaque fois que la puissance de décharge de la batterie dépasse cette puissance. La charge ne compte pas. Mesuré à chaque lecture, sans moyenne.",
+          "it": "Scatta una volta ogni volta che la potenza di scarica della batteria supera questa potenza. La carica non conta. Misurato a ogni lettura, senza media.",
+          "sv": "Utlöses en gång varje gång batteriets urladdningseffekt stiger över denna effekt. Laddning räknas inte. Mäts vid varje avläsning, utan medelvärde.",
+          "no": "Utløses én gang hver gang batteriets utladingseffekt stiger over denne effekten. Lading teller ikke. Målt ved hver avlesning, uten snitt.",
+          "es": "Se activa una vez cada vez que la potencia de descarga de la batería supera esta potencia. La carga no cuenta. Se mide en cada lectura, sin promediar.",
+          "da": "Udløses én gang hver gang batteriets afladningseffekt stiger over denne effekt. Opladning tæller ikke. Målt ved hver aflæsning, uden gennemsnit.",
+          "ru": "Срабатывает один раз каждый раз, когда мощность разряда батареи превышает эту мощность. Заряд не учитывается. Измеряется при каждом опросе, без усреднения.",
+          "pl": "Uruchamia się raz za każdym razem, gdy moc rozładowania baterii przekroczy tę moc. Ładowanie się nie liczy. Mierzone przy każdym odczycie, bez uśredniania.",
+          "ko": "배터리 방전 출력이 이 출력을 넘을 때마다 한 번 실행됩니다. 충전은 포함되지 않습니다. 매 읽기마다 평균 없이 측정합니다.",
+          "ar": "ينطلق مرة واحدة في كل مرة ترتفع فيها قدرة تفريغ البطارية فوق هذه القدرة. الشحن لا يُحتسب. يُقاس عند كل قراءة دون متوسط."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          },
+          {
+            "type": "number",
+            "name": "power",
+            "title": {
+              "en": "Power",
+              "nl": "Vermogen",
+              "de": "Leistung",
+              "fr": "Puissance",
+              "it": "Potenza",
+              "sv": "Effekt",
+              "no": "Effekt",
+              "es": "Potencia",
+              "da": "Effekt",
+              "ru": "Мощность",
+              "pl": "Moc",
+              "ko": "출력",
+              "ar": "القدرة"
+            },
+            "min": 0,
+            "max": 30000,
+            "step": 10,
+            "placeholder": {
+              "en": "100"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "power",
+            "type": "number",
+            "title": {
+              "en": "Discharging power",
+              "nl": "Ontlaadvermogen",
+              "de": "Entladeleistung",
+              "fr": "Puissance de décharge",
+              "it": "Potenza di scarica",
+              "sv": "Urladdningseffekt",
+              "no": "Utladingseffekt",
+              "es": "Potencia de descarga",
+              "da": "Afladningseffekt",
+              "ru": "Мощность разряда",
+              "pl": "Moc rozładowania",
+              "ko": "방전 출력",
+              "ar": "قدرة التفريغ"
+            },
+            "example": 350
           }
         ]
       },
@@ -987,19 +1089,19 @@
           "ar": "فائض شمسي لا يقل عن [[power]] واط لمدة [[minutes]] دقيقة"
         },
         "hint": {
-          "en": "Surplus is the solar power that flows to the grid: what the home doesn't use and, with a battery, what the battery can no longer absorb. It is averaged over 2 minutes so a passing cloud does not count. Starts once when it stayed at or above the power the whole time. Use your appliance's power plus about 200 W, and switch it off with \"Solar surplus has been gone for a while\". The grid meter setting \"Battery first up to\" decides whether battery charging counts as surplus.",
-          "nl": "Overschot is de zonnestroom die naar het net gaat: wat het huis niet verbruikt en, met een batterij, wat de batterij niet meer kan opnemen. Het wordt gemiddeld over 2 minuten, zodat een voorbijtrekkende wolk niet meetelt. Start één keer zodra het de hele tijd op of boven het vermogen bleef. Neem het vermogen van je apparaat plus zo'n 200 W, en schakel het uit met „Zonne-overschot is een tijd weg”. De netmeterinstelling „Batterij eerst tot” bepaalt of het laden van de batterij als overschot telt.",
-          "de": "Überschuss ist der Solarstrom, der ins Netz fließt: was das Haus nicht verbraucht und, mit Batterie, was die Batterie nicht mehr aufnehmen kann. Er wird über 2 Minuten gemittelt, damit eine vorbeiziehende Wolke nicht zählt. Startet einmal, wenn er die ganze Zeit auf oder über der Leistung blieb. Nimm die Leistung deines Geräts plus etwa 200 W und schalte es mit „Solarüberschuss ist eine Weile weg“ wieder aus. Die Netzzähler-Einstellung „Batterie zuerst bis“ legt fest, ob Batterieladen als Überschuss zählt.",
-          "fr": "Le surplus est l'énergie solaire qui part sur le réseau : ce que la maison ne consomme pas et, avec une batterie, ce que la batterie ne peut plus absorber. Il est moyenné sur 2 minutes pour qu'un nuage passager ne compte pas. Se déclenche une fois quand il est resté au niveau de la puissance ou au-dessus pendant toute la durée. Prenez la puissance de votre appareil plus environ 200 W, et arrêtez-le avec « Le surplus solaire a disparu depuis un moment ». Le réglage « Batterie d'abord jusqu'à » du compteur réseau détermine si la charge de la batterie compte comme surplus.",
-          "it": "Il surplus è l'energia solare che va in rete: quella che la casa non consuma e, con una batteria, quella che la batteria non riesce più ad assorbire. È mediato su 2 minuti perché una nuvola di passaggio non conti. Si attiva una volta quando è rimasto alla potenza o sopra per tutto il tempo. Usa la potenza del tuo apparecchio più circa 200 W e spegnilo con «Il surplus solare è assente da un po'». L'impostazione «Prima la batteria fino al» del contatore di rete decide se la carica della batteria conta come surplus.",
-          "sv": "Överskott är solel som går ut på elnätet: det hemmet inte använder och, med ett batteri, det batteriet inte längre kan ta emot. Det räknas som genomsnitt över 2 minuter så att ett förbipasserande moln inte räknas. Startar en gång när det hållit sig på eller över effekten hela tiden. Ta apparatens effekt plus cirka 200 W och stäng av den med ”Solöverskottet har varit borta en stund”. Nätmätarens inställning ”Batteriet först upp till” avgör om batteriladdning räknas som överskott.",
-          "no": "Overskudd er solstrøm som går ut på nettet: det hjemmet ikke bruker og, med batteri, det batteriet ikke lenger kan ta opp. Det beregnes som snitt over 2 minutter så en forbipasserende sky ikke teller. Starter én gang når det har holdt seg på eller over effekten hele tiden. Bruk apparatets effekt pluss rundt 200 W, og slå det av med «Soloverskuddet har vært borte en stund». Nettmålerens innstilling «Batteriet først opp til» avgjør om batterilading teller som overskudd.",
-          "es": "El excedente es la energía solar que va a la red: lo que la casa no consume y, con batería, lo que la batería ya no puede absorber. Se promedia en 2 minutos para que una nube pasajera no cuente. Se activa una vez cuando se ha mantenido en la potencia o por encima todo el tiempo. Usa la potencia de tu aparato más unos 200 W y apágalo con «El excedente solar desapareció hace un rato». El ajuste «Primero la batería hasta» del contador de red decide si la carga de la batería cuenta como excedente.",
-          "da": "Overskud er solstrøm, der går ud på nettet: det, hjemmet ikke bruger, og med batteri det, batteriet ikke længere kan optage. Det beregnes som gennemsnit over 2 minutter, så en forbipasserende sky ikke tæller. Starter én gang, når det har holdt sig på eller over effekten hele tiden. Brug apparatets effekt plus ca. 200 W, og sluk det med »Soloverskuddet har været væk et stykke tid«. Netmålerens indstilling »Batteriet først op til« afgør, om batteriopladning tæller som overskud.",
-          "ru": "Излишек — это солнечная энергия, которая уходит в сеть: то, что дом не потребляет, а при наличии батареи — то, что батарея уже не может принять. Он усредняется за 2 минуты, чтобы проходящее облако не учитывалось. Срабатывает один раз, когда он всё это время держался на уровне мощности или выше. Укажите мощность прибора плюс около 200 Вт и выключайте его картой «Солнечного излишка нет некоторое время». Настройка сетевого счётчика «Сначала батарея до» определяет, считается ли заряд батареи излишком.",
-          "pl": "Nadwyżka to energia słoneczna, która trafia do sieci: to, czego dom nie zużywa, a przy baterii to, czego bateria nie może już przyjąć. Jest uśredniana z 2 minut, by przelotna chmura się nie liczyła. Uruchamia się raz, gdy przez cały czas utrzymywała się na poziomie mocy lub wyżej. Podaj moc urządzenia plus ok. 200 W i wyłączaj je kartą „Nadwyżki solarnej brak od jakiegoś czasu”. Ustawienie licznika sieciowego „Najpierw bateria do” decyduje, czy ładowanie baterii liczy się jako nadwyżka.",
-          "ko": "잉여는 계통으로 나가는 태양광 전력입니다. 집에서 쓰지 않는 전력이며, 배터리가 있으면 배터리가 더 이상 받아들일 수 없는 전력입니다. 지나가는 구름이 영향을 주지 않도록 2분 평균을 사용합니다. 전체 시간 동안 설정 출력 이상을 유지하면 한 번 실행됩니다. 기기 소비전력에 약 200 W를 더한 값을 쓰고, '태양광 잉여가 한동안 없음'으로 끄세요. 계통 계량기 설정 '배터리 우선 충전 기준'에 따라 배터리 충전이 잉여에 포함되는지 결정됩니다.",
-          "ar": "الفائض هو الطاقة الشمسية التي تذهب إلى الشبكة: ما لا يستهلكه المنزل، ومع وجود بطارية ما لم تعد البطارية قادرة على استيعابه. يُحسب بمتوسط دقيقتين حتى لا تُحتسب سحابة عابرة. يعمل مرة واحدة عندما يبقى عند القدرة أو فوقها طوال المدة. استخدم قدرة جهازك مضافًا إليها نحو 200 واط، وأطفئه ببطاقة «غاب الفائض الشمسي لفترة». يحدد إعداد عداد الشبكة «البطارية أولًا حتى» ما إذا كان شحن البطارية يُحتسب فائضًا."
+          "en": "Surplus is the solar power that flows to the grid: what the home doesn't use and, with a battery, what the battery can no longer absorb. It is averaged over 2 minutes so a passing cloud does not count. Starts once when it stayed at or above the power the whole time. Use your appliance's power plus about 200 W, and switch it off with \"The home draws from the grid or battery for a while\". The grid meter setting \"Battery first up to\" decides whether battery charging counts as surplus.",
+          "nl": "Overschot is de zonnestroom die naar het net gaat: wat het huis niet verbruikt en, met een batterij, wat de batterij niet meer kan opnemen. Het wordt gemiddeld over 2 minuten, zodat een voorbijtrekkende wolk niet meetelt. Start één keer zodra het de hele tijd op of boven het vermogen bleef. Neem het vermogen van je apparaat plus zo'n 200 W, en schakel het uit met „Het huis haalt een tijd stroom uit net of batterij”. De netmeterinstelling „Batterij eerst tot” bepaalt of het laden van de batterij als overschot telt.",
+          "de": "Überschuss ist der Solarstrom, der ins Netz fließt: was das Haus nicht verbraucht und, mit Batterie, was die Batterie nicht mehr aufnehmen kann. Er wird über 2 Minuten gemittelt, damit eine vorbeiziehende Wolke nicht zählt. Startet einmal, wenn er die ganze Zeit auf oder über der Leistung blieb. Nimm die Leistung deines Geräts plus etwa 200 W und schalte es mit „Das Haus bezieht eine Weile Strom aus Netz oder Batterie“ wieder aus. Die Netzzähler-Einstellung „Batterie zuerst bis“ legt fest, ob Batterieladen als Überschuss zählt.",
+          "fr": "Le surplus est l'énergie solaire qui part sur le réseau : ce que la maison ne consomme pas et, avec une batterie, ce que la batterie ne peut plus absorber. Il est moyenné sur 2 minutes pour qu'un nuage passager ne compte pas. Se déclenche une fois quand il est resté au niveau de la puissance ou au-dessus pendant toute la durée. Prenez la puissance de votre appareil plus environ 200 W, et arrêtez-le avec « La maison puise depuis un moment dans le réseau ou la batterie ». Le réglage « Batterie d'abord jusqu'à » du compteur réseau détermine si la charge de la batterie compte comme surplus.",
+          "it": "Il surplus è l'energia solare che va in rete: quella che la casa non consuma e, con una batteria, quella che la batteria non riesce più ad assorbire. È mediato su 2 minuti perché una nuvola di passaggio non conti. Si attiva una volta quando è rimasto alla potenza o sopra per tutto il tempo. Usa la potenza del tuo apparecchio più circa 200 W e spegnilo con «La casa preleva da un po' da rete o batteria». L'impostazione «Prima la batteria fino al» del contatore di rete decide se la carica della batteria conta come surplus.",
+          "sv": "Överskott är solel som går ut på elnätet: det hemmet inte använder och, med ett batteri, det batteriet inte längre kan ta emot. Det räknas som genomsnitt över 2 minuter så att ett förbipasserande moln inte räknas. Startar en gång när det hållit sig på eller över effekten hela tiden. Ta apparatens effekt plus cirka 200 W och stäng av den med ”Hemmet tar ström från nät eller batteri sedan en stund”. Nätmätarens inställning ”Batteriet först upp till” avgör om batteriladdning räknas som överskott.",
+          "no": "Overskudd er solstrøm som går ut på nettet: det hjemmet ikke bruker og, med batteri, det batteriet ikke lenger kan ta opp. Det beregnes som snitt over 2 minutter så en forbipasserende sky ikke teller. Starter én gang når det har holdt seg på eller over effekten hele tiden. Bruk apparatets effekt pluss rundt 200 W, og slå det av med «Huset henter strøm fra nett eller batteri en stund». Nettmålerens innstilling «Batteriet først opp til» avgjør om batterilading teller som overskudd.",
+          "es": "El excedente es la energía solar que va a la red: lo que la casa no consume y, con batería, lo que la batería ya no puede absorber. Se promedia en 2 minutos para que una nube pasajera no cuente. Se activa una vez cuando se ha mantenido en la potencia o por encima todo el tiempo. Usa la potencia de tu aparato más unos 200 W y apágalo con «La casa toma energía de la red o la batería desde hace un rato». El ajuste «Primero la batería hasta» del contador de red decide si la carga de la batería cuenta como excedente.",
+          "da": "Overskud er solstrøm, der går ud på nettet: det, hjemmet ikke bruger, og med batteri det, batteriet ikke længere kan optage. Det beregnes som gennemsnit over 2 minutter, så en forbipasserende sky ikke tæller. Starter én gang, når det har holdt sig på eller over effekten hele tiden. Brug apparatets effekt plus ca. 200 W, og sluk det med »Huset trækker strøm fra nettet eller batteriet et stykke tid«. Netmålerens indstilling »Batteriet først op til« afgør, om batteriopladning tæller som overskud.",
+          "ru": "Излишек — это солнечная энергия, которая уходит в сеть: то, что дом не потребляет, а при наличии батареи — то, что батарея уже не может принять. Он усредняется за 2 минуты, чтобы проходящее облако не учитывалось. Срабатывает один раз, когда он всё это время держался на уровне мощности или выше. Укажите мощность прибора плюс около 200 Вт и выключайте его картой «Дом некоторое время берёт энергию из сети или батареи». Настройка сетевого счётчика «Сначала батарея до» определяет, считается ли заряд батареи излишком.",
+          "pl": "Nadwyżka to energia słoneczna, która trafia do sieci: to, czego dom nie zużywa, a przy baterii to, czego bateria nie może już przyjąć. Jest uśredniana z 2 minut, by przelotna chmura się nie liczyła. Uruchamia się raz, gdy przez cały czas utrzymywała się na poziomie mocy lub wyżej. Podaj moc urządzenia plus ok. 200 W i wyłączaj je kartą „Dom od jakiegoś czasu pobiera energię z sieci lub baterii”. Ustawienie licznika sieciowego „Najpierw bateria do” decyduje, czy ładowanie baterii liczy się jako nadwyżka.",
+          "ko": "잉여는 계통으로 나가는 태양광 전력입니다. 집에서 쓰지 않는 전력이며, 배터리가 있으면 배터리가 더 이상 받아들일 수 없는 전력입니다. 지나가는 구름이 영향을 주지 않도록 2분 평균을 사용합니다. 전체 시간 동안 설정 출력 이상을 유지하면 한 번 실행됩니다. 기기 소비전력에 약 200 W를 더한 값을 쓰고, '집이 한동안 전력망 또는 배터리에서 전력을 사용함'으로 끄세요. 계통 계량기 설정 '배터리 우선 충전 기준'에 따라 배터리 충전이 잉여에 포함되는지 결정됩니다.",
+          "ar": "الفائض هو الطاقة الشمسية التي تذهب إلى الشبكة: ما لا يستهلكه المنزل، ومع وجود بطارية ما لم تعد البطارية قادرة على استيعابه. يُحسب بمتوسط دقيقتين حتى لا تُحتسب سحابة عابرة. يعمل مرة واحدة عندما يبقى عند القدرة أو فوقها طوال المدة. استخدم قدرة جهازك مضافًا إليها نحو 200 واط، وأطفئه ببطاقة «يسحب المنزل من الشبكة أو البطارية منذ فترة». يحدد إعداد عداد الشبكة «البطارية أولًا حتى» ما إذا كان شحن البطارية يُحتسب فائضًا."
         },
         "args": [
           {
@@ -1180,6 +1282,134 @@
               "ar": "القدرة من الشبكة والبطارية"
             },
             "example": 600
+          }
+        ],
+        "deprecated": true
+      },
+      {
+        "id": "solar_deficit_held",
+        "title": {
+          "en": "The home draws from the grid or battery for a while",
+          "nl": "Het huis haalt een tijd stroom uit net of batterij",
+          "de": "Das Haus bezieht eine Weile Strom aus Netz oder Batterie",
+          "fr": "La maison puise depuis un moment dans le réseau ou la batterie",
+          "it": "La casa preleva da un po' da rete o batteria",
+          "sv": "Hemmet tar ström från nät eller batteri sedan en stund",
+          "no": "Huset henter strøm fra nett eller batteri en stund",
+          "es": "La casa toma energía de la red o la batería desde hace un rato",
+          "da": "Huset trækker strøm fra nettet eller batteriet et stykke tid",
+          "ru": "Дом некоторое время берёт энергию из сети или батареи",
+          "pl": "Dom od jakiegoś czasu pobiera energię z sieci lub baterii",
+          "ko": "집이 한동안 전력망 또는 배터리에서 전력을 사용함",
+          "ar": "يسحب المنزل من الشبكة أو البطارية منذ فترة"
+        },
+        "titleFormatted": {
+          "en": "The home draws at least [[power]] W from the grid or battery for [[minutes]] minutes",
+          "nl": "Het huis haalt [[minutes]] minuten minstens [[power]] W uit net of batterij",
+          "de": "Das Haus bezieht seit [[minutes]] Minuten mindestens [[power]] W aus Netz oder Batterie",
+          "fr": "La maison puise au moins [[power]] W dans le réseau ou la batterie depuis [[minutes]] minutes",
+          "it": "La casa preleva almeno [[power]] W da rete o batteria da [[minutes]] minuti",
+          "sv": "Hemmet tar minst [[power]] W från nät eller batteri i [[minutes]] minuter",
+          "no": "Huset henter minst [[power]] W fra nett eller batteri i [[minutes]] minutter",
+          "es": "La casa toma al menos [[power]] W de la red o la batería durante [[minutes]] minutos",
+          "da": "Huset trækker mindst [[power]] W fra nettet eller batteriet i [[minutes]] minutter",
+          "ru": "Дом берёт не менее [[power]] Вт из сети или батареи в течение [[minutes]] мин",
+          "pl": "Dom pobiera co najmniej [[power]] W z sieci lub baterii przez [[minutes]] min",
+          "ko": "집이 [[minutes]]분 동안 전력망 또는 배터리에서 [[power]] W 이상 사용함",
+          "ar": "يسحب المنزل [[power]] واط على الأقل من الشبكة أو البطارية لمدة [[minutes]] دقيقة"
+        },
+        "hint": {
+          "en": "Use this to switch off an appliance that runs on solar surplus. Starts once when the home has taken at least this power from the grid, or from the battery if you have one, the whole time (2-minute average, so a passing cloud does not count). Take a low value such as 50 W: the appliance is part of the home, so a value above its own power would let it drain the battery. Replaces \"Solar surplus has been gone for a while\", which used a fixed 200 W.",
+          "nl": "Gebruik dit om een apparaat dat op zonne-overschot draait uit te zetten. Start één keer zodra het huis de hele tijd minstens dit vermogen uit het net haalt, of uit de batterij als je er een hebt (gemiddeld over 2 minuten, zodat een voorbijtrekkende wolk niet meetelt). Neem een lage waarde zoals 50 W: het apparaat hoort zelf bij het huis, dus met een waarde boven zijn eigen vermogen zou het de batterij leegtrekken. Vervangt „Zonne-overschot is een tijd weg”, dat een vaste 200 W gebruikte.",
+          "de": "Damit schaltest du ein Gerät aus, das mit Solarüberschuss läuft. Startet einmal, sobald das Haus die ganze Zeit mindestens diese Leistung aus dem Netz bezieht, oder aus der Batterie, falls vorhanden (Mittel über 2 Minuten, damit eine vorbeiziehende Wolke nicht zählt). Nimm einen niedrigen Wert wie 50 W: Das Gerät gehört selbst zum Haus, mit einem Wert über seiner eigenen Leistung würde es die Batterie leeren. Ersetzt „Solarüberschuss ist eine Weile weg“, das feste 200 W verwendete.",
+          "fr": "Sert à éteindre un appareil qui fonctionne sur le surplus solaire. Démarre une fois dès que la maison a puisé tout le temps au moins cette puissance dans le réseau, ou dans la batterie si vous en avez une (moyenne sur 2 minutes, pour qu'un nuage passager ne compte pas). Prenez une valeur basse comme 50 W : l'appareil fait lui-même partie de la maison, une valeur au-dessus de sa propre puissance le laisserait vider la batterie. Remplace « Le surplus solaire a disparu depuis un moment », qui utilisait 200 W fixes.",
+          "it": "Serve a spegnere un apparecchio che funziona con il surplus solare. Si avvia una volta quando la casa ha prelevato per tutto il tempo almeno questa potenza dalla rete, o dalla batteria se ne hai una (media su 2 minuti, così una nuvola di passaggio non conta). Usa un valore basso come 50 W: l'apparecchio fa parte della casa, quindi con un valore sopra la sua potenza svuoterebbe la batteria. Sostituisce «Il surplus solare è assente da un po'», che usava 200 W fissi.",
+          "sv": "Använd detta för att stänga av en apparat som går på solöverskott. Startar en gång när hemmet hela tiden har tagit minst denna effekt från nätet, eller från batteriet om du har ett (medelvärde över 2 minuter, så ett förbipasserande moln räknas inte). Välj ett lågt värde som 50 W: apparaten hör själv till hemmet, så ett värde över dess egen effekt skulle låta den tömma batteriet. Ersätter ”Solöverskottet har varit borta en stund”, som använde fasta 200 W.",
+          "no": "Bruk dette til å slå av et apparat som går på soloverskudd. Starter én gang når huset hele tiden har hentet minst denne effekten fra nettet, eller fra batteriet hvis du har et (snitt over 2 minutter, så en forbipasserende sky ikke teller). Velg en lav verdi som 50 W: apparatet hører selv til huset, så en verdi over dets egen effekt ville la det tømme batteriet. Erstatter «Soloverskuddet har vært borte en stund», som brukte faste 200 W.",
+          "es": "Sirve para apagar un aparato que funciona con el excedente solar. Se inicia una vez cuando la casa ha tomado todo el tiempo al menos esta potencia de la red, o de la batería si tienes una (media de 2 minutos, para que una nube pasajera no cuente). Usa un valor bajo como 50 W: el aparato forma parte de la casa, así que con un valor por encima de su propia potencia vaciaría la batería. Sustituye a «El excedente solar desapareció hace un rato», que usaba 200 W fijos.",
+          "da": "Brug dette til at slukke et apparat, der kører på soloverskud. Starter én gang, når huset hele tiden har trukket mindst denne effekt fra nettet, eller fra batteriet hvis du har et (gennemsnit over 2 minutter, så en forbipasserende sky ikke tæller). Vælg en lav værdi som 50 W: apparatet hører selv til huset, så en værdi over dets egen effekt ville lade det tømme batteriet. Erstatter \"Soloverskuddet har været væk et stykke tid\", der brugte faste 200 W.",
+          "ru": "Используйте, чтобы выключить прибор, работающий на солнечном излишке. Срабатывает один раз, когда дом всё это время берёт не менее этой мощности из сети или из батареи, если она есть (среднее за 2 минуты, чтобы проходящее облако не учитывалось). Выберите малое значение, например 50 Вт: прибор сам входит в потребление дома, и при значении выше его мощности он разряжал бы батарею. Заменяет «Солнечного излишка нет некоторое время» с фиксированными 200 Вт.",
+          "pl": "Służy do wyłączania urządzenia działającego na nadwyżce solarnej. Uruchamia się raz, gdy dom przez cały czas pobiera co najmniej tę moc z sieci lub z baterii, jeśli ją masz (średnia z 2 minut, więc przelotna chmura się nie liczy). Wybierz niską wartość, np. 50 W: urządzenie samo należy do domu, więc przy wartości powyżej jego mocy rozładowywałoby baterię. Zastępuje „Nadwyżki solarnej brak od jakiegoś czasu”, które używało stałych 200 W.",
+          "ko": "태양광 잉여로 작동하는 기기를 끌 때 사용합니다. 집이 그동안 계속 전력망에서, 또는 배터리가 있으면 배터리에서 이 출력 이상을 사용하면 한 번 시작됩니다(2분 평균이라 지나가는 구름은 무시). 50 W 같은 낮은 값을 쓰세요. 기기 자체도 집의 일부이므로 자기 출력보다 높은 값이면 배터리를 비우게 됩니다. 고정 200 W를 쓰던 \"태양광 잉여가 한동안 없음\"을 대체합니다.",
+          "ar": "استخدمه لإيقاف جهاز يعمل على الفائض الشمسي. يبدأ مرة واحدة عندما يسحب المنزل طوال الوقت هذه القدرة على الأقل من الشبكة، أو من البطارية إن وُجدت (متوسط دقيقتين، فلا تُحتسب سحابة عابرة). اختر قيمة منخفضة مثل 50 واط: الجهاز نفسه جزء من المنزل، فبقيمة أعلى من قدرته سيستنزف البطارية. يحل محل «غاب الفائض الشمسي لفترة» الذي كان يستخدم 200 واط ثابتة."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=grid"
+          },
+          {
+            "type": "number",
+            "name": "power",
+            "title": {
+              "en": "Power",
+              "nl": "Vermogen",
+              "de": "Leistung",
+              "fr": "Puissance",
+              "it": "Potenza",
+              "sv": "Effekt",
+              "no": "Effekt",
+              "es": "Potencia",
+              "da": "Effekt",
+              "ru": "Мощность",
+              "pl": "Moc",
+              "ko": "출력",
+              "ar": "القدرة"
+            },
+            "min": 0,
+            "max": 30000,
+            "step": 50,
+            "placeholder": {
+              "en": "50"
+            }
+          },
+          {
+            "type": "number",
+            "name": "minutes",
+            "title": {
+              "en": "Minutes",
+              "nl": "Minuten",
+              "de": "Minuten",
+              "fr": "Minutes",
+              "it": "Minuti",
+              "sv": "Minuter",
+              "no": "Minutter",
+              "es": "Minutos",
+              "da": "Minutter",
+              "ru": "Минуты",
+              "pl": "Minuty",
+              "ko": "분",
+              "ar": "الدقائق"
+            },
+            "min": 1,
+            "max": 240,
+            "step": 1,
+            "placeholder": {
+              "en": "10"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "name": "deficit",
+            "type": "number",
+            "title": {
+              "en": "Power from grid and battery",
+              "nl": "Vermogen uit net en batterij",
+              "de": "Leistung aus Netz und Batterie",
+              "fr": "Puissance du réseau et de la batterie",
+              "it": "Potenza da rete e batteria",
+              "sv": "Effekt från nät och batteri",
+              "no": "Effekt fra nett og batteri",
+              "es": "Potencia de la red y la batería",
+              "da": "Effekt fra net og batteri",
+              "ru": "Мощность из сети и батареи",
+              "pl": "Moc z sieci i baterii",
+              "ko": "계통 및 배터리 전력",
+              "ar": "القدرة من الشبكة والبطارية"
+            },
+            "example": 170
           }
         ]
       },
@@ -1511,6 +1741,86 @@
         ]
       },
       {
+        "id": "battery_discharging_is",
+        "title": {
+          "en": "The battery !{{is|is not}} discharging at least a power",
+          "nl": "De batterij !{{ontlaadt|ontlaadt niet}} minstens een vermogen",
+          "de": "Die Batterie !{{entlädt|entlädt nicht}} mit mindestens einer Leistung",
+          "fr": "La batterie !{{se décharge|ne se décharge pas}} d'au moins une puissance",
+          "it": "La batteria !{{si scarica|non si scarica}} di almeno una potenza",
+          "sv": "Batteriet !{{laddar|laddar inte}} ur med minst en effekt",
+          "no": "Batteriet !{{lader|lader ikke}} ut med minst en effekt",
+          "es": "La batería !{{se descarga|no se descarga}} con al menos una potencia",
+          "da": "Batteriet !{{aflader|aflader ikke}} med mindst en effekt",
+          "ru": "Батарея !{{|не }}разряжается с мощностью не менее заданной",
+          "pl": "Bateria !{{rozładowuje się|nie rozładowuje się}} z co najmniej daną mocą",
+          "ko": "배터리가 설정 출력 이상으로 !{{방전 중임|방전 중이 아님}}",
+          "ar": "البطارية !{{تتفرغ|لا تتفرغ}} بقدرة معيّنة على الأقل"
+        },
+        "titleFormatted": {
+          "en": "The battery !{{is|is not}} discharging at least [[power]] W",
+          "nl": "De batterij !{{ontlaadt|ontlaadt niet}} minstens [[power]] W",
+          "de": "Die Batterie !{{entlädt|entlädt nicht}} mit mindestens [[power]] W",
+          "fr": "La batterie !{{se décharge|ne se décharge pas}} d'au moins [[power]] W",
+          "it": "La batteria !{{si scarica|non si scarica}} di almeno [[power]] W",
+          "sv": "Batteriet !{{laddar|laddar inte}} ur med minst [[power]] W",
+          "no": "Batteriet !{{lader|lader ikke}} ut med minst [[power]] W",
+          "es": "La batería !{{se descarga|no se descarga}} con al menos [[power]] W",
+          "da": "Batteriet !{{aflader|aflader ikke}} med mindst [[power]] W",
+          "ru": "Батарея !{{|не }}разряжается с мощностью не менее [[power]] Вт",
+          "pl": "Bateria !{{rozładowuje się|nie rozładowuje się}} z mocą co najmniej [[power]] W",
+          "ko": "배터리가 [[power]] W 이상으로 !{{방전 중임|방전 중이 아님}}",
+          "ar": "البطارية !{{تتفرغ|لا تتفرغ}} بقدرة [[power]] واط على الأقل"
+        },
+        "hint": {
+          "en": "Checks the discharging power at the last poll. Charging or idle counts as 0 W.",
+          "nl": "Controleert het ontlaadvermogen bij de laatste uitlezing. Laden of stilstaan telt als 0 W.",
+          "de": "Prüft die Entladeleistung bei der letzten Abfrage. Laden oder Stillstand zählt als 0 W.",
+          "fr": "Vérifie la puissance de décharge à la dernière lecture. La charge ou l'arrêt compte pour 0 W.",
+          "it": "Controlla la potenza di scarica all'ultima lettura. Carica o inattività contano come 0 W.",
+          "sv": "Kontrollerar urladdningseffekten vid senaste avläsningen. Laddning eller vila räknas som 0 W.",
+          "no": "Sjekker utladingseffekten ved siste avlesning. Lading eller hvile teller som 0 W.",
+          "es": "Comprueba la potencia de descarga en la última lectura. Cargar o estar en reposo cuenta como 0 W.",
+          "da": "Kontrollerer afladningseffekten ved seneste aflæsning. Opladning eller hvile tæller som 0 W.",
+          "ru": "Проверяет мощность разряда при последнем опросе. Заряд или простой считается как 0 Вт.",
+          "pl": "Sprawdza moc rozładowania przy ostatnim odczycie. Ładowanie lub bezczynność liczy się jako 0 W.",
+          "ko": "마지막 읽기의 방전 출력을 확인합니다. 충전 중이거나 대기 중이면 0 W로 봅니다.",
+          "ar": "يتحقق من قدرة التفريغ عند آخر قراءة. الشحن أو التوقف يُحتسب 0 واط."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=battery"
+          },
+          {
+            "type": "number",
+            "name": "power",
+            "title": {
+              "en": "Power",
+              "nl": "Vermogen",
+              "de": "Leistung",
+              "fr": "Puissance",
+              "it": "Potenza",
+              "sv": "Effekt",
+              "no": "Effekt",
+              "es": "Potencia",
+              "da": "Effekt",
+              "ru": "Мощность",
+              "pl": "Moc",
+              "ko": "출력",
+              "ar": "القدرة"
+            },
+            "min": 0,
+            "max": 30000,
+            "step": 10,
+            "placeholder": {
+              "en": "100"
+            }
+          }
+        ]
+      },
+      {
         "id": "battery_has_problem",
         "title": {
           "en": "There !{{is|is no}} battery problem",
@@ -1753,19 +2063,19 @@
           "ar": "الفائض الشمسي !{{|ليس }}عند [[power]] واط على الأقل منذ [[minutes]] دقيقة"
         },
         "hint": {
-          "en": "Use 0 minutes to check only the current 2-minute average. An appliance that runs on the surplus uses it itself, so switch it off with \"Solar surplus has been gone for a while\" instead.",
-          "nl": "Met 0 minuten kijk je alleen naar het huidige gemiddelde over 2 minuten. Een apparaat dat op het overschot draait, verbruikt het zelf; schakel het daarom uit met „Zonne-overschot is een tijd weg”.",
-          "de": "Mit 0 Minuten prüfst du nur den aktuellen 2-Minuten-Mittelwert. Ein Gerät, das mit dem Überschuss läuft, verbraucht ihn selbst; schalte es daher mit „Solarüberschuss ist eine Weile weg“ aus.",
-          "fr": "Avec 0 minute, seule la moyenne actuelle sur 2 minutes est vérifiée. Un appareil qui fonctionne sur le surplus le consomme lui-même ; arrêtez-le donc avec « Le surplus solaire a disparu depuis un moment ».",
-          "it": "Con 0 minuti controlli solo la media attuale su 2 minuti. Un apparecchio che funziona con il surplus lo consuma da sé; spegnilo quindi con «Il surplus solare è assente da un po'».",
-          "sv": "Med 0 minuter kontrolleras bara det aktuella 2-minutersgenomsnittet. En apparat som går på överskottet förbrukar det själv; stäng därför av den med ”Solöverskottet har varit borta en stund”.",
-          "no": "Med 0 minutter sjekkes bare det nåværende 2-minuttersnittet. Et apparat som går på overskuddet, bruker det selv; slå det derfor av med «Soloverskuddet har vært borte en stund».",
-          "es": "Con 0 minutos solo se comprueba la media actual de 2 minutos. Un aparato que funciona con el excedente lo consume él mismo; apágalo con «El excedente solar desapareció hace un rato».",
-          "da": "Med 0 minutter tjekkes kun det aktuelle 2-minutters gennemsnit. Et apparat, der kører på overskuddet, bruger det selv; sluk det derfor med »Soloverskuddet har været væk et stykke tid«.",
-          "ru": "При 0 минут проверяется только текущее среднее за 2 минуты. Прибор, работающий на излишке, сам его потребляет, поэтому выключайте его картой «Солнечного излишка нет некоторое время».",
-          "pl": "Przy 0 minut sprawdzana jest tylko bieżąca średnia z 2 minut. Urządzenie działające na nadwyżce samo ją zużywa, więc wyłączaj je kartą „Nadwyżki solarnej brak od jakiegoś czasu”.",
-          "ko": "0분이면 현재 2분 평균만 확인합니다. 잉여로 작동하는 기기는 잉여를 스스로 소비하므로 '태양광 잉여가 한동안 없음'으로 끄세요.",
-          "ar": "مع 0 دقيقة يُفحص متوسط الدقيقتين الحالي فقط. الجهاز الذي يعمل على الفائض يستهلكه بنفسه، لذا أطفئه ببطاقة «غاب الفائض الشمسي لفترة»."
+          "en": "Use 0 minutes to check only the current 2-minute average. An appliance that runs on the surplus uses it itself, so switch it off with \"The home draws from the grid or battery for a while\" instead.",
+          "nl": "Met 0 minuten kijk je alleen naar het huidige gemiddelde over 2 minuten. Een apparaat dat op het overschot draait, verbruikt het zelf; schakel het daarom uit met „Het huis haalt een tijd stroom uit net of batterij”.",
+          "de": "Mit 0 Minuten prüfst du nur den aktuellen 2-Minuten-Mittelwert. Ein Gerät, das mit dem Überschuss läuft, verbraucht ihn selbst; schalte es daher mit „Das Haus bezieht eine Weile Strom aus Netz oder Batterie“ aus.",
+          "fr": "Avec 0 minute, seule la moyenne actuelle sur 2 minutes est vérifiée. Un appareil qui fonctionne sur le surplus le consomme lui-même ; arrêtez-le donc avec « La maison puise depuis un moment dans le réseau ou la batterie ».",
+          "it": "Con 0 minuti controlli solo la media attuale su 2 minuti. Un apparecchio che funziona con il surplus lo consuma da sé; spegnilo quindi con «La casa preleva da un po' da rete o batteria».",
+          "sv": "Med 0 minuter kontrolleras bara det aktuella 2-minutersgenomsnittet. En apparat som går på överskottet förbrukar det själv; stäng därför av den med ”Hemmet tar ström från nät eller batteri sedan en stund”.",
+          "no": "Med 0 minutter sjekkes bare det nåværende 2-minuttersnittet. Et apparat som går på overskuddet, bruker det selv; slå det derfor av med «Huset henter strøm fra nett eller batteri en stund».",
+          "es": "Con 0 minutos solo se comprueba la media actual de 2 minutos. Un aparato que funciona con el excedente lo consume él mismo; apágalo con «La casa toma energía de la red o la batería desde hace un rato».",
+          "da": "Med 0 minutter tjekkes kun det aktuelle 2-minutters gennemsnit. Et apparat, der kører på overskuddet, bruger det selv; sluk det derfor med »Huset trækker strøm fra nettet eller batteriet et stykke tid«.",
+          "ru": "При 0 минут проверяется только текущее среднее за 2 минуты. Прибор, работающий на излишке, сам его потребляет, поэтому выключайте его картой «Дом некоторое время берёт энергию из сети или батареи».",
+          "pl": "Przy 0 minut sprawdzana jest tylko bieżąca średnia z 2 minut. Urządzenie działające na nadwyżce samo ją zużywa, więc wyłączaj je kartą „Dom od jakiegoś czasu pobiera energię z sieci lub baterii”.",
+          "ko": "0분이면 현재 2분 평균만 확인합니다. 잉여로 작동하는 기기는 잉여를 스스로 소비하므로 '집이 한동안 전력망 또는 배터리에서 전력을 사용함'으로 끄세요.",
+          "ar": "مع 0 دقيقة يُفحص متوسط الدقيقتين الحالي فقط. الجهاز الذي يعمل على الفائض يستهلكه بنفسه، لذا أطفئه ببطاقة «يسحب المنزل من الشبكة أو البطارية منذ فترة»."
         },
         "args": [
           {
@@ -1821,6 +2131,111 @@
             "step": 1,
             "placeholder": {
               "en": "30"
+            }
+          }
+        ]
+      },
+      {
+        "id": "solar_deficit_is",
+        "title": {
+          "en": "The home !{{draws|does not draw}} at least a power from the grid or battery for a while",
+          "nl": "Het huis !{{haalt|haalt niet}} een tijd minstens een vermogen uit net of batterij",
+          "de": "Das Haus !{{bezieht|bezieht nicht}} eine Weile mindestens eine Leistung aus Netz oder Batterie",
+          "fr": "La maison !{{puise|ne puise pas}} depuis un moment au moins une puissance dans le réseau ou la batterie",
+          "it": "La casa !{{preleva|non preleva}} da un po' almeno una potenza da rete o batteria",
+          "sv": "Hemmet !{{tar|tar inte}} minst en effekt från nät eller batteri sedan en stund",
+          "no": "Huset !{{henter|henter ikke}} minst en effekt fra nett eller batteri en stund",
+          "es": "La casa !{{toma|no toma}} desde hace un rato al menos una potencia de la red o la batería",
+          "da": "Huset !{{trækker|trækker ikke}} mindst en effekt fra nettet eller batteriet et stykke tid",
+          "ru": "Дом !{{|не }}берёт некоторое время не менее заданной мощности из сети или батареи",
+          "pl": "Dom !{{pobiera|nie pobiera}} od jakiegoś czasu co najmniej moc z sieci lub baterii",
+          "ko": "집이 한동안 전력망 또는 배터리에서 설정 출력 이상을 !{{사용함|사용하지 않음}}",
+          "ar": "المنزل !{{يسحب|لا يسحب}} منذ فترة قدرة معيّنة على الأقل من الشبكة أو البطارية"
+        },
+        "titleFormatted": {
+          "en": "The home !{{draws|does not draw}} at least [[power]] W from the grid or battery for [[minutes]] minutes",
+          "nl": "Het huis !{{haalt|haalt niet}} [[minutes]] minuten minstens [[power]] W uit net of batterij",
+          "de": "Das Haus !{{bezieht|bezieht nicht}} seit [[minutes]] Minuten mindestens [[power]] W aus Netz oder Batterie",
+          "fr": "La maison !{{puise|ne puise pas}} au moins [[power]] W dans le réseau ou la batterie depuis [[minutes]] minutes",
+          "it": "La casa !{{preleva|non preleva}} almeno [[power]] W da rete o batteria da [[minutes]] minuti",
+          "sv": "Hemmet !{{tar|tar inte}} minst [[power]] W från nät eller batteri i [[minutes]] minuter",
+          "no": "Huset !{{henter|henter ikke}} minst [[power]] W fra nett eller batteri i [[minutes]] minutter",
+          "es": "La casa !{{toma|no toma}} al menos [[power]] W de la red o la batería desde hace [[minutes]] minutos",
+          "da": "Huset !{{trækker|trækker ikke}} mindst [[power]] W fra nettet eller batteriet i [[minutes]] minutter",
+          "ru": "Дом !{{|не }}берёт не менее [[power]] Вт из сети или батареи в течение [[minutes]] мин",
+          "pl": "Dom !{{pobiera|nie pobiera}} co najmniej [[power]] W z sieci lub baterii od [[minutes]] min",
+          "ko": "집이 [[minutes]]분 동안 전력망 또는 배터리에서 [[power]] W 이상을 !{{사용함|사용하지 않음}}",
+          "ar": "المنزل !{{يسحب|لا يسحب}} [[power]] واط على الأقل من الشبكة أو البطارية لمدة [[minutes]] دقيقة"
+        },
+        "hint": {
+          "en": "Use 0 minutes to check only the current 2-minute average. A low value such as 50 W tells whether an appliance running on surplus is now fed by the grid or battery.",
+          "nl": "Gebruik 0 minuten om alleen het huidige gemiddelde over 2 minuten te controleren. Een lage waarde zoals 50 W zegt of een apparaat dat op overschot draait nu door het net of de batterij gevoed wordt.",
+          "de": "Mit 0 Minuten wird nur das aktuelle 2-Minuten-Mittel geprüft. Ein niedriger Wert wie 50 W zeigt, ob ein Gerät, das mit Überschuss läuft, jetzt aus Netz oder Batterie versorgt wird.",
+          "fr": "Avec 0 minute, seule la moyenne actuelle sur 2 minutes est vérifiée. Une valeur basse comme 50 W indique si un appareil qui tourne sur le surplus est maintenant alimenté par le réseau ou la batterie.",
+          "it": "Con 0 minuti si controlla solo la media attuale su 2 minuti. Un valore basso come 50 W indica se un apparecchio che va con il surplus è ora alimentato da rete o batteria.",
+          "sv": "Med 0 minuter kontrolleras bara det aktuella medelvärdet över 2 minuter. Ett lågt värde som 50 W visar om en apparat som går på överskott nu matas från nät eller batteri.",
+          "no": "Med 0 minutter sjekkes bare det nåværende snittet over 2 minutter. En lav verdi som 50 W viser om et apparat som går på overskudd nå får strøm fra nett eller batteri.",
+          "es": "Con 0 minutos solo se comprueba la media actual de 2 minutos. Un valor bajo como 50 W indica si un aparato que funciona con excedente se alimenta ahora de la red o la batería.",
+          "da": "Med 0 minutter kontrolleres kun det aktuelle gennemsnit over 2 minutter. En lav værdi som 50 W viser, om et apparat, der kører på overskud, nu forsynes fra nettet eller batteriet.",
+          "ru": "При 0 минут проверяется только текущее среднее за 2 минуты. Малое значение, например 50 Вт, показывает, питается ли прибор, работающий на излишке, теперь от сети или батареи.",
+          "pl": "Przy 0 minut sprawdzana jest tylko bieżąca średnia z 2 minut. Niska wartość, np. 50 W, pokazuje, czy urządzenie działające na nadwyżce jest teraz zasilane z sieci lub baterii.",
+          "ko": "0분이면 현재 2분 평균만 확인합니다. 50 W 같은 낮은 값으로 잉여로 작동하던 기기가 이제 전력망이나 배터리로 돌아가는지 알 수 있습니다.",
+          "ar": "استخدم 0 دقيقة للتحقق من متوسط الدقيقتين الحالي فقط. تبيّن قيمة منخفضة مثل 50 واط ما إذا كان جهاز يعمل على الفائض يتغذى الآن من الشبكة أو البطارية."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=grid"
+          },
+          {
+            "type": "number",
+            "name": "power",
+            "title": {
+              "en": "Power",
+              "nl": "Vermogen",
+              "de": "Leistung",
+              "fr": "Puissance",
+              "it": "Potenza",
+              "sv": "Effekt",
+              "no": "Effekt",
+              "es": "Potencia",
+              "da": "Effekt",
+              "ru": "Мощность",
+              "pl": "Moc",
+              "ko": "출력",
+              "ar": "القدرة"
+            },
+            "min": 0,
+            "max": 30000,
+            "step": 50,
+            "placeholder": {
+              "en": "50"
+            }
+          },
+          {
+            "type": "number",
+            "name": "minutes",
+            "title": {
+              "en": "Minutes",
+              "nl": "Minuten",
+              "de": "Minuten",
+              "fr": "Minutes",
+              "it": "Minuti",
+              "sv": "Minuter",
+              "no": "Minutter",
+              "es": "Minutos",
+              "da": "Minutter",
+              "ru": "Минуты",
+              "pl": "Minuty",
+              "ko": "분",
+              "ar": "الدقائق"
+            },
+            "min": 0,
+            "max": 240,
+            "step": 1,
+            "placeholder": {
+              "en": "10"
             }
           }
         ]
@@ -3900,6 +4315,7 @@
         "meter_power.consumption_today",
         "measure_self_sufficiency",
         "measure_power.surplus",
+        "measure_power.net_surplus",
         "button.test_connection"
       ],
       "capabilitiesOptions": {
@@ -4155,6 +4571,23 @@
             "pl": "Nadwyżka solarna",
             "ko": "태양광 잉여",
             "ar": "الفائض الشمسي"
+          }
+        },
+        "measure_power.net_surplus": {
+          "title": {
+            "en": "Net solar surplus",
+            "nl": "Netto zonne-overschot",
+            "de": "Netto-Solarüberschuss",
+            "fr": "Surplus solaire net",
+            "it": "Surplus solare netto",
+            "sv": "Nettosolöverskott",
+            "no": "Netto soloverskudd",
+            "es": "Excedente solar neto",
+            "da": "Netto soloverskud",
+            "ru": "Чистый солнечный излишек",
+            "pl": "Nadwyżka solarna netto",
+            "ko": "순 태양광 잉여",
+            "ar": "صافي الفائض الشمسي"
           }
         }
       },

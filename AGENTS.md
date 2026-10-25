@@ -272,6 +272,13 @@ When adding a string, add it in all 13 languages in the same change.
   crossing for that Flow's argument, so each Flow fires once per crossing.
 - Started/stopped cards use `Hysteresis` (grid 50 W on / 20 W off, solar 20 W / 5 W). The
   first reading after start only sets the state. Conditions read the same state.
+- Surplus for appliances (1.1.0, after a 170 W pool pump kept running on the battery on 2026-10-25):
+  `solar_deficit_held` / `solar_deficit_is` = the home draws ≥ X W (user-set, hint 50 W) from grid or battery
+  for N min (2-min average); `solar_surplus_ended` (fixed 200 W) is `deprecated` (hidden for new Flows, still
+  runs in existing ones). `measure_power.net_surplus` = surplus − deficit (signed; evcc site power / HA "PV
+  excess"). Battery: `battery_discharge_above` (crossing) and `battery_discharging_is` (last poll). Research
+  2026-10-25: most Homey solar apps only offer "export above X W"; Huawei FusionSolar counts a battery as
+  discharging from 50 W; evcc stops a load at 0 W surplus after 3 min with a ≥ 100 W battery tolerance.
 - Capabilities added after pairing are appended with `addMissingCapabilities`; Homey applies
   the manifest `capabilitiesOptions` (titles) to them — verified on Homey 13.5.0.
 

@@ -58,6 +58,10 @@ export default class BatteryDriver extends AtmoceDriver {
       .registerRunListener(async ({ level }: { level: number }, state: Crossing) => crossed(state.previous, state.current, level, 'below'));
     flow.getDeviceTriggerCard('battery_level_above')
       .registerRunListener(async ({ level }: { level: number }, state: Crossing) => crossed(state.previous, state.current, level, 'above'));
+    flow.getDeviceTriggerCard('battery_discharge_above')
+      .registerRunListener(async ({ power }: { power: number }, state: Crossing) => crossed(state.previous, state.current, power, 'above'));
+    flow.getConditionCard('battery_discharging_is')
+      .registerRunListener(async ({ device, power }: { device: BatteryDevice; power: number }) => device.dischargingW >= power);
     flow.getConditionCard('battery_has_problem')
       .registerRunListener(async ({ device }: { device: BatteryDevice }) => device.problem !== null);
     flow.getConditionCard('battery_level_is_above')
