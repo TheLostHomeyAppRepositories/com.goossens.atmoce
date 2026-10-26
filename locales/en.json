@@ -59,6 +59,10 @@
     "consumed": "Consumed today",
     "full_at": "Full at __time__",
     "empty_at": "Empty at __time__",
+    "full_tomorrow": "Full tomorrow at __time__",
+    "empty_tomorrow": "Empty tomorrow at __time__",
+    "full_on": "Full __day__ at __time__",
+    "empty_on": "Empty __day__ at __time__",
     "exported_today": "__kwh__ kWh to grid today",
     "self_sufficient": "Self-sufficient"
   },

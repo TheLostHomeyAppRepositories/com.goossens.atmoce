@@ -32,18 +32,34 @@ describe('formatTime', () => {
 });
 
 describe('formatClockIn', () => {
-  const now = Date.UTC(2026, 8, 30, 13, 2); // 15:02 in Paris (CEST)
+  const now = Date.UTC(2026, 8, 30, 13, 2); // Wed 30 Sep, 15:02 in Paris (CEST)
   it('uses the 24-hour clock in Dutch and the 12-hour clock in English', () => {
-    assert.equal(formatClockIn(137, now, 'nl', 'Europe/Paris'), '17:20');
-    assert.match(formatClockIn(137, now, 'en', 'Europe/Paris'), /^5:20\s?PM$/);
+    assert.equal(formatClockIn(137, now, 'nl', 'Europe/Paris').time, '17:20');
+    assert.match(formatClockIn(137, now, 'en', 'Europe/Paris').time, /^5:20\s?PM$/);
   });
 
   it('follows Homey\'s time zone and rounds to 5 minutes', () => {
-    assert.equal(formatClockIn(137, now, 'nl', 'UTC'), '15:20');
-    assert.equal(formatClockIn(139, now, 'nl', 'Europe/Paris'), '17:20');
+    assert.equal(formatClockIn(137, now, 'nl', 'UTC').time, '15:20');
+    assert.equal(formatClockIn(139, now, 'nl', 'Europe/Paris').time, '17:20');
   });
 
-  it('adds the weekday a day or more ahead', () => {
-    assert.match(formatClockIn(26 * 60, now, 'nl', 'Europe/Paris'), /^do\.? 17:0[05]$/);
+  it('later today is today', () => {
+    assert.deepEqual(formatClockIn(137, now, 'nl', 'Europe/Paris'), { time: '17:20', dayOffset: 0, day: null });
+  });
+
+  it('after midnight is tomorrow, even less than 24 hours ahead (seen 2026-10-25: 22:52 → 20:25)', () => {
+    const evening = Date.UTC(2026, 9, 25, 21, 52); // Sun 25 Oct, 22:52 in Paris (CET, after the DST change)
+    assert.deepEqual(formatClockIn(21 * 60 + 33, evening, 'nl', 'Europe/Paris'), { time: '20:25', dayOffset: 1, day: null });
+    assert.deepEqual(formatClockIn(30, evening, 'nl', 'Europe/Paris'), { time: '23:20', dayOffset: 0, day: null });
+    assert.equal(formatClockIn(70, evening, 'nl', 'Europe/Paris').dayOffset, 1); // 00:00 is tomorrow
+  });
+
+  it('names the weekday 2 to 6 days ahead and the date a week or more ahead', () => {
+    const later = formatClockIn(50 * 60, now, 'nl', 'Europe/Paris'); // Fri 2 Oct, 17:00
+    assert.equal(later.dayOffset, 2);
+    assert.equal(later.day, 'vrijdag');
+    const week = formatClockIn(8 * 24 * 60, now, 'nl', 'Europe/Paris'); // Thu 8 Oct
+    assert.equal(week.dayOffset, 8);
+    assert.match(week.day ?? '', /^8 okt\.?$/);
   });
 });

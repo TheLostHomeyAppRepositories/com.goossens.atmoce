@@ -59,6 +59,10 @@
     "consumed": "Потреблено сегодня",
     "full_at": "Полная в __time__",
     "empty_at": "Пустая в __time__",
+    "full_tomorrow": "Полная завтра в __time__",
+    "empty_tomorrow": "Пустая завтра в __time__",
+    "full_on": "Полная: __day__, __time__",
+    "empty_on": "Пустая: __day__, __time__",
     "exported_today": "Сегодня в сеть __kwh__ kWh",
     "self_sufficient": "Автономность"
   },

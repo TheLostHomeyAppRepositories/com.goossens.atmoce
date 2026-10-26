@@ -88,5 +88,20 @@
     "pl": "Nowe karty Flow, aby urządzenia działały tylko na prawdziwej nadwyżce solarnej: „Dom od jakiegoś czasu pobiera energię z sieci lub baterii” (wyzwalacz i warunek) z własnym progiem mocy, dzięki czemu nawet małe urządzenie, jak pompa basenowa, wyłącza się, gdy tylko działa z baterii. Zastępuje „Nadwyżki solarnej brak od jakiegoś czasu” (stałe 200 W), które nadal działa w istniejących Flow. Nowość w liczniku sieci: nadwyżka solarna netto, ujemna, dopóki dom korzysta z sieci lub baterii. Nowość dla baterii: „Rozładowanie przekroczyło moc” i „Bateria rozładowuje się z co najmniej daną mocą”.",
     "ko": "실제 태양광 잉여로만 기기를 돌리기 위한 새 플로우 카드: 직접 정한 출력 기준을 쓰는 \"집이 한동안 전력망 또는 배터리에서 전력을 사용함\"(트리거 및 조건)으로, 수영장 펌프 같은 작은 기기도 배터리로 돌기 시작하면 꺼집니다. 고정 200 W를 쓰던 \"태양광 잉여가 한동안 없음\"을 대체하며, 기존 플로우에서는 계속 작동합니다. 전력망 계량기에 새로 추가: 순 태양광 잉여(집이 전력망이나 배터리로 운영되는 동안 음수). 배터리에 새로 추가: \"방전이 설정 출력을 넘음\"과 \"배터리가 설정 출력 이상으로 방전 중임\".",
     "ar": "بطاقات Flow جديدة لتشغيل الأجهزة على الفائض الشمسي الحقيقي فقط: «يسحب المنزل من الشبكة أو البطارية منذ فترة» (مشغّل وشرط) بعتبة قدرة تحددها بنفسك، حتى ينطفئ جهاز صغير مثل مضخة المسبح بمجرد أن يعمل على البطارية. تحل محل «غاب الفائض الشمسي لفترة» (200 واط ثابتة)، التي تظل تعمل في التدفقات الحالية. جديد في عدّاد الشبكة: صافي الفائض الشمسي، سالب طالما يعيش المنزل على الشبكة أو البطارية. جديد للبطارية: «ارتفع التفريغ فوق قدرة معيّنة» و«البطارية تتفرغ بقدرة معيّنة على الأقل»."
+  },
+  "1.1.1": {
+    "en": "The Energy flow widget now says on which day the battery will be full or empty (\"Empty tomorrow at 20:25\", \"Full Friday at 14:10\"). Before, a time after midnight looked like today.",
+    "nl": "De widget Energiestroom zegt nu op welke dag de batterij vol of leeg is (\"Leeg morgen om 20:25\", \"Vol vrijdag om 14:10\"). Voorheen leek een tijd na middernacht op vandaag.",
+    "de": "Das Widget Energiefluss sagt jetzt, an welchem Tag die Batterie voll oder leer ist („Leer morgen um 20:25“, „Voll Freitag um 14:10“). Bisher sah eine Uhrzeit nach Mitternacht wie heute aus.",
+    "fr": "Le widget Flux d'énergie indique maintenant le jour où la batterie sera pleine ou vide (« Vide demain à 20:25 », « Pleine vendredi à 14:10 »). Avant, une heure après minuit semblait être aujourd'hui.",
+    "it": "Il widget Flusso di energia ora indica in quale giorno la batteria sarà piena o scarica (\"Vuota domani alle 20:25\", \"Piena venerdì alle 14:10\"). Prima un orario dopo mezzanotte sembrava di oggi.",
+    "sv": "Widgeten Energiflöde visar nu vilken dag batteriet blir fullt eller tomt (\"Tom i morgon kl. 20:25\", \"Full fredag kl. 14:10\"). Tidigare såg en tid efter midnatt ut som i dag.",
+    "no": "Widgeten Energiflyt viser nå hvilken dag batteriet blir fullt eller tomt («Tom i morgen kl. 20:25», «Full fredag kl. 14:10»). Før så et klokkeslett etter midnatt ut som i dag.",
+    "es": "El widget Flujo de energía indica ahora qué día estará la batería llena o vacía («Vacía mañana a las 20:25», «Llena el viernes a las 14:10»). Antes, una hora después de medianoche parecía de hoy.",
+    "da": "Widgetten Energiflow viser nu, hvilken dag batteriet bliver fuldt eller tomt (\"Tom i morgen kl. 20:25\", \"Fuld fredag kl. 14:10\"). Før lignede et klokkeslæt efter midnat i dag.",
+    "ru": "Виджет «Поток энергии» теперь показывает, в какой день батарея зарядится или разрядится («Пустая завтра в 20:25», «Полная: пятница, 14:10»). Раньше время после полуночи выглядело как сегодняшнее.",
+    "pl": "Widżet Przepływ energii pokazuje teraz, którego dnia bateria będzie pełna lub pusta („Pusta jutro o 20:25”, „Pełna: piątek, 14:10”). Wcześniej godzina po północy wyglądała jak dzisiejsza.",
+    "ko": "에너지 흐름 위젯이 이제 배터리가 가득 차거나 비는 날짜를 표시합니다(\"내일 20:25 방전 예정\", \"금요일 14:10 완충 예정\"). 이전에는 자정 이후의 시각이 오늘처럼 보였습니다.",
+    "ar": "تعرض أداة تدفق الطاقة الآن اليوم الذي ستمتلئ فيه البطارية أو تفرغ («فارغة غدًا عند 20:25»، «ممتلئة الجمعة عند 14:10»). سابقًا كان الوقت بعد منتصف الليل يبدو كأنه اليوم."
   }
 }

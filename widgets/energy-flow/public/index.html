@@ -385,11 +385,14 @@
       }
 
       /**
-       * "Full at 17:20" / "Empty at 23:40". The app formats the clock time in Homey's language and
-       * time zone (rounded to 5 minutes), so it never follows a phone set to another language.
+       * "Full at 17:20" / "Empty tomorrow at 08:25" / "Empty Friday at 20:25". The app formats the
+       * clock time and the day in Homey's language and time zone, so it never follows a phone set
+       * to another language.
        */
-      function eta(key, time) {
-        return time ? Homey.__(key).replace('__time__', time) : '';
+      function eta(kind, at) {
+        if (!at) return '';
+        var key = at.dayOffset === 0 ? '_at' : at.dayOffset === 1 ? '_tomorrow' : '_on';
+        return Homey.__('widget.' + kind + key).replace('__time__', at.time).replace('__day__', at.day || '');
       }
 
       function number(value, decimals) {
@@ -487,8 +490,8 @@
           var state = flow.batteryW >= MIN_FLOW_W ? 'widget.charging' : flow.batteryW <= -MIN_FLOW_W ? 'widget.discharging' : 'widget.battery';
           document.getElementById('battery-label').textContent = Homey.__(state) + ' · ' + Math.round(soc) + '%';
           document.getElementById('battery-eta').textContent = flow.batteryW >= MIN_FLOW_W
-            ? eta('widget.full_at', flow.fullAt)
-            : flow.batteryW <= -MIN_FLOW_W ? eta('widget.empty_at', flow.emptyAt) : '';
+            ? eta('full', flow.fullAt)
+            : flow.batteryW <= -MIN_FLOW_W ? eta('empty', flow.emptyAt) : '';
           var circumference = 2 * Math.PI * 30;
           document.getElementById('soc-ring').setAttribute('stroke-dasharray', (circumference * soc / 100) + ' ' + circumference);
           var cell = document.getElementById('cell-fill');

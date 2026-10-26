@@ -2,7 +2,9 @@ import Homey from 'homey';
 
 import { AtmoceDevice } from './lib/atmoce-device.mts';
 import { type BatteryInfo, type EnergyFlow, energyFlow } from './lib/energy-flow.mts';
-import { formatClockIn, formatDuration, formatTime } from './lib/format.mts';
+import {
+  type ClockTime, formatClockIn, formatDuration, formatTime,
+} from './lib/format.mts';
 import type BatteryDevice from './drivers/battery/device.mts';
 import type { AtmoceGateway, Timers } from './lib/gateway.mts';
 import { type GatewayAlert, GatewayAlerts } from './lib/gateway-alerts.mts';
@@ -125,7 +127,7 @@ export default class AtmoceApp extends Homey.App {
     return { ...flow, fullAt: this.clockIn(flow.minutesToFull), emptyAt: this.clockIn(flow.minutesToEmpty) };
   }
 
-  private clockIn(minutes: number | null): string | null {
+  private clockIn(minutes: number | null): ClockTime | null {
     if (minutes === null || minutes <= 0) return null;
     return formatClockIn(minutes, Date.now(), this.homey.i18n.getLanguage(), this.homey.clock.getTimezone());
   }

@@ -59,6 +59,10 @@
     "consumed": "Förbrukat idag",
     "full_at": "Full kl. __time__",
     "empty_at": "Tom kl. __time__",
+    "full_tomorrow": "Full i morgon kl. __time__",
+    "empty_tomorrow": "Tom i morgon kl. __time__",
+    "full_on": "Full __day__ kl. __time__",
+    "empty_on": "Tom __day__ kl. __time__",
     "exported_today": "I dag __kwh__ kWh till nätet",
     "self_sufficient": "Självförsörjande"
   },

@@ -59,6 +59,10 @@
     "consumed": "Forbrukt i dag",
     "full_at": "Full kl. __time__",
     "empty_at": "Tom kl. __time__",
+    "full_tomorrow": "Full i morgen kl. __time__",
+    "empty_tomorrow": "Tom i morgen kl. __time__",
+    "full_on": "Full __day__ kl. __time__",
+    "empty_on": "Tom __day__ kl. __time__",
     "exported_today": "I dag __kwh__ kWh til nettet",
     "self_sufficient": "Selvforsynt"
   },

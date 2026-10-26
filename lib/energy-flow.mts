@@ -10,6 +10,7 @@ import {
   minutesToFull,
   selfSufficiencyTodayPercent,
 } from './derived.mts';
+import type { ClockTime } from './format.mts';
 import type { Snapshot } from './gateway.mts';
 import { batteryPowerForHomey, gridPowerForHomey } from './registers.mts';
 
@@ -26,8 +27,8 @@ export interface EnergyFlow {
   minutesToFull: number | null;
   minutesToEmpty: number | null;
   /** The same as clock times in Homey's language and time zone, filled in by the app. */
-  fullAt: string | null;
-  emptyAt: string | null;
+  fullAt: ClockTime | null;
+  emptyAt: ClockTime | null;
   /** Flows between nodes in W (all ≥ 0). */
   flows: {
     solarToHome: number;

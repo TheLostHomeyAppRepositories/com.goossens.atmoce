@@ -59,6 +59,10 @@
     "consumed": "Verbruikt vandaag",
     "full_at": "Vol om __time__",
     "empty_at": "Leeg om __time__",
+    "full_tomorrow": "Vol morgen om __time__",
+    "empty_tomorrow": "Leeg morgen om __time__",
+    "full_on": "Vol __day__ om __time__",
+    "empty_on": "Leeg __day__ om __time__",
     "exported_today": "Vandaag __kwh__ kWh terug",
     "self_sufficient": "Zelfvoorzienend"
   },
