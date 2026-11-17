@@ -346,6 +346,12 @@ When adding a string, add it in all 13 languages in the same change.
 - ✅ VERIFIED 2026-11-17: after a forced run ends, the gateway may set 60310 = 2 although a
   limit is active (seen once, the other runs went to 4). `keepLimitsEnforced` re-asserts 4 at
   once after a run ends instead of waiting for the 5-minute re-assert.
+- Seen 2026-11-17 (battery at its 5 % floor): the gateway itself set 60310 from 4 back to 2
+  within seconds to minutes while a PV or export limit was set, yet the PV cap stayed in force
+  (308 W) and writes to 60322/60324 were still taken. So limits are enforced in 2 as well;
+  "accepted only while 60310 ≠ 2" is kept as the spec says (the app re-asserts 4).
+- Export release on hardware (2026-11-17): 0 W → 18 000 W (rated PV + storage) → 10 s →
+  0xFFFFFFFF, all read back as written; the effect on production could not be measured (no export).
 - Still unverified: export / import limits on hardware (same mechanism), whether limits
   survive a gateway restart (the app re-asserts mode 4 anyway), and the interaction with
   Atmozen's "Export Power to Grid" switch.
