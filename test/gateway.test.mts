@@ -24,6 +24,7 @@ function gatewayFor(serial: string, pollIntervalMs = 60_000): AtmoceGateway {
     expectedSerial: serial,
     timers,
     logger: quiet,
+    releaseHoldMs: 30,
   });
 }
 
@@ -198,7 +199,91 @@ describe('AtmoceGateway against the simulator', () => {
     await gateway.force('charge', { kind: 'duration', minutes: 60, powerW: 2000 });
     simulator.writes.length = 0;
     await gateway.setPowerLimit('export', null);
-    assert.deepEqual(simulator.writes, [{ address: 60324, values: [0xffff, 0xffff] }]);
+    // Export is released through the inverters: the maximum first, then no limit; 60310 untouched.
+    const maximumW = (gateway.identity?.ratedPvPowerW ?? 0) + (gateway.identity?.ratedStoragePowerW ?? 0);
+    assert.deepEqual(simulator.writes, [
+      { address: 60324, values: [Math.floor(maximumW / 0x10000), maximumW % 0x10000] },
+      { address: 60324, values: [0xffff, 0xffff] },
+    ]);
+  });
+
+  it('solar limit: releasing writes the rated power first, then no limit (measured: 0xFFFFFFFF alone keeps the cap)', async () => {
+    gateway.start();
+    const first = await nextSnapshot(gateway);
+    assert.ok(first.powerLimits);
+    const ratedW = gateway.identity?.ratedPvPowerW ?? 0;
+    assert.ok(ratedW > 0);
+    await gateway.setPowerLimit('pv', 300);
+    await nextSnapshot(gateway);
+    simulator.writes.length = 0;
+    await gateway.setPowerLimit('pv', null);
+    assert.deepEqual(simulator.writes, [
+      { address: 60322, values: [Math.floor(ratedW / 0x10000), ratedW % 0x10000] },
+      { address: 60322, values: [0xffff, 0xffff] },
+      { address: 60310, values: [2] },
+    ]);
+  });
+
+  it('battery limits are released directly (measured: the battery follows 0xFFFFFFFF at once)', async () => {
+    gateway.start();
+    await nextSnapshot(gateway);
+    await gateway.setPowerLimit('charge', 500);
+    await nextSnapshot(gateway);
+    simulator.writes.length = 0;
+    await gateway.setPowerLimit('charge', null);
+    assert.deepEqual(simulator.writes, [
+      { address: 60318, values: [0xffff, 0xffff] },
+      { address: 60310, values: [2] },
+    ]);
+  });
+
+  it('limit changes run one at a time: a new limit during a release ends up in force', async () => {
+    gateway.start();
+    await nextSnapshot(gateway);
+    await gateway.setPowerLimit('pv', 300);
+    await nextSnapshot(gateway);
+    simulator.writes.length = 0;
+    await Promise.all([gateway.setPowerLimit('pv', null), gateway.setPowerLimit('pv', 1000)]);
+    const pv = simulator.writes.filter((w) => w.address === 60322).map((w) => w.values[0] * 0x10000 + w.values[1]);
+    assert.equal(pv.at(-1), 1000);
+  });
+
+  it('a release interrupted by a restart (maximum left in the register) is finished at the next poll', async () => {
+    const ratedProbe = gatewayFor(simulator.serial);
+    ratedProbe.start();
+    await nextSnapshot(ratedProbe);
+    const ratedW = ratedProbe.identity?.ratedPvPowerW ?? 0;
+    await ratedProbe.stop();
+    simulator.set(60310, [4]);
+    simulator.set(60322, [Math.floor(ratedW / 0x10000), ratedW % 0x10000]);
+    gateway = gatewayFor(simulator.serial, 50);
+    gateway.start();
+    for (let i = 0; i < 100 && (simulator.get(60322) !== 0xffff || simulator.get(60310) !== 2); i += 1) {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 20);
+      });
+    }
+    assert.deepEqual(simulator.writes.filter((w) => w.address === 60322).at(-1)?.values, [0xffff, 0xffff]);
+    assert.equal(simulator.get(60310), 2);
+  });
+
+  it('limits are re-asserted at once when a forced run ends, not only every 5 minutes', async () => {
+    gateway = gatewayFor(simulator.serial, 40);
+    gateway.start();
+    await nextSnapshot(gateway);
+    await gateway.setPowerLimit('charge', 500); // limit mode (4) asserted just now
+    await gateway.force('charge', { kind: 'target_soc', socPercent: 100, powerW: 2500 });
+    await gateway.setPowerLimit('discharge', 0);
+    await nextSnapshot(gateway);
+    await nextSnapshot(gateway);
+    simulator.writes.length = 0;
+    simulator.set(60310, [2]); // the gateway ends the run (target reached)
+    for (let i = 0; i < 50 && !simulator.writes.some((w) => w.address === 60310); i += 1) {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 20);
+      });
+    }
+    assert.deepEqual(simulator.writes.filter((w) => w.address === 60310), [{ address: 60310, values: [4] }]);
   });
 
   it('power limit: removing the last one returns to normal mode (2)', async () => {

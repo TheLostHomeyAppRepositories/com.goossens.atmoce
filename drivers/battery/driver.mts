@@ -30,15 +30,6 @@ export default class BatteryDriver extends AtmoceDriver {
     flow.getActionCard('stop_forced').registerRunListener(async ({ device }: { device: BatteryDevice }) => {
       await device.stopForced();
     });
-    flow.getActionCard('charge_at_power').registerRunListener(async ({ device, power }: ForceArgs) => {
-      await device.holdPower(Math.abs(power));
-    });
-    flow.getActionCard('discharge_at_power').registerRunListener(async ({ device, power }: ForceArgs) => {
-      await device.holdPower(-Math.abs(power));
-    });
-    flow.getActionCard('pause_battery').registerRunListener(async ({ device }: { device: BatteryDevice }) => {
-      await device.holdPower(0);
-    });
     flow.getActionCard('limit_charging').registerRunListener(async ({ device, power }: ForceArgs) => {
       await device.setPowerLimit('charge', power);
     });
@@ -48,9 +39,6 @@ export default class BatteryDriver extends AtmoceDriver {
     flow.getActionCard('remove_battery_limits').registerRunListener(async ({ device }: { device: BatteryDevice }) => {
       await device.setPowerLimit('charge', null);
       await device.setPowerLimit('discharge', null);
-    });
-    flow.getActionCard('resume_atmozen').registerRunListener(async ({ device }: { device: BatteryDevice }) => {
-      await device.resumeAtmozen();
     });
 
     type Crossing = { previous: number; current: number };

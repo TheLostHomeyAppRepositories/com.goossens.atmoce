@@ -74,6 +74,8 @@ export interface GatewayOptions {
   expectedSerial: string;
   timers: Timers;
   logger: Logger;
+  /** How long a curtailment release holds the maximum (default RELEASE_HOLD_MS; tests shorten it). */
+  releaseHoldMs?: number;
 }
 
 export type ForcedTarget =
@@ -99,6 +101,18 @@ export type BlockSupport = 'yes' | 'no' | 'unknown';
 
 /** Re-assert the self-consumption mode needed for active limits at most this often. */
 const LIMIT_MODE_REASSERT_MS = 5 * 60 * 1000;
+
+/**
+ * Curtailment limits are carried out by the microinverters, and "no limit" (0xFFFFFFFF)
+ * alone leaves them at their last cap. Measured 2026-11-17 on an MC100 (fw 01.01.00.29.03):
+ * after 60322 = 300 W, writing 0xFFFFFFFF kept PV at 317 W for 5 minutes (also right after
+ * writing the rated power first); writing the rated power released the inverters within
+ * 2–5 s, and clearing the register 10 s later kept production free. So a release writes the
+ * maximum, holds it RELEASE_HOLD_MS, then clears the register. The export limit acts through
+ * the same inverters and is released the same way (not measured).
+ */
+const RELEASED_VIA_MAXIMUM: ReadonlySet<PowerLimitKind> = new Set(['pv', 'export']);
+const RELEASE_HOLD_MS = 10_000;
 
 /**
  * Reads the gateway identity once. Used by pairing and by settings validation.
@@ -157,6 +171,12 @@ export class AtmoceGateway extends EventEmitter {
    * the next poll, so decisions must not rely on the snapshot alone.
    */
   private forcedWritten: { command: ForcedCommand; at: number } | null = null;
+  /** 60310 in the previous snapshot, to see a forced run end. */
+  private forcedSeen: ForcedCommand | null = null;
+  /** Limit changes run one at a time: a release holds the maximum for a while. */
+  private limitQueue: Promise<void> = Promise.resolve();
+  /** Kinds whose release (maximum written, clear pending) is in progress. */
+  private readonly releasing = new Set<PowerLimitKind>();
 
   constructor(options: GatewayOptions) {
     super();
@@ -308,16 +328,76 @@ export class AtmoceGateway extends EventEmitter {
    * when the last limit is removed.
    */
   async setPowerLimit(kind: PowerLimitKind, watts: number | null): Promise<void> {
+    await this.queueLimit(() => this.applyPowerLimit(kind, watts, true));
+  }
+
+  private queueLimit(change: () => Promise<void>): Promise<void> {
+    const run = this.limitQueue.then(change);
+    this.limitQueue = run.catch(() => undefined);
+    return run;
+  }
+
+  private async applyPowerLimit(kind: PowerLimitKind, watts: number | null, releaseFirst: boolean): Promise<void> {
     const current = this.snapshot?.powerLimits ?? {
       charge: null, discharge: null, pv: null, export: null, import: null,
     };
+    const maximumW = this.releaseMaximumW(kind);
+    if (releaseFirst && watts === null && current[kind] !== null && current[kind] !== maximumW && maximumW !== null) {
+      // Release the inverters first (see RELEASED_VIA_MAXIMUM): the maximum, held a moment.
+      this.releasing.add(kind);
+      try {
+        await this.ensureLimitsAccepted();
+        await this.writePowerLimit(kind, maximumW);
+        await new Promise<void>((resolve) => {
+          this.options.timers.setTimeout(resolve, this.options.releaseHoldMs ?? RELEASE_HOLD_MS);
+        });
+      } finally {
+        this.releasing.delete(kind);
+      }
+    }
     const next = { ...current, [kind]: watts };
     if (hasActiveLimit(next)) await this.ensureLimitsAccepted();
-    const raw = watts === null ? NO_LIMIT : clampInteger(watts, 0, NO_LIMIT - 1);
-    await this.write(POWER_LIMIT_REGISTER[kind], encodeU32(raw));
+    await this.writePowerLimit(kind, watts === null ? NO_LIMIT : clampInteger(watts, 0, NO_LIMIT - 1));
     if (this.snapshot) this.snapshot = { ...this.snapshot, powerLimits: next };
     if (!hasActiveLimit(next)) await this.leaveLimitMode();
     this.refresh();
+  }
+
+  private async writePowerLimit(kind: PowerLimitKind, raw: number): Promise<void> {
+    await this.write(POWER_LIMIT_REGISTER[kind], encodeU32(raw));
+  }
+
+  /** The value that releases a curtailment limit: the most the system can produce or export. */
+  private releaseMaximumW(kind: PowerLimitKind): number | null {
+    if (!RELEASED_VIA_MAXIMUM.has(kind) || !this.identity) return null;
+    const { ratedPvPowerW, ratedStoragePowerW } = this.identity;
+    const maximumW = kind === 'pv' ? ratedPvPowerW : ratedPvPowerW + ratedStoragePowerW;
+    return maximumW > 0 ? maximumW : null;
+  }
+
+  /**
+   * A release interrupted after the maximum was written (app restart) leaves that maximum in
+   * the register, which keeps limit mode on for nothing. The inverters already follow it, so
+   * the register can simply be cleared.
+   */
+  private finishInterruptedReleases(snapshot: Snapshot): void {
+    if (!snapshot.powerLimits) return;
+    for (const kind of RELEASED_VIA_MAXIMUM) {
+      const value = snapshot.powerLimits[kind];
+      const maximumW = this.releaseMaximumW(kind);
+      if (value === null || maximumW === null || value < maximumW || this.releasing.has(kind)) continue;
+      this.options.logger.log(`Power limit ${kind} = ${value} W is the release maximum; clearing it`);
+      // Queued, not awaited: the poll goes on; no second hold, the inverters already follow it.
+      this.releasing.add(kind);
+      this.queueLimit(() => this.applyPowerLimit(kind, null, false))
+        .catch((err) => this.options.logger.error(`Clearing the ${kind} limit failed:`, errorMessage(err)))
+        .finally(() => this.releasing.delete(kind));
+    }
+  }
+
+  /** 60310 as the gateway has it now (forced run, limit mode or normal operation). */
+  get forcedCommand(): ForcedCommand | null {
+    return this.currentForcedCommand();
   }
 
   /** 60310 as the gateway has it now: the app's own last write wins over an older snapshot. */
@@ -361,9 +441,14 @@ export class AtmoceGateway extends EventEmitter {
    */
   private async keepLimitsEnforced(snapshot: Snapshot): Promise<void> {
     const { control } = snapshot;
+    const previous = this.forcedSeen;
+    this.forcedSeen = control?.forcedCommand ?? null;
     if (!this.supportsPowerLimits || !hasActiveLimit(snapshot.powerLimits) || !control) return;
     if (control.remoteControl || this.currentForcedCommand() !== 'exit') return;
-    if (Date.now() - this.limitModeAssertedAt < LIMIT_MODE_REASSERT_MS) return;
+    // A forced run that just ended (seen 2026-11-17: 60310 back to 2 with a discharge limit set)
+    // must not leave the limits unenforced until the next periodic re-assert.
+    const runJustEnded = previous === 'charge' || previous === 'discharge' || previous === 'standby';
+    if (!runJustEnded && Date.now() - this.limitModeAssertedAt < LIMIT_MODE_REASSERT_MS) return;
     this.options.logger.log('Power limits active but the gateway left self-consumption mode; re-asserting');
     await this.enterLimitMode().catch((err) => this.options.logger.error('Re-asserting limit mode failed:', errorMessage(err)));
   }
@@ -438,6 +523,7 @@ export class AtmoceGateway extends EventEmitter {
       }
       this.emit('snapshot', this.snapshot);
       await this.keepLimitsEnforced(this.snapshot);
+      this.finishInterruptedReleases(this.snapshot);
     } catch (err) {
       this.failures += 1;
       if (this.failures === 1) this.failingSince = startedAt;

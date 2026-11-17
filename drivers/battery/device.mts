@@ -1,4 +1,8 @@
 import { AtmoceDevice } from '../../lib/atmoce-device.mts';
+import {
+  type ControlState, type ForcedRun, type TargetPowerMode,
+  controlBeforeRun, forcedRunEnded, forcedRunState, overridesDispatch,
+} from '../../lib/battery-control.mts';
 import type { ForcedTarget, Snapshot } from '../../lib/gateway.mts';
 import {
   equivalentFullCycles,
@@ -17,8 +21,6 @@ import {
   type Status,
   batteryPowerForHomey,
 } from '../../lib/registers.mts';
-
-type TargetPowerMode = 'device' | 'homey';
 
 /** What Homey asks of the battery right now: + charge, − discharge (W); null when nothing. */
 function requestedPowerW(control: Control | null): number | null {
@@ -54,11 +56,15 @@ interface TargetPowerChange {
  * battery: the gateway reports them as a single aggregate (sum of capacity and power
  * limits, one SOC), so no model-specific handling is needed.
  *
- * Control
- * - `target_power_mode` = homey: remote dispatch (#43 = 1, #52 = −target_power).
- * - `target_power_mode` = device: dispatch 0 and #43 = 0, the battery follows the mode
- *   set in Atmozen (self-consumption / time-of-use).
- * - Flow actions: forced charge/discharge (#47–#51), to a target SOC or for a duration.
+ * Control: Homey's standard `target_power` / `target_power_mode` are the one way to control
+ * the battery, and always show who does (see lib/battery-control.mts).
+ * - `target_power_mode` = homey: remote dispatch (#43 = 1, #52 = −target_power). A forced run
+ *   overrides dispatch on the gateway, so a running one is ended first.
+ * - `target_power_mode` = device: any forced run ended, dispatch 0 and #43 = 0; the battery
+ *   follows the mode set in Atmozen (self-consumption / time-of-use).
+ * - Flow actions charge/discharge to a target SOC or for a duration (#47–#51): shown as
+ *   homey at ±P while they run; when the gateway ends them (or "stop" does) the control from
+ *   before the run comes back.
  */
 export default class BatteryDevice extends AtmoceDevice {
 
@@ -81,7 +87,8 @@ export default class BatteryDevice extends AtmoceDevice {
     await this.addMissingCapabilities(ADDED_AFTER_1_0);
     // A fresh device has no mode yet; the gateway starts in its own (Atmozen) mode.
     if (this.getCapabilityValue('target_power_mode') === null) await this.setCapabilityValue('target_power_mode', 'device');
-    this.reapplyTargetPower = this.getCapabilityValue('target_power_mode') === 'homey';
+    // A forced run keeps running on the gateway across an app restart; its end restores control.
+    this.reapplyTargetPower = this.getCapabilityValue('target_power_mode') === 'homey' && this.forcedRun === null;
     // Devices paired before 1.0.2 still show the target power slider; hide it (manifest options).
     if (this.getStoreValue('targetPowerOptions') !== 'hidden-slider') {
       await this.applyTargetPowerOptions(this.powerRangeW);
@@ -177,35 +184,25 @@ export default class BatteryDevice extends AtmoceDevice {
     const maxW = this.powerRangeW;
     const powerW = maxW > 0 ? Math.min(target.powerW, maxW) : target.powerW;
     if (powerW !== target.powerW) this.log(`Forced ${direction} power ${target.powerW} W capped to ${powerW} W`);
-    // A forced run replaces Homey's dispatch setpoint.
-    await this.leaveHomeyMode();
+    const running = this.forcedRun;
+    const previous = controlBeforeRun(running, this.controlState);
     this.lastWriteAt = Date.now();
+    // A forced run replaces Homey's dispatch setpoint (restored when the run ends).
+    if (!running && previous.mode === 'homey') await this.gateway.resumeLocalControl();
     await this.gateway.force(direction, { ...target, powerW });
+    const run: ForcedRun = {
+      direction, powerW, previous, startedAt: Date.now(),
+    };
+    await this.setStoreValue('forcedRun', run);
+    await this.showControl(forcedRunState(run));
+    this.log(`Forced ${direction} at ${powerW} W started; afterwards back to ${previous.mode} ${previous.targetW} W`);
   }
 
+  /** "Stop forced charging/discharging": ends the run and restores the control from before it. */
   async stopForced(): Promise<void> {
     this.lastWriteAt = Date.now();
     await this.gateway.stopForced();
-  }
-
-  /**
-   * Homey takes control at a fixed power (Homey sign: + charge, − discharge, 0 = pause).
-   * Same path as Homey's own "Set the target power" card, with the capabilities updated.
-   */
-  async holdPower(targetW: number): Promise<void> {
-    this.assertAchievable(targetW);
-    this.lastWriteAt = Date.now();
-    await this.gateway.setDispatchPower(targetW);
-    await this.setCapabilityValue('target_power_mode', 'homey');
-    await this.setCapabilityValue('target_power', targetW);
-  }
-
-  /** Back to the Atmozen mode: ends Homey control and any forced run. */
-  async resumeAtmozen(): Promise<void> {
-    this.lastWriteAt = Date.now();
-    await this.gateway.stopForced();
-    await this.gateway.resumeLocalControl();
-    await this.setCapabilityValue('target_power_mode', 'device');
+    await this.restoreAfterRun('stopped from a Flow');
   }
 
   // -------------------------------------------------------------------------
@@ -219,14 +216,68 @@ export default class BatteryDevice extends AtmoceDevice {
     if (change.target_power_mode === 'device') {
       // "When switching from homey to device mode, the driver should discard any
       // target_power setpoint and resume internal device logic." (Homey Energy docs)
+      const run = this.forcedRun;
+      await this.endForcedRun();
       await this.gateway.resumeLocalControl();
+      // The setpoint shown during the run was the run's; a later switch back to homey uses the one from before it.
+      if (run !== null) await this.setCapabilityValue('target_power', run.previous.targetW);
       return;
     }
     const mode = change.target_power_mode ?? this.getCapabilityValue('target_power_mode');
     if (mode !== 'homey') return;
     const targetW = change.target_power ?? (this.getCapabilityValue('target_power') as number | null) ?? 0;
     this.assertAchievable(targetW);
+    // A forced run would keep overriding the setpoint (measured), so it ends first.
+    await this.endForcedRun();
     await this.gateway.setDispatchPower(targetW);
+  }
+
+  /** Who controls the battery now, as the standard capabilities show it. */
+  private get controlState(): ControlState {
+    return {
+      mode: (this.getCapabilityValue('target_power_mode') as TargetPowerMode | null) ?? 'device',
+      targetW: (this.getCapabilityValue('target_power') as number | null) ?? 0,
+    };
+  }
+
+  private async showControl(state: ControlState): Promise<void> {
+    await this.setCapabilityValue('target_power_mode', state.mode);
+    await this.setCapabilityValue('target_power', state.targetW);
+  }
+
+  /** The forced run this app started and still follows; null when none. */
+  private get forcedRun(): ForcedRun | null {
+    return (this.getStoreValue('forcedRun') as ForcedRun | null) ?? null;
+  }
+
+  /**
+   * Ends any forced run (this app's or another system's) without restoring the control from
+   * before it: the caller sets the new control.
+   */
+  private async endForcedRun(): Promise<void> {
+    if (this.forcedRun === null && !overridesDispatch(this.gateway.forcedCommand)) return;
+    await this.gateway.stopForced();
+    await this.setStoreValue('forcedRun', null);
+  }
+
+  /** After a forced run: the control from before it, re-applied when that was a Homey setpoint. */
+  private async restoreAfterRun(reason: string): Promise<void> {
+    const run = this.forcedRun;
+    if (run === null) return;
+    await this.setStoreValue('forcedRun', null);
+    const { previous } = run;
+    this.log(`Forced ${run.direction} ${reason}; back to ${previous.mode} ${previous.targetW} W`);
+    if (previous.mode === 'homey') {
+      this.lastWriteAt = Date.now();
+      try {
+        await this.gateway.setDispatchPower(previous.targetW);
+      } catch (err) {
+        // The gateway is in its own mode now: show that instead of a setpoint it does not have.
+        await this.showControl({ mode: 'device', targetW: previous.targetW });
+        throw err;
+      }
+    }
+    await this.showControl(previous);
   }
 
   /**
@@ -247,15 +298,10 @@ export default class BatteryDevice extends AtmoceDevice {
     throw new Error(this.homey.__(targetW > 0 ? 'errors.charge_limit' : 'errors.discharge_limit', { max: rangeW }));
   }
 
-  private async leaveHomeyMode(): Promise<void> {
-    if (this.getCapabilityValue('target_power_mode') !== 'homey') return;
-    await this.gateway.resumeLocalControl();
-    await this.setCapabilityValue('target_power_mode', 'device');
-  }
-
   /** Graceful stop: never leave the battery on a dispatch setpoint nobody maintains. */
   private async handBackControl(): Promise<void> {
-    if (this.getCapabilityValue('target_power_mode') !== 'homey') return;
+    // A forced run is left running (it ends by itself; a restart picks it up again).
+    if (this.getCapabilityValue('target_power_mode') !== 'homey' || this.forcedRun !== null) return;
     try {
       await this.gateway.resumeLocalControl();
       this.log('Handed battery control back to the gateway');
@@ -287,6 +333,15 @@ export default class BatteryDevice extends AtmoceDevice {
     await this.triggerLevelFlows(phases.socPercent);
     await this.triggerDischargeFlows(Math.max(0, -batteryPowerForHomey(status.storagePowerW)));
     await this.checkGridPermission(snapshot);
+
+    const run = this.forcedRun;
+    if (run !== null && control) {
+      if (forcedRunEnded(run, startedAt, control.forcedCommand)) {
+        await this.restoreAfterRun(`ended on the gateway (60310 = ${control.forcedCommand ?? '?'})`)
+          .catch((err) => this.error('Restoring control after the forced run failed:', err));
+      }
+      return;
+    }
 
     if (this.reapplyTargetPower) {
       this.reapplyTargetPower = false;

@@ -75,7 +75,7 @@ Written against the spec and a simulator only. Check these on a real installatio
    60301 = 1 first. For forced charge/discharge (#47) the spec says nothing: evcc writes
    60310 without 60301, the HA integration says writes are ignored in local mode. The app
    currently does *not* touch 60301 for forced commands. Decide on hardware.
-4b. **Does a forced run with a duration (60311 = 1) end by itself?** The spec does not say what
+4b. ✅ **A forced run with a duration (60311 = 1) ends by itself** (VERIFIED 2026-11-17, see Battery control). The spec does not say what
    the gateway does when 60313 runs out (back to 60310 = 2?). The app relies on it; not yet
    observed on hardware. TEMPO ROOD uses target SOC and stops explicitly at 06:00.
 4. **Does the gateway time out remote control?** Unknown. If Homey dies without a clean
@@ -183,18 +183,35 @@ Key decisions:
 
 | Homey | Gateway |
 |---|---|
-| `target_power_mode` = `homey` + `target_power` P | 60301 = 1, then 60316 = −P (I32 W) |
-| `target_power_mode` = `device` | 60316 = 0, then 60301 = 0 (Atmozen mode: self-consumption / TOU) |
-| Flow "charge/discharge to level" | 60314 power, 60312 SOC, 60311 = 0, then 60310 = 0/1 |
-| Flow "charge/discharge for a while" | 60314 power, 60313 minutes (≤ 1440), 60311 = 1, then 60310 = 0/1 |
-| Flow "stop forced" | 60310 = 2 |
+| `target_power_mode` = `homey` + `target_power` P | a running forced run ended (60310 = 2, or 4 with limits), then 60301 = 1, 60316 = −P (I32 W) |
+| `target_power_mode` = `device` | a running forced run ended, 60316 = 0, then 60301 = 0 (Atmozen mode: self-consumption / TOU) |
+| Flow "charge/discharge to level" | 60314 power, 60312 SOC, 60311 = 0, then 60310 = 0/1; shown as `homey` ±P |
+| Flow "charge/discharge for a while" | 60314 power, 60313 minutes (≤ 1440), 60311 = 1, then 60310 = 0/1; shown as `homey` ±P |
+| Flow "stop forced" | 60310 = 2 (4 with limits), then the control from before the run |
+
+Homey's standard capabilities are the **only** way to set a fixed power, pause or hand back
+to Atmozen (Athom's review, 2026-11-17: no second path for the same thing). The 1.0 cards
+"charge/discharge at X W", "pause", "back to the Atmozen mode" and the solar "limit
+production" cards were removed in 1.2.0. `lib/battery-control.mts` holds the rules:
+
+- ✅ VERIFIED 2026-11-17 (MC100 fw .29.03): a forced run **ends by itself** — 60310 back to 2
+  (4 with limits) at the target SOC or after the duration, parameters cleared. The app sees
+  that end (`forcedRunEnded`) and restores the control from before the run (store
+  `forcedRun.previous`, also across app restarts).
+- ✅ VERIFIED: a forced run **overrides remote dispatch** (60310 = 0 at 1500 W with
+  60301 = 1, 60316 = 0 kept charging 1500 W), so any dispatch first ends the run.
+- A repeated identical value (the mobile app re-sending cached values) is ignored, also during
+  a run, so opening the device page never ends a forced charge.
+- Live matrix 2026-11-17 (device/homey start × forced to SOC/for N min/discharge × stop /
+  standard setpoint / standard mode / app restart / TEMPO ROOD with discharge limit): all
+  passed; see the commit of 1.2.0.
 
 - `target_power` range = the widest of 60029 / 60200 / 60202 ever seen, only widening
   (`widenPowerRange`). None of them is a fixed rating on real hardware: 60029 went from
   7500 to 5000 W on day one, 60200/60202 (kW × **100**) are live limits (0 … 9950 W).
 - Pattern follows the Homey docs: `registerMultipleCapabilityListener` (500 ms debounce),
   `target_power` ignored unless mode is `homey`.
-- A forced command first leaves Homey mode (dispatch would otherwise fight it).
+- A forced command first leaves Homey mode (dispatch 0, 60301 = 0); its end restores it.
 - After an app restart in `homey` mode the setpoint is re-applied on the first snapshot.
 - 60400 "system reset" is deliberately not exposed (semantics undocumented).
 
@@ -289,7 +306,7 @@ When adding a string, add it in all 13 languages in the same change.
 | Grid: "Limit export to X W" / "Allow unlimited export"; condition "Export is limited" | 60324 |
 | Grid: "Limit grid import to X W" / "Allow unlimited grid import"; condition | 60326 |
 | Battery: "Limit charging / discharging to X W", "Remove the charge and discharge limits" | 60318 / 60320 |
-| Solar: `target_power` + `target_power_mode` (Homey Energy curtailment), cards "Limit solar production to X W" / "Remove the solar production limit" | 60322 |
+| Solar: `target_power` + `target_power_mode` (Homey Energy curtailment; the rated power = no limit) | 60322 |
 
 - U32 W, 0xFFFFFFFF = no limit. Read back every poll (`powerLimits` block, optional), so
   Homey shows what the gateway really enforces (also limits set by e.g. evcc).
@@ -319,7 +336,17 @@ When adding a string, add it in all 13 languages in the same change.
   battery went from 3923 W to 1000 W (±2 W) within ~7 s and kept self-consuming (grid covered
   the rest). Removing it wrote 60320 = 0xFFFFFFFF then 60310 = 2; back to ~4130 W within ~5 s.
   So 60310 = 4 behaves like normal self-consumption and the limits are exact.
-- Still unverified: export / PV / import limits on hardware (same mechanism), whether limits
+- ✅ VERIFIED 2026-11-17: the **PV limit works** (60322 = 300 → production 317 W), but
+  **0xFFFFFFFF alone does not release it**: production stayed at 317 W for 5 minutes, also when
+  the rated power was written right before. Writing the rated power releases the inverters in
+  2–5 s; clearing the register 10 s later keeps production free. `setPowerLimit` therefore
+  releases pv/export via the maximum (`RELEASED_VIA_MAXIMUM`, `RELEASE_HOLD_MS`), runs limit
+  changes one at a time (`limitQueue`), and finishes a release cut short by a restart
+  (`finishInterruptedReleases`). Export uses the same path as a precaution (not measured).
+- ✅ VERIFIED 2026-11-17: after a forced run ends, the gateway may set 60310 = 2 although a
+  limit is active (seen once, the other runs went to 4). `keepLimitsEnforced` re-asserts 4 at
+  once after a run ends instead of waiting for the 5-minute re-assert.
+- Still unverified: export / import limits on hardware (same mechanism), whether limits
   survive a gateway restart (the app re-asserts mode 4 anyway), and the interaction with
   Atmozen's "Export Power to Grid" switch.
 

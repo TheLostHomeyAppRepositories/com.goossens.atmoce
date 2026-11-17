@@ -19,10 +19,12 @@ you only switch it on in the Atmozen app. No Modbus adapter, no cabling, no extr
 
 Flow cards:
 
-- **Battery:** level dropped below / rose above X %, level is above X %; charge or discharge
-  at X W, pause, return to the Atmozen mode; forced charge/discharge to a level or for a
-  number of minutes; battery mode is / changed. Homey's own cards ("Set the target power",
-  "Target power mode", "Battery charging state") work as well.
+- **Battery:** level dropped below / rose above X %, level is above X %; forced
+  charge/discharge to a level or for a number of minutes, stop it; limit charging or
+  discharging to X W; battery mode is / changed. Charging or discharging at a fixed power,
+  pausing and handing control back to Atmozen use Homey's own cards ("Set the target power",
+  "Set the target power mode"); a forced run shows there as Homey control and hands back to
+  the previous control when it ends.
 - **Grid:** export / import started and stopped, export / import rose above X W, is
   exporting / importing.
 - **Solar surplus** (grid meter): surplus of at least X W for N minutes, surplus has been gone
@@ -32,6 +34,7 @@ Flow cards:
   meter setting "Battery first up to" (default 100 %) lets battery charging count as surplus
   above a battery level, e.g. 80 % on sunny summer days. Works the same without a battery.
 - **Solar:** production started / stopped, is producing, system fault started / cleared / is active.
+  Limiting production uses Homey's own "Set the target power" (the maximum means no limit).
 
 **Dashboard widget "Energy flow"**: live solar → home → battery → grid flows with the battery
 level and today's production, consumption and self-sufficiency.

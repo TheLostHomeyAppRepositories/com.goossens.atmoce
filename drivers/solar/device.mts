@@ -73,24 +73,8 @@ export default class SolarDevice extends AtmoceDevice {
   }
 
   // -------------------------------------------------------------------------
-  // Curtailment (Flow actions call these too)
+  // Curtailment: Homey's standard target_power / target_power_mode only
   // -------------------------------------------------------------------------
-
-  /** Caps production (W); at or above the rated PV power this means no limit. */
-  async limitProduction(watts: number | null): Promise<void> {
-    const ratedW = this.ratedPvPowerW;
-    const limit = watts === null || (ratedW > 0 && watts >= ratedW) ? null : Math.max(0, Math.round(watts));
-    this.lastWriteAt = Date.now();
-    await this.setPowerLimit('pv', limit);
-    if (this.hasCapability('target_power')) {
-      await this.setCapabilityValue('target_power_mode', limit === null ? 'device' : 'homey');
-      await this.setCapabilityValue('target_power', limit ?? this.ratedPvPowerW);
-    }
-  }
-
-  async removeProductionLimit(): Promise<void> {
-    await this.limitProduction(null);
-  }
 
   private async setUpCurtailment(): Promise<void> {
     const ratedW = this.ratedPvPowerW;
@@ -122,6 +106,8 @@ export default class SolarDevice extends AtmoceDevice {
     this.lastWriteAt = Date.now();
     if (mode !== 'homey') {
       await this.setPowerLimit('pv', null);
+      // No curtailment is the maximum (Homey Energy docs); a later switch to homey must not bring back an old cap.
+      await this.setCapabilityValue('target_power', this.ratedPvPowerW);
       return;
     }
     const targetW = change.target_power ?? (this.getCapabilityValue('target_power') as number | null) ?? this.ratedPvPowerW;
@@ -131,8 +117,11 @@ export default class SolarDevice extends AtmoceDevice {
   /** Shows the production limit the gateway really has (also when set by another system). */
   private async syncCurtailment({ powerLimits, startedAt }: Snapshot): Promise<void> {
     if (!powerLimits || !this.hasCapability('target_power') || startedAt <= this.lastWriteAt) return;
-    const limit = powerLimits.pv;
-    if (limit === null && this.getCapabilityValue('target_power_mode') === 'homey') {
+    // The rated power is no limit: it is also what a release writes first (lib/gateway.mts).
+    const limit = powerLimits.pv !== null && powerLimits.pv >= this.ratedPvPowerW ? null : powerLimits.pv;
+    const shownW = (this.getCapabilityValue('target_power') as number | null) ?? this.ratedPvPowerW;
+    // homey at the maximum is a valid "no curtailment" (Homey Energy docs); only a cap that is gone switches to device.
+    if (limit === null && this.getCapabilityValue('target_power_mode') === 'homey' && shownW < this.ratedPvPowerW) {
       await this.setCapabilityValue('target_power_mode', 'device');
       await this.setCapabilityValue('target_power', this.ratedPvPowerW);
     } else if (limit !== null) {
