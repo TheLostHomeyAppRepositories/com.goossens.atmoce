@@ -265,7 +265,10 @@ When adding a string, add it in all 13 languages in the same change.
 - App images: Atmoce's lifestyle photo (MC100 datasheet); driver images: product photos
   from the datasheets (MI microinverter, MS-7K-U, MC100) on white.
   **Get Atmoce's written permission to use their logo and photos before publishing.**
-- Driver icons are hand-drawn line icons (960×960, stroke 32).
+- Driver icons (guidelines 1.6): the device itself, not a symbol — MS-7K-U wall unit, DIN-rail
+  grid meter, solar panel — seen from the right side, filling the 960×960 canvas, transparent,
+  outline stroke 44 and details 28 (like Athom's own vectors in athombv/homey-vectors-public).
+  The earlier thin symbol icons (stroke 32, a bolt in a box, arrows) were flagged by Athom.
 - `brandColor` `#D1606D`: the middle of Atmoce's own logo gradient (#E47478 → #C34E68); brightness ≈ 131, limit 184.
 - Store rules (apps.developer.homey.app/app-store/guidelines): README one or two paragraphs,
   plain text, no URLs, no changelog; description a one-liner, not "Adds support for"; Flow
