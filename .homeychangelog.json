@@ -118,5 +118,20 @@
     "pl": "Baterią i panelami steruje się teraz tylko kartami Homey: „Ładuj/Rozładuj mocą X W”, „Wstrzymaj baterię”, „Wróć do trybu Atmozen” i „Ogranicz produkcję słoneczną” zastąpiono kartami „Ustaw moc docelową” i „Ustaw tryb mocy docelowej” (zaktualizuj Flow, które ich używały). Wymuszone ładowanie lub rozładowanie jest teraz widoczne jako sterowanie Homey, a po zakończeniu przywraca poprzednie sterowanie. Naprawiono: moc docelowa podczas wymuszonego ładowania nie jest już ignorowana, a usunięcie limitu produkcji lub eksportu naprawdę uwalnia produkcję.",
     "ko": "이제 배터리와 태양광은 Homey 기본 카드로만 제어합니다. \"X W로 충전/방전\", \"배터리 일시 정지\", \"Atmozen 모드로 되돌리기\", \"태양광 발전 제한\"은 \"목표 전력 설정\"과 \"목표 전력 모드 설정\"으로 대체되었습니다(이 카드를 쓰던 Flow를 수정하세요). 강제 충전·방전은 이제 Homey 제어로 표시되며 끝나면 이전 제어로 돌아갑니다. 수정: 강제 실행 중 설정한 목표 전력이 더 이상 무시되지 않으며, 태양광·송전 제한을 해제하면 발전이 실제로 회복됩니다.",
     "ar": "تُدار البطارية والألواح الآن ببطاقات Homey فقط: استُبدلت «الشحن/التفريغ بقدرة X واط» و«إيقاف البطارية مؤقتًا» و«العودة إلى وضع Atmozen» و«تحديد الإنتاج الشمسي» ببطاقتي «تعيين القدرة المستهدفة» و«تعيين وضع القدرة المستهدفة» (حدّث تدفقات Flow التي استخدمتها). يظهر الشحن أو التفريغ الإجباري الآن كتحكم من Homey ويعيد التحكم السابق عند انتهائه. تم الإصلاح: لم تعد القدرة المستهدفة أثناء التشغيل الإجباري تُتجاهل، وإزالة حد الإنتاج الشمسي أو التصدير تحرر الإنتاج فعلًا."
+  },
+  "1.2.1": {
+    "en": "New device icons for the battery, solar panels and grid meter: they now show the devices themselves.",
+    "nl": "Nieuwe pictogrammen voor de batterij, de zonnepanelen en de netmeter: ze tonen nu de toestellen zelf.",
+    "de": "Neue Gerätesymbole für Batterie, Solarmodule und Netzzähler: Sie zeigen jetzt die Geräte selbst.",
+    "fr": "Nouvelles icônes pour la batterie, les panneaux solaires et le compteur réseau : elles montrent maintenant les appareils eux-mêmes.",
+    "it": "Nuove icone per la batteria, i pannelli solari e il contatore di rete: ora mostrano i dispositivi stessi.",
+    "sv": "Nya enhetsikoner för batteriet, solpanelerna och nätmätaren: de visar nu själva enheterna.",
+    "no": "Nye enhetsikoner for batteriet, solcellepanelene og nettmåleren: de viser nå selve enhetene.",
+    "es": "Nuevos iconos para la batería, los paneles solares y el contador de red: ahora muestran los propios dispositivos.",
+    "da": "Nye enhedsikoner for batteriet, solpanelerne og nettælleren: de viser nu selve enhederne.",
+    "ru": "Новые значки для батареи, солнечных панелей и сетевого счётчика: теперь они показывают сами устройства.",
+    "pl": "Nowe ikony baterii, paneli słonecznych i licznika sieciowego: pokazują teraz same urządzenia.",
+    "ko": "배터리, 태양광 패널, 계량기의 새 기기 아이콘: 이제 기기 자체를 보여 줍니다.",
+    "ar": "أيقونات جديدة للبطارية والألواح الشمسية وعداد الشبكة: تعرض الآن الأجهزة نفسها."
   }
 }
